@@ -25,6 +25,9 @@
 		<PackageReference Include="MonoMod" Version="22.7.31.1" />
 	</ItemGroup>
 	<ItemGroup>
+		<Reference Include="Verdant">
+			<HintPath>lib\Assemblies\Verdant.dll</HintPath>
+		</Reference>
 		<Reference Include="CalamityBardHealer">
 		  <HintPath>lib\Assemblies\CalamityBardHealer.dll</HintPath>
 		</Reference>

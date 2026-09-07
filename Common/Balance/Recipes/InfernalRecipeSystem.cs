@@ -353,6 +353,19 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
 
             foreach (var recipe in Main.recipe)
             {
+                #region Verdant
+                //do we have verdant
+                if (!ModLoader.HasMod("Verdant"))
+                //yes? do all of this stuff
+                //{
+                  //  if (recipe.HasResult(ModContent.ItemType<>)) 
+                    //{
+                        recipe.RemoveTile(TileID.Anvils);
+                        recipe.AddTile(thorium.Find<ModTile>("ArcaneArmorFabricator"));
+                    //}
+                //}
+                //no? do nothing
+                #endregion
                 #region tPackBuilder Subsititons
                 if (!ModLoader.HasMod("PackBuilder"))
                 {

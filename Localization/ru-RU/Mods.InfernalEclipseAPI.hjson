@@ -102,8 +102,8 @@ UI: {
 		Этот мод добавляет множество неописанных изменений, способных сделать ваше прохождение куда, чем оно должно быть в действительности.
 		Мы настоятельно рекомендуем отключить этот мод.
 		'''
-	// MediumWorldWarning: "[c/FF0000:Medium Worlds will likely have problems]"
-	// WorldWarningRemnants: "[c/FF0000:INFERNAL ECLIPSE OF RAGNAROK DOES NOT SUPPORT REMNANTS]"
+	// MediumWorldWarning: "[c/FF0000:Medium Worlds will likely have problems with Infernal Eclipse]"
+	// WorldWarningRemnants: "[c/FF0000:INFERNAL ECLIPSE DOES NOT SUPPORT REMNANTS]"
 }
 
 DifficultyUI: {
