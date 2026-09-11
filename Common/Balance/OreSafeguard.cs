@@ -79,14 +79,17 @@ namespace InfernalEclipseAPI.Common.Balance
                 }
             }
 
+            /*
             if (InfernalCrossmod.SOTS.Loaded)
             {
                 if (tile == InfernalCrossmod.SOTS.Mod.Find<ModTile>("SeismicStationTile").Type)
                 {
+                    Main.NewText("tile descrution check happening");
                     if (AncientPhylacteryRightClickBlocker.DownedExcavator)
                         return true;
                 }
             }
+            */
             return base.CanKillTile(i, j, tile, ref blockDamaged);
         }
 

@@ -178,6 +178,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
             {
                 if (npc.type == InfernalCrossmod.Thorium.Mod.Find<ModNPC>("ConfusedZombie").Type)
                 {
+                    /*
                     for (int i = 0; i < items.Length; i++)
                     {
                         if (items[i] == null || items[i].IsAir)
@@ -187,9 +188,19 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
                                 if (AncientPhylacteryRightClickBlocker.DownedExcavator)
                                 {
                                     items[i] = new Item(InfernalCrossmod.SOTS.Mod.Find<ModItem>("SeismicStation").Type);
-                                    continue;
+                                    break;
                                 }
+                            }
+                        }
+                    }
+                    */
 
+                    for (int i = 0; i < items.Length; i++)
+                    {
+                        if (items[i] == null || items[i].IsAir)
+                        {
+                            if (InfernalCrossmod.SOTS.Loaded)
+                            {
                                 if (AncientPhylacteryRightClickBlocker.DownedPolaris)
                                 {
                                     items[i] = new Item(InfernalCrossmod.SOTS.Mod.Find<ModItem>("FrostArtifact").Type);
