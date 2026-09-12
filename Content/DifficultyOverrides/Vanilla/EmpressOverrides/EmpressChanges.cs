@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework;
 using MonoMod.RuntimeDetour;
 using System.Reflection;
 using Terraria.Audio;
-using static InfernumMode.Content.BehaviorOverrides.BossAIs.Yharon.YharonBehaviorOverride;
+using Terraria.DataStructures;
 
 namespace InfernalEclipseAPI.Content.DifficultyOverrides.Vanilla.EmpressOverrides
 {
@@ -69,16 +69,23 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Vanilla.EmpressOverride
 
         public override bool AppliesToEntity(NPC entity, bool lateInstantiation) => entity.type == NPCID.HallowBoss;
 
+        public override void OnSpawn(NPC npc, IEntitySource source)
+        {
+            if (!InfernalWorld.RagnarokModeEnabled)
+                return;
+
+            CalamityWorld.StopRain();
+
+            Main.dayTime = true;
+        }
+
         public override bool PreAI(NPC npc)
         {
             if (!InfernalWorld.RagnarokModeEnabled)
                 return base.PreAI(npc);
 
-            CalamityWorld.StopRain();
-
-            Main.dayTime = true;
-
             ref float attackType = ref npc.ai[0];
+            ref float attackTimer = ref npc.ai[1];
             ref float hasDoneSpawnEffects = ref npc.Infernum().ExtraAI[HadDoneSpawnEffectsIndex];
             ref float shouldSetDaytimeAndShader = ref npc.Infernum().ExtraAI[ShouldSetDaytimeAndShaderIndex];
             ref float spawnEffectsTimer = ref npc.Infernum().ExtraAI[SpawnEffectsTimerIndex];
@@ -98,10 +105,23 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Vanilla.EmpressOverride
                     player.ZoneHallow = true;
                 }
 
+                CalamityWorld.StopRain();
+
+                Main.dayTime = true;
                 Main.time = Lerp((float)Main.time, (float)Main.dayLength * 0.5f, 0.01f);
             }
 
             var currentAttack = (EmpressOfLightBehaviorOverride.EmpressOfLightAttackType)(int)attackType;
+
+            if (currentAttack == EmpressOfLightBehaviorOverride.EmpressOfLightAttackType.MajesticPierce)
+            {
+                if (attackTimer % 120f == 0f && Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    Vector2 velocity = Main.rand.NextVector2Circular(8f, 8f);
+
+                    Utilities.NewProjectileBetter(npc.Center, velocity, ModContent.ProjectileType<PrismaticBolt>(), EmpressOfLightBehaviorOverride.PrismaticBoltDamage, 0f, ai0: npc.target, ai1: Main.rand.NextFloat());
+                }
+            }
 
             if (currentAttack == EmpressOfLightBehaviorOverride.EmpressOfLightAttackType.UltimateRainbow)
                 hasDoneUltimateRainbow = 1f;

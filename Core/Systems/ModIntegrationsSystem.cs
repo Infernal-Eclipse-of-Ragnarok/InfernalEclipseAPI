@@ -71,8 +71,8 @@ namespace InfernalEclipseAPI.Core.Systems
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/Interlude04"), "Calamity before the cynosure", "by theforge129", "Infernal Eclipse of Ragnarok");
 
             //Boss Rush Themes
-            musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/tier5"), "Descent Of Divinities", "by psykomatic", "Infernal Eclipse of Ragnarok");
-            musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/tier6"), "Omiscience Of Gods", "by TheTrester", "Infernal Eclipse of Ragnarok");
+            musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/tier5"), "Omiscience Of Gods", "by TheTrester", "Infernal Eclipse of Ragnarok");
+            musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/tier6"), "Onslaught of Beasts (Encore Mix)", "by CDMusic", "Infernal Eclipse of Ragnarok");
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/TWISTEDGARDENRemix"), "TWISTED GARDEN [Remix]", "by Kuudray", "Infernal Eclipse of Ragnarok");
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/EnsembleofFools(EncoreMix)"), "Ensemble of Fools (Encore Mix)", "by CDMusic", "Infernal Eclipse of Ragnarok");
 
