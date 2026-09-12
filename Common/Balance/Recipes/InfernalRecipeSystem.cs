@@ -33,6 +33,10 @@ using InfernumMode.Content.Items.Weapons.Magic;
 using SOTS;
 using System.Linq;
 using Terraria.Localization;
+using ThoriumMod.Items.ArcaneArmor;
+using ThoriumMod.Tiles;
+using Verdant.Items.Verdant.Armour;
+using Verdant.Items.Verdant.Armour.ApotheoticArmor;
 
 namespace InfernalEclipseAPI.Common.Balance.Recipes
 {
@@ -355,14 +359,24 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
             {
                 #region Verdant
                 //do we have verdant
-                if (!ModLoader.HasMod("Verdant"))
+                //if (ModLoader.HasMod("VerdantMod"))
                 //yes? do all of this stuff
                 //{
-                  //  if (recipe.HasResult(ModContent.ItemType<>)) 
-                    //{
+                    //Check for any of the blossom armor peices
+                    if (recipe.HasResult(ModContent.ItemType<VerdantChestplate>()) || recipe.HasResult(ModContent.ItemType<VerdantHelm>()) || recipe.HasResult(ModContent.ItemType<VerdantLeggings>()))
+                    {
+                        //Remove the anvil
                         recipe.RemoveTile(TileID.Anvils);
+                        //Add the arcane armor fabricator
                         recipe.AddTile(thorium.Find<ModTile>("ArcaneArmorFabricator"));
-                    //}
+                    }
+                    //check for any peice of apoth armor
+                    if (recipe.HasResult(ModContent.ItemType<ApotheoticChestplate>()) || recipe.HasResult(ModContent.ItemType<ApotheoticLeggings>()) || recipe.HasResult(ModContent.ItemType<ApotheoticTreeHelmet>()) || recipe.HasResult(ModContent.ItemType<ApotheoticBeeHelmet>()))
+                {
+                    //Add 4 stardust fragments to apoth armor
+                    recipe.AddIngredient(ItemID.FragmentStardust, 4);
+                }
+                    //
                 //}
                 //no? do nothing
                 #endregion
