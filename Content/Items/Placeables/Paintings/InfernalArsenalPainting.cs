@@ -47,6 +47,22 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Paintings
             }
             tooltip += "\n";
 
+            tooltip += "Whips Only Victors:\n";
+            int whipNamesPerLine = 8;
+            for (int i = 0; i < whipsList.Count; i++)
+            {
+                tooltip += whipsList[i];
+
+                if (i == whipsList.Count - 1)
+                    break;
+
+                if (i % whipNamesPerLine == 0 && i != 0)
+                    tooltip += "\n";
+                else
+                    tooltip += ", ";
+            }
+            tooltip += "\n";
+
             tooltip += "Boss Rush Victors:\n";
             int brNamesPerLine = 3;
             for (int i = 0; i < bossRushList.Count; i++)

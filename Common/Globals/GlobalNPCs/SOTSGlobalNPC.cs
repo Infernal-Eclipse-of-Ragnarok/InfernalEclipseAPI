@@ -3,6 +3,7 @@ using CalamityMod.Events;
 using CalamityMod.Items.Materials;
 using CalamityMod.Items.Mounts;
 using CalamityMod.NPCs.Cryogen;
+using CalamityMod.NPCs.DevourerofGods;
 using CalamityMod.NPCs.HiveMind;
 using CalamityMod.NPCs.NormalNPCs.HorribleHog;
 using CalamityMod.NPCs.Perforator;
@@ -12,7 +13,6 @@ using CalamityMod.NPCs.SlimeGod;
 using CalamityMod.NPCs.SunkenSea;
 using CalamityMod.Projectiles.Boss;
 using CalamityMod.Projectiles.Boss.BrainOfCthulhu;
-using CalamityMod.Systems.Collections;
 using InfernalEclipseAPI.Content.Buffs;
 using InfernalEclipseAPI.Content.Items.Lore.SOTS;
 using InfernalEclipseAPI.Content.Items.Placeables.Relics.Platinum;
@@ -280,16 +280,13 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
             {
                 if (npc.type == InfernalCrossmod.NoxusBoss.Mod.Find<ModNPC>("NamelessDeityBoss").Type)
                 {
-                    debuffNPC.PlatinumCurse = 0;
-                    debuffNPC.HarvestCurse = 0;
-                    debuffNPC.DestableCurse = 0;
-                    debuffNPC.BlazingCurse = 0;
-                    debuffNPC.AnomalyCurse = 0;
-                    debuffNPC.BlightCurse = 0;
-                    debuffNPC.CrystalCurse = 0;
-                    debuffNPC.DamageCurse = 0;
-                    debuffNPC.VoidspaceCurse = 0;
+                    MakeSOTSCurseImmune(npc);
                 }
+            }
+
+            if (npc.type == ModContent.NPCType<DevourerofGodsHead>() || npc.type == ModContent.NPCType<DevourerofGodsBody>() || npc.type == ModContent.NPCType<DevourerofGodsTail>())
+            {
+                MakeSOTSCurseImmune(npc);
             }
 
             if (debuffNPC.AnomalyCurse > MaxAnomalyCurseStacks)
@@ -429,6 +426,21 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
         {
             NerfDendroChain(npc, ref modifiers);
             NerfBlazingCurse(npc, ref modifiers);
+        }
+
+        private static void MakeSOTSCurseImmune(NPC npc)
+        {
+            DebuffNPC debuffNPC = npc.GetGlobalNPC<DebuffNPC>();
+
+            debuffNPC.PlatinumCurse = 0;
+            debuffNPC.HarvestCurse = 0;
+            debuffNPC.DestableCurse = 0;
+            debuffNPC.BlazingCurse = 0;
+            debuffNPC.AnomalyCurse = 0;
+            debuffNPC.BlightCurse = 0;
+            debuffNPC.CrystalCurse = 0;
+            debuffNPC.DamageCurse = 0;
+            debuffNPC.VoidspaceCurse = 0;
         }
 
         private static void NerfBlazingCurse(NPC npc, ref NPC.HitModifiers modifiers)

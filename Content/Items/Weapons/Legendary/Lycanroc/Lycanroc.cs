@@ -108,8 +108,8 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.Lycanroc
 
             if (NPC.downedAncientCultist)
             {
-                int superCrit = Main.rand.Next(1, 20);
-                if (superCrit == 20 || NPC.downedMoonlord && superCrit >= 15)
+                int superCrit = Main.rand.Next(1, 21);
+                if (superCrit == 20 || (NPC.downedMoonlord && superCrit >= 15))
                 {
                     cgp.supercritHits = -1;
                 }

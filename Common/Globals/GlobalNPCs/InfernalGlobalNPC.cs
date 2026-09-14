@@ -8,6 +8,7 @@ using CalamityMod.Items.Placeables.Furniture.Paintings;
 using CalamityMod.NPCs.Crags;
 using CalamityMod.NPCs.TownNPCs;
 using CalamityMod.World;
+using InfernalEclipseAPI.Content.Buffs;
 using InfernalEclipseAPI.Content.Items.Consumables;
 using InfernalEclipseAPI.Content.Items.Materials;
 using InfernalEclipseAPI.Content.Items.Placeables.MusicBoxes;
@@ -281,10 +282,9 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
 
             if (InfernalWorld.RagnarokModeEnabled && npc.type == NPCID.Golem)
             {
-                for (int i = 0; i < Main.maxPlayers; i++)
+                foreach (Player player in Main.ActivePlayers)
                 {
-                    Player player = Main.player[i];
-                    if (player.dead || !player.active || !npc.WithinRange(player.Center, 10000f))
+                    if (player.dead || !npc.WithinRange(player.Center, 10000f))
                         continue;
 
                     player.AddBuff(ModContent.BuffType<WeakPetrification>(), 2);
@@ -293,15 +293,20 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
 
             if (npc.type == ModContent.NPCType<HealerShieldCrystal>())
             {
-                ClearRageAndAdrenaline();
+                foreach (Player player in Main.ActivePlayers)
+                {
+                    if (player.dead || !npc.WithinRange(player.Center, 10000f))
+                        continue;
+
+                    player.AddBuff(ModContent.BuffType<HormonalBlockade>(), 2);
+                }
             }
 
             if (InfernalCrossmod.Thorium.Loaded)
             {
-                for (int i = 0; i < Main.maxPlayers; i++)
+                foreach (Player player in Main.ActivePlayers)
                 {
-                    Player player = Main.player[i];
-                    if (player.dead || !player.active || !npc.WithinRange(player.Center, 10000f))
+                    if (player.dead || !npc.WithinRange(player.Center, 10000f))
                         continue;
 
                     if (npc.ModNPC?.Mod.Name != "ThoriumMod" && npc.boss)
