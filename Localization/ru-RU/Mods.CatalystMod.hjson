@@ -37,7 +37,7 @@ Items: {
 		[c/c61b40:Очищающий свет, покинутый и поглощённый болью,]
 		[c/c61b40:Вернулся в этот мир всепоглощающей тенью]
 		'''
-	// AstrageldonRelic.DisplayName: Platinum Astrageldon Relic
+	AstrageldonRelic.DisplayName: Платиновая реликвия Астрагельдона
 }
 
 ArmorSetBonus.IntergelacticRanged:

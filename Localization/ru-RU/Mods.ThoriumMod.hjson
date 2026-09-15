@@ -93,7 +93,7 @@ Items: {
 
 	ShroomachineGun: {
 		// DisplayName: Shroomachine Gun
-		// Tooltip: "{$CommonItemTooltip.PercentChanceToSaveAmmo}"
+		Tooltip: "{$CommonItemTooltip.PercentChanceToSaveAmmo}"
 	}
 
 	CrystalHoney: {
@@ -512,34 +512,35 @@ Items: {
 		Увеличивает максимальное количество миньонов и стражей на 2
 		Увеличивает отбрасывание миньонов
 		'''
-	/* CursedFlailCore.Tooltip:
+	CursedFlailCore.Tooltip:
 		'''
-		Flail weapons on first hit release a cursed spike ball
-		Further hits have a chance to release more cursed spike balls
-		Cursed spike balls apply cursed flames to damaged enemies
-		''' */
-	/* VileFlailCore.Tooltip:
+		При первом попадании по врагу цепное оружие гарантировано выпустит проклятый шипастый шар
+		Последующие попадания цепным оружием также могут с определённым шансом выпустить дополнительные проклятые шипастые шары
+		Проклятый шипастый шар накладывает дебафф [cbuff:CursedInferno]
 		'''
-		Flail weapons on first hit release a vile spike ball
-		Further hits have a chance to release more vile spike balls
-		Vile spike balls apply ichor to damaged enemies
-		''' */
-	/* IronFlailCore.Tooltip:
+	VileFlailCore.Tooltip:
 		'''
-		Flail weapons on first hit release a rolling spike ball
-		Further hits have a chance to release more rolling spike balls
-		''' */
-	/* BloomingShield.Tooltip:
+		При первом попадании по врагу цепное оружие гарантировано выпускает мерзкий шипастый шар
+		Последующие попадания цепным оружием также могут с определённым шансом выпустить дополнительные мерзкие шипастые шары
+		Мерзкий шипастый шар накладывает дебафф [cbuff:Ichor]
 		'''
-		You constantly generate a 20 life shield
-		Healing spells will heal an additional 1 life, 2 if at max shield
-		When out of combat, your life recovery will increase up to 5 over time
-		''' */
-	/* AstroBeetleHusk.Tooltip:
+	IronFlailCore.Tooltip:
 		'''
-		Damage taken reduced by 5%
-		You constantly generate a 50 life shield
-		''' */
+		При первом попадании по врагу цепное оружие гарантировано выпускает катящийся шипастый шар
+		Последующие попадания цепным оружием также могут с определённым шансом выпустить дополнительные катящиеся шипастые шары
+		'''
+	BloomingShield.Tooltip:
+		'''
+		Постепенно генерирует до 20 ед. жизненного щита
+		Исцеляющие заклинания восстанавливают дополнительно 1 ед. здоровья
+		При достижении максимального щита это значение увеличивается до 2 ед.
+		Вне боя восполнение здоровья постепенно увеличивается до 5 ед.
+		'''
+	AstroBeetleHusk.Tooltip:
+		'''
+		Увеличивает сопротивление урону на 5%
+		Постепенно генерирует до 50 ед. жизненного щита
+		'''
 }
 
 ThrowerTechniques: {
