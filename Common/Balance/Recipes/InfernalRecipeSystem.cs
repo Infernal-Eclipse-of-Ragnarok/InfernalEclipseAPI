@@ -34,9 +34,13 @@ using SOTS;
 using System.Linq;
 using Terraria.Localization;
 using ThoriumMod.Items.ArcaneArmor;
+using ThoriumMod.Items.Misc;
+using ThoriumMod.Items.Placeable;
 using ThoriumMod.Tiles;
+using Verdant;
 using Verdant.Items.Verdant.Armour;
 using Verdant.Items.Verdant.Armour.ApotheoticArmor;
+using Verdant.Items.Verdant.Blocks.Aquamarine;
 
 namespace InfernalEclipseAPI.Common.Balance.Recipes
 {
@@ -249,6 +253,74 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
             }
             #endregion
 
+            #region Verdant
+            if (ModLoader.TryGetMod("Verdant", out Mod Verdant)) {
+                //aquamarine tile conversion recipes are created here, this one turns thorium aquamarine into verdant aquamarine
+                Recipe Veridianaquamarine = Recipe.Create(ModContent.ItemType<AquamarineItem>(), 1);
+                Veridianaquamarine.AddIngredient(thorium.Find<ModItem>("Aquamarine"));
+                Veridianaquamarine.AddTile(TileID.Anvils);
+                Veridianaquamarine.AddCondition(Condition.InGraveyard);
+                Veridianaquamarine.Register();
+                //turn thorium aquamarine gemspark block into verdant aquamarine gemspark
+                Recipe veridiangemsparkblock = Recipe.Create(ModContent.ItemType<GemsparkAquamarineItem>(), 1);
+                veridiangemsparkblock.AddIngredient(thorium.Find<ModItem>("AquamarineGemsparkBlock"));
+                veridiangemsparkblock.AddTile(TileID.Anvils);
+                veridiangemsparkblock.AddCondition(Condition.InGraveyard);
+                veridiangemsparkblock.Register();
+                //turn thorium aquamarine gemspark wall into verdant aquamarine gemsparkwall
+                Recipe Veridiangemsparkwall = Recipe.Create(ModContent.ItemType<GemsparkAquamarineWallItem>(), 1);
+                Veridiangemsparkwall.AddIngredient(thorium.Find<ModItem>("AquamarineGemsparkWallItem"));
+                Veridiangemsparkwall.AddTile(TileID.Anvils);
+                Veridiangemsparkwall.AddCondition(Condition.InGraveyard);
+                Veridiangemsparkwall.Register();
+                //turn thorium gemspark offline wall into verdants offline gemspark wall
+                Recipe Offlineveridiangemsparkwall = Recipe.Create(ModContent.ItemType<GemsparkAquamarineWallOfflineItem>(), 1);
+                Offlineveridiangemsparkwall.AddIngredient(thorium.Find<ModItem>("AquamarineGemsparkWallOfflineItem"));
+                Offlineveridiangemsparkwall.AddTile(TileID.Anvils);
+                Offlineveridiangemsparkwall.AddCondition(Condition.InGraveyard);
+                Offlineveridiangemsparkwall.Register();
+                //turn thorium aquamarine ore item into verdant aquamarine ore item
+                Recipe verdaquastone = Recipe.Create(ModContent.ItemType<EmbeddedStoneAquamarineItem>(), 1);
+                verdaquastone.AddIngredient(thorium.Find<ModItem>("AquamarineStoneBlock"));
+                verdaquastone.AddTile(TileID.Anvils);
+                verdaquastone.AddCondition(Condition.InGraveyard);
+                verdaquastone.Register();
+                //Aquamarine inverse tile conversions go here, starting with verdant aquamarine to thorium aquamarine
+                Recipe deconvaqua = Recipe.Create(ModContent.ItemType<ThoriumMod.Items.Misc.Aquamarine>(), 1);
+                deconvaqua.AddIngredient(Verdant.Find<ModItem>("AquamarineItem"));
+                deconvaqua.AddTile(TileID.Anvils);
+                deconvaqua.AddCondition(Condition.InGraveyard);
+                deconvaqua.Register();
+                //Verdant aquamarine gemspark to thorium aquamarine gemspark
+                Recipe deconvgemspark = Recipe.Create(ModContent.ItemType<AquamarineGemsparkBlock>(), 1);
+                deconvgemspark.AddIngredient(Verdant.Find<ModItem>("GemsparkAquamarineItem"));
+                deconvgemspark.AddTile(TileID.Anvils);
+                deconvgemspark.AddCondition(Condition.InGraveyard);
+                deconvgemspark.Register();
+                //Verdant aquamarine gemspark wall to thorium aquamarine gemspark wall
+                Recipe deconvaquawall = Recipe.Create(ModContent.ItemType<AquamarineGemsparkWallItem>(), 1);
+                deconvaquawall.AddIngredient(Verdant.Find<ModItem>("GemsparkAquamarineItem"));
+                deconvaquawall.AddTile(TileID.Anvils);
+                deconvaquawall.AddCondition(Condition.InGraveyard);
+                deconvaquawall.Register();
+                //Verdant aquamarine offline gemspark to thoriums
+                Recipe deconvofflinewall = Recipe.Create(ModContent.ItemType<AquamarineGemsparkWallOfflineItem>(), 1);
+                deconvofflinewall.AddIngredient(Verdant.Find<ModItem>("GemsparkAquamarineWallOfflineItem"));
+                deconvofflinewall.AddTile(TileID.Anvils);
+                deconvofflinewall.AddCondition(Condition.InGraveyard);
+                deconvofflinewall.Register();
+                //verdant aquamarine ore to thoriums
+                Recipe deconvaquaore = Recipe.Create(ModContent.ItemType<AquamarineStoneBlock>(), 1);
+                deconvaquaore.AddIngredient(Verdant.Find<ModItem>("EmbeddedStoneAquamarineItem"));
+                deconvaquaore.AddTile(TileID.Anvils);
+                deconvaquaore.AddCondition(Condition.InGraveyard);
+                deconvaquaore.Register();
+
+                //Aquamarine equipment from verdant/thorium to verdant/thorium will be placed here
+                }
+            #endregion
+
+
             #region Secrets of the Shadows
             if (InfernalCrossmod.SOTS.Loaded)
             {
@@ -359,11 +431,11 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
             {
                 #region Verdant
                 //do we have verdant
-                //if (ModLoader.HasMod("VerdantMod"))
-                //yes? do all of this stuff
-                //{
+                if (ModLoader.TryGetMod("Verdant", out Mod Verdant))
+                {
+                    //yes? do all of this stuff
                     //Check for any of the blossom armor peices
-                    if (recipe.HasResult(ModContent.ItemType<VerdantChestplate>()) || recipe.HasResult(ModContent.ItemType<VerdantHelm>()) || recipe.HasResult(ModContent.ItemType<VerdantLeggings>()))
+                    if (recipe.HasResult(Verdant.Find<ModItem>("VerdantChestplate")) || recipe.HasResult(Verdant.Find<ModItem>("VerdantHelm")) || recipe.HasResult(Verdant.Find<ModItem>("VerdantLeggings")))
                     {
                         //Remove the anvil
                         recipe.RemoveTile(TileID.Anvils);
@@ -371,15 +443,15 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                         recipe.AddTile(thorium.Find<ModTile>("ArcaneArmorFabricator"));
                     }
                     //check for any peice of apoth armor
-                    if (recipe.HasResult(ModContent.ItemType<ApotheoticChestplate>()) || recipe.HasResult(ModContent.ItemType<ApotheoticLeggings>()) || recipe.HasResult(ModContent.ItemType<ApotheoticTreeHelmet>()) || recipe.HasResult(ModContent.ItemType<ApotheoticBeeHelmet>()))
+                    if (recipe.HasResult(Verdant.Find<ModItem>("ApotheoticChestplate")) || recipe.HasResult(Verdant.Find<ModItem>("ApotheoticLeggings")) || recipe.HasResult(Verdant.Find<ModItem>("ApotheoticTreeHelmet")) || recipe.HasResult(Verdant.Find<ModItem>("ApotheoticBeeHelmet")))
                 {
                     //Add 4 stardust fragments to apoth armor
                     recipe.AddIngredient(ItemID.FragmentStardust, 4);
                 }
-                    //
-                //}
+                }
                 //no? do nothing
                 #endregion
+
                 #region tPackBuilder Subsititons
                 if (!ModLoader.HasMod("PackBuilder"))
                 {
