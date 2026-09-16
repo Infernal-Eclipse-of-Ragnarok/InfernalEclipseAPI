@@ -4,6 +4,10 @@ using MonoMod.RuntimeDetour;
 
 public class ThoriumBCLKeyChanger : ModSystem
 {
+    public override bool IsLoadingEnabled(Mod mod)
+    {
+        return false;
+    }
     private ILHook ilHook;
 
     public override void Load()

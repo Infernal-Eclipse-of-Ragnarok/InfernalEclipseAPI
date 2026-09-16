@@ -128,14 +128,37 @@ if (DeerclopsEntry == List_EntryInfo_GetMethod?.Invoke(SortedEntries, [6])) // C
                 CalShadowHook = new Hook(SwitchToDifficulty_Method, ModifyCalCloneImages);
             }
 
+            if (ModLoader.HasMod("CalamityMod"))
+            {
+                BossEntry("BossRush").ModifyBossProgression(28.1f);
+
+                BossEntry("CalamityMod HiveMind").ModifyBossImage($"{path}/HiveMind");
+                BossEntry("CalamityMod Calamitas").ModifyBossImage($"{path}/Calamitas");
+            }
+
             if (InfernalConfig.Instance.MoveDeerclopsChecklistEntry)
                 BossEntry("Terraria Deerclops").ModifyBossProgression(6);
 
-            BossEntry("CalamityMod HiveMind").ModifyBossImage($"{path}/HiveMind");
-            BossEntry("CalamityMod Calamitas").ModifyBossImage($"{path}/Calamitas");
-
             if (InfernalCrossmod.Consolaria.Loaded)
+            {
                 BossEntry("Consolaria Turkor").ModifyBossProgression(6.5f + 0.1f);
+                BossEntry("Consolaria Ocram").ModifyBossProgression(12.99f);
+            }
+
+            if (InfernalCrossmod.Clamity.Loaded)
+                BossEntry("Clamity Pyrogen").ModifyBossProgression(8.51f);
+
+            if (ModLoader.HasMod("HypnosMod"))
+                BossEntry("HypnosMod Hypnos").ModifyBossProgression(22.991f);
+
+            if (InfernalCrossmod.Thorium.Loaded)
+            {
+                if (InfernalCrossmod.ThoriumRework.Loaded)
+                    BossEntry("ThoriumMod ThePrimordials").ModifyBossProgression(21.5f);
+
+                BossEntry("ThoriumMod StarScouter").ModifyBossProgression(6.91f);
+
+            }
         }
         public static void SCalImages()
         {

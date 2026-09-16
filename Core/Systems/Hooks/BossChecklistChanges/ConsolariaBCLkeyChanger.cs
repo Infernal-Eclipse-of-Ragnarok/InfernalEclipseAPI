@@ -8,6 +8,10 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks.BossChecklistChanges
     [ExtendsFromMod("Consolaria")]
     public class ConsolariaBCLkeyChanger : ModSystem
     {
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return false;
+        }
         private ILHook ilHook;
 
         public override void Load()

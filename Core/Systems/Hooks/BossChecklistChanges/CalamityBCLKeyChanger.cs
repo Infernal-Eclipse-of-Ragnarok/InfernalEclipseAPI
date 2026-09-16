@@ -5,6 +5,10 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks.BossChecklistChanges
 {
     public class CalamityBCLKeyChanger : ModSystem
     {
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return false;
+        }
         public override void Load()
         {
             AdjustEntries();
@@ -61,7 +65,7 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks.BossChecklistChanges
                 if (dict.ContainsKey("BossRush"))
                 {
                     dict["BossRush"] = 28.1f;
-                    Mod.Logger.Info("Set Calamity BossRus BossChecklist progression value to 28.1f.");
+                    Mod.Logger.Info("Set Ca lamity BossRus BossChecklist progression value to 28.1f.");
                 }
                 else
                 {
