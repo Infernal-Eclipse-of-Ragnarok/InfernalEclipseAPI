@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
-using CalamityMod.Items.Materials;
+﻿using CalamityMod.Items.Materials;
 using CalamityMod.Rarities;
+using InfernalEclipseAPI.Content.Buffs;
 using InfernalEclipseAPI.Core.Systems;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
 using Terraria.Localization;
 
 namespace InfernalEclipseAPI.Content.Items.Consumables
@@ -68,6 +69,9 @@ namespace InfernalEclipseAPI.Content.Items.Consumables
         {
             ++Item.stack;
             Activate(player);
+
+            if (player?.active == true)
+                player.AddBuff(ModContent.BuffType<VoidSickness2>(), 600);
         }
 
         public void Activate(Player player)

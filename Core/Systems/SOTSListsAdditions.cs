@@ -9,10 +9,7 @@ namespace InfernalEclipseAPI.Core.Systems
     [ExtendsFromMod("SOTS", "ThoriumMod")]
     public class ThorSOTSListsAdditions : ModSystem
     {
-        private static readonly FieldInfo blacklistField =
-            typeof(SOTSPlayer).GetField(
-                nameof(SOTSPlayer.HomingProjectileBlacklist),
-                BindingFlags.Public | BindingFlags.Static);
+        private static readonly FieldInfo blacklistField = typeof(SOTSPlayer).GetField(nameof(SOTSPlayer.HomingProjectileBlacklist), BindingFlags.Public | BindingFlags.Static);
 
         private static void AddToBlacklist(IEnumerable<int> additions)
         {
@@ -63,7 +60,7 @@ namespace InfernalEclipseAPI.Core.Systems
             if (!ModLoader.TryGetMod(modName, out Mod mod))
                 return;
 
-            if (!mod.TryFind<ModItem>(itemName, out ModItem spear))
+            if (!mod.TryFind(itemName, out ModItem spear))
                 return;
 
             ItemID.Sets.Spears[spear.Type] = true;
@@ -78,10 +75,7 @@ namespace InfernalEclipseAPI.Core.Systems
         {
             if (ModLoader.TryGetMod("CalamityAmmo", out Mod calAmmo))
             {
-                FieldInfo blacklistField =
-                    typeof(SOTSPlayer).GetField(
-                        nameof(SOTSPlayer.HomingProjectileBlacklist),
-                        BindingFlags.Public | BindingFlags.Static);
+                FieldInfo blacklistField = typeof(SOTSPlayer).GetField(nameof(SOTSPlayer.HomingProjectileBlacklist), BindingFlags.Public | BindingFlags.Static);
 
                 HashSet<int> current = (HashSet<int>)blacklistField.GetValue(null);
 

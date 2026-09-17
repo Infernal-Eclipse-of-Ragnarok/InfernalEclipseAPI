@@ -1,12 +1,12 @@
-﻿using System.Reflection;
-using InfernalEclipseAPI.Core.Configs;
+﻿using InfernalEclipseAPI.Core.Configs;
 using Mono.Cecil;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
+using System.Reflection;
 
-namespace InfernalEclipseAPI.Core.Systems.Hooks.ILProjectileChanges
+namespace InfernalEclipseAPI.Core.Systems.Detours
 {
-    public class ProjectileHealingHooks : ModSystem
+    internal class ProjectileHealingHooks : ModSystem
     {
         public override void Load()
         {
@@ -17,8 +17,7 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks.ILProjectileChanges
             var projType = thorium.Code.GetType("ThoriumMod.Projectiles.Healer.BrainCoralPro");
             if (projType != null)
             {
-                var aiMethod = projType.GetMethod("AI",
-                    BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+                var aiMethod = projType.GetMethod("AI", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
                 if (aiMethod != null)
                     MonoModHooks.Modify(aiMethod, IL_SetBrainCoralHeal);
             }
@@ -26,8 +25,7 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks.ILProjectileChanges
             var projType2 = thorium.Code.GetType("ThoriumMod.Projectiles.Healer.CelestialWandPro");
             if (projType2 != null)
             {
-                var aiMethod = projType2.GetMethod("AI",
-                    BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+                var aiMethod = projType2.GetMethod("AI", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
 
                 if (aiMethod != null)
                     MonoModHooks.Modify(aiMethod, IL_SetCelestialWandHeal);
@@ -36,8 +34,7 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks.ILProjectileChanges
             var projType3 = thorium.Code.GetType("ThoriumMod.Projectiles.Healer.ChiLanternHeal");
             if (projType3 != null)
             {
-                var aiMethod = projType3.GetMethod("AI",
-                    BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+                var aiMethod = projType3.GetMethod("AI", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
                 if (aiMethod != null)
                     MonoModHooks.Modify(aiMethod, IL_SetChiLanternHeal);
             }
@@ -45,8 +42,7 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks.ILProjectileChanges
             var projType4 = thorium.Code.GetType("ThoriumMod.Projectiles.Healer.EaterOfPainPro");
             if (projType4 != null)
             {
-                var aiMethod = projType4.GetMethod("AI",
-                    BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+                var aiMethod = projType4.GetMethod("AI", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
                 if (aiMethod != null)
                     MonoModHooks.Modify(aiMethod, IL_SetEaterOfPainHeal);
             }
@@ -54,7 +50,6 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks.ILProjectileChanges
             var gauzeProType = thorium.Code.GetType("ThoriumMod.Projectiles.Healer.GauzePro");
             if (gauzeProType != null)
             {
-
                 var gauzeProjAIMethod = gauzeProType.GetMethod("AI", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
                 if (gauzeProjAIMethod != null)
                     MonoModHooks.Modify(gauzeProjAIMethod, IL_SetGauzeHealToFive);
@@ -63,9 +58,7 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks.ILProjectileChanges
             var gigaNeedleItemType = thorium.Code.GetType("ThoriumMod.Items.HealerItems.TheGigaNeedle");
             if (gigaNeedleItemType != null)
             {
-                var setDefaults = gigaNeedleItemType.GetMethod("SetDefaults",
-                    BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-
+                var setDefaults = gigaNeedleItemType.GetMethod("SetDefaults", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
                 if (setDefaults != null)
                     MonoModHooks.Modify(setDefaults, IL_ReplaceGigaNeedleHealAmountLoad);
             }
@@ -73,56 +66,23 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks.ILProjectileChanges
             var gigaNeedleProType = thorium.Code.GetType("ThoriumMod.Projectiles.Healer.TheGigaNeedlePro");
             if (gigaNeedleProType != null)
             {
-                var aiMethod = gigaNeedleProType.GetMethod("AI",
-                    BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-
+                var aiMethod = gigaNeedleProType.GetMethod("AI", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
                 if (aiMethod != null)
                     MonoModHooks.Modify(aiMethod, IL_ReplaceGigaNeedleHealAmountLoad);
             }
 
-            /*
-            var projType6 = thorium.Code.GetType("CalamityBardHealer.Projectiles.Healer.PurgedSoulPro");
-            if (projType6 != null)
-            {
-                var aiMethod = projType6.GetMethod("AI",
-                    BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-
-                if (aiMethod != null)
-                    MonoModHooks.Modify(aiMethod, IL_EditHealAmount);
-            }
-            */
-
-            // Get the RecoveryWandPro type
             var projType7 = thorium.Code.GetType("ThoriumMod.Projectiles.Healer.RecoveryWandPro");
             if (projType7 != null)
             {
-                var aiMethod = projType7.GetMethod("AI",
-                    BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+                var aiMethod = projType7.GetMethod("AI", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
                 if (aiMethod == null)
                     MonoModHooks.Modify(aiMethod, IL_PatchRecoveryWandHeal);
             }
 
-            /*
-            if (ModLoader.TryGetMod("ThoriumRework", out var rework))
-            {
-                var projType8 = rework.Code.GetType("ThoriumRework.Projectiles.BiteyBaby");
-                if (projType8 != null)
-                {
-                    var aiMethod = projType.GetMethod("AI",
-                        BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-
-                    if (aiMethod != null)
-                        MonoModHooks.Modify(aiMethod, IL_FixHealAmount);
-                }
-            }
-            */
-
-            // Get the TheGoodBookPro type
             var projType9 = thorium.Code.GetType("ThoriumMod.Projectiles.Healer.TheGoodBookPro");
             if (projType9 != null)
             {
-                var aiMethod = projType.GetMethod("AI",
-                    BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+                var aiMethod = projType.GetMethod("AI", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
                 if (aiMethod != null)
                     MonoModHooks.Modify(aiMethod, IL_SetGoodBookHeal);
             }
@@ -140,30 +100,6 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks.ILProjectileChanges
                 c.Next.OpCode = OpCodes.Ldc_I4_4;
             }
         }
-
-        /*
-        private void IL_FixHealAmount(ILContext il)
-        {
-            var c = new ILCursor(il);
-
-            while (c.TryGotoNext(
-                i => i.OpCode == OpCodes.Ldfld &&
-                     i.Operand is FieldReference fr &&
-                     fr.Name == "ai"))
-            {
-                // BACK UP 1 instruction and check we came from Projectile
-                if (c.Prev != null &&
-                    c.Prev.OpCode == OpCodes.Ldfld &&
-                    c.Prev.Operand.ToString().Contains("Terraria.Projectile"))
-                {
-                    // We found the correct heal ai[0] load.
-                    c.Next.OpCode = OpCodes.Ldc_I4_S;
-                    c.Next.Operand = (sbyte)3;
-                    return;
-                }
-            }
-        }
-        */
 
         private void IL_PatchRecoveryWandHeal(ILContext il)
         {
@@ -276,26 +212,6 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks.ILProjectileChanges
                 c.Next.Operand = null;
             }
         }
-
-        /*
-        private void IL_EditHealAmount(ILContext il)
-        {
-            var c = new ILCursor(il);
-
-            if (c.TryGotoNext(i => i.MatchLdcI4(12)))
-            {
-                c.Next.OpCode = OpCodes.Ldc_I4_3; // New heal amount = 3
-                c.Next.Operand = null;             // not needed for small ints
-
-                // Success, done.
-            }
-            else
-            {
-                ModContent.GetInstance<Mod>().Logger.Warn(
-                    "PurgedSoulHealPlayerPatch: Could not find heal constant 12.");
-            }
-        }
-        */
         #endregion
     }
 }

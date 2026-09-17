@@ -26,7 +26,6 @@ namespace InfernalEclipseAPI.Content.Buffs
             player.buffTime[buffIndex] += (5 * 60);
             if (player.buffTime[buffIndex] > 900)
                 player.buffTime[buffIndex] = 900;
-            //return base.ReApply(player, newTime, buffIndex);
             return true;
         }
     }

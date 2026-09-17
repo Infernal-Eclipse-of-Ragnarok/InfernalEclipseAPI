@@ -38,7 +38,6 @@ namespace InfernalEclipseAPI.Core.Systems.BossRush
                 int calCloneId = ModContent.NPCType<CalamitasClone>();
                 int calamitasId = ModContent.NPCType<SupremeCalamitas>();
                 int namelessId = 0;
-                int noxusID = 0;
                 int goozmaID = 0;
                 int mutantID = 0;
 

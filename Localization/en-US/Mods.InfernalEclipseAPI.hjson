@@ -2055,7 +2055,7 @@ Items: {
 			Instantly activates rage mode & inflicts [cbuff:PotionSickness]
 			'品尝我的怒火……和布丁！'
 			'''
-		VoidTooltip: Heals 100 void
+		VoidTooltip: Refills 100 void
 		Stellar: Stellar
 		Major: Major
 	}
@@ -2068,7 +2068,7 @@ Items: {
 			{0}{1} improvements to all stats
 			'Ignore the fact it is pork... made out of chicken nuggets'
 			'''
-		VoidTooltip: Heals 75 void
+		VoidTooltip: Refills 75 void
 	}
 
 	SingularityCore: {
@@ -2511,6 +2511,16 @@ Items: {
 	TerraBladeTreasureBag: {
 		DisplayName: Treasure Bag (Terra Blade)
 		Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+	}
+
+	SoulBaguette: {
+		DisplayName: Soul Baguette
+		Tooltip:
+			'''
+			{0}{$CommonItemTooltip.MediumStats}
+			Heals 250 with [cbuffplr:CalamityMod/RedWineBuff], but reduces by 1 HP/s for 15 seconds
+			'''
+		VoidTooltip: Refills 60 void
 	}
 }
 
@@ -3060,6 +3070,36 @@ DamageClasses: {
 }
 
 InfernumIntegration: {
+	BossRushIntroText1:
+		'''
+		Boss Rush - Tier 1
+		Ensemble of Fools
+		'''
+	BossRushIntroText2:
+		'''
+		Boss Rush - Tier 2
+		Onslaught of Beasts
+		'''
+	BossRushIntroText3:
+		'''
+		Boss Rush - Tier 3
+		Reign of Lords
+		'''
+	BossRushIntroText4:
+		'''
+		Boss Rush - Tier 4
+		Trial of the Insane
+		'''
+	BossRushIntroText5:
+		'''
+		Boss Rush - Tier 5
+		Apotheosis of the Deranged
+		'''
+	BossRushIntroText6:
+		'''
+		Boss Rush - Tier 6
+		Finale of the Deities
+		'''
 	Astrageldon:
 		'''
 		Multiversal Terror

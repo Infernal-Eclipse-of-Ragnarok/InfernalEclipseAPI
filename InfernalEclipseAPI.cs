@@ -446,16 +446,6 @@ namespace InfernalEclipseAPI
                     }
                     break;
             }
-
-            //int npcIndex = reader.ReadInt32();
-            //if (AchievementUpdateHandler != null && Main.netMode == NetmodeID.MultiplayerClient)
-            //{
-            //    AchievementUpdateHandler.Invoke(null, new object[] { Main.LocalPlayer, InfernumMode.Content.Achievements.AchievementUpdateCheck.NPCKill, npcIndex });
-            //}
-            //else
-            //{
-            //    Logger.Debug("Didnt find methodinfo for achievement update handler!");
-            //}
         }
     }
 

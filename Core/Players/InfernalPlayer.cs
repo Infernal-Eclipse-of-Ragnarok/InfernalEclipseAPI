@@ -46,13 +46,14 @@ namespace InfernalEclipseAPI.Core.Players
 {
     public class InfernalPlayer : ModPlayer
     {
-        public int resonatorTimer = 0;
-        public int incubatorTextTime = 0;
-        public int namelessDialogueCooldown;
-        public int voidMagePrevention;
+        // Stored variables
+        private Vector2 previousPos;
+        private bool wasUsingItem;
+        public int BoostDirection;
 
-        public int CloverCharmCooldown;
-        public bool workshopHasBeenOwned;
+        // Accessory effect reworks
+        public bool CritNightmare;
+        public bool bagOfCharms;
         public bool batPoop;
         public bool tixThumbRing;
         public bool bloodstainedCoin;
@@ -61,16 +62,6 @@ namespace InfernalEclipseAPI.Core.Players
         public bool snakeEyes;
         public bool chaosBadge;
         public bool focusReticle;
-        public bool exoSights;
-        public int BoostPressTimer;
-        public int BoostDirection;
-        public int boostCooldownTime;
-        public int RingofRestCooldown;
-        public bool CritNightmare;
-        public bool bagOfCharms;
-        public int voidSicknessTextCooldown;
-        public int teleportRespawnKilldown;
-
         public bool LazyCrafterAmulet;
         public bool statShareAll;
         public bool scalingArmorPenetration;
@@ -80,29 +71,55 @@ namespace InfernalEclipseAPI.Core.Players
         public bool InverseAmberRing;
         public bool gutWrench;
 
-        public bool singularityCore;
-        public int ruinousPlasmaInjection;
+        // Accessory Effects
+        public bool exoSights;
         public bool blixerCoreSummon;
         public bool blixerLaserMode;
 
+        // Consumables & Player States
+        public int voidMagePrevention;
+
+        public bool workshopHasBeenOwned;
+        public bool aniversaryYearOneLoreObtained = false;
+
+        public bool singularityCore;
+        public int ruinousPlasmaInjection;
+        public bool exoBaguette;
+
+        // Steal Values
         public float manaSteal = Main.expertMode ? 40f : 50f;
         public float voidSteal = Main.expertMode ? 45f : 55f;
         public float inspirationSteal = Main.expertMode ? 5f : 10f;
 
-        public bool aniversaryYearOneLoreObtained = false;
-
-        private Vector2 previousPos;
-        private bool wasUsingItem;
+        // Timers and Cooldowns
         private int horrifiedTimer = 0;
         private int jamTimer = 0;
         private int batCoinTimer = 0;
+        public int resonatorTimer = 0;
+        public int incubatorTextTime = 0;
+        public int BoostPressTimer;
+        public int namelessDialogueCooldown;
         private int nightmareArmCD;
+        public int voidSicknessTextCooldown;
+        public int teleportRespawnKilldown;
+        public int boostCooldownTime;
+        public int RingofRestCooldown;
+        public int CloverCharmCooldown;
+
+        // Boss Rush Intro Screens
+        public bool tier1IntroPlayed;
+        public bool tier2IntroPlayed;
+        public bool tier3IntroPlayed;
+        public bool tier4IntroPlayed;
+        public bool tier5IntroPlayed;
+        public bool tier6IntroPlayed;
 
         public override void Initialize()
         {
             workshopHasBeenOwned = false;
             singularityCore = false;
             ruinousPlasmaInjection = 0;
+            exoBaguette = false;
         }
 
         public override void OnEnterWorld()
@@ -112,8 +129,10 @@ namespace InfernalEclipseAPI.Core.Players
                 InfernalWorld.craftedWorkshop = true;
             }
 
+            /*
             if ((InfernalConfig.Instance.SolynCampsiteFixes || !ModLoader.HasMod("WOTGCampsiteFix")) && InfernalConfig.Instance.DeveloperMode)
                 InGameNotificationsTracker.AddNotification(new SolynCampsiteFixApplicationNotification());
+            */
 
             if (ModLoader.HasMod("ContinentOfJourney"))
             {
@@ -217,6 +236,7 @@ namespace InfernalEclipseAPI.Core.Players
             tag["IEORboost"] = boost;
 
             tag.Add("ruinousPlasmaInjection", ruinousPlasmaInjection);
+            tag.Add("exoBaguette", exoBaguette);
         }
 
         public override void LoadData(TagCompound tag)
@@ -229,6 +249,7 @@ namespace InfernalEclipseAPI.Core.Players
             singularityCore = boost.Contains("singularityCore");
 
             ruinousPlasmaInjection = tag.Get<int>("ruinousPlasmaInjection");
+            exoBaguette = tag.Get<bool>("exoBaguette");
         }
 
         public override bool CanUseItem(Item item)
@@ -844,8 +865,7 @@ namespace InfernalEclipseAPI.Core.Players
 
                 float time = Player.buffTime[idx];
 
-                ref StatModifier local = ref Player.GetDamage(DamageClass.Generic);
-                local -= (float)(0.25 * (time / 300f));
+                Player.GetDamage(DamageClass.Generic) -= (float)(0.25 * (time / 300f));
 
                 if (time >= 10 * 60)
                 {

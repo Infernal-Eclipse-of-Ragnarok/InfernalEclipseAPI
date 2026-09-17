@@ -202,7 +202,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
                         {
                             if (InfernalCrossmod.SOTS.Loaded)
                             {
-                                if (AncientPhylacteryRightClickBlocker.DownedPolaris)
+                                if (NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3)
                                 {
                                     items[i] = new Item(InfernalCrossmod.SOTS.Mod.Find<ModItem>("FrostArtifact").Type);
                                     break;

@@ -71,13 +71,9 @@ namespace InfernalEclipseAPI.Core.Systems.BossRush
 
         public override void Load()
         {
-            MethodInfo target = typeof(BossRushChangesSystem).GetMethod(
-                "HandleTeleports",
-                BindingFlags.Public | BindingFlags.Static);
+            MethodInfo target = typeof(BossRushChangesSystem).GetMethod("HandleTeleports", BindingFlags.Public | BindingFlags.Static);
 
-            MethodInfo replacement = typeof(InfernalBossRush).GetMethod(
-                nameof(HandleTeleports_NoOp),
-                BindingFlags.NonPublic | BindingFlags.Static);
+            MethodInfo replacement = typeof(InfernalBossRush).GetMethod(nameof(HandleTeleports_NoOp), BindingFlags.NonPublic | BindingFlags.Static);
 
             if (target != null && replacement != null)
                 handleTeleportsHook = new Hook(target, replacement);
@@ -554,7 +550,7 @@ namespace InfernalEclipseAPI.Core.Systems.BossRush
             Bosses.Add(new Boss(NPCID.MoonLordCore, spawnContext: type =>
             {
                 NPC.SpawnOnPlayer(ClosestPlayerToWorldCenter, type);
-            }, permittedNPCs: [NPCID.MoonLordLeechBlob, NPCID.MoonLordHand, NPCID.MoonLordHead, NPCID.MoonLordFreeEye]));
+            }, usesSpecialSound: true, permittedNPCs: [NPCID.MoonLordLeechBlob, NPCID.MoonLordHand, NPCID.MoonLordHead, NPCID.MoonLordFreeEye]));
 
             if (HomewardLoaded())
             {
@@ -723,7 +719,7 @@ namespace InfernalEclipseAPI.Core.Systems.BossRush
             {
                 Bosses.Add(new Boss(WrathNPC("AvatarOfEmptiness"), TimeChangeContext.Night, type =>
                 {
-                    NPC.SpawnOnPlayer(ClosestPlayerToWorldCenter, WrathNPC("AvatarRift"));
+                    NPC.SpawnOnPlayer(ClosestPlayerToWorldCenter, WrathNPC("AvatarOfEmptiness"));
                 }, permittedNPCs: new int[] { WrathNPC("BattleSolyn"), WrathNPC("NamelessDeityBoss"), WrathNPC("AvatarRift"), WrathNPC("AvatarOfEmptiness") }));
 
                 Bosses.Add(new Boss(WrathNPC("NamelessDeityBoss"), TimeChangeContext.Night, specialSpawnCountdown: 270, usesSpecialSound: true));

@@ -17,43 +17,6 @@ using Terraria.ModLoader.IO;
 
 namespace InfernalEclipseAPI.Core.Systems.MultiplayerFixes.SupCal
 {
-    //public class SupremeCalamitasFixes : ModSystem
-    //{
-    //    private delegate void ReceiveExtraAIDelegate(SupremeCalamitas self, BinaryReader reader);
-    //    private static Hook hook;
-    //    private static ReceiveExtraAIDelegate orig;
-
-    //    public override void Load()
-    //    {
-    //        MethodInfo target = typeof(SupremeCalamitas).GetMethod("ReceiveExtraAI", BindingFlags.Instance | BindingFlags.Public);
-    //        orig = (ReceiveExtraAIDelegate)Delegate.CreateDelegate(typeof(ReceiveExtraAIDelegate), target);
-    //        hook = new Hook(target, new ReceiveExtraAIDelegate(Patched_ReceiveExtraAI));
-    //    }
-
-    //    public override void Unload()
-    //    {
-    //        hook?.Dispose();
-    //        hook = null;
-    //    }
-
-    //    private static void Patched_ReceiveExtraAI(SupremeCalamitas self, BinaryReader reader)
-    //    {
-    //        orig(self, reader); // Run original first, then inject logic afterward
-
-    //        float attackType = self.NPC.ai[0];
-    //        float attackState = self.NPC.Infernum().ExtraAI[4];
-
-    //        if (Main.netMode == NetmodeID.MultiplayerClient && !self.NPC.active && attackType == 13 && attackState == 4f)
-    //        {
-    //            self.NPC.NPCLoot();
-    //            if (DownedBossSystem.downedExoMechs)
-    //            {
-    //                CreditManager.BeginCredits();
-    //            }
-    //        }
-    //    }
-    //}
-
     public class SupremeCalamitasFixes : GlobalNPC
     {
         public override void SendExtraAI(NPC npc, BitWriter bitWriter, BinaryWriter binaryWriter)
