@@ -31,12 +31,9 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks.ILItemChanges.ThoriumItemHooks
 
             orig(self, target, hit, damageDone);
 
-            int healed = (int)(damageDone * 0.10000000149011612);
+            int healed = (int)(damageDone * 0.05);
 
-            float cooldownMult = 6f - healed;
-
-            if (cooldownMult < 1)
-                cooldownMult = 1;
+            float cooldownMult = 0.1f;
 
             if (healed > 0)
                 owner.lifeSteal -= healed * cooldownMult;
