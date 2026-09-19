@@ -210,7 +210,7 @@ namespace InfernalEclipseAPI.Common.Balance
 
             if (InfernalConfig.Instance.BossKillCheckOnOres)
             {
-                if (tile == ModContent.TileType<LeakyMarineBlock>() || tile == ModContent.TileType<LeakyMossyMarineBlock>()) return NPC.downedBoss2 || NPC.downedBoss3;
+                if (tile == ModContent.TileType<LeakyMarineBlock>() || tile == ModContent.TileType<LeakyMossyMarineBlock>() || tile == ModContent.TileType<Aquaite>()) return NPC.downedBoss2 || NPC.downedBoss3 || Main.hardMode;
             }
             return base.CanKillTile(i, j, tile, ref blockDamaged);
         }

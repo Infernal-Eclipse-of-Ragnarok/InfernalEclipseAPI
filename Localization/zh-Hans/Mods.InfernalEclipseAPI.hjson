@@ -897,6 +897,8 @@ ItemTooltip: {
 				暴击会造成15点额外伤害
 				'''
 		}
+
+		// AstrageldonPlatinumRelic: A trophy for defeating the multiversal terror before the fall of the eldriitch remains
 	}
 
 	AmmoConversion: {
@@ -2481,12 +2483,14 @@ Items: {
 
 	SubspaceSerpentRelicPlatinum: {
 		// DisplayName: Platinum Subspace Serpent Relic
-		// Tooltip: ""
+		// Tooltip: "{0}"
+		// PlatinumTooltip: A trophy for defeating the serpent of sages before the fall of the eldritch remains
 	}
 
 	TerraBladeRelicPlatinum: {
 		// DisplayName: Platinum Terra Blade Relic
-		// Tooltip: ""
+		// Tooltip: "{0}"
+		// PlatinumTooltip: A trophy for defeating the dark reflection before the death of the Devourer of Gods
 	}
 
 	AstrageldonRelicGold: {
@@ -2517,6 +2521,15 @@ Items: {
 			Heals 250 with [cbuffplr:CalamityMod/RedWineBuff], but reduces by 1 HP/s for 15 seconds
 			''' */
 		// VoidTooltip: Refills 60 void
+	}
+
+	ExoBaguette: {
+		// DisplayName: Exo Baguette
+		/* Tooltip:
+			'''
+			Permanently allows you to drink 1 more alcohol than normal
+			Can only be used once
+			''' */
 	}
 }
 
@@ -3095,6 +3108,11 @@ InfernumIntegration: {
 		'''
 		Boss Rush - Tier 6
 		Finale of the Deities
+		''' */
+	/* BossRushIntroText7:
+		'''
+		Boss Rush - Tier ???
+		Test of Resolve
 		''' */
 	Astrageldon:
 		'''

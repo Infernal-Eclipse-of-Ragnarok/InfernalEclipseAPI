@@ -900,6 +900,8 @@ ItemTooltip: {
 				Критические удары наносят на 15 ед. больше урона
 				'''
 		}
+
+		// AstrageldonPlatinumRelic: A trophy for defeating the multiversal terror before the fall of the eldriitch remains
 	}
 
 	AmmoConversion: {
@@ -1376,9 +1378,9 @@ Items: {
 			/* Lore:
 				'''
 				The middle child of the eternal siblings, and one of the laziest beings I've ever seen.
-				While the Abominationn has the ability to fully control the weather and fully turn away invaders,
+				While the Abominationn has the ability to fully control the weather and fully turn away invaders, 
 				he truly is super lazy, going to the point of even fusing his weapons to his hands.
-				He weilds a weapon that has the ability to divide the soul itself, on top of being able to use all supernatural phenomena.
+				He weilds a weapon that has the ability to divide the soul itself, on top of being able to use all supernatural phenomena. 
 				Good thing for you he choose not to use any celestial attacks out of respect of the Mutant, or else your victory might have not been possible.
 				''' */
 		}
@@ -1405,7 +1407,7 @@ Items: {
 				While the other siblings calls the Mutant their brother, he personally refuses to confirm his gender.
 				He is the keeper of eternity, with ultimate power incarnate, and is believed to have come from another world beyond that dimensional rift.
 				Other than you, he is the strongest being to ever grace the land of Terraria, with master of dominion over every aspect to combat.
-				Even though he had all this power, he always was more interested in watching other battles in the world than partake in any himself.
+				Even though he had all this power, he always was more interested in watching other battles in the world than partake in any himself. 
 				He always told people that he was looking for someone strong and it looks like he found the person he was looking for.
 				''' */
 		}
@@ -2479,11 +2481,13 @@ Items: {
 	SubspaceSerpentRelicPlatinum: {
 		DisplayName: Платиновая реликвия Субпространственного змея
 		Tooltip: ""
+		// PlatinumTooltip: A trophy for defeating the serpent of sages before the fall of the eldritch remains
 	}
 
 	TerraBladeRelicPlatinum: {
 		DisplayName: Платиновая реликвия Терра-клинка
 		Tooltip: ""
+		// PlatinumTooltip: A trophy for defeating the dark reflection before the death of the Devourer of Gods
 	}
 
 	AstrageldonRelicGold: {
@@ -2514,6 +2518,15 @@ Items: {
 			Heals 250 with [cbuffplr:CalamityMod/RedWineBuff], but reduces by 1 HP/s for 15 seconds
 			''' */
 		// VoidTooltip: Refills 60 void
+	}
+
+	ExoBaguette: {
+		// DisplayName: Exo Baguette
+		/* Tooltip:
+			'''
+			Permanently allows you to drink 1 more alcohol than normal
+			Can only be used once
+			''' */
 	}
 }
 
@@ -3087,6 +3100,11 @@ InfernumIntegration: {
 		'''
 		Boss Rush - Tier 6
 		Finale of the Deities
+		''' */
+	/* BossRushIntroText7:
+		'''
+		Boss Rush - Tier ???
+		Test of Resolve
 		''' */
 	Astrageldon:
 		'''

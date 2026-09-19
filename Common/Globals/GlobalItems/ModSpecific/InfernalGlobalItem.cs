@@ -1,36 +1,43 @@
-﻿using Terraria.GameContent.ItemDropRules;
-using CalamityMod.Items.TreasureBags.MiscGrabBags;
-using CalamityMod.Items.SummonItems;
-using InfernalEclipseAPI.Content.Items.Lore.InfernalEclipse;
-using InfernalEclipseAPI.Core.Players;
-using InfernalEclipseAPI.Core.World;
-using Terraria.DataStructures;
-using InfernalEclipseAPI.Content.Items.Placeables.Paintings;
-using InfernalEclipseAPI.Content.Items.Placeables.MusicBoxes;
-using InfernalEclipseAPI.Core.Systems;
-using InfernalEclipseAPI.Content.Items.Lore.Thorium;
-using InfernalEclipseAPI.Content.Items.Armor.Vanity;
-using System.Collections.Generic;
-using InfernalEclipseAPI.Core.Utils;
-using Terraria.Localization;
-using Microsoft.Xna.Framework;
-using CalamityMod.Items.Potions.Alcohol;
-using CalamityMod;
-using InfernumMode.Content.Items.Misc;
-using Terraria;
-using InfernalEclipseAPI.Content.Items.Weapons.Catlight;
-using InfernalEclipseAPI.Content.Items.Other;
-using InfernalEclipseAPI.Content.Items.Accessories;
-using InfernalEclipseAPI.Core.Configs;
+﻿using CalamityMod;
 using CalamityMod.Items.DraedonMisc;
-using CalamityMod.Tiles.DraedonSummoner;
-using CalamityMod.TileEntities;
 using CalamityMod.Items.Fishing.FishingRods;
+using CalamityMod.Items.Potions.Alcohol;
+using CalamityMod.Items.SummonItems;
+using CalamityMod.Items.TreasureBags.MiscGrabBags;
+using CalamityMod.TileEntities;
+using CalamityMod.Tiles.DraedonSummoner;
+using InfernalEclipseAPI.Content.Items.Accessories;
+using InfernalEclipseAPI.Content.Items.Armor.Vanity;
+using InfernalEclipseAPI.Content.Items.Lore.InfernalEclipse;
+using InfernalEclipseAPI.Content.Items.Lore.Thorium;
+using InfernalEclipseAPI.Content.Items.Other;
+using InfernalEclipseAPI.Content.Items.Placeables.MusicBoxes;
+using InfernalEclipseAPI.Content.Items.Placeables.Paintings;
+using InfernalEclipseAPI.Content.Items.Weapons.Catlight;
+using InfernalEclipseAPI.Core.Configs;
+using InfernalEclipseAPI.Core.Players;
+using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Utils;
+using InfernalEclipseAPI.Core.World;
+using InfernalEclipseWeaponsDLC.Content.Items.Weapons.Melee;
+using InfernumMode.Content.Items.Misc;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
+using System.Collections.Generic;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.GameContent.ItemDropRules;
+using Terraria.Localization;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 {
     public class InfernalGlobalItem : GlobalItem
     {
+        public override bool InstancePerEntity => true;
+
+        public bool hasEnchantmentShader;
+
         public override void SetDefaults(Item item)
         {
             /*
@@ -337,6 +344,72 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                 }
             }
         }
+
+        #region Enchantment Shader
+        private static Asset<Texture2D> glintTex;
+        private static Effect glintFx;
+
+        private static void EnsureAssetsLoaded()
+        {
+            if (glintTex == null || !glintTex.IsLoaded)
+                glintTex = ModContent.Request<Texture2D>("InfernalEclipseWeaponsDLC/Assets/Textures/Enchanted", AssetRequestMode.ImmediateLoad);
+
+            if (glintFx == null)
+                glintFx = ModContent.Request<Effect>("InfernalEclipseWeaponsDLC/Assets/Effects/Transform", AssetRequestMode.ImmediateLoad).Value;
+        }
+
+        public override bool PreDrawInInventory(Item item, SpriteBatch sb, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin,float scale)
+        {
+            if (!hasEnchantmentShader)
+                return true;
+
+            EnsureAssetsLoaded();
+
+            glintFx.Parameters["uTime"].SetValue(Main.GlobalTimeWrappedHourly * 0.2f);
+            glintFx.CurrentTechnique.Passes["EnchantedPass"].Apply();
+            Main.instance.GraphicsDevice.Textures[1] = glintTex.Value;
+
+            sb.End();
+            sb.Begin(SpriteSortMode.Deferred, sb.GraphicsDevice.BlendState, sb.GraphicsDevice.SamplerStates[0], sb.GraphicsDevice.DepthStencilState, sb.GraphicsDevice.RasterizerState, glintFx, Main.UIScaleMatrix);
+
+            return true; // let vanilla draw the item with our active effect
+        }
+
+        public override void PostDrawInInventory(Item item, SpriteBatch sb, Vector2 position, Rectangle frame, Color drawColor,  Color itemColor, Vector2 origin, float scale)
+        {
+            if (!hasEnchantmentShader)
+                return;
+
+            sb.End();
+            sb.Begin(SpriteSortMode.Deferred, sb.GraphicsDevice.BlendState, sb.GraphicsDevice.SamplerStates[0], sb.GraphicsDevice.DepthStencilState, sb.GraphicsDevice.RasterizerState, null, Main.UIScaleMatrix);
+        }
+
+        public override bool PreDrawInWorld(Item item, SpriteBatch sb, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
+        {
+            if (!hasEnchantmentShader)
+                return true;
+
+            EnsureAssetsLoaded();
+
+            glintFx.Parameters["uTime"].SetValue(Main.GlobalTimeWrappedHourly * 0.2f);
+            glintFx.CurrentTechnique.Passes["EnchantedPass"].Apply();
+            Main.instance.GraphicsDevice.Textures[1] = glintTex.Value;
+
+            sb.End();
+            sb.Begin(SpriteSortMode.Deferred, Main.spriteBatch.GraphicsDevice.BlendState,  sb.GraphicsDevice.SamplerStates[0], Main.spriteBatch.GraphicsDevice.DepthStencilState, sb.GraphicsDevice.RasterizerState, glintFx, Main.GameViewMatrix.TransformationMatrix);
+
+            return true; // let vanilla draw the world item with our active effect
+        }
+
+        public override void PostDrawInWorld(Item item, SpriteBatch sb, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
+        {
+            if (!hasEnchantmentShader)
+                return;
+
+            sb.End();
+            sb.Begin(SpriteSortMode.Deferred, sb.GraphicsDevice.BlendState, sb.GraphicsDevice.SamplerStates[0], sb.GraphicsDevice.DepthStencilState, sb.GraphicsDevice.RasterizerState, null, Main.GameViewMatrix.TransformationMatrix);
+        }
+        #endregion
     }
 
     public class DevListPlayerCondition : IItemDropRuleCondition

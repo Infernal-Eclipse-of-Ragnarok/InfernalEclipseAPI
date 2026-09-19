@@ -22,6 +22,7 @@ using CalamityMod.Projectiles.Rogue;
 using CalamityMod.World;
 using InfernalEclipseAPI.Content.Buffs;
 using InfernalEclipseAPI.Content.Items.Other;
+using InfernalEclipseAPI.Content.Items.PermanentBoosters;
 using InfernalEclipseAPI.Content.Items.Weapons.Legendary.Lycanroc;
 using InfernalEclipseAPI.Content.Projectiles;
 using InfernalEclipseAPI.Content.UI.Notificatons;
@@ -113,6 +114,7 @@ namespace InfernalEclipseAPI.Core.Players
         public bool tier4IntroPlayed;
         public bool tier5IntroPlayed;
         public bool tier6IntroPlayed;
+        public bool tier7IntroPlayed;
 
         public override void Initialize()
         {
@@ -855,8 +857,12 @@ namespace InfernalEclipseAPI.Core.Players
         }
 
         private bool oceanBufferModified = false;
+
         public override void PostUpdateBuffs()
         {
+            if (exoBaguette)
+                Player.Calamity().alcoholPoisonMax += ExoBaguette.alcoholCapBoost;
+
             if (InfernalCrossmod.SOTS.Loaded)
             {
                 int idx = Player.FindBuffIndex(ModContent.BuffType<VoidSickness2>());

@@ -1772,7 +1772,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
             return mod.Find<ModItem>(name);
         }
 
-        private static readonly Condition SkeletronOrHardmode = new("Conditions.DownedSkeletron", () => NPC.downedBoss3 || Main.hardMode);
+        public static readonly Condition SkeletronOrHardmode = new("Conditions.DownedSkeletron", () => NPC.downedBoss3 || Main.hardMode);
     }
 
     [JITWhenModsEnabled("SOTS")]

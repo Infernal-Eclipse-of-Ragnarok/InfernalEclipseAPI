@@ -46,8 +46,8 @@ namespace InfernalEclipseAPI.Content.Items.Consumables
         public override void SetDefaults()
         {
             Item.DefaultToFood(52, 38, BuffID.WellFed, CalamityUtils.MinutesToFrames(5));
-            Item.value = Item.sellPrice(silver: 1);
-            Item.rare = ItemRarityID.Blue;
+            Item.value = Item.sellPrice(gold: 1);
+            Item.rare = ItemRarityID.Pink;
         }
 
         public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)

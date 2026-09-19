@@ -1,20 +1,25 @@
-﻿using InfernumMode.Content.BossIntroScreens;
+﻿using CalamityMod.Events;
+using CalamityMod.NPCs.CalClone;
+using InfernalEclipseAPI.Core.Players;
+using InfernalEclipseAPI.Core.Systems;
+using InfernumMode.Content.BossIntroScreens;
 using InfernumMode.Content.BossIntroScreens.InfernumScreens;
+using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using Terraria.Audio;
 using Terraria.Localization;
-using CalamityMod.Events;
-using InfernalEclipseAPI.Core.Players;
-using Microsoft.Xna.Framework;
 
 namespace InfernalEclipseAPI.Common.InfernumScreens
 {
-    public class BossRushIntroScreen1 : BaseIntroScreen
+    public class BossRushIntroScreen5 : BaseIntroScreen
     {
+        private int tier5Id;
         public override TextColorData TextColor => new(completionRatio =>
         {
             float colorFadeInterpolant = Sin(AnimationCompletion * Pi * 4f + completionRatio * Pi * 12f) * 0.5f + 0.5f;
             return Color.Lerp(Color.Orange, Color.OrangeRed, colorFadeInterpolant);
         });
+
         public override bool TextShouldBeCentered => true;
         public override bool ShouldCoverScreen => false;
         public override bool CaresAboutBossEffectCondition => false;
@@ -24,13 +29,25 @@ namespace InfernalEclipseAPI.Common.InfernumScreens
             Player player = Main.LocalPlayer;
             if (!BossRushEvent.BossRushActive)
             {
-                player.GetModPlayer<InfernalPlayer>().tier1IntroPlayed = false;
+                player.GetModPlayer<InfernalPlayer>().tier5IntroPlayed = false;
+                return false;
             }
 
-            return BossRushEvent.BossRushActive && !player.GetModPlayer<InfernalPlayer>().tier1IntroPlayed && InfernumMode.InfernumMode.CanUseCustomAIs;
+            tier5Id = ModContent.NPCType<CalamitasClone>();
+            List<(int, int, Action<int>, int, bool, float, int[], int[])> brEntries = (List<(int, int, Action<int>, int, bool, float, int[], int[])>)InfernalCrossmod.Calamity.Mod.Call("GetBossRushEntries");
+            for (int i = 0; i < brEntries.Count; i++)
+            {
+                if (brEntries[i].Item1 == tier5Id)
+                {
+                    tier5Id = i;
+                    break;
+                }
+            }
+
+            return BossRushEvent.BossRushActive && !player.GetModPlayer<InfernalPlayer>().tier5IntroPlayed && InfernumMode.InfernumMode.CanUseCustomAIs && BossRushEvent.BossRushStage > tier5Id;
         }
 
-        public override LocalizedText TextToDisplay => Language.GetText("Mods.InfernalEclipseAPI.InfernumIntegration.BossRushIntroText1");
+        public override LocalizedText TextToDisplay => Language.GetText("Mods.InfernalEclipseAPI.InfernumIntegration.BossRushIntroText5");
         public override SoundStyle? SoundToPlayWithTextCreation => null;
         public override SoundStyle? SoundToPlayWithLetterAddition => SoundID.Item100;
         public override bool CanPlaySound => LetterDisplayCompletionRatio(AnimationTimer) >= 1f;
@@ -47,7 +64,7 @@ namespace InfernalEclipseAPI.Common.InfernumScreens
         }
         public override void DoCompletionEffects()
         {
-            Main.LocalPlayer.GetModPlayer<InfernalPlayer>().tier1IntroPlayed = true;
+            Main.LocalPlayer.GetModPlayer<InfernalPlayer>().tier5IntroPlayed = true;
             AnimationTimer = 0;
         }
     }
