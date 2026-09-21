@@ -968,8 +968,8 @@ ItemTooltip: {
 		Line2: Even though this choice has been painful and difficult at times,
 		Line3: The adversity you overcome will bear worthy fruit.
 	}
-	AstrageldonPlatinumRelic: A trophy for defeating the multiversal terror before the fall of the eldritch remains
 
+	AstrageldonPlatinumRelic: A trophy for defeating the multiversal terror before the fall of the eldritch remains
 	PrimordialsRelic:
 		'''
 		You've done well, taking down Thorium. Only ten remain
@@ -2950,6 +2950,16 @@ Configs: {
 		QueenJellyfishRagnarok: {
 			Label: Ragnarok Queen Jellyfish Theme
 			Tooltip: Toggles if 'Mutant Majesty' by Techhy plays during the Queen Jellyfish boss fight in Ragnarok Mode.
+		}
+
+		ViscountRagnarok: {
+			Label: Ragnarok Viscount Theme
+			Tooltip: Toggles if 'Carotid Crypt' by Techhy & PFungi plays during the Queen Jellyfish boss fight in Ragnarok Mode.
+		}
+
+		GESRagnarok: {
+			Label: Ragnarok Granite Energy Storm Theme
+			Tooltip: Toggles if 'Stonewarden' by Techhy plays during the Queen Jellyfish boss fight in Ragnarok Mode.
 		}
 	}
 

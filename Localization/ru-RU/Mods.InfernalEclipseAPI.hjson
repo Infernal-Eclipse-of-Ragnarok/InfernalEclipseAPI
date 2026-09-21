@@ -900,8 +900,6 @@ ItemTooltip: {
 				Критические удары наносят на 15 ед. больше урона
 				'''
 		}
-
-		// AstrageldonPlatinumRelic: A trophy for defeating the multiversal terror before the fall of the eldriitch remains
 	}
 
 	AmmoConversion: {
@@ -969,6 +967,7 @@ ItemTooltip: {
 		Line3: Преодолённые тобой препятствия в будущем принесут достойные плоды
 	}
 
+	// AstrageldonPlatinumRelic: A trophy for defeating the multiversal terror before the fall of the eldritch remains
 	PrimordialsRelic:
 		'''
 		Ты молодец, у тебя получилось одолеть Thorium. Осталась всего десятка
@@ -2939,6 +2938,16 @@ Configs: {
 		QueenJellyfishRagnarok: {
 			Label: Рагнарёк-тема Королевы медуз
 			Tooltip: Включает проигрывание трека «Mutant Majesty» за авторством во время битвы с Королевой медуз в режиме Рагнарёк.
+		}
+
+		ViscountRagnarok: {
+			// Label: Ragnarok Viscount Theme
+			// Tooltip: Toggles if 'Carotid Crypt' by Techhy & PFungi plays during the Queen Jellyfish boss fight in Ragnarok Mode.
+		}
+
+		GESRagnarok: {
+			// Label: Ragnarok Granite Energy Storm Theme
+			// Tooltip: Toggles if 'Stonewarden' by Techhy plays during the Queen Jellyfish boss fight in Ragnarok Mode.
 		}
 	}
 

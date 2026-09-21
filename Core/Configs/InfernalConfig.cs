@@ -45,6 +45,12 @@ namespace InfernalEclipseAPI.Core.Configs
         public bool QueenJellyfishRagnarok { get; set; }
 
         [DefaultValue(true)]
+        public bool ViscountRagnarok { get; set; }
+
+        [DefaultValue(true)]
+        public bool GESRagnarok { get; set; }
+
+        [DefaultValue(true)]
         public bool BereftVassalRagnarok { get; set; }
 
         [DrawTicks]

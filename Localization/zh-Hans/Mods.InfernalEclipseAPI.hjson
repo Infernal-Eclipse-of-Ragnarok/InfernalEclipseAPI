@@ -897,8 +897,6 @@ ItemTooltip: {
 				暴击会造成15点额外伤害
 				'''
 		}
-
-		// AstrageldonPlatinumRelic: A trophy for defeating the multiversal terror before the fall of the eldriitch remains
 	}
 
 	AmmoConversion: {
@@ -966,6 +964,7 @@ ItemTooltip: {
 		Line3: 你所克服的逆境终将结出可贵的硕果。
 	}
 
+	// AstrageldonPlatinumRelic: A trophy for defeating the multiversal terror before the fall of the eldritch remains
 	PrimordialsRelic:
 		'''
 		你做得很好，成功击败了《瑟银》。现在还剩十个
@@ -2947,6 +2946,16 @@ Configs: {
 		QueenJellyfishRagnarok: {
 			// Label: Ragnarok Queen Jellyfish Theme
 			// Tooltip: Toggles if 'Mutant Majesty' by Techhy plays during the Queen Jellyfish boss fight in Ragnarok Mode.
+		}
+
+		ViscountRagnarok: {
+			// Label: Ragnarok Viscount Theme
+			// Tooltip: Toggles if 'Carotid Crypt' by Techhy & PFungi plays during the Queen Jellyfish boss fight in Ragnarok Mode.
+		}
+
+		GESRagnarok: {
+			// Label: Ragnarok Granite Energy Storm Theme
+			// Tooltip: Toggles if 'Stonewarden' by Techhy plays during the Queen Jellyfish boss fight in Ragnarok Mode.
 		}
 	}
 
