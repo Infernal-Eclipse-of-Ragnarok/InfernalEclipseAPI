@@ -3574,6 +3574,8 @@ BossName: {
 	Arsenal: Arsenal - Интерлюдия Дешифратора
 	ThunderBird: Infernal Thunder Bird - Великая громовая птица (Рагнарёк)
 	QueenJellyfish: Mutant Majesty - Королева медуз (Рагнарёк)
+	// GraniteEnergyStorm: Stonewarden - Granite Energy Storm (Ragnarok Mode)
+	// Viscount: Carotid Crypt - Viscount (Ragnarok Mode)
 }
 
 PetDialog.DoGDSPTip: Сетка из лазеров появится в тот же момент, как он начинает совершать рывки! В первую очередь сфокусируйся на таране Пожирателя и только затем ищи безопасное место. А ещё не забывай об его фаерболах!

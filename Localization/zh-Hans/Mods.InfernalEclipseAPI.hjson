@@ -3582,6 +3582,8 @@ BossName: {
 	Arsenal: Arsenal - Codebreaker Interlude
 	// ThunderBird: Infernal Thunder Bird - The Grand Thunder Bird (Ragnarok Mode)
 	// QueenJellyfish: Mutant Majesty - Queen Jellyfish (Ragnarok Mode)
+	// GraniteEnergyStorm: Stonewarden - Granite Energy Storm (Ragnarok Mode)
+	// Viscount: Carotid Crypt - Viscount (Ragnarok Mode)
 }
 
 PetDialog.DoGDSPTip: 激光网格会在他冲刺的同时生成！优先冲撞神吞，然后移动到安全位置——但别忘了那些火球！

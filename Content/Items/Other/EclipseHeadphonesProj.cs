@@ -213,6 +213,26 @@ namespace InfernalEclipseAPI.Content.Items.Other
 
             new()
             {
+                HoverText = Language.GetTextValue($"Mods.InfernalEclipseAPI.BossName.Viscount"),
+                TrackName = "VampiricVitality",
+                HoverTextColor = () => new(205, 150, 255),
+                UnlockCondition = () => InfernalCrossmod.Thorium.Loaded ? (bool)InfernalCrossmod.Thorium.Mod.Call("GetDownedBoss", "Viscount") : false,
+                BossIconTexture = InfernalCrossmod.Thorium.Loaded ? InfernalCrossmod.Thorium.Mod.Assets.Request<Texture2D>("NPCs/BossViscount/Viscount_Head_Boss") : TextureAssets.MagicPixel,
+                RequiresThorium = true
+            },
+
+            new()
+            {
+                HoverText = Language.GetTextValue($"Mods.InfernalEclipseAPI.BossName.GraniteEnergyStorm"),
+                TrackName = "Stonewarden",
+                HoverTextColor = () => new(205, 150, 255),
+                UnlockCondition = () => InfernalCrossmod.Thorium.Loaded ? (bool)InfernalCrossmod.Thorium.Mod.Call("GetDownedBoss", "GraniteEnergyStorm") : false,
+                BossIconTexture = InfernalCrossmod.Thorium.Loaded ? InfernalCrossmod.Thorium.Mod.Assets.Request<Texture2D>("NPCs/BossGraniteEnergyStorm/GraniteEnergyStorm_Head_Boss") : TextureAssets.MagicPixel,
+                RequiresThorium = true
+            },
+
+            new()
+            {
                 HoverText = Language.GetTextValue($"Mods.InfernalEclipseAPI.BossName.BereftVassal"),
                 TrackName = "BereftVassal",
                 HoverTextColor = () => Color.Lerp(Color.Cyan, Color.Yellow, (float)Math.Sin(Main.GlobalTimeWrappedHourly) * 0.3f + 0.35f),

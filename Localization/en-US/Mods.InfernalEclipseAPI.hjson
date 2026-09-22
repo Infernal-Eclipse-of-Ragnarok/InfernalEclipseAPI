@@ -3586,6 +3586,8 @@ BossName: {
 	Arsenal: Arsenal - Codebreaker Interlude
 	ThunderBird: Infernal Thunder Bird - The Grand Thunder Bird (Ragnarok Mode)
 	QueenJellyfish: Mutant Majesty - Queen Jellyfish (Ragnarok Mode)
+	GraniteEnergyStorm: Stonewarden - Granite Energy Storm (Ragnarok Mode)
+	Viscount: Carotid Crypt - Viscount (Ragnarok Mode)
 }
 
 PetDialog.DoGDSPTip: The laser grid spawns at the same time as he dashes! Focus on ramming the Devourer first then move to a safe spot - but don't forget about those fireballs!
