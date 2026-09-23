@@ -113,8 +113,8 @@ if (DeerclopsEntry == List_EntryInfo_GetMethod?.Invoke(SortedEntries, [6])) // C
 
     }
 
-    //    [ExtendsFromMod("BossChecklist")]
-    //    [JITWhenModsEnabled("BossChecklist")]
+        [ExtendsFromMod("BossChecklist")]
+    [JITWhenModsEnabled("BossChecklist")]
     public class BossChecklistEntryEdits : ModSystem
     {
         public override bool IsLoadingEnabled(Mod mod) => ModLoader.HasMod("BossChecklist");
