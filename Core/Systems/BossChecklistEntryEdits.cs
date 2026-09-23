@@ -9,6 +9,7 @@ using InfernumMode.Content.UI;
 using Microsoft.Xna.Framework.Graphics;
 using MonoMod.RuntimeDetour;
 using ReLogic.Content;
+using Terraria.Localization;
 using static InfernalEclipseAPI.Core.Systems.BossChecklistEntryEditor;
 
 namespace InfernalEclipseAPI.Core.Systems
@@ -43,6 +44,7 @@ namespace InfernalEclipseAPI.Core.Systems
         }
         public static List<int> BossSpawnList(this object bossEntry) => EntryInfo?.GetField("spawnItem", LumUtils.UniversalBindingFlags)?.GetValue(bossEntry) as List<int>;
         public static void ModifyBossProgression(this object bossEntry, float progression) => EntryInfo?.GetField("progression", LumUtils.UniversalBindingFlags)?.SetValue(bossEntry, progression);
+        public static void ModifyBossDisplayName(this object bossEntry, string name) => EntryInfo?.GetField("DisplayName", LumUtils.UniversalBindingFlags)?.SetValue(bossEntry, name);
         public static float GetProgression(this object bossEntry) => (float)EntryInfo?.GetField("progression", LumUtils.UniversalBindingFlags)?.GetValue(bossEntry);
 
         // Old code shoved here so it doesn't fill up main file
@@ -162,10 +164,17 @@ if (DeerclopsEntry == List_EntryInfo_GetMethod?.Invoke(SortedEntries, [6])) // C
         }
         public static void SCalImages()
         {
+            object cal  = BossEntry("CalamityMod CalamitasClone");
             if (DifficultyModeSystem.GetCurrentDifficulty.CountAs<InfernumDifficulty>() || DifficultyModeSystem.GetCurrentDifficulty is InfernumDifficulty)
-                BossEntry("CalamityMod CalamitasClone").ModifyBossImage($"{path}/CalCloneShadow", "InfernumMode/Content/BehaviorOverrides/BossAIs/CalamitasShadow/CalShadowMapIcon");
+            {
+                cal.ModifyBossImage($"{path}/CalCloneShadow", "InfernumMode/Content/BehaviorOverrides/BossAIs/CalamitasShadow/CalShadowMapIcon");
+                cal.ModifyBossDisplayName(Language.GetTextValue("Mods.InfernumMode.NPCs.CalamitasShadowClone.DisplayName"));
+            }
             else
-                BossEntry("CalamityMod CalamitasClone").ModifyBossImage($"{path}/CalClone", $"{path}/CalamitasClone_Head_Boss");
+            {
+                cal.ModifyBossImage($"{path}/CalClone", $"{path}/CalamitasClone_Head_Boss");
+                cal.ModifyBossDisplayName(Language.GetTextValue("Mods.CalamityMod.NPCs.CalamitasClone.DisplayName"));
+            }
         }
         static void ModifyCalCloneImages(Action<DifficultyMode, bool> orig, DifficultyMode mode, bool broadcast)
         {
