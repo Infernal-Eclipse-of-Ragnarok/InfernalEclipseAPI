@@ -2534,6 +2534,16 @@ Items: {
 			Can only be used once
 			'''
 	}
+
+	ChestLockIcon: {
+		DisplayName: Chest Lock Icon
+		Tooltip: ""
+	}
+
+	HoverItemDummy: {
+		DisplayName: Hover Item Dummy
+		Tooltip: ""
+	}
 }
 
 Projectiles: {

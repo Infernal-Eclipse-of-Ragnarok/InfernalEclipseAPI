@@ -239,6 +239,12 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
             */
         }
 
+        public override void PostUpdate(Item item)
+        {
+            if (item.type == ItemID.GoldenKey && (!NPC.downedBoss3))
+                item.TurnToAir();
+        }
+
         public override void OnCreated(Item item, ItemCreationContext context)
         {
             if (item.type == ItemID.TinkerersWorkshop)

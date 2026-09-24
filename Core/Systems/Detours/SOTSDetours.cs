@@ -1,19 +1,27 @@
-﻿using CalamityMod.NPCs.Perforator;
+﻿using CalamityMod.NPCs.HiveMind;
+using CalamityMod.NPCs.NormalNPCs.HorribleHog;
+using CalamityMod.NPCs.Perforator;
 using CalamityMod.NPCs.ProfanedGuardians;
+using CalamityMod.NPCs.Ravager;
 using CalamityMod.NPCs.SlimeGod;
+using CalamityMod.NPCs.SunkenSea;
 using InfernalEclipseAPI.Content.Buffs;
 using InfernalEclipseAPI.Core.Configs;
 using InfernalEclipseAPI.Core.Players;
+using InfernumMode.Content.BehaviorOverrides.BossAIs.Deerclops;
 using Microsoft.Xna.Framework;
 using Mono.Cecil;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using MonoMod.RuntimeDetour;
 using SOTS;
+using SOTS.Common.GlobalNPCs;
 using SOTS.Items.ChestItems;
 using SOTS.Items.Void;
+using SOTS.NPCs.Boss;
 using SOTS.Projectiles;
 using SOTS.Projectiles.BiomeChest;
+using SOTS.Projectiles.Tide;
 using SOTS.Void;
 using System.Collections.Generic;
 using System.Reflection;
@@ -855,6 +863,126 @@ namespace InfernalEclipseAPI.Core.Systems.Detours
             orig(self, player);
 
             player.AddBuff(BuffID.ChaosState, 20 * 60);
+        }
+    }
+
+    [JITWhenModsEnabled("SOTS")]
+    [ExtendsFromMod("SOTS")]
+    public class AtlantisBossSlowdownSystem : ModSystem
+    {
+        private ILHook postAIHook;
+
+        private static HashSet<int> AtlantisSlowImmuneNPCs;
+
+        public override void Load()
+        {
+            AtlantisSlowImmuneNPCs = new HashSet<int>
+            {
+                ModContent.NPCType<PerforatorHeadLarge>(),
+                ModContent.NPCType<PerforatorHeadMedium>(),
+                ModContent.NPCType<PerforatorHeadSmall>(),
+                ModContent.NPCType<PerforatorBodyLarge>(),
+                ModContent.NPCType<PerforatorBodyMedium>(),
+                ModContent.NPCType<PerforatorBodySmall>(),
+                ModContent.NPCType<PerforatorTailLarge>(),
+                ModContent.NPCType<PerforatorTailMedium>(),
+                ModContent.NPCType<PerforatorTailSmall>(),
+                ModContent.NPCType<DarkHeart>(),
+                ModContent.NPCType<GiantClam>(),
+                ModContent.NPCType<LightSnuffingHand>(),
+                ModContent.NPCType<PutridPinky1>(),
+                NPCID.DungeonGuardian,
+                ModContent.NPCType<CrimulanPaladin>(),
+                ModContent.NPCType<EbonianPaladin>(),
+                ModContent.NPCType<SlimeGodCore>(),
+                ModContent.NPCType<RavagerHead>(),
+                ModContent.NPCType<ProfanedGuardianCommander>(),
+                ModContent.NPCType<ProfanedGuardianDefender>(),
+                ModContent.NPCType<ProfanedGuardianHealer>(),
+                NPCID.DD2Betsy,
+                ModContent.NPCType<HorribleHog>()
+            };
+
+            MethodInfo postAIMethod = typeof(DebuffNPC).GetMethod(nameof(DebuffNPC.PostAI), LumUtils.UniversalBindingFlags);
+
+            if (postAIMethod != null)
+                postAIHook = new ILHook(postAIMethod, ModifyPostAI);
+        }
+
+        public override void Unload()
+        {
+            postAIHook?.Dispose();
+            postAIHook = null;
+            AtlantisSlowImmuneNPCs = null;
+        }
+
+        private static void ModifyPostAI(ILContext il)
+        {
+            ILCursor c = new(il);
+
+            /*
+             * Original:
+             *
+             * if (projectile1.active &&
+             *     projectile1.type == DebuffNPC.HydroBubble &&
+             *     (int)projectile1.ai[1] == npc.whoAmI &&
+             *     projectile1.ModProjectile is HydroBubble modProjectile4 &&
+             *     modProjectile4.AiCounter > modProjectile4.ChargeTime)
+             * {
+             *     flag4 = true;
+             * }
+             *
+             * Change the stored "true" into:
+             *
+             * ShouldApplyAtlantisSlow(npc)
+            */
+
+            if (!c.TryGotoNext(MoveType.After, i => i.MatchLdfld<HydroBubble>(nameof(HydroBubble.ChargeTime))))
+            {
+                ModContent.GetInstance<InfernalEclipseAPI>().Logger.Error("Atlantis patch failed: could not find HydroBubble.ChargeTime.");
+                return;
+            }
+
+            // We are now inside the unique HydroBubble condition.
+            // Find the subsequent:
+            //
+            // ldc.i4.1
+            // stloc flag4
+            //
+            if (!c.TryGotoNext(MoveType.Before, i => i.MatchLdcI4(1), i => i.MatchStloc(out _)))
+            {
+                ModContent.GetInstance<InfernalEclipseAPI>().Logger.Error("Atlantis patch failed: could not find flag4 = true.");
+                return;
+            }
+
+            // Remove the original `true`.
+            c.Remove();
+
+            // Stack previously:
+            // [ ]
+            //
+            // Push npc:
+            c.Emit(OpCodes.Ldarg_1);
+
+            // Returns the bool that will be stored into flag4.
+            c.EmitDelegate<Func<NPC, bool>>(ShouldApplyAtlantisSlow);
+        }
+
+        private static bool ShouldApplyAtlantisSlow(NPC npc)
+        {
+            if (AtlantisSlowImmuneNPCs.Contains(npc.type))
+                return false;
+
+            // Regular enemies retain Atlantis' normal slowdown.
+            if (!npc.boss)
+                return true;
+
+            // Vanilla bosses do not belong to SOTS and are reworked with Infernum.
+            if (npc.ModNPC == null)
+                return false;
+
+            // Only bosses originating from SOTS can be slowed.
+            return npc.ModNPC.Mod.Name == "SOTS";
         }
     }
 }
