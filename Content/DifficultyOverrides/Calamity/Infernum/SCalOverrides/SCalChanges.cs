@@ -30,12 +30,10 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.SCalO
     public class SCalChanges : GlobalNPC
     {
         public override bool InstancePerEntity => true;
+        public override bool AppliesToEntity(NPC npc, bool lateInstantiation) => npc.type == ModContent.NPCType<SupremeCalamitas>();
+        public static string DialoguePath() => DownedBossSystem.downedCalamitas ? "Mods.InfernalEclipseAPI.SupremeCalamitas.PhasesRematch" : "Mods.InfernalEclipseAPI.SupremeCalamitas.Phases";
 
-        public override bool AppliesToEntity(NPC npc, bool lateInstantiation)
-        {
-            return npc.type == ModContent.NPCType<SupremeCalamitas>();
-        }
-
+        #region Bullet Hell Variables
         public const int BulletHellDuration = 900;
         public const int SecondBulletHellEndValue = BulletHellDuration * 2;
         public const int ThirdBulletHellEndValue = BulletHellDuration * 3;
@@ -48,22 +46,20 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.SCalO
         public bool FinishedBH4 => bulletHellCounter2 >= FourthBulletHellEndValue;
         public bool FinishedBH5 => bulletHellCounter2 >= FifthBulletHellEndValue;
 
-        public static string DialoguePath() => DownedBossSystem.downedCalamitas ? "Mods.InfernalEclipseAPI.SupremeCalamitas.PhasesRematch" : "Mods.InfernalEclipseAPI.SupremeCalamitas.Phases";
-
-        public float uDieLul = 1f;
-        public float passedVar = 0f;
-
-        public bool despawnProj = false;
-
         public int bulletHellCounter = 0;
         public int bulletHellCounter2 = 0;
 
         public SlotId BulletHellRumbleSlot;
+        #endregion
 
-        public static int HellblastDamage = 105;
-        public static int GigablastDamage = 115;
+        public float uDieLul = 1f;
+        public float passedVar = 0f;
+
+        private const int HellblastDamage = 105;
+        private const int GigablastDamage = 115;
 
         public bool hasTeleported = false;
+        public bool despawnProj = false;
 
         public override void SendExtraAI(NPC npc, BitWriter bitWriter, BinaryWriter writer)
         {
@@ -81,6 +77,18 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.SCalO
             ref float attackTimer = ref npc.ai[1];
             ref float dialogueDisplayed = ref npc.Infernum().ExtraAI[25];
 
+            if (InfernalCrossmod.Clamity.Loaded)
+            {
+                foreach (Player player in Main.ActivePlayers)
+                {
+                    if (player.dead || player.ghost || !npc.WithinRange(player.Center, 10000f))
+                        continue;
+
+                    if (player.mount?.Type == InfernalCrossmod.Clamity.Mod.Find<ModMount>("PlagueChairMount").Type)
+                        player.mount.Dismount(player);
+                }
+            }
+
             if (SupremeCalamitasBehaviorOverride.Enraged)
             {
                 float projectileVelocityMultCap = 2f;
@@ -91,23 +99,41 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.SCalO
                 uDieLul = Clamp(uDieLul * 0.99f, 1f, 2f);
             }
 
-            if (InfernalWorld.RagnarokModeEnabled && !BossRushEvent.BossRushActive)
+            if (InfernalWorld.RagnarokModeEnabled)
             {
-                if (npc.Infernum().ExtraAI[6] == 2f && (SupremeCalamitasBehaviorOverride.SCalAttackType)attackType == SupremeCalamitasBehaviorOverride.SCalAttackType.FireLaserSpin &&
-                    !NPC.AnyNPCs(ModContent.NPCType<SupremeCataclysm>()) && !NPC.AnyNPCs(ModContent.NPCType<SupremeCatastrophe>()) &&  //make sure there still aren't any brothers
-                    FinishedBH3 && dialogueDisplayed < 5) //make sure bullet hell 3 has completed and we haven't already displayed this dialouge
+                if ((SupremeCalamitasBehaviorOverride.SCalAttackType)attackType == SupremeCalamitasBehaviorOverride.SCalAttackType.DesperationPhase)
                 {
-                    DialogueDisplaySystem.StartDialogue(DialoguePath(), npc, 5, 120, false, new BossText());
-                    dialogueDisplayed = 5;
+                    foreach (Player player in Main.ActivePlayers)
+                    {
+                        if (player.dead || player.ghost || !npc.WithinRange(player.Center, 10000f))
+                            continue;
+
+                        player.AddBuff(ModContent.BuffType<BrimstoneDesperation>(), 2);
+
+                        if (InfernalCrossmod.Thorium.Loaded)
+                        {
+                            AntiHealerMulticlassCheck.ZeroHealBonus(npc);
+                        }
+                    }
                 }
 
-                if (npc.Infernum().ExtraAI[4] == 4f && attackTimer == 660 && dialogueDisplayed < 10)
+                if (!BossRushEvent.BossRushActive)
                 {
-                    DialogueDisplaySystem.StartDialogue(DialoguePath(), npc, 10, 120, false, new BossText());
-                    dialogueDisplayed = 10;
+                    if (npc.Infernum().ExtraAI[6] == 2f && (SupremeCalamitasBehaviorOverride.SCalAttackType)attackType == SupremeCalamitasBehaviorOverride.SCalAttackType.FireLaserSpin &&
+                        !NPC.AnyNPCs(ModContent.NPCType<SupremeCataclysm>()) && !NPC.AnyNPCs(ModContent.NPCType<SupremeCatastrophe>()) &&  //make sure there still aren't any brothers
+                        FinishedBH3 && dialogueDisplayed < 5) //make sure bullet hell 3 has completed and we haven't already displayed this dialouge
+                    {
+                        DialogueDisplaySystem.StartDialogue(DialoguePath(), npc, 5, 120, false, new BossText());
+                        dialogueDisplayed = 5;
+                    }
+
+                    if (npc.Infernum().ExtraAI[4] == 4f && attackTimer == 660 && dialogueDisplayed < 10)
+                    {
+                        DialogueDisplaySystem.StartDialogue(DialoguePath(), npc, 10, 120, false, new BossText());
+                        dialogueDisplayed = 10;
+                    }
                 }
             }
-
 
             return base.PreAI(npc);
         }

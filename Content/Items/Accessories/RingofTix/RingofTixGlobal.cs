@@ -17,26 +17,22 @@ namespace InfernalEclipseAPI.Content.Items.Accessories.RingofTix
     [ExtendsFromMod("SOTS")]
     public class RingofTixGlobal : GlobalItem
     {
-        public override bool AppliesToEntity(Item entity, bool lateInstantiation)
-            => entity.type == ModContent.ItemType<RingofTix>();
+        public override bool AppliesToEntity(Item entity, bool lateInstantiation) => entity.type == ModContent.ItemType<RingofTix>();
 
         public override bool InstancePerEntity => true;
-
         private const float OrbitSpeed = -0.8f;
         private bool[] GemDisabled = new bool[7];
-
-        private static Texture2D _challengerGems;
-        private static Texture2D _invertedChallengerGems;
-
+        private static Texture2D challengerGems;
+        private static Texture2D invertedChallengerGems;
         private static readonly Color[] GemColors = new[]
         {
-        new Color(186,104,200), // Amethyst
-        new Color(255,200, 80), // Topaz
-        new Color( 86,120,255), // Sapphire
-        new Color( 46,204,113), // Emerald
-        new Color(220, 50, 50), // Ruby
-        new Color(180,220,255), // Diamond
-        new Color(255,175,  0), // Amber
+            new Color(186,104,200), // Amethyst
+            new Color(255,200, 80), // Topaz
+            new Color( 86,120,255), // Sapphire
+            new Color( 46,204,113), // Emerald
+            new Color(220, 50, 50), // Ruby
+            new Color(180,220,255), // Diamond
+            new Color(255,175,  0), // Amber
         };
 
         public override bool CanAccessoryBeEquippedWith(Item equippedItem, Item incomingItem, Player player)
@@ -66,8 +62,8 @@ namespace InfernalEclipseAPI.Content.Items.Accessories.RingofTix
         private static void EnsureGemTexturesLoaded()
         {
             if (Main.dedServ) return;
-            _challengerGems ??= ModContent.Request<Texture2D>("SOTS/Items/Gems/ChallengerGems", AssetRequestMode.ImmediateLoad).Value;
-            _invertedChallengerGems ??= ModContent.Request<Texture2D>("SOTS/Items/Gems/InvertedChallengerGems", AssetRequestMode.ImmediateLoad).Value;
+            challengerGems ??= ModContent.Request<Texture2D>("SOTS/Items/Gems/ChallengerGems", AssetRequestMode.ImmediateLoad).Value;
+            invertedChallengerGems ??= ModContent.Request<Texture2D>("SOTS/Items/Gems/InvertedChallengerGems", AssetRequestMode.ImmediateLoad).Value;
         }
 
         private static Texture2D TryGetGlowTexture(Item item)
@@ -103,7 +99,7 @@ namespace InfernalEclipseAPI.Content.Items.Accessories.RingofTix
                 Vector2 gemPos = radial.RotatedBy(rotation - MathHelper.PiOver4);
                 Rectangle frame = new Rectangle(0, 16 * idx, 16, 16);
 
-                Texture2D sheet = GemDisabled[idx] ? _invertedChallengerGems : _challengerGems;
+                Texture2D sheet = GemDisabled[idx] ? invertedChallengerGems : challengerGems;
 
                 float d = MathHelper.Clamp(onBand, 0.25f, 1f);
                 float pulse = (float)Math.Sqrt(d);
@@ -111,7 +107,7 @@ namespace InfernalEclipseAPI.Content.Items.Accessories.RingofTix
                 for (int s = 0; s < 8; s++)
                 {
                     Vector2 spark = new Vector2(0f, 3f * scale * pulse).RotatedBy(MathHelper.ToRadians(s * 45 + SOTSWorld.GlobalCounter * 2));
-                    sb.Draw(_challengerGems, pos + gemPos + spark, frame, new Color(200, 200, 200, 0) * d, drawRot, new Vector2(8f, 8f), scale * 0.6f * squash, SpriteEffects.None, 0f);
+                    sb.Draw(challengerGems, pos + gemPos + spark, frame, new Color(200, 200, 200, 0) * d, drawRot, new Vector2(8f, 8f), scale * 0.6f * squash, SpriteEffects.None, 0f);
                 }
 
                 sb.Draw(sheet, pos + gemPos, frame, drawColor, drawRot, new Vector2(8f, 8f), scale * 0.6f * squash, SpriteEffects.None, 0f);
@@ -292,7 +288,7 @@ namespace InfernalEclipseAPI.Content.Items.Accessories.RingofTix
         {
             VoidPlayer voidPlayer = player.VoidPlayer();
             SOTSPlayer sotsPlayer = player.SOTSPlayer();
-            if (this.GemDisabled[0])
+            if (GemDisabled[0])
             {
                 player.blockRange += 3;
                 player.tileSpeed += 0.2f;
@@ -301,37 +297,36 @@ namespace InfernalEclipseAPI.Content.Items.Accessories.RingofTix
             }
             else
                 sotsPlayer.AmethystRing = true;
-            if (this.GemDisabled[1])
+            if (GemDisabled[1])
                 sotsPlayer.InverseTopazRing = true;
             else
                 sotsPlayer.TopazRing = true;
-            if (this.GemDisabled[2])
+            if (GemDisabled[2])
             {
                 voidPlayer.GainHealthOnVoidUse += 0.1f;
                 voidPlayer.GainVoidOnHurt += 0.1f;
             }
             else
                 ++voidPlayer.VoidGenerateMoney;
-            if (this.GemDisabled[3])
+            if (GemDisabled[3])
             {
                 player.endurance += 0.15f;
-                ref StatModifier local = ref player.GetDamage(DamageClass.Generic);
-                local -= 0.15f;
+                player.GetDamage(DamageClass.Generic) -= 0.15f;
             }
             else
                 sotsPlayer.EmeraldRing = true;
-            if (this.GemDisabled[4])
+            if (GemDisabled[4])
             {
                 player.AddBuff(BuffID.WellFed, 60, true, false);
                 voidPlayer.VoidFoodGainMultiplier -= 0.75f;
             }
             else
                 sotsPlayer.RubyRing = true;
-            if (this.GemDisabled[5])
+            if (GemDisabled[5])
                 sotsPlayer.InverseDiamondRing = true;
             else
                 sotsPlayer.DiamondRing = true;
-            if (this.GemDisabled[6])
+            if (GemDisabled[6])
                 sotsPlayer.InverseAmberRing = true;
             else
                 sotsPlayer.AmberRing = true;

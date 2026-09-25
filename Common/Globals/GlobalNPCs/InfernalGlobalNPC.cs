@@ -60,6 +60,18 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
 
         public override void ModifyActiveShop(NPC npc, string shopName, Item[] items)
         {
+            if (npc.type == NPCID.Painter)
+            {
+                for (int i = 0; i < items.Length; i++)
+                {
+                    if (items[i] == null || items[i].IsAir)
+                    {
+                        items[i] = new Item(ModContent.ItemType<InfernalArsenalPainting>());
+                        break;
+                    }
+                }
+            }
+
             if (npc.type == NPCID.PartyGirl && BirthdayParty.GenuineParty)
             {
                 for (int i = 0; i < items.Length; i++)
@@ -72,14 +84,29 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
                 }
             }
 
-            if (npc.type == NPCID.Princess && DownedBossSystem.downedCalamitas && DownedBossSystem.downedExoMechs)
+            if (npc.type == NPCID.Princess)
             {
-                for (int i = 0; i < items.Length; i++)
+                if (InfernalWorld.codebreakerCompleted)
                 {
-                    if (items[i] == null || items[i].IsAir)
+                    for (int i = 0; i < items.Length; i++)
                     {
-                        items[i] = new Item(ModContent.ItemType<InterludeFourMusicBox>());
-                        break;
+                        if (items[i] == null || items[i].IsAir)
+                        {
+                            items[i] = new Item(ModContent.ItemType<CodebreakerMusicBox>());
+                            break;
+                        }
+                    }
+                }
+
+                if (DownedBossSystem.downedCalamitas && DownedBossSystem.downedExoMechs) 
+                {
+                    for (int i = 0; i < items.Length; i++)
+                    {
+                        if (items[i] == null || items[i].IsAir)
+                        {
+                            items[i] = new Item(ModContent.ItemType<InterludeFourMusicBox>());
+                            break;
+                        }
                     }
                 }
             }
@@ -220,9 +247,9 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
             {
                 if (InfernalWorld.RagnarokModeEnabled && !BossRushEvent.BossRushActive)
                 {
-                    foreach (Player player in Main.player)
+                    foreach (Player player in Main.ActivePlayers)
                     {
-                        if (player.active && !player.dead)
+                        if (!player.dead)
                         {
                             ClearRageAndAdrenaline(player);
 
@@ -254,9 +281,9 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
 
         public static void ClearRageAndAdrenaline()
         {
-            foreach (Player player in Main.player)
+            foreach (Player player in Main.ActivePlayers)
             {
-                if (player.active && !player.dead)
+                if (!player.dead)
                 {
                     ClearRageAndAdrenaline(player);
                 }
@@ -280,25 +307,40 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
         {
             if (!npc.active) return base.PreAI(npc);
 
-            if (InfernalWorld.RagnarokModeEnabled && npc.type == NPCID.Golem)
+            if (InfernalWorld.RagnarokModeEnabled)
             {
-                foreach (Player player in Main.ActivePlayers)
+                if (npc.type == NPCID.Deerclops)
                 {
-                    if (player.dead || !npc.WithinRange(player.Center, 10000f))
-                        continue;
+                    foreach (Player player in Main.ActivePlayers)
+                    {
+                        if (!player.dead && !npc.WithinRange(player.Center, 1000f))
+                            continue;
 
-                    player.AddBuff(ModContent.BuffType<WeakPetrification>(), 2);
+                        player.AddBuff(ModContent.BuffType<FreezingAura>(), 2);
+                    }
                 }
-            }
 
-            if (npc.type == ModContent.NPCType<HealerShieldCrystal>())
-            {
-                foreach (Player player in Main.ActivePlayers)
+                if (npc.type == NPCID.Golem)
                 {
-                    if (player.dead || !npc.WithinRange(player.Center, 10000f))
-                        continue;
+                    foreach (Player player in Main.ActivePlayers)
+                    {
+                        if (player.dead || !npc.WithinRange(player.Center, 10000f))
+                            continue;
 
-                    player.AddBuff(ModContent.BuffType<HormonalBlockade>(), 2);
+                        player.AddBuff(ModContent.BuffType<WeakPetrification>(), 2);
+                        player.RemoveAllGrapplingHooks();
+                    }
+                }
+
+                if (npc.type == ModContent.NPCType<HealerShieldCrystal>())
+                {
+                    foreach (Player player in Main.ActivePlayers)
+                    {
+                        if (player.dead || !npc.WithinRange(player.Center, 10000f))
+                            continue;
+
+                        player.AddBuff(ModContent.BuffType<HormonalBlockade>(), 2);
+                    }
                 }
             }
 
@@ -330,9 +372,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
             {
                 int slurperPole = ModContent.ItemType<SlurperPole>();
 
-                npcLoot.RemoveWhere(rule =>
-                    rule is CommonDrop cd && cd.itemId == slurperPole ||
-                    rule is ItemDropWithConditionRule iwc && iwc.itemId == slurperPole);
+                npcLoot.RemoveWhere(rule => rule is CommonDrop cd && cd.itemId == slurperPole || rule is ItemDropWithConditionRule iwc && iwc.itemId == slurperPole);
 
                 foreach (var rule in npcLoot.Get())
                     PruneFromChains(rule, slurperPole);
@@ -363,9 +403,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
             if (rule.ChainedRules is null || rule.ChainedRules.Count == 0)
                 return;
 
-            rule.ChainedRules.RemoveAll(c =>
-                c.RuleToChain is CommonDrop cd && cd.itemId == itemId ||
-                c.RuleToChain is ItemDropWithConditionRule iwc && iwc.itemId == itemId);
+            rule.ChainedRules.RemoveAll(c => c.RuleToChain is CommonDrop cd && cd.itemId == itemId || c.RuleToChain is ItemDropWithConditionRule iwc && iwc.itemId == itemId);
 
             foreach (var chain in rule.ChainedRules.ToList())
                 PruneFromChains(chain.RuleToChain, itemId);

@@ -206,6 +206,7 @@ ItemTooltip: {
 		SOTSAdditional: Отключает эффекты икосаэдров
 	}
 
+	// Dreadmine: "[s:InfernalEclipseAPI/IEoRIcon] Only one dreadmine turret and its mines can be active at once"
 	Calculator: Снижает урон призывателя на 20%
 	Wiesnbrau:
 		'''
@@ -3504,6 +3505,11 @@ Buffs: {
 	HormonalBlockade: {
 		DisplayName: Гормональный сбой
 		Description: Активация ярости или адреналина невозможна!
+	}
+
+	FreezingAura: {
+		// DisplayName: Freezing Aura
+		// Description: Mods.InfernalEclipseAPI.Buffs.FreezingAura.Description
 	}
 }
 

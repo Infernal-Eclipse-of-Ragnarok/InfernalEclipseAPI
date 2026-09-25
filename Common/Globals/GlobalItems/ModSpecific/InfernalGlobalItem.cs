@@ -4,6 +4,8 @@ using CalamityMod.Items.Fishing.FishingRods;
 using CalamityMod.Items.Potions.Alcohol;
 using CalamityMod.Items.SummonItems;
 using CalamityMod.Items.TreasureBags.MiscGrabBags;
+using CalamityMod.Items.Weapons.Summon;
+using CalamityMod.Projectiles.Summon;
 using CalamityMod.TileEntities;
 using CalamityMod.Tiles.DraedonSummoner;
 using InfernalEclipseAPI.Content.Items.Accessories;
@@ -40,18 +42,6 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 
         public override void SetDefaults(Item item)
         {
-            /*
-            if (item.type == ModContent.ItemType<Moonshine>() && InfernalConfig.Instance.CalamityBalanceChanges)
-            {
-                item.value = Item.buyPrice(0, 1, 0, 0);
-            }
-
-            if (item.type == ModContent.ItemType<GrapeBeer>() && InfernalConfig.Instance.CalamityBalanceChanges)
-            {
-                item.value = Item.buyPrice(0, 0, 3, 0);
-            }
-            */
-
             if (item.type == ModContent.ItemType<TrustyOldRod>())
             {
                 item.fishingPole = 0;
@@ -121,6 +111,22 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
             return isConsumed;
         }
 
+        public override bool Shoot(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+            if (item.type == ModContent.ItemType<DreadmineStaff>())
+            {
+                foreach (Projectile projectile in Main.ActiveProjectiles)
+                {
+                    if (projectile.owner == player.whoAmI && (projectile.type == ModContent.ProjectileType<DreadmineTurret>() || projectile.type == ModContent.ProjectileType<Dreadmine>()))
+                    {
+                        projectile.Kill();
+                    }
+                }
+            }
+
+            return base.Shoot(item, player, source, position, velocity, type, damage, knockback);
+        }
+
         public override void ModifyItemLoot(Item item, ItemLoot itemLoot)
         {
             if (item.type == ModContent.ItemType<StarterBag>())
@@ -164,79 +170,8 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                 itemLoot.Add(ItemDropRule.ByCondition(new CatPlayerCondition(), ModContent.ItemType<Catlight>()));
 
                 itemLoot.Add(ItemDropRule.ByCondition(new DevListPlayerCondition(), ModContent.ItemType<InfernalTwilight>()));
+                itemLoot.Add(ItemDropRule.ByCondition(new ChallengeListPlayerCondition(), ModContent.ItemType<InfernalArsenalPainting>()));
             }
-
-            /*
-            if (InfernalConfig.Instance.CalamityExpertAccessories) 
-            {
-                if (item.type == ModContent.ItemType<AquaticScourgeBag>())
-                {
-                    itemLoot.RemoveWhere(aqua => aqua is CommonDrop commonDrop1 && commonDrop1.itemId == ModContent.ItemType<AquaticEmblem>(), true);
-                    itemLoot.RemoveWhere(spine => spine is CommonDrop commonDrop2 && commonDrop2.itemId == ModContent.ItemType<CorrosiveSpine>(), true);
-                    ((ILoot)(object)itemLoot).Add(ModContent.ItemType<CorrosiveSpine>(), 1, 1, 1);
-                    ((ILoot)(object)itemLoot).Add(ModContent.ItemType<AquaticEmblem>(), DropHelper.BagWeaponDropRateFraction, 1, 1);
-                }
-                if (item.type == ModContent.ItemType<CryogenBag>())
-                {
-                    itemLoot.RemoveWhere(flare => flare is CommonDrop commonDrop3 && commonDrop3.itemId == ModContent.ItemType<FrostFlare>(), true);
-                    itemLoot.RemoveWhere(soul => soul is CommonDrop commonDrop4 && commonDrop4.itemId == ModContent.ItemType<SoulofCryogen>(), true);
-                    ((ILoot)(object)itemLoot).Add(ModContent.ItemType<FrostFlare>(), 1, 1, 1);
-                    ((ILoot)(object)itemLoot).Add(ModContent.ItemType<SoulofCryogen>(), DropHelper.BagWeaponDropRateFraction, 1, 1);
-                }
-                if (item.type == ModContent.ItemType<DesertScourgeBag>())
-                {
-                    itemLoot.RemoveWhere(cloak => cloak is CommonDrop commonDrop5 && commonDrop5.itemId == ModContent.ItemType<SandCloak>(), true);
-                    itemLoot.RemoveWhere(crest => crest is CommonDrop commonDrop6 && commonDrop6.itemId == ModContent.ItemType<OceanCrest>(), true);
-                    ((ILoot)(object)itemLoot).Add(ModContent.ItemType<SandCloak>(), 1, 1, 1);
-                    ((ILoot)(object)itemLoot).Add(ModContent.ItemType<OceanCrest>(), DropHelper.BagWeaponDropRateFraction, 1, 1);
-                }
-                if (item.type == ModContent.ItemType<RavagerBag>())
-                {
-                    itemLoot.RemoveWhere(totem => totem is CommonDrop commonDrop7 && commonDrop7.itemId == ModContent.ItemType<FleshTotem>(), true);
-                    itemLoot.RemoveWhere(core => core is CommonDrop commonDrop8 && commonDrop8.itemId == ModContent.ItemType<BloodflareCore>(), true);
-                    ((ILoot)(object)itemLoot).Add(ModContent.ItemType<FleshTotem>(), 1, 1, 1);
-                    ((ILoot)(object)itemLoot).Add(ModContent.ItemType<BloodflareCore>(), DropHelper.BagWeaponDropRateFraction, 1, 1);
-                }
-                if (item.type == ItemID.BossBagBetsy)
-                {
-                    itemLoot.RemoveWhere(wing => wing is CommonDrop commonDrop && commonDrop.itemId == ItemID.BetsyWings, true);
-                    ((ILoot)(object)itemLoot).Add(3883, 1, 1, 1);
-                }
-                if (item.type == ModContent.ItemType<LeviathanBag>())
-                {
-                    itemLoot.RemoveWhere(Community => Community is CommonDrop commonDrop && commonDrop.itemId == ModContent.ItemType<TheCommunity>(), true);
-                    ((ILoot)(object)itemLoot).DefineConditionalDropSet(DropHelper.RevAndMaster).Add(ModContent.ItemType<TheCommunity>(), 10, 1, 1, false);
-                }
-                if (item.type == ModContent.ItemType<CalamitasCloneBag>())
-                {
-                    itemLoot.RemoveWhere(regen => regen is CommonDrop commonDrop && commonDrop.itemId == ModContent.ItemType<Regenator>(), true);
-                    ((ILoot)(object)itemLoot).DefineConditionalDropSet(DropHelper.RevAndMaster).Add(ModContent.ItemType<Regenator>(), 10, 1, 1, false);
-                }
-                if (item.type == ItemID.QueenBeeBossBag)
-                {
-                    itemLoot.RemoveWhere(Bee => Bee is CommonDrop commonDrop9 && commonDrop9.itemId == ModContent.ItemType<TheBee>(), true);
-                    ((ILoot)(object)itemLoot).DefineConditionalDropSet(DropHelper.RevAndMaster).Add(ModContent.ItemType<TheBee>(), 10, 1, 1, false);
-                }
-
-                if (ModLoader.TryGetMod("CalamityHunt", out Mod calHunt))
-                {
-                    if (item.type == calHunt.Find<ModItem>("TreasureTrunk").Type)
-                    {
-                        itemLoot.RemoveWhere(Tend => Tend is CommonDrop commonDrop && commonDrop.itemId == calHunt.Find<ModItem>("TendrilCursorAttachment").Type, true);
-                        ((ILoot)(object)itemLoot).DefineConditionalDropSet(DropHelper.RevAndMaster).Add(calHunt.Find<ModItem>("TendrilCursorAttachment").Type, 10, 1, 1, false);
-                    }
-                }
-
-                if (InfernalCrossmod.Clamity.Loaded)
-                {
-                    if (item.type == InfernalCrossmod.Clamity.Mod.Find<ModItem>("PyrogenBag").Type)
-                    {
-                        itemLoot.RemoveWhere(flare => flare is CommonDrop commonDrop3 && commonDrop3.itemId == InfernalCrossmod.Clamity.Mod.Find<ModItem>("HellFlare").Type, true);
-                        ((ILoot)(object)itemLoot).Add(InfernalCrossmod.Clamity.Mod.Find<ModItem>("HellFlare").Type);
-                    }
-                }
-            }
-            */
         }
 
         public override void PostUpdate(Item item)
@@ -298,17 +233,14 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
-            /*
-            if ((item.type == ModContent.ItemType<GrapeBeer>() || item.type == ModContent.ItemType<Moonshine>()) && InfernalConfig.Instance.CalamityBalanceChanges)
-            {
-                InfernalUtilities.ReplaceTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.GrapeBeer.Orig"), InfernalCrossmod.SOTS.Loaded ? Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.GrapeBeer.Nerf") + "\n" + Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.GrapeBeer.SOTSAdditional") : Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.GrapeBeer.Nerf"));
-                InfernalUtilities.AddTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.TwoAlchs"), Color.Lerp(Color.White, new Color(255, 80, 0), (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5)));
-            }
-            */
-
             if (item.type == ModContent.ItemType<TrustyOldRod>())
             {
                 InfernalUtilities.AddDisabledItemTag(tooltips);
+            }
+
+            if (item.type == ModContent.ItemType<DreadmineStaff>())
+            {
+                InfernalUtilities.AddTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Dreadmine"), Color.Lerp(Color.White, new Color(255, 80, 0), (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5)));
             }
 
             if (InfernalCrossmod.FargosMutant.Loaded)
@@ -423,16 +355,50 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
         public bool CanDrop(DropAttemptInfo info)
         {
             // Loop through all players in the world
-            for (int i = 0; i < Main.maxPlayers; i++)
+            foreach (Player player in Main.ActivePlayers)
             {
-                Player player = Main.player[i];
                 foreach (string name in InfernalTwilight.devList)
                 {
-                    if (player.active && player.name.ToLower().Contains(name))
+                    if (player.name.ToLower().Contains(name))
                         return true;
                 }
-                if (player.active && (player.name.ToLower().Contains("nuggets") || player.name.ToLower().Contains("hummus")))
+                if (player.name.ToLower().Contains("nuggets") || player.name.ToLower().Contains("hummus"))
                     return true;
+            }
+            return false;
+        }
+
+        public bool CanShowItemDropInUI() => false;
+        public string GetConditionDescription() => "A certain person must be present...";
+    }
+
+    public class ChallengeListPlayerCondition : IItemDropRuleCondition
+    {
+        public bool CanDrop(DropAttemptInfo info)
+        {
+            // Loop through all players in the world
+            foreach (Player player in Main.ActivePlayers)
+            {
+                foreach (string name in InfernalArsenalPainting.bossRushList)
+                {
+                    if (player.name.ToLower().Contains(name))
+                        return true;
+                }
+                foreach (string name in InfernalArsenalPainting.lowPercentList)
+                {
+                    if (player.name.ToLower().Contains(name))
+                        return true;
+                }
+                foreach (string name in InfernalArsenalPainting.notHitList)
+                {
+                    if (player.name.ToLower().Contains(name))
+                        return true;
+                }
+                foreach (string name in InfernalArsenalPainting.whipsList)
+                {
+                    if (player.name.ToLower().Contains(name))
+                        return true;
+                }
             }
             return false;
         }

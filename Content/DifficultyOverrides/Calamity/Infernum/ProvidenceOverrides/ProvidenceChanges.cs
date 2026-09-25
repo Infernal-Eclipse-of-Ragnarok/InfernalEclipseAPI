@@ -1,13 +1,14 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using CalamityMod.NPCs.Providence;
+﻿using CalamityMod.NPCs.Providence;
+using InfernalEclipseAPI.Core.Systems;
 using InfernalEclipseAPI.Core.World;
 using InfernumMode;
 using InfernumMode.Content.BehaviorOverrides.BossAIs.Providence;
 using InfernumMode.Core.GlobalInstances;
 using InfernumMode.Core.TrackedMusic;
 using MonoMod.RuntimeDetour;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using static InfernumMode.Content.BehaviorOverrides.BossAIs.Providence.ProvidenceBehaviorOverride;
 
 namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.ProvidenceOverrides
@@ -28,7 +29,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.Provi
 
         private void SetNighttimeKilledIfApplicable(NPC npc)
         {
-            if (npc.type == ModContent.NPCType<Providence>())
+            if (npc.type == ModContent.NPCType<Providence>() && IsEnraged)
                 InfernalWorld.providenceNightDowned = true;
         }
 
@@ -61,7 +62,27 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.Provi
 
         public override bool PreAI(NPC npc)
         {
+            HandleFightRestrictions();
+
             return base.PreAI(npc);
+        }
+
+        public static void HandleFightRestrictions()
+        {
+            foreach (Player player in Main.ActivePlayers)
+            {
+                if (player.dead)
+                    continue;
+
+                if (InfernalWorld.RagnarokModeEnabled)
+                    player.RemoveAllGrapplingHooks();
+
+                if (InfernalCrossmod.Clamity.Loaded)
+                {
+                    if (player.mount?.Type == InfernalCrossmod.Clamity.Mod.Find<ModMount>("PlagueChairMount").Type)
+                        player.mount.Dismount(player);
+                }
+            }
         }
     }
 

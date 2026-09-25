@@ -46,7 +46,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
 
         public override void PostAI(NPC npc)
         {
-            if (!npc.active || !npc.boss || npc.ModNPC == null)
+            if (!npc.active || !npc.boss || npc.ModNPC == null || !CalamityServerConfig.Instance.BossZen)
                 return;
 
             if ((npc.ModNPC.Mod.Name == "ThoriumMod" && ThoriumBossNames.Contains(npc.ModNPC.Name)) ||
@@ -60,19 +60,15 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
 
         public static void ApplyBossEffects(NPC npc)
         {
-            if (CalamityServerConfig.Instance.BossZen)
+            foreach (Player player in Main.ActivePlayers)
             {
-                for (int i = 0; i < Main.maxPlayers; i++)
-                {
-                    Player player = Main.player[i];
-                    if (!player.active || player.dead)
-                        continue;
+                if (player.dead)
+                    continue;
 
-                    if (Vector2.Distance(player.Center, npc.Center) < (npc.ModNPC.Name == "SubspaceSerpentHead" ? 12000 : 6400f))
-                    {
-                        // give at least 1 second to confirm it’s being applied
-                        player.AddBuff(ModContent.BuffType<BossEffects>(), 60);
-                    }
+                if (Vector2.Distance(player.Center, npc.Center) < (npc.ModNPC.Name == "SubspaceSerpentHead" ? 12000 : 6400f))
+                {
+                    // give at least 1 second to confirm it’s being applied
+                    player.AddBuff(ModContent.BuffType<BossEffects>(), 60);
                 }
             }
         }

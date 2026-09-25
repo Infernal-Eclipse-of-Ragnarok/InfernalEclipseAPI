@@ -7,6 +7,7 @@ using CalamityMod.Items.Materials;
 using CalamityMod.Items.Mounts;
 using CalamityMod.Items.PermanentBoosters;
 using CalamityMod.Items.Placeables;
+using CalamityMod.Items.Placeables.Furniture;
 using CalamityMod.Items.Placeables.SunkenSea;
 using CalamityMod.Items.Potions;
 using CalamityMod.Items.SummonItems;
@@ -461,6 +462,16 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                     {
                         recipe.AddIngredient(InfernalCrossmod.Clamity.Mod.Find<ModItem>("HuskOfCalamity"), 5);
                     }
+                }
+
+                if (recipe.HasResult<UnstableGraniteCore>() || recipe.HasResult<LuxorsGift>() || recipe.HasResult<TrinketofChi>() || recipe.HasResult<TundraLeash>() || recipe.HasResult<GladiatorsLocket>() || recipe.HasResult<FungalSymbiote>())
+                {
+                    recipe.DisableRecipe();
+                }
+
+                if ((recipe.HasResult<CorruptionEffigy>() || recipe.HasResult<CrimsonEffigy>()) && recipe.Mod.Name != "CalamityMod")
+                {
+                    recipe.DisableRecipe();
                 }
 
                 if (thorium != null)

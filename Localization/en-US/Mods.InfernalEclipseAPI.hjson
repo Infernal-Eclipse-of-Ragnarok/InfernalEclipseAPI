@@ -7,7 +7,7 @@ UI: {
 
 	TitleLinks: {
 		Patreon: Patreon
-		Github: Github
+		Github: GitHub
 	}
 
 	RecipeBrowserCategories: {
@@ -206,6 +206,10 @@ ItemTooltip: {
 		SOTSAdditional: Disables effects of Icosahedrons
 	}
 
+	Dreadmine:
+		'''
+		[s:InfernalEclipseAPI/IEoRIcon] Only one dreadmine turret can be active at once, and spawning a new turret will cause all active mines to explode
+		'''
 	Calculator: Reduces summon damage by 20%
 	Wiesnbrau:
 		'''
@@ -2131,7 +2135,7 @@ Items: {
 			Holding <right> will begin charging a strengthened swing
 			Releasing <right> while fully charged will unleash a devastating slash that always critically strikes
 			Hitting an enemy inflicts [cbuff:CalamityMod/AuricRebuke]
-			'May fortune favor you. For nothing else will.'
+			[c/E3AF40:May fortune favor you. For nothing else will.]
 			'''
 	}
 
@@ -3516,6 +3520,11 @@ Buffs: {
 	HormonalBlockade: {
 		DisplayName: Hormonal Blockade
 		Description: You can't access your Rage or Adrenaline!
+	}
+
+	FreezingAura: {
+		DisplayName: Freezing Aura
+		Description: Mods.InfernalEclipseAPI.Buffs.FreezingAura.Description
 	}
 }
 

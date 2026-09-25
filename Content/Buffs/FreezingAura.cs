@@ -3,7 +3,8 @@ using Microsoft.Xna.Framework;
 
 namespace InfernalEclipseAPI.Content.Buffs
 {
-    public class CrimulanAura : ModBuff
+    [LegacyName("LowGround")]
+    public class FreezingAura : ModBuff
     {
         public override void SetStaticDefaults()
         {
@@ -48,5 +49,9 @@ namespace InfernalEclipseAPI.Content.Buffs
                 return tileType == TileID.Platforms || tileType == TileID.PlanterBox;
             }
         }
+    }
+
+    public class CrimulanAura : FreezingAura
+    {
     }
 }

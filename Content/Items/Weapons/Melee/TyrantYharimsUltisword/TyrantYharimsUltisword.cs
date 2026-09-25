@@ -4,7 +4,6 @@ using CalamityMod.Items;
 using CalamityMod.Items.BaseItems;
 using CalamityMod.Items.Materials;
 using CalamityMod.Items.Weapons.Melee;
-using CalamityMod.Rarities;
 using CalamityMod.Systems.Collections;
 using CalamityMod.Tiles.Furniture.CraftingStations;
 using InfernalEclipseAPI.Core.DamageClasses.MythicClass;

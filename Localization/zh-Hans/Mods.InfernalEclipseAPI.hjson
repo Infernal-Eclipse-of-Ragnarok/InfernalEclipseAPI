@@ -7,7 +7,7 @@ UI: {
 
 	TitleLinks: {
 		// Patreon: Patreon
-		// Github: Github
+		// Github: GitHub
 	}
 
 	RecipeBrowserCategories: {
@@ -206,6 +206,7 @@ ItemTooltip: {
 		SOTSAdditional: 禁用所有二十面体的效果
 	}
 
+	// Dreadmine: "[s:InfernalEclipseAPI/IEoRIcon] Only one dreadmine turret and its mines can be active at once"
 	Calculator: 降低20%召唤伤害
 	Wiesnbrau:
 		'''
@@ -3512,6 +3513,11 @@ Buffs: {
 	HormonalBlockade: {
 		// DisplayName: Hormonal Blockade
 		// Description: You can't access your Rage or Adrenaline!
+	}
+
+	FreezingAura: {
+		// DisplayName: Freezing Aura
+		// Description: Mods.InfernalEclipseAPI.Buffs.FreezingAura.Description
 	}
 }
 

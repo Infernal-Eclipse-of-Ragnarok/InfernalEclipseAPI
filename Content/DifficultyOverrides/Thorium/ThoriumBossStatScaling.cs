@@ -266,12 +266,12 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
 
             if (npc.ModNPC?.Name?.Contains("BoreanStrider") == true)
             {
-                foreach (Player player in Main.player)
+                foreach (Player player in Main.ActivePlayers)
                 {
-                    if (player.active && !player.dead && npc.WithinRange(player.Center, 1000f))
-                    {
-                        player.AddBuff(ModContent.BuffType<LowGround>(), 1);
-                    }
+                    if (!player.dead && npc.WithinRange(player.Center, 1000f))
+                        continue;
+
+                    player.AddBuff(ModContent.BuffType<FreezingAura>(), 1);
                 }
                 return;
             }

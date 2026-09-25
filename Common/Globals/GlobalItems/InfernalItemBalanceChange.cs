@@ -431,6 +431,11 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                 {
                     item.damage = 30;
                 }
+
+                if (item.type == ModContent.ItemType<DreadmineStaff>())
+                {
+                    item.damage = 50;
+                }
                 #endregion
 
                 #region Rogue

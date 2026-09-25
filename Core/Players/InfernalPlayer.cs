@@ -601,7 +601,7 @@ namespace InfernalEclipseAPI.Core.Players
                 }
             }
 
-            if (Player.HasBuff<LowGround>() || Player.HasBuff<CrimulanAura>())
+            if (Player.HasBuff<FreezingAura>() || Player.HasBuff<CrimulanAura>())
             {
                 Player.buffImmune[BuffID.Featherfall] = true;
                 Player.ClearBuff(BuffID.Featherfall);
@@ -654,6 +654,16 @@ namespace InfernalEclipseAPI.Core.Players
 
         public override void PostUpdateEquips()
         {
+            if (Player.Calamity().SelectedFishingMinigame == CalamityPlayer.FishingMinigames.FeralBobber)
+            {
+                int progressionBasedMaxLife = (DownedBossSystem.downedYharon ? 750 : DownedBossSystem.downedProvidence ? 700 : NPC.downedGolemBoss ? 650 : 600);
+
+                int originalBonus = (int)((Player.statLifeMax2 - Player.statLife) * 0.25f);
+                int cappedBonus = (int)((Math.Min(Player.statLifeMax2, progressionBasedMaxLife) - Math.Min(Player.statLife, progressionBasedMaxLife)) * 0.25f);
+
+                Player.fishingSkill -= originalBonus - cappedBonus;
+            }
+
             if (exoSights || focusReticle)
             {
                 Player.GetCritChance(DamageClass.Generic) += 15f;
@@ -675,6 +685,7 @@ namespace InfernalEclipseAPI.Core.Players
                 }
             }
 
+            #region Elemental Amulet Adjustments
             if (LazyCrafterAmulet)
             {
                 Player.adjTile[TileID.WorkBenches] = true;
@@ -825,6 +836,7 @@ namespace InfernalEclipseAPI.Core.Players
                     }
                 }
             }
+            #endregion
 
             if (Earthdrive)
             {
