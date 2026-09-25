@@ -596,11 +596,12 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                 #region Calamity Simple Whip Addon
                 if (ModLoader.TryGetMod("CalamitySimpleWhipAddon", out Mod simpleWhipAddon))
                 {
+                    /*
                     if (recipe.HasResult(simpleWhipAddon.Find<ModItem>("WoodenWhip")))
                     {
                         recipe.AddIngredient(ItemID.Hay, 5);
                     }
-
+                    */
                     if (thorium != null)
                     {
                         if (recipe.HasResult(simpleWhipAddon.Find<ModItem>("MandibleLash")))
@@ -608,7 +609,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                             recipe.AddIngredient(thorium.Find<ModItem>("SandstoneIngot"), 8);
                         }
                     }
-
+                    /*
                     if (recipe.HasResult(simpleWhipAddon.Find<ModItem>("AurelianSanctum")))
                     {
                         recipe.RemoveIngredient(ModContent.ItemType<ShadowspecBar>());
@@ -624,7 +625,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                     {
                         recipe.AddIngredient(InfernalCrossmod.Calamity.Mod.Find<ModItem>("RuinousSoul"), 2);
                     }
-
+                    */
                     if (InfernalConfig.Instance.CalamityBalanceChanges) 
                     {
                         ModItem[] bleachedAcessories =
