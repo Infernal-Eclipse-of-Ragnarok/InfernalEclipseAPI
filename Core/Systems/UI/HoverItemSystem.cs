@@ -63,7 +63,7 @@ namespace InfernalEclipseAPI.Core.Systems.UI
             Item.height = 20;
             Item.maxStack = 1;
             Item.value = 0;
-            Item.rare = 0;
+            Item.rare = ItemRarityID.White;
         }
     }
 

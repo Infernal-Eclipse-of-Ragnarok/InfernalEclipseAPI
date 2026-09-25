@@ -8,9 +8,9 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks.ILItemChanges.ThoriumItemHooks
     [ExtendsFromMod(InfernalCrossmod.Thorium.Name)]
     internal sealed class BlackMIDIHealNerf : ModSystem
     {
-        public static MethodInfo? BlackMIDIProOnHitNPCMethod = typeof(BlackMIDIPro).GetMethod("BardOnHitNPC", LumUtils.UniversalBindingFlags);
+        public static MethodInfo BlackMIDIProOnHitNPCMethod = typeof(BlackMIDIPro).GetMethod("BardOnHitNPC", LumUtils.UniversalBindingFlags);
         public delegate void Orig_BlackMIDIProOnHitNPCMethod(BlackMIDIPro self, NPC target, NPC.HitInfo hit, int damageDone);
-        private static Hook? BlackMIDIHealCooldown_Detour_Hook;
+        private static Hook BlackMIDIHealCooldown_Detour_Hook;
 
         public override void OnModLoad()
         {

@@ -39,7 +39,7 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Relics.Platinum
         {
             for (int i = 0; i < MaxLines; i++)
             {
-                TooltipLine? obj = tooltips.FirstOrDefault((x) => x.Name == $"Tooltip{i}" && x.Mod == "Terraria");
+                TooltipLine obj = tooltips.FirstOrDefault((x) => x.Name == $"Tooltip{i}" && x.Mod == "Terraria");
                 if (obj != null)
                 {
                     float colorInterpolant = (float)(Math.Sin(Pi * 0.3f * Main.GlobalTimeWrappedHourly + 1f) * 0.5) + 0.5f;

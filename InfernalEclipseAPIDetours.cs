@@ -1,5 +1,4 @@
-﻿using Luminance.Core.Hooking;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
 using Terraria.GameContent;
 using Terraria.Localization;
@@ -10,7 +9,7 @@ using InfernalEclipseAPI.Core.Configs;
 namespace InfernalEclipseAPI
 {
     //Credit: Fargo's Souls Team
-    public partial class InfernalEclipseAPI : ICustomDetourProvider
+    public partial class InfernalEclipseAPI : Mod
     {
         public void LoadDetours()
         {
@@ -20,10 +19,6 @@ namespace InfernalEclipseAPI
         public void UnloadDetours()
         {
             On_Main.DrawInterface_35_YouDied -= DrawInterface_35_YouDied;
-        }
-
-        void ICustomDetourProvider.ModifyMethods()
-        {
         }
 
         private static string GetDiffText()

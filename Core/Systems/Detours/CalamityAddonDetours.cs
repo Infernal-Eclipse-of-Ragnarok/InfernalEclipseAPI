@@ -16,7 +16,6 @@ namespace InfernalEclipseAPI.Core.Systems.Detours
     internal sealed class IntroScreenManagerHook : ModSystem
     {
         private Hook drawHook;
-        private static FieldInfo introScreensField;
 
         public override void Load()
         {
@@ -48,7 +47,6 @@ namespace InfernalEclipseAPI.Core.Systems.Detours
         {
             drawHook?.Dispose();
             drawHook = null;
-            introScreensField = null;
         }
     }
 
@@ -95,11 +93,11 @@ namespace InfernalEclipseAPI.Core.Systems.Detours
     [ExtendsFromMod("NoxusBoss")]
     public class SolynCampsiteFix : ModSystem
     {
-        internal static ILHook? SurveyHook;
+        internal static ILHook SurveyHook;
 
         public override void Load()
         {
-            if (InfernalConfig.Instance.SolynCampsiteFixes || !ModLoader.HasMod("WOTGCampsiteFix"))
+            if (!ModLoader.HasMod("WOTGCampsiteFix"))
                 TryApplyPatch();
         }
 
@@ -111,7 +109,7 @@ namespace InfernalEclipseAPI.Core.Systems.Detours
 
         public override void PostSetupContent()
         {
-            if (InfernalConfig.Instance.SolynCampsiteFixes || !ModLoader.HasMod("WOTGCampsiteFix"))
+            if (!ModLoader.HasMod("WOTGCampsiteFix"))
                 TryApplyPatch();
         }
 
@@ -156,9 +154,9 @@ namespace InfernalEclipseAPI.Core.Systems.Detours
             }
         }
 
-        private static MethodInfo? FindPatchTarget(Mod noxusBoss)
+        private static MethodInfo FindPatchTarget(Mod noxusBoss)
         {
-            Type? surveyType = noxusBoss.Code?.GetType("NoxusBoss.Core.World.WorldGeneration.SolynCampsiteSurvey");
+            Type surveyType = noxusBoss.Code?.GetType("NoxusBoss.Core.World.WorldGeneration.SolynCampsiteSurvey");
 
             if (surveyType is not null)
             {
@@ -176,7 +174,7 @@ namespace InfernalEclipseAPI.Core.Systems.Detours
         {
             ILCursor cursor = new(il);
 
-            MethodInfo? solidTile3 = typeof(WorldGen).GetMethod(nameof(WorldGen.SolidTile), LumUtils.UniversalBindingFlags, null,
+            MethodInfo solidTile3 = typeof(WorldGen).GetMethod(nameof(WorldGen.SolidTile), LumUtils.UniversalBindingFlags, null,
                 new[]
                 {
                     typeof(int),
@@ -186,7 +184,7 @@ namespace InfernalEclipseAPI.Core.Systems.Detours
                 null
             );
 
-            MethodInfo? solidTile2 = typeof(WorldGen).GetMethod(nameof(WorldGen.SolidTile), LumUtils.UniversalBindingFlags,
+            MethodInfo solidTile2 = typeof(WorldGen).GetMethod(nameof(WorldGen.SolidTile), LumUtils.UniversalBindingFlags,
                 null,
                 new[]
                 {

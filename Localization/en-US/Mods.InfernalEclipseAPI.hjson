@@ -206,10 +206,7 @@ ItemTooltip: {
 		SOTSAdditional: Disables effects of Icosahedrons
 	}
 
-	Dreadmine:
-		'''
-		[s:InfernalEclipseAPI/IEoRIcon] Only one dreadmine turret can be active at once, and spawning a new turret will cause all active mines to explode
-		'''
+	Dreadmine: "[s:InfernalEclipseAPI/IEoRIcon] Only one dreadmine turret can be active at once, and spawning a new turret will cause all active mines to explode"
 	Calculator: Reduces summon damage by 20%
 	Wiesnbrau:
 		'''
@@ -2621,18 +2618,8 @@ BullyingTooltip:
 Configs: {
 	InfernalConfig: {
 		WrathoftheGodsBossesInBossRush: {
-			Tooltip: Adds XG-07 Mars, the Avatar of Emptinesss, and Nameless Deity to Boss Rush.
+			Tooltip: Adds XG-07 Mars, the Avatar of Emptiness, and Nameless Deity to Boss Rush.
 			Label: Wrath of the God's Bosses In Boss Rush
-		}
-
-		BetsyInBossRush: {
-			Tooltip: Adds Betsy to Boss Rush - CURRENTLY BUGGED
-			Label: Betsy In Boss Rush
-		}
-
-		DreadnautillusInBossRush: {
-			Tooltip: Adds Dreadnautillus to Boss Rush
-			Label: Dreadnautillus In Boss Rush
 		}
 
 		Headers: {
@@ -2917,24 +2904,9 @@ Configs: {
 			Tooltip: Toggles if 'Last Battle (Ballos Mix)' by DM DOKURO plays during Devourer of Gods' final phase and desperation in Ragnaork Mode
 		}
 
-		WarMachineBossInBossRush: {
-			Label: Wulfrum Mothership In Boss Rush
-			Tooltip: Adds the Wulfrum Mothership boss to Boss Rush
-		}
-
-		MothershipMusic: {
-			Label: Wulfrum Mothership Music
-			Tooltip: Toggles which theme plays during the Wulfrum Mothership boss fight
-		}
-
 		MaxVoidOnRespawn: {
 			Tooltip: Toggles if you respawn with max void or the default amount
 			Label: Max Void On Respawn
-		}
-
-		SolynCampsiteFixes: {
-			Label: Solyn Campsite Fixes
-			Tooltip: ""
 		}
 
 		CnidrionMusic: {
@@ -3042,30 +3014,6 @@ Configs: {
 		On: {
 			Label: On
 			Tooltip: The phase 3 theme will play
-		}
-	}
-
-	MothershipSong: {
-		Tooltip: ""
-
-		Vanilla: {
-			Label: Vanilla
-			Tooltip: "'Boss 1' will play"
-		}
-
-		WarMachine: {
-			Label: War Machine
-			Tooltip: The original theme will play
-		}
-
-		Thorium: {
-			Label: Thorium
-			Tooltip: "'Stronger Foe' will play"
-		}
-
-		Infernum: {
-			Label: Infernum
-			Tooltip: "'Misanthropic Encounters' will play"
 		}
 	}
 

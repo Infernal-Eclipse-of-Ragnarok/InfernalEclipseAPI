@@ -142,7 +142,7 @@ namespace InfernalEclipseAPI.Core.Systems.BossRush
                                                 NPCType<KingSlimeJewelRuby>(), NPCType<Ninja>() }));
             }
 
-            if (ModLoader.TryGetMod("CalamityAddon", out Mod warMachine) && InfernalConfig.Instance.WarMachineBossInBossRush)
+            if (ModLoader.TryGetMod("CalamityAddon", out Mod warMachine))
             {
                 Bosses.Add(new Boss(warMachine.Find<ModNPC>("WulfrumMothership").Type, TimeChangeContext.Day,
                     permittedNPCs: new int[] { NPCType<WulfrumDrone>(), NPCType<WulfrumHovercraft>(), NPCType<WulfrumRover>(), NPCType<WulfrumGyrator>(),
@@ -191,10 +191,7 @@ namespace InfernalEclipseAPI.Core.Systems.BossRush
                 permittedNPCs: new int[] { ThoriumNPC("BoreanStrider"), ThoriumNPC("BoreanStriderPopped"), ThoriumNPC("BoreanHopper"), ThoriumNPC("BoreanMyte") }));
             }
 
-            if (InfernalConfig.Instance.DreadnautillusInBossRush)
-            {
-                Bosses.Add(new Boss(NPCID.BloodNautilus, TimeChangeContext.Night, permittedNPCs: new int[] { NPCID.EyeballFlyingFish, NPCID.VampireBat }));
-            }
+            Bosses.Add(new Boss(NPCID.BloodNautilus, TimeChangeContext.Night, permittedNPCs: new int[] { NPCID.EyeballFlyingFish, NPCID.VampireBat }));
 
             Bosses.Add(new Boss(ModContent.NPCType<PerforatorHive>(), permittedNPCs: [ ModContent.NPCType<PerforatorHeadLarge>(), ModContent.NPCType<PerforatorBodyLarge>(), ModContent.NPCType<PerforatorTailLarge>(),
                     ModContent.NPCType<PerforatorHeadMedium>(), ModContent.NPCType<PerforatorBodyMedium>(), ModContent.NPCType<PerforatorTailMedium>(), ModContent.NPCType<PerforatorHeadSmall>(),

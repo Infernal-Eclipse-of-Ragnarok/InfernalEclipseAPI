@@ -206,7 +206,7 @@ ItemTooltip: {
 		SOTSAdditional: 禁用所有二十面体的效果
 	}
 
-	// Dreadmine: "[s:InfernalEclipseAPI/IEoRIcon] Only one dreadmine turret and its mines can be active at once"
+	// Dreadmine: "[s:InfernalEclipseAPI/IEoRIcon] Only one dreadmine turret can be active at once, and spawning a new turret will cause all active mines to explode"
 	Calculator: 降低20%召唤伤害
 	Wiesnbrau:
 		'''

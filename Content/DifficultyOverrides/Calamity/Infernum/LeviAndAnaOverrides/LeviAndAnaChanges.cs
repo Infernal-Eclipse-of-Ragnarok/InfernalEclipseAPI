@@ -9,8 +9,8 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.LeviA
 {
     internal sealed class AnahitaPhaseThresholdHook : ModSystem
     {
-        private static Hook? ThresholdHook;
-        MethodInfo? getter = typeof(AnahitaBehaviorOverride).GetProperty(nameof(AnahitaBehaviorOverride.PhaseLifeRatioThresholds), LumUtils.UniversalBindingFlags)?.GetGetMethod();
+        private static Hook ThresholdHook;
+        readonly MethodInfo getter = typeof(AnahitaBehaviorOverride).GetProperty(nameof(AnahitaBehaviorOverride.PhaseLifeRatioThresholds), LumUtils.UniversalBindingFlags)?.GetGetMethod();
 
         public override void OnModLoad()
         {
@@ -40,8 +40,8 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.LeviA
 
     internal sealed class AnahitaLeviathanSummonRatioHook : ModSystem
     {
-        private static ILHook? AnahitaPreAIHook;
-        MethodInfo? preAI = typeof(AnahitaBehaviorOverride).GetMethod(nameof(AnahitaBehaviorOverride.PreAI), LumUtils.UniversalBindingFlags);
+        private static ILHook AnahitaPreAIHook;
+        readonly MethodInfo preAI = typeof(AnahitaBehaviorOverride).GetMethod(nameof(AnahitaBehaviorOverride.PreAI), LumUtils.UniversalBindingFlags);
 
 
         public override void OnModLoad()
@@ -65,7 +65,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.LeviA
         {
             ILCursor c = new(il);
 
-            MethodInfo? summonMethod = typeof(AnahitaBehaviorOverride).GetMethod(nameof(AnahitaBehaviorOverride.DoBehavior_SummonLeviathan), LumUtils.UniversalBindingFlags);
+            MethodInfo summonMethod = typeof(AnahitaBehaviorOverride).GetMethod(nameof(AnahitaBehaviorOverride.DoBehavior_SummonLeviathan), LumUtils.UniversalBindingFlags);
 
             if (summonMethod is null)
             {
@@ -120,8 +120,8 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.LeviA
 
     internal sealed class AnahitaReturnLifeRatioHook : ModSystem
     {
-        private static ILHook? FightStateGetterHook;
-        MethodInfo? fightStateGetter = typeof(LeviathanComboAttackManager).GetProperty(nameof(LeviathanComboAttackManager.FightState), LumUtils.UniversalBindingFlags)?.GetGetMethod();
+        private static ILHook FightStateGetterHook;
+        readonly MethodInfo fightStateGetter = typeof(LeviathanComboAttackManager).GetProperty(nameof(LeviathanComboAttackManager.FightState), LumUtils.UniversalBindingFlags)?.GetGetMethod();
 
         public override void OnModLoad()
         {

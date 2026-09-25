@@ -138,6 +138,7 @@ namespace InfernalEclipseAPI.Core.Configs
         #region Boss Rush Changes
         [Header("BossRushChanges")]
 
+        /*
         [DefaultValue(true)]
         [ReloadRequired]
         public bool WarMachineBossInBossRush { get; set; }
@@ -146,7 +147,6 @@ namespace InfernalEclipseAPI.Core.Configs
         [ReloadRequired]
         public bool DreadnautillusInBossRush { get; set; }
 
-        /*
         [DefaultValue(false)]
         [ReloadRequired]
         public bool BetsyInBossRush { get; set; }
@@ -192,13 +192,9 @@ namespace InfernalEclipseAPI.Core.Configs
         [ReloadRequired]
         public bool DisableDuplicateContent { get; set; }
 
-
         [DefaultValue(true)]
         [ReloadRequired]
         public bool DisableUnnecessaryContent { get; set; }
-
-        //[DefaultValue(true)]
-        //public bool PlayInfernumExoMechThemeWithWoTM {  get; set; }
 
         [DefaultValue(true)]
         [ReloadRequired]
@@ -210,10 +206,6 @@ namespace InfernalEclipseAPI.Core.Configs
         [DefaultValue(false)]
         [ReloadRequired]
         public bool DeveloperMode { get; set; }
-
-        [DefaultValue(true)]
-        [ReloadRequired]
-        public bool SolynCampsiteFixes { get; set; }
 
         [DefaultValue(true)]
         [ReloadRequired]

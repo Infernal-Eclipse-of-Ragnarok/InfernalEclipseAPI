@@ -206,7 +206,7 @@ ItemTooltip: {
 		SOTSAdditional: Отключает эффекты икосаэдров
 	}
 
-	// Dreadmine: "[s:InfernalEclipseAPI/IEoRIcon] Only one dreadmine turret and its mines can be active at once"
+	// Dreadmine: "[s:InfernalEclipseAPI/IEoRIcon] Only one dreadmine turret can be active at once, and spawning a new turret will cause all active mines to explode"
 	Calculator: Снижает урон призывателя на 20%
 	Wiesnbrau:
 		'''

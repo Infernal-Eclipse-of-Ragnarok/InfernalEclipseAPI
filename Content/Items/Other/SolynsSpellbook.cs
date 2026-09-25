@@ -45,7 +45,7 @@ namespace InfernalEclipseAPI.Content.Items.Other
 
         private static readonly Asset<Texture2D> starBlank = Main.Assets.Request<Texture2D>("Images/UI/Bestiary/Icon_Rank_Dim");
 
-        public Action<Item, int, int>? PreDrawTooltipAction
+        public Action<Item, int, int> PreDrawTooltipAction
         {
             get;
             set;
@@ -271,11 +271,11 @@ namespace InfernalEclipseAPI.Content.Items.Other
             return InfernalConfig.Instance.DeveloperMode;
         }
 
-        private ILHook? starlitForgeSetStaticDefaultsHook;
+        private ILHook starlitForgeSetStaticDefaultsHook;
 
         public override void Load()
         {
-            MethodInfo? setStaticDefaultsMethod = typeof(StarlitForgeTile).GetMethod(nameof(StarlitForgeTile.SetStaticDefaults), LumUtils.UniversalBindingFlags);
+            MethodInfo setStaticDefaultsMethod = typeof(StarlitForgeTile).GetMethod(nameof(StarlitForgeTile.SetStaticDefaults), LumUtils.UniversalBindingFlags);
 
             if (setStaticDefaultsMethod is null)
             {
@@ -291,20 +291,20 @@ namespace InfernalEclipseAPI.Content.Items.Other
         {
             ILCursor cursor = new(context);
 
-            MethodInfo? addMapEntryWithoutName = typeof(ModTile).GetMethod(
+            MethodInfo addMapEntryWithoutName = typeof(ModTile).GetMethod(
                 nameof(ModTile.AddMapEntry),
                 BindingFlags.Instance | BindingFlags.Public,
                 binder: null,
-                types: [typeof(Microsoft.Xna.Framework.Color)],
+                types: [typeof(Color)],
                 modifiers: null);
 
-            MethodInfo? addMapEntryWithName = typeof(ModTile).GetMethod(
+            MethodInfo addMapEntryWithName = typeof(ModTile).GetMethod(
                 nameof(ModTile.AddMapEntry),
                 BindingFlags.Instance | BindingFlags.Public,
                 binder: null,
                 types:
                 [
-                    typeof(Microsoft.Xna.Framework.Color),
+                    typeof(Color),
                     typeof(LocalizedText)
                 ],
                 modifiers: null);
