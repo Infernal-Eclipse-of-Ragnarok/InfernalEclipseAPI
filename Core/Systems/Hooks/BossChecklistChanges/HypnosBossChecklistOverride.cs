@@ -6,6 +6,10 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks.BossChecklistChanges
 {
     public class HypnosBossChecklistOverride : ModSystem
     {
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return false;
+        }
         private static ILHook hook;
 
         public override void Load()

@@ -10,7 +10,7 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks.BossChecklistChanges
     [ExtendsFromMod("Clamity")]
     public class ClamityBCLKeyChanger : ModSystem 
     {
-        private ILHook ilHook;
+     /*   private ILHook ilHook;
 
         public override void Load()
         {
@@ -33,7 +33,7 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks.BossChecklistChanges
             ilHook?.Dispose();
             ilHook = null;
         }
-
+     */
         public override void PostSetupContent()
         {
             if (InfernalCrossmod.SOTS.Loaded)
@@ -42,19 +42,19 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks.BossChecklistChanges
             }
         }
 
-        private void EditPyrogenKey(ILContext il)
-        {
-            var c = new ILCursor(il);
-
-            // Find "Pyrogen" string
-            while (c.TryGotoNext(MoveType.After, instr => instr.MatchLdstr("Pyrogen")))
-            {
-                // The next instruction should be ldc.r4 8.5 (the float value)
-                if (c.Next != null && c.Next.MatchLdcR4(8.5f))
-                {
-                    c.Next.Operand = 8.51f;
-                }
-            }
-        }
+    //    private void EditPyrogenKey(ILContext il)
+    //    {
+    //        var c = new ILCursor(il);
+//
+    //        // Find "Pyrogen" string
+    //        while (c.TryGotoNext(MoveType.After, instr => instr.MatchLdstr("Pyrogen")))
+    //        {
+    //            // The next instruction should be ldc.r4 8.5 (the float value)
+    //            if (c.Next != null && c.Next.MatchLdcR4(8.5f))
+    //            {
+    //                c.Next.Operand = 8.51f;
+    //            }
+    //        }
+    //    }
     }
 }

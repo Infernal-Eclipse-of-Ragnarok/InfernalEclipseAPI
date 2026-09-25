@@ -50,7 +50,7 @@ namespace InfernalEclipseAPI
     }
 
     public partial class InfernalEclipseAPI : Mod
-	{
+    {
         internal static SymbolTracker symbolTracker;
 
         public static ModKeybind SubpaceBoostHotkey;
@@ -84,7 +84,7 @@ namespace InfernalEclipseAPI
                     CalBardHealerConfigSetup.DisableGenItemBalance();
                 }
             }
-            
+
             if (InfernalConfig.Instance.AutomatedConfigSetup)
             {
                 string cfgDir = Path.Combine(Main.SavePath, "ModConfigs");
@@ -198,74 +198,6 @@ namespace InfernalEclipseAPI
                     Console.WriteLine("IEoRMenu");
                     Console.WriteLine(e.ToString());
                     Console.WriteLine("\n\n\n\n\n\n\n\n\n\n");
-                }
-            }
-            #endregion
-
-            #region Deerclops Boss Checklist repositioning
-            //THANK GOD for habble on the Fargo Team for coding this
-            if (ModLoader.TryGetMod("BossChecklist", out Mod bossChecklist))
-            {
-                if (InfernalConfig.Instance.MoveDeerclopsChecklistEntry)
-                {
-                    #region Get Types
-#nullable enable
-                    Type? BossChecklist = bossChecklist.GetType(); // BossChecklist Type can be obtained via simply Mod.GetType()
-                    // As Mod.Code.GetType(string name) is not implemented however, we use Mod.Code.GetTypes() and find the other ones we need
-                    Type[]? TypeList = bossChecklist.Code.GetTypes();
-                    Type? BossTracker = TypeList.Where<Type?>(type => type?.Name == "BossTracker")?.First();
-                    Type? EntryInfo = TypeList.Where<Type?>(type => type?.Name == "EntryInfo")?.First();
-#nullable disable
-                    #endregion
-
-                    #region Get Fields
-                    // Get static instance field objects to utilize as initial object references
-                    var BCInstance = BossChecklist?.GetField("instance", LumUtils.UniversalBindingFlags)?.GetValue(null);
-                    var trackerInstance = BossChecklist?.GetField("bossTracker", LumUtils.UniversalBindingFlags)?.GetValue(null);
-                    // Get the EntryInfo List<> field and object by using the Boss Tracker instance
-#nullable enable
-                    FieldInfo? SortedEntries_Field = BossTracker?.GetField("SortedEntries", LumUtils.UniversalBindingFlags);
-#nullable disable
-                    var SortedEntries = SortedEntries_Field?.GetValue(trackerInstance);
-                    // Get the field needed to readd the portrait texture after we replace the EntryInfo that contained it
-#nullable enable
-                    FieldInfo? PortraitTexture_Field = EntryInfo?.GetField("portraitTexture", LumUtils.UniversalBindingFlags);
-#nullable disable
-
-                    #endregion
-
-                    #region Get Methods
-                    // As there's no way to normally use a List<> of a non-public type, hack into its List<T> and just get the methods that handle indexing
-#nullable enable
-                    PropertyInfo? List_EntryInfo_Property = SortedEntries?.GetType().GetProperty("Item", LumUtils.UniversalBindingFlags);
-                    MethodInfo? List_EntryInfo_GetMethod = List_EntryInfo_Property?.GetGetMethod();
-                    MethodInfo? List_EntryInfo_SetMethod = List_EntryInfo_Property?.GetSetMethod();
-
-                    // This internal BossChecklist method returns the EntryInfo we need
-                    MethodInfo FindEntryFromKey_Method = BossTracker?.GetMethod("FindEntryFromKey", LumUtils.UniversalBindingFlags);
-
-                    // Very hackily resolve GetMethod ambiguity and obtain the method we require to make a replacement for Deerclops' EntryInfo
-                    MethodInfo[]? MakeVanillaBoss_MethodList = EntryInfo?.GetMethods(LumUtils.UniversalBindingFlags);
-                    MethodInfo? MakeVanillaBoss_Method = MakeVanillaBoss_MethodList?.Where(m => m.Name == "MakeVanillaBoss" && m.GetParameters().Any(p => p.Name == "npcID"))?.First();
-
-                    void MakeVanillaBoss(ref object? info, string texturePath)
-                    {
-                        var obj = MakeVanillaBoss_Method?.Invoke(null, [0, 4.5f, "NPCName.Deerclops", Terraria.ID.NPCID.Deerclops, () => NPC.downedDeerclops]); // Make a replacement EntryInfo
-                        if (ModContent.HasAsset(texturePath))
-                        {
-                            PortraitTexture_Field?.SetValue(obj, ModContent.Request<Texture2D>(texturePath)); // Readd the entry's portrait texture
-                        }
-                        info = obj;
-                    }
-#nullable disable
-                    #endregion
-                    // Finalize after getting everything necessary to replace Deerclops' entry
-                    var DeerclopsEntry = FindEntryFromKey_Method?.Invoke(trackerInstance, ["Terraria Deerclops"]); // Get EntryInfo via FindEntryFromKey, where the key is "<ModSource> <NPCName>"
-                    if (DeerclopsEntry == List_EntryInfo_GetMethod?.Invoke(SortedEntries, [6])) // Check whether the FindEntryFromKey retval matches List[] getval for the 7th entry (array 6) which contains the original Deerclops entry
-                    {
-                        MakeVanillaBoss(ref DeerclopsEntry, $"{bossChecklist.Name}/Resources/BossTextures/Boss{Terraria.ID.NPCID.Deerclops}"); // Tweak the matching entry's progression value
-                        List_EntryInfo_SetMethod?.Invoke(SortedEntries, [6, DeerclopsEntry]); // Set the matching entry to the original List<>
-                    }
                 }
             }
             #endregion

@@ -5,6 +5,10 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks.BossChecklistChanges
 {
     public class CalamityBCLKeyChanger : ModSystem
     {
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return false;
+        }
         public override void Load()
         {
             AdjustEntries();
