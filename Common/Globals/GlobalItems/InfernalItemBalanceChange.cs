@@ -809,6 +809,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
             if (ModLoader.TryGetMod("CalamitySimpleWhipAddon", out Mod simpleWhipAddon) && InfernalConfig.Instance.CalamityBalanceChanges)
             {
                 //Pre-Hardmode
+                /*
                 if (UnsafeGetItem(simpleWhipAddon, "RapierWhip", item))
                 {
                     item.damage = 9;
@@ -957,6 +958,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                 {
                     item.damage = 96;
                 }
+                */
 
                 int[] bleachedAcessories =
                 {

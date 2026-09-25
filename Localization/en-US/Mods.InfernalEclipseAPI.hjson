@@ -162,15 +162,15 @@ ItemBalance: {
 	Modified2: Hold {0} to see modifications
 	DamageUpGeneric: "    Damage increased by [c/00A36C:{0}%]"
 	DamageDownGeneric: "    Damage decreased by [c/FF0000:{0}%]"
-	ShootSpeedUpGeneric: "    Shoot speed decreased by [c/FF0000:{0}%]"
-	ShootSpeedDownGeneric: "    Shoot speed increased by [c/00A36C:{0}%]"
+	ShootSpeedUpGeneric: "    Shoot speed increased by [c/00A36C:{0}%]"
+	ShootSpeedDownGeneric: Shoot speed decreased by [c/FF0000:{0}%]
 	UseTimeUpGeneric: "    Use time decreased by [c/00A36C:{0}%]"
 	UseTimeDownGeneric: "    Use time increased by [c/FF0000:{0}%]"
 	UseAnimationUpGeneric: "    Use animation decreased by [c/00A36C:{0}%]"
 	UseAnimationDownGeneric: "    Use animation increased by [c/FF0000:{0}%]"
 	UseSpeedUpGeneric: "    Use speed increased by [c/00A36C:{0}%]"
 	UseSpeedDownGeneric: "    Use speed decreased by [c/FF0000:{0}%]"
-	PickUpGeneric: "    Pickaxe power increased by [c/FF0000:{0}%]"
+	PickUpGeneric: "    Pickaxe power increased by [c/00A36C:{0}%]"
 	PickDownGeneric: "    Pickaxe power decreased by [c/FF0000:{0}%]"
 	CritUpGeneric: "    Critical strike chance increased by [c/00A36C:{0}%]"
 	CritDownGeneric: "    Critical strike chance decreased by [c/FF0000:{0}%]"

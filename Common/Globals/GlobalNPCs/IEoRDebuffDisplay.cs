@@ -67,85 +67,165 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
             // If Entropy enabled, intergrate with their system
             RegisteredWithEntropy = false;
 
-            if (!ModLoader.TryGetMod("CalamityEntropy", out Mod entropy))
-                return;
-
-            try
+            if (ModLoader.TryGetMod("CalamityEntropyLegacy", out Mod entropyLegacy))
             {
-                //IEoR
-                entropy.Call("RegisterDebuff", (Func<NPC, bool>)(npc => npc.HasBuff<SoulBurn>()), (Func<Texture2D>)(() => TextureAssets.Buff[ModContent.BuffType<SoulBurn>()].Value));
-                entropy.Call("RegisterDebuff", (Func<NPC, bool>)(npc => npc.HasBuff<SoulBurn2>()), (Func<Texture2D>)(() => TextureAssets.Buff[ModContent.BuffType<SoulBurn2>()].Value));
-                entropy.Call("RegisterDebuff", (Func<NPC, bool>)(npc => npc.HasBuff<SoulBurn3>()), (Func<Texture2D>)(() => TextureAssets.Buff[ModContent.BuffType<SoulBurn3>()].Value));
-                entropy.Call("RegisterDebuff", (Func<NPC, bool>)(npc => npc.HasBuff<SoulBurn4>()), (Func<Texture2D>)(() => TextureAssets.Buff[ModContent.BuffType<SoulBurn4>()].Value));
-                entropy.Call("RegisterDebuff", (Func<NPC, bool>)(npc => npc.HasBuff<SoulBurn5>()), (Func<Texture2D>)(() => TextureAssets.Buff[ModContent.BuffType<SoulBurn5>()].Value));
-                entropy.Call("RegisterDebuff", (Func<NPC, bool>)(npc => npc.HasBuff<SoulBurn6>()), (Func<Texture2D>)(() => TextureAssets.Buff[ModContent.BuffType<SoulBurn6>()].Value));
-                entropy.Call("RegisterDebuff", (Func<NPC, bool>)(npc => npc.HasBuff<SoulBurn7>()), (Func<Texture2D>)(() => TextureAssets.Buff[ModContent.BuffType<SoulBurn7>()].Value));
+                try
+                {
+                    //IEoR
+                    entropyLegacy.Call("RegisterDebuff", (Func<NPC, bool>)(npc => npc.HasBuff<SoulBurn>()), (Func<Texture2D>)(() => TextureAssets.Buff[ModContent.BuffType<SoulBurn>()].Value));
+                    entropyLegacy.Call("RegisterDebuff", (Func<NPC, bool>)(npc => npc.HasBuff<SoulBurn2>()), (Func<Texture2D>)(() => TextureAssets.Buff[ModContent.BuffType<SoulBurn2>()].Value));
+                    entropyLegacy.Call("RegisterDebuff", (Func<NPC, bool>)(npc => npc.HasBuff<SoulBurn3>()), (Func<Texture2D>)(() => TextureAssets.Buff[ModContent.BuffType<SoulBurn3>()].Value));
+                    entropyLegacy.Call("RegisterDebuff", (Func<NPC, bool>)(npc => npc.HasBuff<SoulBurn4>()), (Func<Texture2D>)(() => TextureAssets.Buff[ModContent.BuffType<SoulBurn4>()].Value));
+                    entropyLegacy.Call("RegisterDebuff", (Func<NPC, bool>)(npc => npc.HasBuff<SoulBurn5>()), (Func<Texture2D>)(() => TextureAssets.Buff[ModContent.BuffType<SoulBurn5>()].Value));
+                    entropyLegacy.Call("RegisterDebuff", (Func<NPC, bool>)(npc => npc.HasBuff<SoulBurn6>()), (Func<Texture2D>)(() => TextureAssets.Buff[ModContent.BuffType<SoulBurn6>()].Value));
+                    entropyLegacy.Call("RegisterDebuff", (Func<NPC, bool>)(npc => npc.HasBuff<SoulBurn7>()), (Func<Texture2D>)(() => TextureAssets.Buff[ModContent.BuffType<SoulBurn7>()].Value));
 
-                //Thorium
-                if (InfernalCrossmod.Thorium.Loaded)
-                {
-                    RegisterExternalBuff(entropy, "ThoriumMod", "BlightFever");
-                    RegisterExternalBuff(entropy, "ThoriumMod", "BloodyWandDebuff");
-                    RegisterExternalBuff(entropy, "ThoriumMod", "Charmed");
-                    RegisterExternalBuff(entropy, "ThoriumMod", "Corrosion");
-                    RegisterExternalBuff(entropy, "ThoriumMod", "DarkContagionDebuff");
-                    RegisterExternalBuff(entropy, "ThoriumMod", "DecayingFlesh");
-                    //RegisterExternalBuff(entropy, "ThoriumMod", "MagickStaffDebuff");
-                    RegisterExternalBuff(entropy, "ThoriumMod", "Enfeeble");
-                    RegisterExternalBuff(entropy, "ThoriumMod", "Freezing");
-                    RegisterExternalBuff(entropy, "ThoriumMod", "FungalGrowth");
-                    RegisterExternalBuff(entropy, "ThoriumMod", "Gouge");
-                    RegisterExternalBuff(entropy, "ThoriumMod", "HolyGlare");
-                    RegisterExternalBuff(entropy, "ThoriumMod", "HoneyRecorderDebuff");
-                    RegisterExternalBuff(entropy, "ThoriumMod", "IlluminatedNPC");
-                    RegisterExternalBuff(entropy, "ThoriumMod", "Insanity");
-                    RegisterExternalBuff(entropy, "ThoriumMod", "LightCurse");
-                    RegisterExternalBuff(entropy, "ThoriumMod", "StrangeSkullDebuff");
-                    RegisterExternalBuff(entropy, "ThoriumMod", "LegacyDebuff");
-                    RegisterExternalBuff(entropy, "ThoriumMod", "NapalmDebuff");
-                    RegisterExternalBuff(entropy, "ThoriumMod", "Paralyzed");
-                    RegisterExternalBuff(entropy, "ThoriumMod", "Petrify");
-                    RegisterExternalBuff(entropy, "ThoriumMod", "MirroroftheBeholderDebuff");
-                    RegisterExternalBuff(entropy, "ThoriumMod", "SchmelzeDebuff");
-                    RegisterExternalBuff(entropy, "ThoriumMod", "Singed");
-                    RegisterExternalBuff(entropy, "ThoriumMod", "SmitingHammerDebuff");
-                    RegisterExternalBuff(entropy, "ThoriumMod", "SpearmintDebuff");
-                    RegisterExternalBuff(entropy, "ThoriumMod", "Spored");
-                    RegisterExternalBuff(entropy, "ThoriumMod", "Stunned");
-                    RegisterExternalBuff(entropy, "ThoriumMod", "Sundered");
-                    RegisterExternalBuff(entropy, "ThoriumMod", "TerrariumBacklash");
-                    RegisterExternalBuff(entropy, "ThoriumMod", "Tuned");
-                    RegisterExternalBuff(entropy, "ThoriumMod", "Wither");
-                    RegisterExternalBuff(entropy, "ThoriumMod", "GraniteSurge");
-                }
-                //Catalyst
-                if (InfernalCrossmod.Catalyst.Loaded)
-                {
-                    RegisterExternalBuff(entropy, "CatalystMod", "AstralBlight");
-                    RegisterExternalBuff(entropy, "CatalystMod", "InterstellarCorruption");
-                }
-                //HuntofTheOldGod
-                if (InfernalCrossmod.Hunt.Loaded)
-                {
-                    RegisterExternalBuff(entropy, "CalamityHunt", "FusionBurn");
-                    RegisterExternalBuff(entropy, "CalamityHunt", "Swamped");
-                }
-                //Consolaria
-                if (InfernalCrossmod.Consolaria.Loaded)
-                {
-                    RegisterExternalBuff(entropy, "Consolaria", "Stunned");
-                }
-                //Ragnarok
-                if (InfernalCrossmod.RagnarokMod.Loaded)
-                {
-                    RegisterExternalBuff(entropy, "RagnarokMod", "NightfallenDebuff");
-                }
+                    //Thorium
+                    if (InfernalCrossmod.Thorium.Loaded)
+                    {
+                        RegisterExternalBuff(entropyLegacy, "ThoriumMod", "BlightFever");
+                        RegisterExternalBuff(entropyLegacy, "ThoriumMod", "BloodyWandDebuff");
+                        RegisterExternalBuff(entropyLegacy, "ThoriumMod", "Charmed");
+                        RegisterExternalBuff(entropyLegacy, "ThoriumMod", "Corrosion");
+                        RegisterExternalBuff(entropyLegacy, "ThoriumMod", "DarkContagionDebuff");
+                        RegisterExternalBuff(entropyLegacy, "ThoriumMod", "DecayingFlesh");
+                        //RegisterExternalBuff(entropyLegacy, "ThoriumMod", "MagickStaffDebuff");
+                        RegisterExternalBuff(entropyLegacy, "ThoriumMod", "Enfeeble");
+                        RegisterExternalBuff(entropyLegacy, "ThoriumMod", "Freezing");
+                        RegisterExternalBuff(entropyLegacy, "ThoriumMod", "FungalGrowth");
+                        RegisterExternalBuff(entropyLegacy, "ThoriumMod", "Gouge");
+                        RegisterExternalBuff(entropyLegacy, "ThoriumMod", "HolyGlare");
+                        RegisterExternalBuff(entropyLegacy, "ThoriumMod", "HoneyRecorderDebuff");
+                        RegisterExternalBuff(entropyLegacy, "ThoriumMod", "IlluminatedNPC");
+                        RegisterExternalBuff(entropyLegacy, "ThoriumMod", "Insanity");
+                        RegisterExternalBuff(entropyLegacy, "ThoriumMod", "LightCurse");
+                        RegisterExternalBuff(entropyLegacy, "ThoriumMod", "StrangeSkullDebuff");
+                        RegisterExternalBuff(entropyLegacy, "ThoriumMod", "LegacyDebuff");
+                        RegisterExternalBuff(entropyLegacy, "ThoriumMod", "NapalmDebuff");
+                        RegisterExternalBuff(entropyLegacy, "ThoriumMod", "Paralyzed");
+                        RegisterExternalBuff(entropyLegacy, "ThoriumMod", "Petrify");
+                        RegisterExternalBuff(entropyLegacy, "ThoriumMod", "MirroroftheBeholderDebuff");
+                        RegisterExternalBuff(entropyLegacy, "ThoriumMod", "SchmelzeDebuff");
+                        RegisterExternalBuff(entropyLegacy, "ThoriumMod", "Singed");
+                        RegisterExternalBuff(entropyLegacy, "ThoriumMod", "SmitingHammerDebuff");
+                        RegisterExternalBuff(entropyLegacy, "ThoriumMod", "SpearmintDebuff");
+                        RegisterExternalBuff(entropyLegacy, "ThoriumMod", "Spored");
+                        RegisterExternalBuff(entropyLegacy, "ThoriumMod", "Stunned");
+                        RegisterExternalBuff(entropyLegacy, "ThoriumMod", "Sundered");
+                        RegisterExternalBuff(entropyLegacy, "ThoriumMod", "TerrariumBacklash");
+                        RegisterExternalBuff(entropyLegacy, "ThoriumMod", "Tuned");
+                        RegisterExternalBuff(entropyLegacy, "ThoriumMod", "Wither");
+                        RegisterExternalBuff(entropyLegacy, "ThoriumMod", "GraniteSurge");
+                    }
+                    //Catalyst
+                    if (InfernalCrossmod.Catalyst.Loaded)
+                    {
+                        RegisterExternalBuff(entropyLegacy, "CatalystMod", "AstralBlight");
+                        RegisterExternalBuff(entropyLegacy, "CatalystMod", "InterstellarCorruption");
+                    }
+                    //HuntofTheOldGod
+                    if (InfernalCrossmod.Hunt.Loaded)
+                    {
+                        RegisterExternalBuff(entropyLegacy, "CalamityHunt", "FusionBurn");
+                        RegisterExternalBuff(entropyLegacy, "CalamityHunt", "Swamped");
+                    }
+                    //Consolaria
+                    if (InfernalCrossmod.Consolaria.Loaded)
+                    {
+                        RegisterExternalBuff(entropyLegacy, "Consolaria", "Stunned");
+                    }
+                    //Ragnarok
+                    if (InfernalCrossmod.RagnarokMod.Loaded)
+                    {
+                        RegisterExternalBuff(entropyLegacy, "RagnarokMod", "NightfallenDebuff");
+                    }
 
-                RegisteredWithEntropy = true;
+                    RegisteredWithEntropy = true;
+                }
+                catch (Exception ex)
+                {
+                    Mod.Logger.Warn($"Failed to register IEoR debuffs with Entropy: {ex}");
+                }
             }
-            catch (Exception ex)
+            else if (ModLoader.TryGetMod("CalamityEntropy", out Mod entropy))
             {
-                Mod.Logger.Warn($"Failed to register IEoR debuffs with Entropy: {ex}");
+                try
+                {
+                    //IEoR
+                    entropy.Call("RegisterDebuff", (Func<NPC, bool>)(npc => npc.HasBuff<SoulBurn>()), (Func<Texture2D>)(() => TextureAssets.Buff[ModContent.BuffType<SoulBurn>()].Value));
+                    entropy.Call("RegisterDebuff", (Func<NPC, bool>)(npc => npc.HasBuff<SoulBurn2>()), (Func<Texture2D>)(() => TextureAssets.Buff[ModContent.BuffType<SoulBurn2>()].Value));
+                    entropy.Call("RegisterDebuff", (Func<NPC, bool>)(npc => npc.HasBuff<SoulBurn3>()), (Func<Texture2D>)(() => TextureAssets.Buff[ModContent.BuffType<SoulBurn3>()].Value));
+                    entropy.Call("RegisterDebuff", (Func<NPC, bool>)(npc => npc.HasBuff<SoulBurn4>()), (Func<Texture2D>)(() => TextureAssets.Buff[ModContent.BuffType<SoulBurn4>()].Value));
+                    entropy.Call("RegisterDebuff", (Func<NPC, bool>)(npc => npc.HasBuff<SoulBurn5>()), (Func<Texture2D>)(() => TextureAssets.Buff[ModContent.BuffType<SoulBurn5>()].Value));
+                    entropy.Call("RegisterDebuff", (Func<NPC, bool>)(npc => npc.HasBuff<SoulBurn6>()), (Func<Texture2D>)(() => TextureAssets.Buff[ModContent.BuffType<SoulBurn6>()].Value));
+                    entropy.Call("RegisterDebuff", (Func<NPC, bool>)(npc => npc.HasBuff<SoulBurn7>()), (Func<Texture2D>)(() => TextureAssets.Buff[ModContent.BuffType<SoulBurn7>()].Value));
+
+                    //Thorium
+                    if (InfernalCrossmod.Thorium.Loaded)
+                    {
+                        RegisterExternalBuff(entropy, "ThoriumMod", "BlightFever");
+                        RegisterExternalBuff(entropy, "ThoriumMod", "BloodyWandDebuff");
+                        RegisterExternalBuff(entropy, "ThoriumMod", "Charmed");
+                        RegisterExternalBuff(entropy, "ThoriumMod", "Corrosion");
+                        RegisterExternalBuff(entropy, "ThoriumMod", "DarkContagionDebuff");
+                        RegisterExternalBuff(entropy, "ThoriumMod", "DecayingFlesh");
+                        //RegisterExternalBuff(entropy, "ThoriumMod", "MagickStaffDebuff");
+                        RegisterExternalBuff(entropy, "ThoriumMod", "Enfeeble");
+                        RegisterExternalBuff(entropy, "ThoriumMod", "Freezing");
+                        RegisterExternalBuff(entropy, "ThoriumMod", "FungalGrowth");
+                        RegisterExternalBuff(entropy, "ThoriumMod", "Gouge");
+                        RegisterExternalBuff(entropy, "ThoriumMod", "HolyGlare");
+                        RegisterExternalBuff(entropy, "ThoriumMod", "HoneyRecorderDebuff");
+                        RegisterExternalBuff(entropy, "ThoriumMod", "IlluminatedNPC");
+                        RegisterExternalBuff(entropy, "ThoriumMod", "Insanity");
+                        RegisterExternalBuff(entropy, "ThoriumMod", "LightCurse");
+                        RegisterExternalBuff(entropy, "ThoriumMod", "StrangeSkullDebuff");
+                        RegisterExternalBuff(entropy, "ThoriumMod", "LegacyDebuff");
+                        RegisterExternalBuff(entropy, "ThoriumMod", "NapalmDebuff");
+                        RegisterExternalBuff(entropy, "ThoriumMod", "Paralyzed");
+                        RegisterExternalBuff(entropy, "ThoriumMod", "Petrify");
+                        RegisterExternalBuff(entropy, "ThoriumMod", "MirroroftheBeholderDebuff");
+                        RegisterExternalBuff(entropy, "ThoriumMod", "SchmelzeDebuff");
+                        RegisterExternalBuff(entropy, "ThoriumMod", "Singed");
+                        RegisterExternalBuff(entropy, "ThoriumMod", "SmitingHammerDebuff");
+                        RegisterExternalBuff(entropy, "ThoriumMod", "SpearmintDebuff");
+                        RegisterExternalBuff(entropy, "ThoriumMod", "Spored");
+                        RegisterExternalBuff(entropy, "ThoriumMod", "Stunned");
+                        RegisterExternalBuff(entropy, "ThoriumMod", "Sundered");
+                        RegisterExternalBuff(entropy, "ThoriumMod", "TerrariumBacklash");
+                        RegisterExternalBuff(entropy, "ThoriumMod", "Tuned");
+                        RegisterExternalBuff(entropy, "ThoriumMod", "Wither");
+                        RegisterExternalBuff(entropy, "ThoriumMod", "GraniteSurge");
+                    }
+                    //Catalyst
+                    if (InfernalCrossmod.Catalyst.Loaded)
+                    {
+                        RegisterExternalBuff(entropy, "CatalystMod", "AstralBlight");
+                        RegisterExternalBuff(entropy, "CatalystMod", "InterstellarCorruption");
+                    }
+                    //HuntofTheOldGod
+                    if (InfernalCrossmod.Hunt.Loaded)
+                    {
+                        RegisterExternalBuff(entropy, "CalamityHunt", "FusionBurn");
+                        RegisterExternalBuff(entropy, "CalamityHunt", "Swamped");
+                    }
+                    //Consolaria
+                    if (InfernalCrossmod.Consolaria.Loaded)
+                    {
+                        RegisterExternalBuff(entropy, "Consolaria", "Stunned");
+                    }
+                    //Ragnarok
+                    if (InfernalCrossmod.RagnarokMod.Loaded)
+                    {
+                        RegisterExternalBuff(entropy, "RagnarokMod", "NightfallenDebuff");
+                    }
+
+                    RegisteredWithEntropy = true;
+                }
+                catch (Exception ex)
+                {
+                    Mod.Logger.Warn($"Failed to register IEoR debuffs with Entropy: {ex}");
+                }
             }
         }
 
