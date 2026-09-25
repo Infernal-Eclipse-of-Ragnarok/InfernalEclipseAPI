@@ -1,17 +1,15 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
 using CalamityMod.Events;
 using CalamityMod.NPCs.DevourerofGods;
 using CalamityMod.NPCs.PrimordialWyrm;
 using CalamityMod.NPCs.ProfanedGuardians;
 using CalamityMod.NPCs.Providence;
 using CalamityMod.NPCs.SupremeCalamitas;
-using CalamityMod.NPCs.Yharon;
 using InfernalEclipseAPI.Core.Configs;
 using InfernalEclipseAPI.Core.Players;
 using InfernalEclipseAPI.Core.Players.SOTSPlayerOverrides;
 using InfernalEclipseAPI.Core.Systems;
 using SOTS;
-using Terraria.Localization;
 using static InfernalEclipseAPI.Core.Systems.InfernalCrossmod;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs.NPCDebuffs
@@ -20,6 +18,8 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs.NPCDebuffs
     [JITWhenModsEnabled("SOTS")]
     public class TimeFrozenPrevention : GlobalNPC
     {
+        private static readonly HashSet<int> HolyFlameBosses = [ModContent.NPCType<ProfanedGuardianHealer>(), ModContent.NPCType<ProfanedGuardianDefender>(), ModContent.NPCType<ProfanedGuardianCommander>(), ModContent.NPCType<Providence>()];
+
         public override bool PreAI(NPC npc)
         {
             if (!InfernalConfig.Instance.SOTSBalanceChanges)
@@ -31,15 +31,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs.NPCDebuffs
                     PreventTimeFreezeEffects();
             }
 
-            int[] holyFlameBosses =
-            [
-                ModContent.NPCType<ProfanedGuardianHealer>(),
-                ModContent.NPCType<ProfanedGuardianDefender>(),
-                ModContent.NPCType<ProfanedGuardianCommander>(),
-                ModContent.NPCType<Providence>()
-            ];
-
-            if (holyFlameBosses.Contains(npc.type))
+            if (HolyFlameBosses.Contains(npc.type))
             {
                 PreventTimeFreezeEffects("HolyFlame");
             }

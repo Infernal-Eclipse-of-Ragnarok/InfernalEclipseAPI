@@ -7,7 +7,12 @@ UI: {
 
 	TitleLinks: {
 		// Patreon: Patreon
-		// Github: Github
+		// Github: GitHub
+	}
+
+	RecipeBrowserCategories: {
+		// Legendary: Legendary
+		// Mythical: Mythical
 	}
 
 	NoVoidConsumable: 你现在可吃不下那个！
@@ -97,6 +102,12 @@ UI: {
 		该模组加入了大量未注明的改动，可能会使您的游玩体验比预期更糟。
 		我们强烈建议您禁用该模组。
 		'''
+	// MediumWorldWarning: "[c/FF0000:MEDIUM WORLDS NOT RECOMMENDED WITH IEOR]"
+	/* WorldWarningRemnants:
+		'''
+		[c/FF0000:INFERNUM MODE AND SOTS NOT SUPPORTED BY REMNANTS]
+		[c/FF0000:It is recommended to Remnants before continuing!]
+		''' */
 }
 
 DifficultyUI: {
@@ -195,6 +206,7 @@ ItemTooltip: {
 		SOTSAdditional: 禁用所有二十面体的效果
 	}
 
+	// Dreadmine: "[s:InfernalEclipseAPI/IEoRIcon] Only one dreadmine turret can be active at once, and spawning a new turret will cause all active mines to explode"
 	Calculator: 降低20%召唤伤害
 	Wiesnbrau:
 		'''
@@ -953,6 +965,7 @@ ItemTooltip: {
 		Line3: 你所克服的逆境终将结出可贵的硕果。
 	}
 
+	// AstrageldonPlatinumRelic: A trophy for defeating the multiversal terror before the fall of the eldritch remains
 	PrimordialsRelic:
 		'''
 		你做得很好，成功击败了《瑟银》。现在还剩十个
@@ -2467,6 +2480,67 @@ Items: {
 		// DisplayName: Music Box (Bereft Vassal - Ragnarok Mode)
 		// Tooltip: Plays 'Dead Kingdom's Champion' by Techhy
 	}
+
+	SubspaceSerpentRelicPlatinum: {
+		// DisplayName: Platinum Subspace Serpent Relic
+		// Tooltip: "{0}"
+		// PlatinumTooltip: A trophy for defeating the serpent of sages before the fall of the eldritch remains
+	}
+
+	TerraBladeRelicPlatinum: {
+		// DisplayName: Platinum Terra Blade Relic
+		// Tooltip: "{0}"
+		// PlatinumTooltip: A trophy for defeating the dark reflection before the death of the Devourer of Gods
+	}
+
+	AstrageldonRelicGold: {
+		// DisplayName: Astrageldon Relic
+		// Tooltip: ""
+	}
+
+	QueenJellyfishMusicBox: {
+		// DisplayName: Music Box (Queen Jellyfish - Ragnarok Mode)
+		// Tooltip: Plays 'Mutant Majesty' by Techhy
+	}
+
+	InfernalHypnosRelic: {
+		// DisplayName: Infernal Hypnos Relic
+		// Tooltip: "{0}"
+	}
+
+	TerraBladeTreasureBag: {
+		// DisplayName: Treasure Bag (Terra Blade)
+		// Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+	}
+
+	SoulBaguette: {
+		// DisplayName: Soul Baguette
+		/* Tooltip:
+			'''
+			{0}{$CommonItemTooltip.MediumStats}
+			Heals 250 with [cbuffplr:CalamityMod/RedWineBuff], but reduces by 1 HP/s for 15 seconds
+			''' */
+		// VoidTooltip: Refills 60 void
+	}
+
+	ExoBaguette: {
+		// DisplayName: Exo Baguette
+		/* Tooltip:
+			'''
+			Permanently allows you to drink 1 more alcohol than normal
+			Can only be used once
+			''' */
+	}
+
+	ChestLockIcon: {
+		// DisplayName: Chest Lock Icon
+		// Tooltip: ""
+	}
+
+	HoverItemDummy: {
+		// DisplayName: Hover Item Dummy
+		// Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -2884,6 +2958,16 @@ Configs: {
 			// Label: Ragnarok Queen Jellyfish Theme
 			// Tooltip: Toggles if 'Mutant Majesty' by Techhy plays during the Queen Jellyfish boss fight in Ragnarok Mode.
 		}
+
+		ViscountRagnarok: {
+			// Label: Ragnarok Viscount Theme
+			// Tooltip: Toggles if 'Carotid Crypt' by Techhy & PFungi plays during the Queen Jellyfish boss fight in Ragnarok Mode.
+		}
+
+		GESRagnarok: {
+			// Label: Ragnarok Granite Energy Storm Theme
+			// Tooltip: Toggles if 'Stonewarden' by Techhy plays during the Queen Jellyfish boss fight in Ragnarok Mode.
+		}
 	}
 
 	Difficulty: {
@@ -3015,6 +3099,41 @@ DamageClasses: {
 }
 
 InfernumIntegration: {
+	/* BossRushIntroText1:
+		'''
+		Boss Rush - Tier 1
+		Ensemble of Fools
+		''' */
+	/* BossRushIntroText2:
+		'''
+		Boss Rush - Tier 2
+		Onslaught of Beasts
+		''' */
+	/* BossRushIntroText3:
+		'''
+		Boss Rush - Tier 3
+		Reign of Lords
+		''' */
+	/* BossRushIntroText4:
+		'''
+		Boss Rush - Tier 4
+		Trial of the Insane
+		''' */
+	/* BossRushIntroText5:
+		'''
+		Boss Rush - Tier 5
+		Apotheosis of the Deranged
+		''' */
+	/* BossRushIntroText6:
+		'''
+		Boss Rush - Tier 6
+		Finale of the Deities
+		''' */
+	/* BossRushIntroText7:
+		'''
+		Boss Rush - Tier ???
+		Test of Resolve
+		''' */
 	Astrageldon:
 		'''
 		诸界惊骇
@@ -3390,6 +3509,16 @@ Buffs: {
 		DisplayName: Blixer
 		Description: “我没设计这个！:(”
 	}
+
+	HormonalBlockade: {
+		// DisplayName: Hormonal Blockade
+		// Description: You can't access your Rage or Adrenaline!
+	}
+
+	FreezingAura: {
+		// DisplayName: Freezing Aura
+		// Description: Mods.InfernalEclipseAPI.Buffs.FreezingAura.Description
+	}
 }
 
 Tiles: {
@@ -3410,6 +3539,7 @@ Tiles: {
 	// ProvidenceNightMusicBoxTile.MapEntry: Music Box
 	// ThunderBirdMusicBoxTile.MapEntry: Music Box
 	// VassalMusicBoxTile.MapEntry: Music Box
+	// QueenJellyfishMusicBoxTile.MapEntry: Music Box
 }
 
 NPCs: {
@@ -3463,12 +3593,13 @@ BossName: {
 	Encore: Ensemble of Fools (Encore Mix) - Boss Rush (End)
 	You: FINAL FRACTAL - Terra Blade
 	Ragnarok: Reality's End - Dream Eater, the Ragnarok
-	LittleCat: Coming Soon... - ???
 	ProvidenceNight: Unholy Finality - Providence (Night)
 	Seahorse: Seahorse Scrutiny (Rebirth) - Cnidrion
 	Arsenal: Arsenal - Codebreaker Interlude
 	// ThunderBird: Infernal Thunder Bird - The Grand Thunder Bird (Ragnarok Mode)
 	// QueenJellyfish: Mutant Majesty - Queen Jellyfish (Ragnarok Mode)
+	// GraniteEnergyStorm: Stonewarden - Granite Energy Storm (Ragnarok Mode)
+	// Viscount: Carotid Crypt - Viscount (Ragnarok Mode)
 }
 
 PetDialog.DoGDSPTip: 激光网格会在他冲刺的同时生成！优先冲撞神吞，然后移动到安全位置——但别忘了那些火球！

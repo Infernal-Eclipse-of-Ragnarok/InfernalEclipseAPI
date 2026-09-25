@@ -1,0 +1,89 @@
+{
+  "Revision": 1,
+  "DefaultColor": "FFA500",
+  "DefaultSpeaker": "SupremeCalamitas",
+  "AlignType": 1,
+  "TextDelay": 2,
+  "BasePunctuationDelay": {
+    "Delay": 10,
+    "ForceSet": false,
+    "Locks": false
+  },
+  "PunctuationDelayCap": 30,
+  "PunctuationDelays": {
+    "!": {
+      "Delay": 20,
+      "ForceSet": true,
+      "Locks": true
+    },
+    "?": {
+      "Delay": 20,
+      "ForceSet": true,
+      "Locks": true
+    }
+  },
+  "Pages": [
+    {
+      "Lines": [
+        "[Scale(1.5):[Colors(2, 0.5, FFA500, FF4500):Do you enjoy going through hell?]]"
+      ]
+    },
+    {
+      "Lines": [
+        "[Scale(1.5):[Colors(2, 0.5, FFA500, FF4500):You should have just died...]]"
+      ]
+    },
+    {
+      "Lines": [
+        "[Scale(1.5):[Colors(2, 0.5, FFA500, FF0000):It wasn't too long ago you barely managed to defeat my doppelganger.]]",
+        "[Scale(1.5):[Colors(2, 0.5, FFA500, FF0000):Quite the failure, wasn't it?]]"
+      ]
+    },
+    {
+      "Lines": [
+        "[Scale(1.5):[Colors(2, 0.5, FFA500, FF0000):You've harnessed great power,]]",
+        "[Scale(1.5):[Colors(2, 0.5, FFA500, FF0000):but you wield it for no one but yourself.]]"
+      ]
+    },
+    {
+      "Lines": [
+        "[Scale(1.5):[Colors(2, 0.5, FFA500, FF0000):Would you like to meet my family?]]",
+        "[Colors(2, 0.5, FFA500, FF0000):[Shaking:[Scale(1.5):[Pause(4):Horrible, isn't it?]]]]"
+      ]
+    },
+    {
+      "Lines": [
+        "[Scale(1.5):[Colors(2, 0.5, FFA500, FF0000):You will suffer greatly.]]"
+      ]
+    },
+    {
+      "Lines": [
+        "[Scale(1.5):[Colors(2, 0.5, FFA500, FF0000):It's absurd to even think of trying to get away.]]",
+        "[Scale(1.5):[Colors(2, 0.5, FFA500, FF0000):As long as you live, ]][Colors(2, 0.5, FFA500, FF0000):[Shaking:[Scale(1.5):you will suffer.]]]"
+      ]
+    },
+    {
+      "Lines": [
+        "[Scale(1.5):[Colors(2, 0.5, FFA500, FF0000):An upstart who recklessly stole and killed their way to power.]]",
+        "[Scale(1.5):[Colors(2, 0.5, FFA500, FF0000): I wonder, who does that remind me of...?]]"
+      ]
+    },
+    {
+      "Lines": [
+        "[Scale(1.5):[Colors(2, 0.5, FFA500, FF0000):You have no stake in this battle.]]",
+        "[Colors(2, 0.5, FFA500, FF0000):[Shaking(1.5):[Scale(1.5):No one gave you any say in this matter!]]]"
+      ]
+    },
+    {
+      "Lines": [
+        "[Scale(1.5):[Colors(2, 0.5, FFA500, FF0000):Once the dust has settled and only one remains, if it is you,]]",
+        "[Colors(2, 0.5, FFA500, FF0000):[Shaking(3):[Scale(1.5):what value will this have had?!]]]"
+      ]
+    },
+    {
+      "Lines": [
+        "[Scale(1.5):...Congratulations.]"
+      ]
+    }
+  ]
+}

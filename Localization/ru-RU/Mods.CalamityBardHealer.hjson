@@ -1,6 +1,6 @@
 Items: {
 	TarragonParagonCrown: {
-		DisplayName: Эстрагоновая корона парагона
+		DisplayName: Эстрагоновая венец совершенства
 		Tooltip:
 			'''
 			Увеличивает лучезарный урон на 10%
@@ -100,11 +100,12 @@ Items: {
 }
 
 ItemDescriptions: {
-	/* DemonshadeGreaves:
+	DemonshadeGreaves:
 		'''
-		Increases your maximum technique points by 2, maximum inspiration by 15, and bonus healing by 10 life
-		Increases wind instrument homing speed and range by 60% and string instruments bounce six additional times
-		Doubles the range of your empowerments effect radius and extends the duration of empowerments by 6 seconds
-		''' */
-	// ChampionWing: ""
+		Увеличивает максимальное число очков техники на 2, максимальный запас вдохновения на 15 очков и бонусное исцеление на 10 ед. здоровья
+		Увеличивает скорость и дальность наведения духовных инструментов на 60%
+		Снаряды струнных инструментов отскакивают 6 дополнительных раз
+		Удваивает радиус действия усилений и увеличивает их длительность на 6 секунд
+		'''
+	ChampionWing: ""
 }

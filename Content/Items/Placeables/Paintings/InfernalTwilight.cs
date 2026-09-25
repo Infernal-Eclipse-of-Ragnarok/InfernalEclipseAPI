@@ -155,6 +155,7 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Paintings
             "Yardis",
             "Heatstroke",
             "Dylanomeneer",
+            "Redwort",
 
             //Supporters
             "CuddlySnake",

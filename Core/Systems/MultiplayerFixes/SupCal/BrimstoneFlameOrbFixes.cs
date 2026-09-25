@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Reflection;
 using InfernumMode.Content.BehaviorOverrides.BossAIs.SupremeCalamitas;
 using MonoMod.RuntimeDetour;
 using Terraria.Audio;
-using Terraria.ID;
-using Terraria;
-using Terraria.ModLoader;
 using InfernumMode.Assets.Sounds;
 using MonoMod.Cil;
 

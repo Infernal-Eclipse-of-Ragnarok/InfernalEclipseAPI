@@ -34,11 +34,11 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.StellarSabre
         public override void ModifyWeaponDamage(Player player, ref StatModifier damage)
         {
             if (NPC.downedMoonlord)
-                damage += 3.75f;
+                damage += 2.25f;
             else if (NPC.downedAncientCultist)
                 damage += 2.00f;
             else if (NPC.downedGolemBoss)
-                damage += 1.35f;
+                damage += 2.00f;
             else if (NPC.downedPlantBoss)
                 damage += 2.75f;
             else if (NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3)

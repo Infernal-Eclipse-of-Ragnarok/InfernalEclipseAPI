@@ -75,27 +75,27 @@ namespace InfernalEclipseAPI.Core.Players
             if (scytheChargeCooldown > 0)
                 scytheChargeCooldown--;
 
-            foreach (Projectile projectile in Main.projectile)
+            foreach (Projectile projectile in Main.ActiveProjectiles)
             {
-                if (projectile.active && fifthScytheTypes.Contains(projectile.type) && projectile.ModProjectile != null && !ModLoader.TryGetMod("WHummusMultiModBalancing", out Mod WHBalance))
+                if (projectile.ModProjectile != null || !ModLoader.HasMod("WHummusMultiModBalancing"))
+                    continue;
+
+                if (fifthScytheTypes.Contains(projectile.type))
                 {
                     object modProjectile = projectile.ModProjectile;
 
-                    if (DynamicSetters.SetCanGiveScytheCharge == null)
-                    {
-                        DynamicSetters.SetCanGiveScytheCharge = CallSite<Func<CallSite, object, bool, object>>.Create(
-                            Microsoft.CSharp.RuntimeBinder.Binder.SetMember(
-                                CSharpBinderFlags.None,
-                                "CanGiveScytheCharge",
-                                typeof(HealerPlayer),
-                                new[]
-                                {
-                                CSharpArgumentInfo.Create(CSharpArgumentInfoFlags.None, null),
-                                CSharpArgumentInfo.Create(CSharpArgumentInfoFlags.UseCompileTimeType, null)
-                                }
-                            )
-                        );
-                    }
+                    DynamicSetters.SetCanGiveScytheCharge ??= CallSite<Func<CallSite, object, bool, object>>.Create(
+                        Binder.SetMember(
+                            CSharpBinderFlags.None,
+                            "CanGiveScytheCharge",
+                            typeof(HealerPlayer),
+                            new[]
+                            {
+                            CSharpArgumentInfo.Create(CSharpArgumentInfoFlags.None, null),
+                            CSharpArgumentInfo.Create(CSharpArgumentInfoFlags.UseCompileTimeType, null)
+                            }
+                        )
+                    );
 
                     DynamicSetters.SetCanGiveScytheCharge.Target(
                         DynamicSetters.SetCanGiveScytheCharge,

@@ -1,50 +1,51 @@
 ﻿using CalamityMod;
+using CalamityMod.Enums;
+using CalamityMod.Items;
+using CalamityMod.Items.Accessories;
+using CalamityMod.Items.Accessories.Wings;
+using CalamityMod.Items.Potions.Alcohol;
+using InfernalEclipseAPI.Content.Buffs;
+using InfernalEclipseAPI.Content.RogueThrower;
+using InfernalEclipseAPI.Core.Configs;
+using InfernalEclipseAPI.Core.DamageClasses;
+using InfernalEclipseAPI.Core.Players;
+using InfernalEclipseAPI.Core.Players.SOTSPlayerOverrides;
 using InfernalEclipseAPI.Core.Systems;
-using SOTS;
-using SOTS.Items.AbandonedVillage;
-using SOTS.Items.ChestItems;
-using SOTS.Items.Earth;
-using SOTS.Items.Tide;
-using SOTS.Items.Permafrost;
-using SOTS.Items.Chaos;
-using SOTS.Items.Celestial;
-using static Terraria.ModLoader.ModContent;
-using SOTS.Items.Planetarium.FromChests;
 using InfernalEclipseAPI.Core.Utils;
-using System.Collections.Generic;
-using Terraria.Localization;
+using InfernumMode.Content.Items.Accessories;
+using Microsoft.Xna.Framework;
+using SOTS;
 using SOTS.Buffs.MinionBuffs;
 using SOTS.FakePlayer;
-using SOTS.Items.CritBonus;
-using SOTS.Items.Earth.Glowmoth;
-using SOTS.Items.Pyramid;
 using SOTS.Items;
-using InfernalEclipseAPI.Core.Players;
-using Microsoft.Xna.Framework;
+using SOTS.Items.AbandonedVillage;
+using SOTS.Items.Celestial;
+using SOTS.Items.Chaos;
+using SOTS.Items.ChestItems;
+using SOTS.Items.CritBonus;
+using SOTS.Items.Earth;
+using SOTS.Items.Earth.Glowmoth;
+using SOTS.Items.Evil;
+using SOTS.Items.Fishing;
+using SOTS.Items.Gems;
+using SOTS.Items.Invidia;
+using SOTS.Items.Permafrost;
+using SOTS.Items.Planetarium.FromChests;
+using SOTS.Items.Potions;
+using SOTS.Items.Pyramid;
+using SOTS.Items.Secrets;
+using SOTS.Items.Slime;
+using SOTS.Items.Temple;
+using SOTS.Items.Tide;
+using SOTS.Items.Void;
+using SOTS.Void;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Terraria.DataStructures;
-using SOTS.Items.Slime;
-using System.Linq;
-using CalamityMod.Items;
-using SOTS.Items.Potions;
-using SOTS.Items.Invidia;
-using SOTS.Items.Evil;
-using CalamityMod.Items.Accessories;
-using SOTS.Items.Temple;
-using InfernalEclipseAPI.Core.Players.SOTSPlayerOverrides;
-using SOTS.Items.Gems;
-using CalamityMod.Items.Potions.Alcohol;
-using CalamityMod.Enums;
 using Terraria.GameContent.ItemDropRules;
-using SOTS.Items.Fishing;
-using InfernalEclipseAPI.Content.RogueThrower;
-using InfernumMode.Content.Items.Accessories;
-using SOTS.Void;
-using SOTS.Items.Secrets;
-using SOTS.Items.Void;
-using InfernalEclipseAPI.Content.Buffs;
-using InfernalEclipseAPI.Core.Configs;
-using CalamityMod.Items.Accessories.Wings;
+using Terraria.Localization;
+using static Terraria.ModLoader.ModContent;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 {
@@ -570,6 +571,15 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                 if (item.type == ItemType<DreamLamp>() && SOTSWorld.DreamLampSolved)
                 {
                     item.damage = 18;
+                }
+            }
+
+            if (InfernalCrossmod.SOTSBardHealer.Loaded && InfernalConfig.Instance.SOTSThrowerToRogue)
+            {
+                Mod SOTSBardHealer = InfernalCrossmod.SOTSBardHealer.Mod;
+                if (item.type == SOTSBardHealer.Find<ModItem>("ForbiddenMaelstrom").Type || item.type == SOTSBardHealer.Find<ModItem>("GoopwoodSplit").Type || item.type == SOTSBardHealer.Find<ModItem>("Serpentbite").Type)
+                {
+                    item.DamageType = GetInstance<VoidRogue>();
                 }
             }
         }

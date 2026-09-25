@@ -1,42 +1,39 @@
-﻿using CalamityMod.NPCs.SupremeCalamitas;
-using Terraria.Audio;
-using ReLogic.Utilities;
-using InfernumMode.Content.BehaviorOverrides.BossAIs.SupremeCalamitas;
-using Microsoft.Xna.Framework;
-using CalamityMod.Events;
-using CalamityMod.World;
-using CalamityMod.Projectiles.Boss;
-using InfernumMode;
-using InfernumMode.Assets.Sounds;
-using InfernumMode.Core.GlobalInstances.Systems;
-using CalamityMod;
-using MonoMod.Cil;
-using MonoMod.RuntimeDetour;
-using System.Reflection;
-using Mono.Cecil.Cil;
-using System;
-using Terraria.ModLoader.IO;
-using System.IO;
-using InfernalEclipseAPI.Core.World;
-using Terraria;
-using CalamityMod.Particles;
-using System.Security.Policy;
+﻿using CalamityMod;
 using CalamityMod.Dusts;
+using CalamityMod.Events;
+using CalamityMod.NPCs.SupremeCalamitas;
+using CalamityMod.Particles;
+using CalamityMod.Projectiles.Boss;
+using CalamityMod.UI.DialogueDisplay;
+using CalamityMod.UI.DialogueDisplay.DisplayEffects;
+using CalamityMod.World;
+using InfernalEclipseAPI.Common.GlobalItems;
 using InfernalEclipseAPI.Content.Buffs;
 using InfernalEclipseAPI.Core.Systems;
-using InfernalEclipseAPI.Common.GlobalItems;
+using InfernalEclipseAPI.Core.World;
+using InfernumMode;
+using InfernumMode.Assets.Sounds;
+using InfernumMode.Content.BehaviorOverrides.BossAIs.SupremeCalamitas;
+using InfernumMode.Core.GlobalInstances.Systems;
+using Microsoft.Xna.Framework;
+using Mono.Cecil.Cil;
+using MonoMod.Cil;
+using MonoMod.RuntimeDetour;
+using ReLogic.Utilities;
+using System.IO;
+using System.Reflection;
+using Terraria.Audio;
+using Terraria.ModLoader.IO;
 
 namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.SCalOverrides
 {
     public class SCalChanges : GlobalNPC
     {
         public override bool InstancePerEntity => true;
+        public override bool AppliesToEntity(NPC npc, bool lateInstantiation) => npc.type == ModContent.NPCType<SupremeCalamitas>();
+        public static string DialoguePath() => DownedBossSystem.downedCalamitas ? "Mods.InfernalEclipseAPI.SupremeCalamitas.PhasesRematch" : "Mods.InfernalEclipseAPI.SupremeCalamitas.Phases";
 
-        public override bool AppliesToEntity(NPC npc, bool lateInstantiation)
-        {
-            return npc.type == ModContent.NPCType<SupremeCalamitas>();
-        }
-
+        #region Bullet Hell Variables
         public const int BulletHellDuration = 900;
         public const int SecondBulletHellEndValue = BulletHellDuration * 2;
         public const int ThirdBulletHellEndValue = BulletHellDuration * 3;
@@ -49,20 +46,20 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.SCalO
         public bool FinishedBH4 => bulletHellCounter2 >= FourthBulletHellEndValue;
         public bool FinishedBH5 => bulletHellCounter2 >= FifthBulletHellEndValue;
 
-        public float uDieLul = 1f;
-        public float passedVar = 0f;
-
-        public bool despawnProj = false;
-
         public int bulletHellCounter = 0;
         public int bulletHellCounter2 = 0;
 
         public SlotId BulletHellRumbleSlot;
+        #endregion
 
-        public static int HellblastDamage = 105;
-        public static int GigablastDamage = 115;
+        public float uDieLul = 1f;
+        public float passedVar = 0f;
+
+        private const int HellblastDamage = 105;
+        private const int GigablastDamage = 115;
 
         public bool hasTeleported = false;
+        public bool despawnProj = false;
 
         public override void SendExtraAI(NPC npc, BitWriter bitWriter, BinaryWriter writer)
         {
@@ -76,14 +73,66 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.SCalO
 
         public override bool PreAI(NPC npc)
         {
+            ref float attackType = ref npc.ai[0];
+            ref float attackTimer = ref npc.ai[1];
+            ref float dialogueDisplayed = ref npc.Infernum().ExtraAI[25];
+
+            if (InfernalCrossmod.Clamity.Loaded)
+            {
+                foreach (Player player in Main.ActivePlayers)
+                {
+                    if (player.dead || player.ghost || !npc.WithinRange(player.Center, 10000f))
+                        continue;
+
+                    if (player.mount?.Type == InfernalCrossmod.Clamity.Mod.Find<ModMount>("PlagueChairMount").Type)
+                        player.mount.Dismount(player);
+                }
+            }
+
             if (SupremeCalamitasBehaviorOverride.Enraged)
             {
                 float projectileVelocityMultCap = 2f;
-                uDieLul = MathHelper.Clamp(uDieLul * 1.01f, 1f, projectileVelocityMultCap);
+                uDieLul = Clamp(uDieLul * 1.01f, 1f, projectileVelocityMultCap);
             }
             else
             {
-                uDieLul = MathHelper.Clamp(uDieLul * 0.99f, 1f, 2f);
+                uDieLul = Clamp(uDieLul * 0.99f, 1f, 2f);
+            }
+
+            if (InfernalWorld.RagnarokModeEnabled)
+            {
+                if ((SupremeCalamitasBehaviorOverride.SCalAttackType)attackType == SupremeCalamitasBehaviorOverride.SCalAttackType.DesperationPhase)
+                {
+                    foreach (Player player in Main.ActivePlayers)
+                    {
+                        if (player.dead || player.ghost || !npc.WithinRange(player.Center, 10000f))
+                            continue;
+
+                        player.AddBuff(ModContent.BuffType<BrimstoneDesperation>(), 2);
+
+                        if (InfernalCrossmod.Thorium.Loaded)
+                        {
+                            AntiHealerMulticlassCheck.ZeroHealBonus(npc);
+                        }
+                    }
+                }
+
+                if (!BossRushEvent.BossRushActive)
+                {
+                    if (npc.Infernum().ExtraAI[6] == 2f && (SupremeCalamitasBehaviorOverride.SCalAttackType)attackType == SupremeCalamitasBehaviorOverride.SCalAttackType.FireLaserSpin &&
+                        !NPC.AnyNPCs(ModContent.NPCType<SupremeCataclysm>()) && !NPC.AnyNPCs(ModContent.NPCType<SupremeCatastrophe>()) &&  //make sure there still aren't any brothers
+                        FinishedBH3 && dialogueDisplayed < 5) //make sure bullet hell 3 has completed and we haven't already displayed this dialouge
+                    {
+                        DialogueDisplaySystem.StartDialogue(DialoguePath(), npc, 5, 120, false, new BossText());
+                        dialogueDisplayed = 5;
+                    }
+
+                    if (npc.Infernum().ExtraAI[4] == 4f && attackTimer == 660 && dialogueDisplayed < 10)
+                    {
+                        DialogueDisplaySystem.StartDialogue(DialoguePath(), npc, 10, 120, false, new BossText());
+                        dialogueDisplayed = 10;
+                    }
+                }
             }
 
             return base.PreAI(npc);
@@ -92,6 +141,8 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.SCalO
         public bool DoBehaviour_BulletHell(NPC npc, Player player, int currentPhase, ref float frameType, ref float attackTimer)
         {
             if (!InfernalWorld.RagnarokModeEnabled) return true;
+
+            ref float dialogueDisplayed = ref npc.Infernum().ExtraAI[25];
 
             bool expertMode = Main.expertMode || BossRushEvent.BossRushActive;
             bool revenge = CalamityWorld.revenge || BossRushEvent.BossRushActive;
@@ -118,6 +169,13 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.SCalO
                 npc.damage = 0;
                 npc.chaseable = false;
                 npc.dontTakeDamage = true;
+
+                if (attackTimer == 1f && !hasTeleported)
+                {
+                    if (!BossRushEvent.BossRushActive)
+                        DialogueDisplaySystem.StartDialogue(DialoguePath(), npc, 0, 120, false, new BossText());
+                    hasTeleported = true;
+                }
 
                 #region BulletHellEndTelegraphBH1
                 if (bulletHellCounter2 == (BulletHellDuration - 360))
@@ -172,6 +230,14 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.SCalO
                 frameType = (int)SupremeCalamitasBehaviorOverride.SCalFrameType.MagicCircle;
                 return false;
             }
+            else if (FinishedBH1 && dialogueDisplayed < 1)
+            {
+                if (!BossRushEvent.BossRushActive)
+                {
+                    DialogueDisplaySystem.StartDialogue(DialoguePath(), npc, 1, 120, false, new BossText());
+                }
+                dialogueDisplayed = 1;
+            }
 
             //BH2
             if (currentPhase == 1f && !FinishedBH2)
@@ -183,7 +249,11 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.SCalO
                 npc.dontTakeDamage = true;
 
                 if (attackTimer == 1f && !hasTeleported)
+                {
                     TeleportToCenter(npc);
+                    if (!BossRushEvent.BossRushActive)
+                        DialogueDisplaySystem.StartDialogue(DialoguePath(), npc, 2, 120, false, new BossText());
+                }
 
                 #region BulletHellEndTelegraphBH2
                 if (bulletHellCounter2 == (SecondBulletHellEndValue - 360))
@@ -279,7 +349,11 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.SCalO
                 npc.dontTakeDamage = true;
 
                 if (attackTimer == 1f && !hasTeleported)
+                {
                     TeleportToCenter(npc);
+                    if (!BossRushEvent.BossRushActive)
+                        DialogueDisplaySystem.StartDialogue(DialoguePath(), npc, 3, 120, false, new BossText());
+                }
 
                 #region BulletHellEndTelegraphBH3
                 if (bulletHellCounter2 == (ThirdBulletHellEndValue - 360))
@@ -353,6 +427,12 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.SCalO
                 frameType = (int)SupremeCalamitasBehaviorOverride.SCalFrameType.MagicCircle;
                 return false;
             }
+            else if (FinishedBH3 && dialogueDisplayed < 4)
+            {
+                if (!BossRushEvent.BossRushActive)
+                    DialogueDisplaySystem.StartDialogue(DialoguePath(), npc, 4, 120, false, new BossText());
+                dialogueDisplayed = 4;
+            }
 
             //BH4
             if (currentPhase == 3f && !FinishedBH4)
@@ -364,7 +444,11 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.SCalO
                 npc.dontTakeDamage = true;
 
                 if (attackTimer == 1f && !hasTeleported)
+                {
                     TeleportToCenter(npc);
+                    if (!BossRushEvent.BossRushActive)
+                        DialogueDisplaySystem.StartDialogue(DialoguePath(), npc, 6, 120, false, new BossText());
+                }
 
                 #region BulletHellEndTelegraphBH4
                 if (bulletHellCounter2 == (FourthBulletHellEndValue - 360))
@@ -472,6 +556,12 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.SCalO
                 frameType = (int)SupremeCalamitasBehaviorOverride.SCalFrameType.MagicCircle;
                 return false;
             }
+            else if (FinishedBH4 && dialogueDisplayed < 7)
+            {
+                if (!BossRushEvent.BossRushActive)
+                    DialogueDisplaySystem.StartDialogue(DialoguePath(), npc, 7, 120, false, new BossText());
+                dialogueDisplayed = 7;
+            }
 
             //BH5
             if (currentPhase == 4f && !FinishedBH5)
@@ -483,7 +573,11 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.SCalO
                 npc.dontTakeDamage = true;
 
                 if (attackTimer == 1f && !hasTeleported)
+                {
                     TeleportToCenter(npc);
+                    if (!BossRushEvent.BossRushActive)
+                        DialogueDisplaySystem.StartDialogue(DialoguePath(), npc, 8, 120, false, new BossText());
+                }
 
                 #region BulletHellEndTelegraphBH5
                 if (bulletHellCounter2 == (FifthBulletHellEndValue - 360))
@@ -571,6 +665,15 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.SCalO
             else if (FinishedBH5)
             {
                 Utilities.DeleteAllProjectiles(false, ModContent.ProjectileType<BrimstoneMonster>());
+
+                if (dialogueDisplayed < 9)
+                {
+                    if (!BossRushEvent.BossRushActive)
+                    {
+                        DialogueDisplaySystem.StartDialogue(DialoguePath(), npc, 9, 120, false, new BossText());
+                    }
+                    dialogueDisplayed = 9;
+                }
             }
 
             if (bulletHellCounter2 % BulletHellDuration == 0 && despawnProj)

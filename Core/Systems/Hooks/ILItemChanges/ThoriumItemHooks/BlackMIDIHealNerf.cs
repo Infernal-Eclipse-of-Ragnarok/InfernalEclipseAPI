@@ -8,9 +8,9 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks.ILItemChanges.ThoriumItemHooks
     [ExtendsFromMod(InfernalCrossmod.Thorium.Name)]
     internal sealed class BlackMIDIHealNerf : ModSystem
     {
-        public static MethodInfo? BlackMIDIProOnHitNPCMethod = typeof(BlackMIDIPro).GetMethod("BardOnHitNPC", LumUtils.UniversalBindingFlags);
+        public static MethodInfo BlackMIDIProOnHitNPCMethod = typeof(BlackMIDIPro).GetMethod("BardOnHitNPC", LumUtils.UniversalBindingFlags);
         public delegate void Orig_BlackMIDIProOnHitNPCMethod(BlackMIDIPro self, NPC target, NPC.HitInfo hit, int damageDone);
-        private static Hook? BlackMIDIHealCooldown_Detour_Hook;
+        private static Hook BlackMIDIHealCooldown_Detour_Hook;
 
         public override void OnModLoad()
         {
@@ -31,12 +31,9 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks.ILItemChanges.ThoriumItemHooks
 
             orig(self, target, hit, damageDone);
 
-            int healed = (int)(damageDone * 0.10000000149011612);
+            int healed = (int)(damageDone * 0.05);
 
-            float cooldownMult = 6f - healed;
-
-            if (cooldownMult < 1)
-                cooldownMult = 1;
+            float cooldownMult = 0.1f;
 
             if (healed > 0)
                 owner.lifeSteal -= healed * cooldownMult;

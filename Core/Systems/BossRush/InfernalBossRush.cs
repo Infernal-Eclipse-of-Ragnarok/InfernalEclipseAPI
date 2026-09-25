@@ -71,13 +71,9 @@ namespace InfernalEclipseAPI.Core.Systems.BossRush
 
         public override void Load()
         {
-            MethodInfo target = typeof(BossRushChangesSystem).GetMethod(
-                "HandleTeleports",
-                BindingFlags.Public | BindingFlags.Static);
+            MethodInfo target = typeof(BossRushChangesSystem).GetMethod("HandleTeleports", BindingFlags.Public | BindingFlags.Static);
 
-            MethodInfo replacement = typeof(InfernalBossRush).GetMethod(
-                nameof(HandleTeleports_NoOp),
-                BindingFlags.NonPublic | BindingFlags.Static);
+            MethodInfo replacement = typeof(InfernalBossRush).GetMethod(nameof(HandleTeleports_NoOp), BindingFlags.NonPublic | BindingFlags.Static);
 
             if (target != null && replacement != null)
                 handleTeleportsHook = new Hook(target, replacement);
@@ -146,7 +142,7 @@ namespace InfernalEclipseAPI.Core.Systems.BossRush
                                                 NPCType<KingSlimeJewelRuby>(), NPCType<Ninja>() }));
             }
 
-            if (ModLoader.TryGetMod("CalamityAddon", out Mod warMachine) && InfernalConfig.Instance.WarMachineBossInBossRush)
+            if (ModLoader.TryGetMod("CalamityAddon", out Mod warMachine))
             {
                 Bosses.Add(new Boss(warMachine.Find<ModNPC>("WulfrumMothership").Type, TimeChangeContext.Day,
                     permittedNPCs: new int[] { NPCType<WulfrumDrone>(), NPCType<WulfrumHovercraft>(), NPCType<WulfrumRover>(), NPCType<WulfrumGyrator>(),
@@ -195,10 +191,7 @@ namespace InfernalEclipseAPI.Core.Systems.BossRush
                 permittedNPCs: new int[] { ThoriumNPC("BoreanStrider"), ThoriumNPC("BoreanStriderPopped"), ThoriumNPC("BoreanHopper"), ThoriumNPC("BoreanMyte") }));
             }
 
-            if (InfernalConfig.Instance.DreadnautillusInBossRush)
-            {
-                Bosses.Add(new Boss(NPCID.BloodNautilus, TimeChangeContext.Night, permittedNPCs: new int[] { NPCID.EyeballFlyingFish, NPCID.VampireBat }));
-            }
+            Bosses.Add(new Boss(NPCID.BloodNautilus, TimeChangeContext.Night, permittedNPCs: new int[] { NPCID.EyeballFlyingFish, NPCID.VampireBat }));
 
             Bosses.Add(new Boss(ModContent.NPCType<PerforatorHive>(), permittedNPCs: [ ModContent.NPCType<PerforatorHeadLarge>(), ModContent.NPCType<PerforatorBodyLarge>(), ModContent.NPCType<PerforatorTailLarge>(),
                     ModContent.NPCType<PerforatorHeadMedium>(), ModContent.NPCType<PerforatorBodyMedium>(), ModContent.NPCType<PerforatorTailMedium>(), ModContent.NPCType<PerforatorHeadSmall>(),
@@ -554,7 +547,7 @@ namespace InfernalEclipseAPI.Core.Systems.BossRush
             Bosses.Add(new Boss(NPCID.MoonLordCore, spawnContext: type =>
             {
                 NPC.SpawnOnPlayer(ClosestPlayerToWorldCenter, type);
-            }, permittedNPCs: [NPCID.MoonLordLeechBlob, NPCID.MoonLordHand, NPCID.MoonLordHead, NPCID.MoonLordFreeEye]));
+            }, usesSpecialSound: true, permittedNPCs: [NPCID.MoonLordLeechBlob, NPCID.MoonLordHand, NPCID.MoonLordHead, NPCID.MoonLordFreeEye]));
 
             if (HomewardLoaded())
             {
@@ -723,7 +716,7 @@ namespace InfernalEclipseAPI.Core.Systems.BossRush
             {
                 Bosses.Add(new Boss(WrathNPC("AvatarOfEmptiness"), TimeChangeContext.Night, type =>
                 {
-                    NPC.SpawnOnPlayer(ClosestPlayerToWorldCenter, WrathNPC("AvatarRift"));
+                    NPC.SpawnOnPlayer(ClosestPlayerToWorldCenter, WrathNPC("AvatarOfEmptiness"));
                 }, permittedNPCs: new int[] { WrathNPC("BattleSolyn"), WrathNPC("NamelessDeityBoss"), WrathNPC("AvatarRift"), WrathNPC("AvatarOfEmptiness") }));
 
                 Bosses.Add(new Boss(WrathNPC("NamelessDeityBoss"), TimeChangeContext.Night, specialSpawnCountdown: 270, usesSpecialSound: true));

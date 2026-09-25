@@ -5,6 +5,8 @@ using CalamityMod;
 using InfernalEclipseAPI.Content.Items.Placeables.Relics;
 using InfernumMode.Core.GlobalInstances.Systems;
 using InfernalEclipseAPI.Core.Systems;
+using CalamityMod.NPCs.Abyss;
+using CalamityMod.Items.Weapons.Melee;
 
 namespace InfernalEclipseAPI.Common.GlobalNPCs.LootAdjustments
 {
@@ -36,6 +38,24 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.LootAdjustments
             if (npc.type == ModContent.NPCType<CragmawMire>())
             {
                 npcLoot.AddIf(isInfernum, ModContent.ItemType<CragmawMireRelic>());
+            }
+
+            if (npc.type == ModContent.NPCType<Viperfish>())
+            {
+                foreach (IItemDropRule rule in npcLoot.Get())
+                {
+                    if (rule is CommonDrop drop && drop.itemId == ModContent.ItemType<DepthCrusher>())
+                    {
+                        int dcDropChanceDenom = drop.chanceDenominator;
+                        int dcDropChanceMin = drop.itemId;
+                        int dcDropChanceMax = drop.amountDroppedMaximum;
+                        int dcDropChanceNume = drop.chanceNumerator;
+
+                        npcLoot.Remove(rule);
+
+                        npcLoot.Add(ItemDropRule.ByCondition(new InfernalGlobalNPC.EvilBossDownedCondition(), ModContent.ItemType<DepthCrusher>(), dcDropChanceDenom, dcDropChanceMin, dcDropChanceMax, dcDropChanceNume));
+                    }
+                }
             }
         }
     }

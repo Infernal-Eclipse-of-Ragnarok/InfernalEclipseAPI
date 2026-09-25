@@ -1,59 +1,60 @@
 ﻿using CalamityMod;
-using Terraria.Audio;
-using Microsoft.Xna.Framework;
-using InfernalEclipseAPI.Content.Buffs;
-using Terraria.DataStructures;
-using InfernalEclipseAPI.Core.World;
-using Terraria.Localization;
+using CalamityMod.Buffs.DamageOverTime;
+using CalamityMod.Buffs.Potions;
 using CalamityMod.Buffs.StatDebuffs;
-using CalamityMod.Projectiles.Rogue;
-using CalamityMod.NPCs.SupremeCalamitas;
-using InfernalEclipseAPI.Core.DamageClasses;
-using Terraria.ModLoader.IO;
-using InfernalEclipseAPI.Content.Items.Weapons.Legendary.Lycanroc;
-using InfernalEclipseAPI.Core.Systems;
-using CalamityMod.NPCs.AstrumDeus;
-using System.Collections.Generic;
-using CalamityMod.Events;
-using Terraria.GameInput;
-using CalamityMod.NPCs.Yharon;
-using CalamityMod.Projectiles.Melee;
-using Terraria.UI;
-using CalamityMod.Projectiles.Melee.Shortswords;
-using CalamityMod.NPCs.AquaticScourge;
-using InfernalEclipseAPI.Content.Projectiles;
-using InfernumMode.Content.Items.Accessories;
 using CalamityMod.CalPlayer;
-using CalamityMod.NPCs.PlaguebringerGoliath;
-using CalamityMod.NPCs.Ravager;
-using CalamityMod.NPCs.Providence;
-using CalamityMod.NPCs.PrimordialWyrm;
-using InfernalEclipseAPI.Content.Items.Other;
-using InfernumMode.Common.DataStructures;
-using InfernumMode;
-using InfernalEclipseAPI.Core.Configs;
-using InfernalEclipseAPI.Content.UI.Notificatons;
+using CalamityMod.Events;
+using CalamityMod.Items.Potions;
 using CalamityMod.Items.Weapons.Melee;
 using CalamityMod.NPCs;
-using SOTS.Common.ModPlayers;
-using CalamityMod.World;
-using Terraria.GameContent.Events;
+using CalamityMod.NPCs.AquaticScourge;
+using CalamityMod.NPCs.AstrumDeus;
 using CalamityMod.NPCs.DesertScourge;
-using CalamityMod.Items.Potions;
-using CalamityMod.Buffs.Potions;
-using CalamityMod.Buffs.DamageOverTime;
+using CalamityMod.NPCs.PlaguebringerGoliath;
+using CalamityMod.NPCs.PrimordialWyrm;
+using CalamityMod.NPCs.Providence;
+using CalamityMod.NPCs.Ravager;
+using CalamityMod.NPCs.SupremeCalamitas;
+using CalamityMod.NPCs.Yharon;
+using CalamityMod.Projectiles.Melee;
+using CalamityMod.Projectiles.Melee.Shortswords;
+using CalamityMod.Projectiles.Rogue;
+using CalamityMod.World;
+using InfernalEclipseAPI.Content.Buffs;
+using InfernalEclipseAPI.Content.Items.Other;
+using InfernalEclipseAPI.Content.Items.PermanentBoosters;
+using InfernalEclipseAPI.Content.Items.Weapons.Legendary.Lycanroc;
+using InfernalEclipseAPI.Content.Projectiles;
+using InfernalEclipseAPI.Content.UI.Notificatons;
+using InfernalEclipseAPI.Core.Configs;
+using InfernalEclipseAPI.Core.DamageClasses;
+using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.World;
+using InfernumMode;
+using InfernumMode.Common.DataStructures;
+using InfernumMode.Content.Items.Accessories;
+using Microsoft.Xna.Framework;
+using System.Collections.Generic;
+using Terraria.Audio;
+using Terraria.DataStructures;
+using Terraria.GameContent.Events;
+using Terraria.GameInput;
+using Terraria.Localization;
+using Terraria.ModLoader.IO;
+using Terraria.UI;
 
 namespace InfernalEclipseAPI.Core.Players
 {
     public class InfernalPlayer : ModPlayer
     {
-        public int resonatorTimer = 0;
-        public int incubatorTextTime = 0;
-        public int namelessDialogueCooldown;
-        public int voidMagePrevention;
+        // Stored variables
+        private Vector2 previousPos;
+        private bool wasUsingItem;
+        public int BoostDirection;
 
-        public int CloverCharmCooldown;
-        public bool workshopHasBeenOwned;
+        // Accessory effect reworks
+        public bool CritNightmare;
+        public bool bagOfCharms;
         public bool batPoop;
         public bool tixThumbRing;
         public bool bloodstainedCoin;
@@ -62,16 +63,6 @@ namespace InfernalEclipseAPI.Core.Players
         public bool snakeEyes;
         public bool chaosBadge;
         public bool focusReticle;
-        public bool exoSights;
-        public int BoostPressTimer;
-        public int BoostDirection;
-        public int boostCooldownTime;
-        public int RingofRestCooldown;
-        public bool CritNightmare;
-        public bool bagOfCharms;
-        public int voidSicknessTextCooldown;
-        public int teleportRespawnKilldown;
-
         public bool LazyCrafterAmulet;
         public bool statShareAll;
         public bool scalingArmorPenetration;
@@ -81,29 +72,56 @@ namespace InfernalEclipseAPI.Core.Players
         public bool InverseAmberRing;
         public bool gutWrench;
 
-        public bool singularityCore;
-        public int ruinousPlasmaInjection;
+        // Accessory Effects
+        public bool exoSights;
         public bool blixerCoreSummon;
         public bool blixerLaserMode;
 
+        // Consumables & Player States
+        public int voidMagePrevention;
+
+        public bool workshopHasBeenOwned;
+        public bool aniversaryYearOneLoreObtained = false;
+
+        public bool singularityCore;
+        public int ruinousPlasmaInjection;
+        public bool exoBaguette;
+
+        // Steal Values
         public float manaSteal = Main.expertMode ? 40f : 50f;
         public float voidSteal = Main.expertMode ? 45f : 55f;
         public float inspirationSteal = Main.expertMode ? 5f : 10f;
 
-        public bool aniversaryYearOneLoreObtained = false;
-
-        private Vector2 previousPos;
-        private bool wasUsingItem;
+        // Timers and Cooldowns
         private int horrifiedTimer = 0;
         private int jamTimer = 0;
         private int batCoinTimer = 0;
+        public int resonatorTimer = 0;
+        public int incubatorTextTime = 0;
+        public int BoostPressTimer;
+        public int namelessDialogueCooldown;
         private int nightmareArmCD;
+        public int voidSicknessTextCooldown;
+        public int teleportRespawnKilldown;
+        public int boostCooldownTime;
+        public int RingofRestCooldown;
+        public int CloverCharmCooldown;
+
+        // Boss Rush Intro Screens
+        public bool tier1IntroPlayed;
+        public bool tier2IntroPlayed;
+        public bool tier3IntroPlayed;
+        public bool tier4IntroPlayed;
+        public bool tier5IntroPlayed;
+        public bool tier6IntroPlayed;
+        public bool tier7IntroPlayed;
 
         public override void Initialize()
         {
             workshopHasBeenOwned = false;
             singularityCore = false;
             ruinousPlasmaInjection = 0;
+            exoBaguette = false;
         }
 
         public override void OnEnterWorld()
@@ -113,8 +131,10 @@ namespace InfernalEclipseAPI.Core.Players
                 InfernalWorld.craftedWorkshop = true;
             }
 
+            /*
             if ((InfernalConfig.Instance.SolynCampsiteFixes || !ModLoader.HasMod("WOTGCampsiteFix")) && InfernalConfig.Instance.DeveloperMode)
                 InGameNotificationsTracker.AddNotification(new SolynCampsiteFixApplicationNotification());
+            */
 
             if (ModLoader.HasMod("ContinentOfJourney"))
             {
@@ -219,6 +239,7 @@ namespace InfernalEclipseAPI.Core.Players
             tag["IEORboost"] = boost;
 
             tag.Add("ruinousPlasmaInjection", ruinousPlasmaInjection);
+            tag.Add("exoBaguette", exoBaguette);
         }
 
         public override void LoadData(TagCompound tag)
@@ -231,6 +252,7 @@ namespace InfernalEclipseAPI.Core.Players
             singularityCore = boost.Contains("singularityCore");
 
             ruinousPlasmaInjection = tag.Get<int>("ruinousPlasmaInjection");
+            exoBaguette = tag.Get<bool>("exoBaguette");
         }
 
         public override bool CanUseItem(Item item)
@@ -580,7 +602,7 @@ namespace InfernalEclipseAPI.Core.Players
                 }
             }
 
-            if (Player.HasBuff<LowGround>() || Player.HasBuff<CrimulanAura>())
+            if (Player.HasBuff<FreezingAura>() || Player.HasBuff<CrimulanAura>())
             {
                 Player.buffImmune[BuffID.Featherfall] = true;
                 Player.ClearBuff(BuffID.Featherfall);
@@ -633,6 +655,16 @@ namespace InfernalEclipseAPI.Core.Players
 
         public override void PostUpdateEquips()
         {
+            if (Player.Calamity().SelectedFishingMinigame == CalamityPlayer.FishingMinigames.FeralBobber)
+            {
+                int progressionBasedMaxLife = (DownedBossSystem.downedYharon ? 750 : DownedBossSystem.downedProvidence ? 700 : NPC.downedGolemBoss ? 650 : 600);
+
+                int originalBonus = (int)((Player.statLifeMax2 - Player.statLife) * 0.25f);
+                int cappedBonus = (int)((Math.Min(Player.statLifeMax2, progressionBasedMaxLife) - Math.Min(Player.statLife, progressionBasedMaxLife)) * 0.25f);
+
+                Player.fishingSkill -= originalBonus - cappedBonus;
+            }
+
             if (exoSights || focusReticle)
             {
                 Player.GetCritChance(DamageClass.Generic) += 15f;
@@ -654,6 +686,7 @@ namespace InfernalEclipseAPI.Core.Players
                 }
             }
 
+            #region Elemental Amulet Adjustments
             if (LazyCrafterAmulet)
             {
                 Player.adjTile[TileID.WorkBenches] = true;
@@ -804,6 +837,7 @@ namespace InfernalEclipseAPI.Core.Players
                     }
                 }
             }
+            #endregion
 
             if (Earthdrive)
             {
@@ -836,8 +870,12 @@ namespace InfernalEclipseAPI.Core.Players
         }
 
         private bool oceanBufferModified = false;
+
         public override void PostUpdateBuffs()
         {
+            if (exoBaguette)
+                Player.Calamity().alcoholPoisonMax += ExoBaguette.alcoholCapBoost;
+
             if (InfernalCrossmod.SOTS.Loaded)
             {
                 int idx = Player.FindBuffIndex(ModContent.BuffType<VoidSickness2>());
@@ -846,8 +884,7 @@ namespace InfernalEclipseAPI.Core.Players
 
                 float time = Player.buffTime[idx];
 
-                ref StatModifier local = ref Player.GetDamage(DamageClass.Generic);
-                local -= (float)(0.25 * (time / 300f));
+                Player.GetDamage(DamageClass.Generic) -= (float)(0.25 * (time / 300f));
 
                 if (time >= 10 * 60)
                 {

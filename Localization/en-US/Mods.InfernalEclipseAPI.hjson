@@ -7,7 +7,12 @@ UI: {
 
 	TitleLinks: {
 		Patreon: Patreon
-		Github: Github
+		Github: GitHub
+	}
+
+	RecipeBrowserCategories: {
+		Legendary: Legendary
+		Mythical: Mythical
 	}
 
 	NoVoidConsumable: You don't have the appetite for that!
@@ -97,6 +102,12 @@ UI: {
 		This mod adds a bunch of unlisted changes which might make your playthough worse than intended.
 		We heavily recommend you disable this mod.
 		'''
+	MediumWorldWarning: "[c/FF0000:MEDIUM WORLDS NOT RECOMMENDED WITH IEOR]"
+	WorldWarningRemnants:
+		'''
+		[c/FF0000:INFERNUM MODE AND SOTS NOT SUPPORTED BY REMNANTS]
+		[c/FF0000:It is recommended to Remnants before continuing!]
+		'''
 }
 
 DifficultyUI: {
@@ -151,15 +162,15 @@ ItemBalance: {
 	Modified2: Hold {0} to see modifications
 	DamageUpGeneric: "    Damage increased by [c/00A36C:{0}%]"
 	DamageDownGeneric: "    Damage decreased by [c/FF0000:{0}%]"
-	ShootSpeedUpGeneric: "    Shoot speed decreased by [c/FF0000:{0}%]"
-	ShootSpeedDownGeneric: "    Shoot speed increased by [c/00A36C:{0}%]"
+	ShootSpeedUpGeneric: "    Shoot speed increased by [c/00A36C:{0}%]"
+	ShootSpeedDownGeneric: Shoot speed decreased by [c/FF0000:{0}%]
 	UseTimeUpGeneric: "    Use time decreased by [c/00A36C:{0}%]"
 	UseTimeDownGeneric: "    Use time increased by [c/FF0000:{0}%]"
 	UseAnimationUpGeneric: "    Use animation decreased by [c/00A36C:{0}%]"
 	UseAnimationDownGeneric: "    Use animation increased by [c/FF0000:{0}%]"
 	UseSpeedUpGeneric: "    Use speed increased by [c/00A36C:{0}%]"
 	UseSpeedDownGeneric: "    Use speed decreased by [c/FF0000:{0}%]"
-	PickUpGeneric: "    Pickaxe power increased by [c/FF0000:{0}%]"
+	PickUpGeneric: "    Pickaxe power increased by [c/00A36C:{0}%]"
 	PickDownGeneric: "    Pickaxe power decreased by [c/FF0000:{0}%]"
 	CritUpGeneric: "    Critical strike chance increased by [c/00A36C:{0}%]"
 	CritDownGeneric: "    Critical strike chance decreased by [c/FF0000:{0}%]"
@@ -195,6 +206,7 @@ ItemTooltip: {
 		SOTSAdditional: Disables effects of Icosahedrons
 	}
 
+	Dreadmine: "[s:InfernalEclipseAPI/IEoRIcon] Only one dreadmine turret can be active at once, and spawning a new turret will cause all active mines to explode"
 	Calculator: Reduces summon damage by 20%
 	Wiesnbrau:
 		'''
@@ -958,6 +970,7 @@ ItemTooltip: {
 		Line3: The adversity you overcome will bear worthy fruit.
 	}
 
+	AstrageldonPlatinumRelic: A trophy for defeating the multiversal terror before the fall of the eldritch remains
 	PrimordialsRelic:
 		'''
 		You've done well, taking down Thorium. Only ten remain
@@ -2044,7 +2057,7 @@ Items: {
 			Instantly activates rage mode & inflicts [cbuff:PotionSickness]
 			'品尝我的怒火……和布丁！'
 			'''
-		VoidTooltip: Heals 100 void
+		VoidTooltip: Refills 100 void
 		Stellar: Stellar
 		Major: Major
 	}
@@ -2057,7 +2070,7 @@ Items: {
 			{0}{1} improvements to all stats
 			'Ignore the fact it is pork... made out of chicken nuggets'
 			'''
-		VoidTooltip: Heals 75 void
+		VoidTooltip: Refills 75 void
 	}
 
 	SingularityCore: {
@@ -2119,7 +2132,7 @@ Items: {
 			Holding <right> will begin charging a strengthened swing
 			Releasing <right> while fully charged will unleash a devastating slash that always critically strikes
 			Hitting an enemy inflicts [cbuff:CalamityMod/AuricRebuke]
-			'May fortune favor you. For nothing else will.'
+			[c/E3AF40:May fortune favor you. For nothing else will.]
 			'''
 	}
 
@@ -2397,7 +2410,7 @@ Items: {
 		DisplayName: Infernal Arsenal Painting
 		Tooltip:
 			'''
-			Congratulations to those who have either beat low% or Boss Rush!
+			Congratulations to those who have either beat low%, whips only, or Boss Rush!
 			The confines of this painting is not enough to fit every victor
 			Victors are listed in the order they beat said challenge
 			Hold SHIFT to see the full list of credits
@@ -2470,6 +2483,67 @@ Items: {
 	VassalMusicBox: {
 		DisplayName: Music Box (Bereft Vassal - Ragnarok Mode)
 		Tooltip: Plays 'Dead Kingdom's Champion' by Techhy
+	}
+
+	SubspaceSerpentRelicPlatinum: {
+		DisplayName: Platinum Subspace Serpent Relic
+		Tooltip: "{0}"
+		PlatinumTooltip: A trophy for defeating the serpent of sages before the fall of the eldritch remains
+	}
+
+	TerraBladeRelicPlatinum: {
+		DisplayName: Platinum Terra Blade Relic
+		Tooltip: "{0}"
+		PlatinumTooltip: A trophy for defeating the dark reflection before the death of the Devourer of Gods
+	}
+
+	AstrageldonRelicGold: {
+		DisplayName: Astrageldon Relic
+		Tooltip: ""
+	}
+
+	QueenJellyfishMusicBox: {
+		DisplayName: Music Box (Queen Jellyfish - Ragnarok Mode)
+		Tooltip: Plays 'Mutant Majesty' by Techhy
+	}
+
+	InfernalHypnosRelic: {
+		DisplayName: Infernal Hypnos Relic
+		Tooltip: "{0}"
+	}
+
+	TerraBladeTreasureBag: {
+		DisplayName: Treasure Bag (Terra Blade)
+		Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+	}
+
+	SoulBaguette: {
+		DisplayName: Soul Baguette
+		Tooltip:
+			'''
+			{0}{$CommonItemTooltip.MediumStats}
+			Heals 250 with [cbuffplr:CalamityMod/RedWineBuff], but reduces by 1 HP/s for 15 seconds
+			'''
+		VoidTooltip: Refills 60 void
+	}
+
+	ExoBaguette: {
+		DisplayName: Exo Baguette
+		Tooltip:
+			'''
+			Permanently allows you to drink 1 more alcohol than normal
+			Can only be used once
+			'''
+	}
+
+	ChestLockIcon: {
+		DisplayName: Chest Lock Icon
+		Tooltip: ""
+	}
+
+	HoverItemDummy: {
+		DisplayName: Hover Item Dummy
+		Tooltip: ""
 	}
 }
 
@@ -2544,18 +2618,8 @@ BullyingTooltip:
 Configs: {
 	InfernalConfig: {
 		WrathoftheGodsBossesInBossRush: {
-			Tooltip: Adds XG-07 Mars, the Avatar of Emptinesss, and Nameless Deity to Boss Rush.
+			Tooltip: Adds XG-07 Mars, the Avatar of Emptiness, and Nameless Deity to Boss Rush.
 			Label: Wrath of the God's Bosses In Boss Rush
-		}
-
-		BetsyInBossRush: {
-			Tooltip: Adds Betsy to Boss Rush - CURRENTLY BUGGED
-			Label: Betsy In Boss Rush
-		}
-
-		DreadnautillusInBossRush: {
-			Tooltip: Adds Dreadnautillus to Boss Rush
-			Label: Dreadnautillus In Boss Rush
 		}
 
 		Headers: {
@@ -2840,24 +2904,9 @@ Configs: {
 			Tooltip: Toggles if 'Last Battle (Ballos Mix)' by DM DOKURO plays during Devourer of Gods' final phase and desperation in Ragnaork Mode
 		}
 
-		WarMachineBossInBossRush: {
-			Label: Wulfrum Mothership In Boss Rush
-			Tooltip: Adds the Wulfrum Mothership boss to Boss Rush
-		}
-
-		MothershipMusic: {
-			Label: Wulfrum Mothership Music
-			Tooltip: Toggles which theme plays during the Wulfrum Mothership boss fight
-		}
-
 		MaxVoidOnRespawn: {
 			Tooltip: Toggles if you respawn with max void or the default amount
 			Label: Max Void On Respawn
-		}
-
-		SolynCampsiteFixes: {
-			Label: Solyn Campsite Fixes
-			Tooltip: ""
 		}
 
 		CnidrionMusic: {
@@ -2887,6 +2936,16 @@ Configs: {
 		QueenJellyfishRagnarok: {
 			Label: Ragnarok Queen Jellyfish Theme
 			Tooltip: Toggles if 'Mutant Majesty' by Techhy plays during the Queen Jellyfish boss fight in Ragnarok Mode.
+		}
+
+		ViscountRagnarok: {
+			Label: Ragnarok Viscount Theme
+			Tooltip: Toggles if 'Carotid Crypt' by Techhy & PFungi plays during the Queen Jellyfish boss fight in Ragnarok Mode.
+		}
+
+		GESRagnarok: {
+			Label: Ragnarok Granite Energy Storm Theme
+			Tooltip: Toggles if 'Stonewarden' by Techhy plays during the Queen Jellyfish boss fight in Ragnarok Mode.
 		}
 	}
 
@@ -2958,30 +3017,6 @@ Configs: {
 		}
 	}
 
-	MothershipSong: {
-		Tooltip: ""
-
-		Vanilla: {
-			Label: Vanilla
-			Tooltip: "'Boss 1' will play"
-		}
-
-		WarMachine: {
-			Label: War Machine
-			Tooltip: The original theme will play
-		}
-
-		Thorium: {
-			Label: Thorium
-			Tooltip: "'Stronger Foe' will play"
-		}
-
-		Infernum: {
-			Label: Infernum
-			Tooltip: "'Misanthropic Encounters' will play"
-		}
-	}
-
 	HomewardConfig: {
 		DisplayName: Homeward Config
 
@@ -3019,6 +3054,41 @@ DamageClasses: {
 }
 
 InfernumIntegration: {
+	BossRushIntroText1:
+		'''
+		Boss Rush - Tier 1
+		Ensemble of Fools
+		'''
+	BossRushIntroText2:
+		'''
+		Boss Rush - Tier 2
+		Onslaught of Beasts
+		'''
+	BossRushIntroText3:
+		'''
+		Boss Rush - Tier 3
+		Reign of Lords
+		'''
+	BossRushIntroText4:
+		'''
+		Boss Rush - Tier 4
+		Trial of the Insane
+		'''
+	BossRushIntroText5:
+		'''
+		Boss Rush - Tier 5
+		Apotheosis of the Deranged
+		'''
+	BossRushIntroText6:
+		'''
+		Boss Rush - Tier 6
+		Finale of the Deities
+		'''
+	BossRushIntroText7:
+		'''
+		Boss Rush - Tier ???
+		Test of Resolve
+		'''
 	Astrageldon:
 		'''
 		Multiversal Terror
@@ -3394,6 +3464,16 @@ Buffs: {
 		DisplayName: Blixer
 		Description: "'I didn't design THIS! :('"
 	}
+
+	HormonalBlockade: {
+		DisplayName: Hormonal Blockade
+		Description: You can't access your Rage or Adrenaline!
+	}
+
+	FreezingAura: {
+		DisplayName: Freezing Aura
+		Description: Mods.InfernalEclipseAPI.Buffs.FreezingAura.Description
+	}
 }
 
 Tiles: {
@@ -3414,6 +3494,7 @@ Tiles: {
 	ProvidenceNightMusicBoxTile.MapEntry: Music Box
 	ThunderBirdMusicBoxTile.MapEntry: Music Box
 	VassalMusicBoxTile.MapEntry: Music Box
+	QueenJellyfishMusicBoxTile.MapEntry: Music Box
 }
 
 NPCs: {
@@ -3461,18 +3542,19 @@ BossName: {
 	BereftVassal: Dead Kingdom's Champion - Bereft Vassal (Ragnarok Mode)
 	DoG: Last Battle (Ballos Mix) - Devourer of Gods (Phase 3)
 	Interlude4: Calamity before the cynosure - Interlude 4
-	Tier5: Descent Of Divinities - Boss Rush (Tier 5)
-	Tier6: Omiscience Of Gods - Boss Rush (Tier 6)
+	Tier5: Omiscience Of Gods - Boss Rush (Tier 5)
+	Tier6: Onslaught of Beasts (Encore Mix) - Boss Rush (Tier 6)
 	TierNameless: TWISTED GARDEN [Remix] - Nameless Deity (Boss Rush)
 	Encore: Ensemble of Fools (Encore Mix) - Boss Rush (End)
 	You: FINAL FRACTAL - Terra Blade
 	Ragnarok: Reality's End - Dream Eater, the Ragnarok
-	LittleCat: Coming Soon... - ???
 	ProvidenceNight: Unholy Finality - Providence (Night)
 	Seahorse: Seahorse Scrutiny (Rebirth) - Cnidrion
 	Arsenal: Arsenal - Codebreaker Interlude
 	ThunderBird: Infernal Thunder Bird - The Grand Thunder Bird (Ragnarok Mode)
 	QueenJellyfish: Mutant Majesty - Queen Jellyfish (Ragnarok Mode)
+	GraniteEnergyStorm: Stonewarden - Granite Energy Storm (Ragnarok Mode)
+	Viscount: Carotid Crypt - Viscount (Ragnarok Mode)
 }
 
 PetDialog.DoGDSPTip: The laser grid spawns at the same time as he dashes! Focus on ramming the Devourer first then move to a safe spot - but don't forget about those fireballs!

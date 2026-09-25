@@ -1,14 +1,16 @@
-﻿using System.Collections.Generic;
-using CalamityMod;
+﻿using CalamityMod;
 using CalamityMod.Buffs.StatBuffs;
 using CalamityMod.Items.Materials;
 using CalamityMod.Rarities;
+using InfernalEclipseAPI.Content.Buffs;
+using InfernalEclipseAPI.Core.Players;
 using InfernalEclipseAPI.Core.Systems;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SOTS.Buffs;
 using SOTS.Void;
+using System.Collections.Generic;
 using Terraria.Audio;
 using Terraria.Localization;
 
@@ -72,6 +74,9 @@ namespace InfernalEclipseAPI.Content.Items.Consumables
         {
             ++Item.stack;
             Activate(player);
+
+            if (player?.active == true)
+                player.AddBuff(ModContent.BuffType<VoidSickness2>(), 600);
         }
 
         public void Activate(Player player)
@@ -153,6 +158,21 @@ namespace InfernalEclipseAPI.Content.Items.Consumables
     {
         public static bool CanUse(Player player)
         {
+            if (player.HasBuff(ModContent.BuffType<VoidSickness2>()))
+            {
+                int buffIndex = player.FindBuffIndex(ModContent.BuffType<VoidSickness2>());
+
+                if (buffIndex != -1 && player.buffTime[buffIndex] >= 10 * 60)
+                {
+                    if (player.GetModPlayer<InfernalPlayer>().voidSicknessTextCooldown <= 0)
+                    {
+                        CombatText.NewText(player.Hitbox, Color.Lerp(Color.Red, Color.Magenta, 0.5f), Language.GetTextValue("Mods.InfernalEclipseAPI.UI.NoVoidConsumable"), true);
+                        player.GetModPlayer<InfernalPlayer>().voidSicknessTextCooldown = 60 * 5;
+                    }
+                    return false;
+                }
+            }
+
             return !VoidPlayer.ModPlayer(player).frozenVoid && !player.HasBuff(ModContent.BuffType<Satiated>());
         }
 

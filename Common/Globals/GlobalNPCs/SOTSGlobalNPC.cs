@@ -1,58 +1,59 @@
-﻿using System.Linq;
-using CalamityMod;
+﻿using CalamityMod;
+using CalamityMod.Events;
+using CalamityMod.Items.Materials;
 using CalamityMod.Items.Mounts;
+using CalamityMod.NPCs.Cryogen;
+using CalamityMod.NPCs.DevourerofGods;
+using CalamityMod.NPCs.HiveMind;
+using CalamityMod.NPCs.NormalNPCs.HorribleHog;
+using CalamityMod.NPCs.Perforator;
+using CalamityMod.NPCs.ProfanedGuardians;
+using CalamityMod.NPCs.Ravager;
 using CalamityMod.NPCs.SlimeGod;
+using CalamityMod.NPCs.SunkenSea;
 using CalamityMod.Projectiles.Boss;
+using CalamityMod.Projectiles.Boss.BrainOfCthulhu;
+using InfernalEclipseAPI.Content.Buffs;
+using InfernalEclipseAPI.Content.Items.Lore.SOTS;
+using InfernalEclipseAPI.Content.Items.Placeables.Relics.Platinum;
 using InfernalEclipseAPI.Content.Items.Placeables.Relics.SOTS;
+using InfernalEclipseAPI.Content.Projectiles;
+using InfernalEclipseAPI.Core.Configs;
+using InfernalEclipseAPI.Core.Players;
 using InfernalEclipseAPI.Core.Systems;
 using InfernumMode;
+using InfernumMode.Content.BehaviorOverrides.BossAIs.BoC;
+using InfernumMode.Content.BehaviorOverrides.BossAIs.Deerclops;
+using InfernumMode.Content.BehaviorOverrides.BossAIs.HiveMind;
+using InfernumMode.Content.BehaviorOverrides.BossAIs.Perforators;
+using InfernumMode.Content.BehaviorOverrides.BossAIs.SlimeGod;
 using InfernumMode.Content.BehaviorOverrides.BossAIs.SupremeCalamitas;
 using InfernumMode.Core.GlobalInstances.Systems;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
+using SOTS;
 using SOTS.Buffs;
+using SOTS.Buffs.Debuffs;
+using SOTS.Common.GlobalNPCs;
+using SOTS.Helpers;
+using SOTS.Items.ChestItems;
+using SOTS.Items.Fragments;
 using SOTS.NPCs.Boss;
 using SOTS.NPCs.Boss.Advisor;
 using SOTS.NPCs.Boss.Glowmoth;
 using SOTS.NPCs.Boss.Lux;
-using SOTS.NPCs.Boss.Polaris.NewPolaris;
 using SOTS.NPCs.Boss.Polaris;
-using SOTS.Void;
-using ThoriumMod.NPCs.BossGraniteEnergyStorm;
-using InfernalEclipseAPI.Content.Items.Lore.SOTS;
-using SOTS.Items.Fragments;
-using SOTS.NPCs.TreasureSlimes;
-using Terraria.GameContent.ItemDropRules;
-using CalamityMod.NPCs.Cryogen;
-using CalamityMod.Items.Materials;
-using SOTS;
-using InfernalEclipseAPI.Content.Projectiles;
-using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
-using SOTS.Helpers;
-using CalamityMod.NPCs.SunkenSea;
-using CalamityMod.NPCs.Perforator;
-using CalamityMod.NPCs.HiveMind;
-using InfernumMode.Content.BehaviorOverrides.BossAIs.Perforators;
-using CalamityMod.Projectiles.Boss.BrainOfCthulhu;
-using InfernumMode.Content.BehaviorOverrides.BossAIs.BoC;
-using InfernumMode.Content.BehaviorOverrides.BossAIs.HiveMind;
-using SOTS.Common.GlobalNPCs;
-using InfernumMode.Content.BehaviorOverrides.BossAIs.Deerclops;
-using Terraria.DataStructures;
+using SOTS.NPCs.Boss.Polaris.NewPolaris;
 using SOTS.NPCs.Town;
-using SOTS.Items.ChestItems;
-using SOTS.Buffs.Debuffs;
-using InfernalEclipseAPI.Content.Buffs;
-using CalamityMod.Events;
-using InfernalEclipseAPI.Core.Players;
-using System.Collections.Generic;
-using InfernalEclipseAPI.Core.Configs;
+using SOTS.NPCs.TreasureSlimes;
 using SOTS.Projectiles.Permafrost;
-using CalamityMod.Systems.Collections;
-using InfernumMode.Content.BehaviorOverrides.BossAIs.SlimeGod;
-using CalamityMod.NPCs.Ravager;
-using CalamityMod.NPCs.ProfanedGuardians;
-using CalamityMod.NPCs.NormalNPCs.HorribleHog;
+using SOTS.Void;
+using System.Collections.Generic;
+using System.Linq;
+using Terraria.DataStructures;
+using Terraria.GameContent.ItemDropRules;
+using ThoriumMod.NPCs.BossGraniteEnergyStorm;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
 {
@@ -246,7 +247,12 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
 
         public override bool PreAI(NPC npc)
         {
-            if (!InfernalConfig.Instance.SOTSBalanceChanges || !npc.active || (npc.type != ModContent.NPCType<SubspaceSerpentHead>() && npc.type != ModContent.NPCType<Lux>())) return base.PreAI(npc);
+            if (InfernalConfig.Instance.SOTSBalanceChanges || !npc.active) return base.PreAI(npc);
+
+            if (npc.type == ModContent.NPCType<MutagenTreasureSlime>() && !NPC.downedBoss2)
+                npc.active = false;
+
+            if (npc.type != ModContent.NPCType<SubspaceSerpentHead>() && npc.type != ModContent.NPCType<Lux>()) return base.PreAI(npc);
 
             for (int i = 0; i < Main.maxPlayers; i++)
             {
@@ -279,16 +285,13 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
             {
                 if (npc.type == InfernalCrossmod.NoxusBoss.Mod.Find<ModNPC>("NamelessDeityBoss").Type)
                 {
-                    debuffNPC.PlatinumCurse = 0;
-                    debuffNPC.HarvestCurse = 0;
-                    debuffNPC.DestableCurse = 0;
-                    debuffNPC.BlazingCurse = 0;
-                    debuffNPC.AnomalyCurse = 0;
-                    debuffNPC.BlightCurse = 0;
-                    debuffNPC.CrystalCurse = 0;
-                    debuffNPC.DamageCurse = 0;
-                    debuffNPC.VoidspaceCurse = 0;
+                    MakeSOTSCurseImmune(npc);
                 }
+            }
+
+            if (npc.type == ModContent.NPCType<DevourerofGodsHead>() || npc.type == ModContent.NPCType<DevourerofGodsBody>() || npc.type == ModContent.NPCType<DevourerofGodsTail>())
+            {
+                MakeSOTSCurseImmune(npc);
             }
 
             if (debuffNPC.AnomalyCurse > MaxAnomalyCurseStacks)
@@ -430,6 +433,21 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
             NerfBlazingCurse(npc, ref modifiers);
         }
 
+        private static void MakeSOTSCurseImmune(NPC npc)
+        {
+            DebuffNPC debuffNPC = npc.GetGlobalNPC<DebuffNPC>();
+
+            debuffNPC.PlatinumCurse = 0;
+            debuffNPC.HarvestCurse = 0;
+            debuffNPC.DestableCurse = 0;
+            debuffNPC.BlazingCurse = 0;
+            debuffNPC.AnomalyCurse = 0;
+            debuffNPC.BlightCurse = 0;
+            debuffNPC.CrystalCurse = 0;
+            debuffNPC.DamageCurse = 0;
+            debuffNPC.VoidspaceCurse = 0;
+        }
+
         private static void NerfBlazingCurse(NPC npc, ref NPC.HitModifiers modifiers)
         {
             if (!InfernalConfig.Instance.SOTSBalanceChanges) return;
@@ -562,6 +580,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
             if (npc.type == ModContent.NPCType<SubspaceSerpentHead>())
             {
                 npcLoot.AddIf(isInfernum, ModContent.ItemType<SubspaceSerpentRelic>());
+                npcLoot.AddIf(() => !NPC.downedMoonlord, ModContent.ItemType<SubspaceSerpentRelicPlatinum>());
             }
             #endregion
         }

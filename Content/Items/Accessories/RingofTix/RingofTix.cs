@@ -50,8 +50,7 @@ namespace InfernalEclipseAPI.Content.Items.Accessories.RingofTix
 
             player.GetDamage(DamageClass.Generic).Flat += 4;
             player.GetArmorPenetration(DamageClass.Generic) += 5;
-            ref StatModifier local = ref player.GetDamage(DamageClass.Generic);
-            local += 0.06f;
+            player.GetDamage(DamageClass.Generic) += 0.06f;
             player.GetCritChance(DamageClass.Generic) += 4;
 
             player.lifeRegen += 3;

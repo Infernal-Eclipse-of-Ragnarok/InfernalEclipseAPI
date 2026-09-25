@@ -65,11 +65,11 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks.BossChecklistChanges
                 if (dict.ContainsKey("BossRush"))
                 {
                     dict["BossRush"] = 28.1f;
-                    Mod.Logger.Info("Set Ca lamity BossRus BossChecklist progression value to 28.1f.");
+                    Mod.Logger.Info("Set Calamity BossRush BossChecklist progression value to 28.1f.");
                 }
                 else
                 {
-                    Mod.Logger.Warn("BossRus key not found in BossChecklistProgressionValues.");
+                    Mod.Logger.Warn("BossRush key not found in BossChecklistProgressionValues.");
                 }
             }
             catch (Exception ex)

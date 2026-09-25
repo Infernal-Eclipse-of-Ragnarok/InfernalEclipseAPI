@@ -27,8 +27,8 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.MusicBoxes
             Item.autoReuse = true;
             Item.consumable = true;
             Item.createTile = ModContent.TileType<FinalFractalMusicBoxTile>();
-            Item.width = 32;
-            Item.height = 32;
+            Item.width = 30;
+            Item.height = 30;
             Item.rare = ItemRarityID.Blue;
             Item.value = Terraria.Item.sellPrice(silver: 20);
             Item.accessory = true;

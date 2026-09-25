@@ -7,6 +7,7 @@ using CalamityMod.Items.Materials;
 using CalamityMod.Items.Mounts;
 using CalamityMod.Items.PermanentBoosters;
 using CalamityMod.Items.Placeables;
+using CalamityMod.Items.Placeables.Furniture;
 using CalamityMod.Items.Placeables.SunkenSea;
 using CalamityMod.Items.Potions;
 using CalamityMod.Items.SummonItems;
@@ -463,6 +464,16 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                     }
                 }
 
+                if (recipe.HasResult<UnstableGraniteCore>() || recipe.HasResult<LuxorsGift>() || recipe.HasResult<TrinketofChi>() || recipe.HasResult<TundraLeash>() || recipe.HasResult<GladiatorsLocket>() || recipe.HasResult<FungalSymbiote>())
+                {
+                    recipe.DisableRecipe();
+                }
+
+                if ((recipe.HasResult<CorruptionEffigy>() || recipe.HasResult<CrimsonEffigy>()) && recipe.Mod.Name != "CalamityMod")
+                {
+                    recipe.DisableRecipe();
+                }
+
                 if (thorium != null)
                 {
                     if (recipe.HasResult<TheAmalgam>())
@@ -596,11 +607,12 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                 #region Calamity Simple Whip Addon
                 if (ModLoader.TryGetMod("CalamitySimpleWhipAddon", out Mod simpleWhipAddon))
                 {
+                    /*
                     if (recipe.HasResult(simpleWhipAddon.Find<ModItem>("WoodenWhip")))
                     {
                         recipe.AddIngredient(ItemID.Hay, 5);
                     }
-
+                    */
                     if (thorium != null)
                     {
                         if (recipe.HasResult(simpleWhipAddon.Find<ModItem>("MandibleLash")))
@@ -608,7 +620,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                             recipe.AddIngredient(thorium.Find<ModItem>("SandstoneIngot"), 8);
                         }
                     }
-
+                    /*
                     if (recipe.HasResult(simpleWhipAddon.Find<ModItem>("AurelianSanctum")))
                     {
                         recipe.RemoveIngredient(ModContent.ItemType<ShadowspecBar>());
@@ -624,7 +636,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                     {
                         recipe.AddIngredient(InfernalCrossmod.Calamity.Mod.Find<ModItem>("RuinousSoul"), 2);
                     }
-
+                    */
                     if (InfernalConfig.Instance.CalamityBalanceChanges) 
                     {
                         ModItem[] bleachedAcessories =
@@ -734,6 +746,14 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                         recipe.RemoveIngredient(thorium.Find<ModItem>("InfernoEssence").Type);
                         recipe.RemoveIngredient(thorium.Find<ModItem>("OceanEssence").Type);
                         recipe.RemoveIngredient(thorium.Find<ModItem>("DeathEssence").Type);
+                    }
+
+                    if (InfernalConfig.Instance.BossKillCheckOnOres)
+                    {
+                        if (recipe.HasResult(thorium.Find<ModItem>("LihzahrdKukri")))
+                        {
+                            recipe.AddDecraftCondition(Condition.DownedPlantera);
+                        }
                     }
 
                     if (InfernalConfig.Instance.ThoriumBalanceChangess)
@@ -1423,9 +1443,9 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                 #endregion
 
                 #region SOTS
-                if (InfernalConfig.Instance.SOTSBalanceChanges)
+                if (ModLoader.TryGetMod("SOTS", out Mod sots))
                 {
-                    if (ModLoader.TryGetMod("SOTS", out Mod sots))
+                    if (InfernalConfig.Instance.SOTSBalanceChanges)
                     {
                         if (InfernalConfig.Instance.MergeCraftingTrees)
                         {
@@ -1708,6 +1728,14 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                         }
                         #endregion
                     }
+
+                    if (InfernalConfig.Instance.BossKillCheckOnOres)
+                    {
+                        if (recipe.HasResult(sots.Find<ModItem>("SolarBullet")))
+                        {
+                            recipe.AddDecraftCondition(Condition.DownedPlantera);
+                        }
+                    }
                 }
                 #endregion
 
@@ -1756,7 +1784,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
             return mod.Find<ModItem>(name);
         }
 
-        private static readonly Condition SkeletronOrHardmode = new("Conditions.DownedSkeletron", () => NPC.downedBoss3 || Main.hardMode);
+        public static readonly Condition SkeletronOrHardmode = new("Conditions.DownedSkeletron", () => NPC.downedBoss3 || Main.hardMode);
     }
 
     [JITWhenModsEnabled("SOTS")]

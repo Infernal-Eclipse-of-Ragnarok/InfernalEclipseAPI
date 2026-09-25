@@ -28,6 +28,8 @@ using CalamityMod.Events;
 using Microsoft.Xna.Framework;
 using InfernalEclipseAPI.Core.Configs;
 using CalamityMod.Buffs.StatDebuffs;
+using CatalystMod.NPCs;
+using InfernalEclipseAPI.Common.GlobalNPCs.LootAdjustments;
 
 namespace InfernalEclipseAPI.Common.GlobalNPCs.InfernalRelics
 {
@@ -37,9 +39,22 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.InfernalRelics
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
             bool isInfernum() => InfernumSaveSystem.InfernumModeEnabled;
+
             if (npc.type == ModContent.NPCType<Astrageldon>() && !ModLoader.TryGetMod("CnI", out _))
             {
                 npcLoot.AddIf(isInfernum, ModContent.ItemType<AstrageldonRelic>());
+
+                foreach (IItemDropRule rule in npcLoot.Get())
+                {
+                    if (rule is CommonDrop drop && drop.itemId == ModContent.ItemType<CatalystMod.Items.Placeable.Furniture.BossTrophies.AstrageldonRelic>())
+                    {
+                        npcLoot.Remove(drop);
+                    }
+                }
+                npcLoot.AddIf(() => !NPC.downedMoonlord, ModContent.ItemType<CatalystMod.Items.Placeable.Furniture.BossTrophies.AstrageldonRelic>());
+
+                npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<AstrageldonRelicGold>()));
+                npcLoot.Add(ItemDropRule.ByCondition(new RevengenceMode(), ModContent.ItemType<AstrageldonRelicGold>(), 1, 1, 1, 1));
             }
         }
     }

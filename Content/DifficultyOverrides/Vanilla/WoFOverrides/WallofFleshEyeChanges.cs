@@ -1,4 +1,7 @@
-﻿using InfernalEclipseAPI.Core.World;
+﻿using CalamityMod;
+using CalamityMod.Events;
+using InfernalEclipseAPI.Content.Buffs;
+using InfernalEclipseAPI.Core.World;
 using InfernumMode;
 using InfernumMode.Content.BehaviorOverrides.BossAIs.WallOfFlesh;
 using Microsoft.Xna.Framework;
@@ -39,7 +42,8 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Vanilla.WoFOverrides
 
                 if (doCircleAttack) 
                 {
-                    Vector2 laserShootVelocity = npc.SafeDirectionTo(target.Center) * 8.5f;
+                  
+                    Vector2 laserShootVelocity = Utilities.SafeDirectionTo(npc, target.Center) * 8.5f;
                     Vector2 laserShootPosition = npc.Center + laserShootVelocity * 7.5f;
 
                     float shiftedTimer = (wallAttackTimer + laserShootRate / 2f) % laserShootRate;
@@ -78,6 +82,14 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Vanilla.WoFOverrides
                         continue; 
                     
                     circleHoverCount++; 
+                }
+
+                if (!BossRushEvent.BossRushActive)
+                {
+                    foreach (Player player in Main.ActivePlayers)
+                    {
+                        player.AddBuff(ModContent.BuffType<HormonalBlockade>(), 2);
+                    }
                 }
 
                 int beamShootRate = 1600 - circleHoverCount * 270; 

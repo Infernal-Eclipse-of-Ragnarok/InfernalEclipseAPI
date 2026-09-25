@@ -1,16 +1,20 @@
 VisionAmuletTextList: {
-	// 2: "[s:InfernalEclipseAPI/IEoRIcon] Increases attack speed by 8%"
-	// 3: "[s:InfernalEclipseAPI/IEoRIcon] Increases critical strike chance by 4%, and is improved to 8% after beating the guardian of the underworld"
+	2: "[s:InfernalEclipseAPI/IEoRIcon] Увеличивает скорость атаки на 8%"
+	3:
+		'''
+		[s:InfernalEclipseAPI/IEoRIcon] Увеличивает шанс критического удара на 4%
+		Этот шанс увеличивается до 8% после победы над стражем преисподней
+		'''
 	4:
 		'''
-		Увеличивает урон критических ударов на 5%
-		Этот шанс увеличивается до 10% в Хардмоде
+		[s:InfernalEclipseAPI/IEoRIcon] Увеличивает урон критических ударов на 5%
+		Этот шанс увеличивается до 10% после победы над стражем преисподней
 		'''
 	6:
 		'''
 		Увеличивает максимальный запас здоровья на 20 ед.
-		Увеличивает урон на 5%
-		Этот шанс увеличивается до 10% в Хардмоде
+		[s:InfernalEclipseAPI/IEoRIcon] Увеличивает урон на 5%
+		Этот шанс увеличивается до 10% после победы над стражем преисподней
 		'''
 }
 
@@ -18,32 +22,32 @@ VisionAmuletTextList2: {
 	1:
 		'''
 
-		Снижает расход маны на 20%
-		Этот шанс увеличивается до 25% в Хардмоде
+		[s:InfernalEclipseAPI/IEoRIcon] Снижает расход маны на 15%
+		Этот шанс увеличивается до 20% после победы над стражем преисподней
 		'''
-	/* 2:
+	2:
 		'''
 
-		[s:InfernalEclipseAPI/IEoRIcon] Increases melee speed and movement speed by 8%
-		Increases jump speed
-		''' */
+		[s:InfernalEclipseAPI/IEoRIcon] Увеличивает скорость атаки ближнего боя и передвижения на 8%
+		Увеличивает скорость прыжка
+		'''
 	3:
 		'''
 
 		Даёт доступ ко всем рецептам верстака, печи и наковальни
-		Дополнительно даёт доступ к рецептам алхимического стола в Хардмоде
+		[s:InfernalEclipseAPI/IEoRIcon] Дополнительно даёт доступ к рецептам алхимического стола после победы над стражем преисподней
 		Увеличивает максимальное количество исцеления и маны, получаемого от зелий, на 40 ед.
 		'''
 	4:
 		'''
 
-		Наносимый урон получит 10% от всех бонусов к другим типам урона
+		[s:InfernalEclipseAPI/IEoRIcon] Наносимый урон получит 10% от всех бонусов к другим типам урона
 		'''
 	5:
 		'''
 
-		Снижает эффективность вражеской защиты на 20%
-		Этот шанс увеличивается до 25% в Хардмоде
+		[s:InfernalEclipseAPI/IEoRIcon] Снижает эффективность вражеской защиты на 5%
+		Этот шанс увеличивается до 10% после победы над стражем преисподней
 		'''
 }
 
@@ -62,40 +66,40 @@ Items: {
 		'''
 	RockCandy.Tooltip:
 		'''
-		Увеличивает мощность добычи кирок на 4 ед.
+		[s:InfernalEclipseAPI/IEoRIcon] Увеличивает мощность добычи кирок на 4 ед.
 		Увеличивает скорость добычи, ближнего боя и передвижения на 5%
 		'''
 	HydrokineticAntennae.Tooltip:
 		'''
 		Использует гидрокинетику для увеличения радиуса действия оружия короткой дистанции, таких как хлысты и оружие ближнего боя
-		Снижает урон истинного ближнего боя на 15%
+		[s:InfernalEclipseAPI/IEoRIcon] Снижает урон истинного ближнего боя на 15%
 		'''
-	FrostArtifactHelmet.Tooltip: Увеличивает урон ближнего боя и стрелковый урон на 15%
-	FrostArtifactChestplate.Tooltip: Увеличивает шанс критического удара ближнего боя и шанс стрелкового критического удара на 15%
+	FrostArtifactHelmet.Tooltip: "[s:InfernalEclipseAPI/IEoRIcon] Увеличивает урон ближнего боя и стрелковый урон на 15%"
+	FrostArtifactChestplate.Tooltip: "[s:InfernalEclipseAPI/IEoRIcon] Увеличивает шанс критического удара ближнего боя и шанс стрелкового критического удара на 15%"
 
 	ElementalBreastplate: {
 		// DisplayName: Elemental Breastplate
-		/* Tooltip:
+		Tooltip:
 			'''
-			Increases melee and summon damage by 10%
-			Increases life regeneration by 4
-			Press '{0}' to teleport to your cursor, dealing 200% of your defense as damage to all enemies in your path
-			Has a 15 second cooldown, but increases melee speed by 40% during the cooldown
-			''' */
+			Увеличивает урон ближнего боя и урон призывателя на 10%
+			Увеличивает скорость регенерации здоровья на 4
+			Нажмите {0}, чтобы телепортироваться в место курсора, нанеся им урон, равный 200% от вашей защиты
+			Телепортация имеет 15 секунд перезарядки, во время которой скорость ближнего боя увеличивается на 40%
+			'''
 	}
 
-	/* TwilightAssassinsCirclet.Tooltip:
+	TwilightAssassinsCirclet.Tooltip:
 		'''
-		[s:InfernalEclipseAPI/IEoRIcon] Increases max sentries by 1
-		Increases minion and melee damage by 7%
-		Increases max void by 50
-		Provides a Holo Eye minion to assist in combat
-		Press '{0}' to make it launch a destabilizing beam that applies 4 levels of destabilized, but only once per enemy
-		Destabilized enemies gain a 5% flat chance to be critically striked
-		Costs 6 void to launch
-		Holo Eye remains active in the inventory when favorited or while worn in vanity slots, but cannot attack
-		''' */
-	// ChallengerRing.I6: Weapons will inflict a random debuff on hit
+		[s:InfernalEclipseAPI/IEoRIcon] Увеличивает максимальное количество миньонов и стражей на 1
+		Увеличивает урон призывателя и ближнего боя на 7%
+		Увеличивает максимальный запас пустоты на 50 ед.
+		Призывает голографический глаз помогать вам в бою
+		Нажмите {0}, чтобы выпустить дестабилизирующий луч, накладывающий 4 уровня бессрочного дестабилизирующего проклятия, но только один раз на каждого поражённого врага
+		Это проклятие увеличивает шанс критического удара по врагу на 5% за уровень, но не суммируется с шансом критического удара игрока
+		Выпуск дестабилизирующего луча стоит 6 ед. пустоты
+		Голографический глаз продолжит летать с вами, если добавить его в избранное в инвентаре или поместить его в слот украшений, но тогда он не сможет атаковать
+		'''
+	ChallengerRing.I6: Атаки будут накладывать случайный дебафф
 }
 
 ArmorSetBonus.Earthen:

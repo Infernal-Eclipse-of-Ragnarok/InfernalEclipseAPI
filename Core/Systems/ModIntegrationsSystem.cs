@@ -1,10 +1,11 @@
 ﻿using InfernalEclipseAPI.Content.Items.Placeables.MusicBoxes;
-using InfernalEclipseAPI.Content.Items.Weapons.Donor.Steetsign;
+using InfernalEclipseAPI.Content.Items.Weapons.Catlight;
 using InfernalEclipseAPI.Content.NPCs.LittleCat;
 using InfernalEclipseAPI.Core.Configs;
 using InfernalEclipseAPI.Core.DamageClasses.LegendaryClass;
 using InfernalEclipseAPI.Core.DamageClasses.MythicClass;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using SOTS.Void;
 using System.Collections.Generic;
 using Terraria.Audio;
@@ -40,6 +41,7 @@ namespace InfernalEclipseAPI.Core.Systems
             AddInfernumCards();
             ColoredDamageTypesSupport();
             Project_tRUSupport();
+            RecipeBrowserSetup();
 
             if (InfernalCrossmod.Thorium.Loaded)
             {
@@ -60,6 +62,8 @@ namespace InfernalEclipseAPI.Core.Systems
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/Seahorse"), "Seahorse Scrutiny (Rebirth)", "by Brimston Premium", "Infernal Eclipse of Ragnarok");
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/InfernalThunderBird"), "Infernal Thunder Bird", "by Techhy", "Infernal Eclipse of Ragnarok");
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/MutantMajesty"), "Mutant Majesty", "by Techhy", "Infernal Eclipse of Ragnarok");
+            musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/VampiricVitality"), "Carotid Crypt", "by Techhy & PFungi", "Infernal Eclipse of Ragnarok");
+            musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/Stonewarden"), "Stonewarden", "by Techhy", "Infernal Eclipse of Ragnarok");
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/BereftVassal"), "Dead Kingdom's Champion", "by Techhy", "Infernal Eclipse of Ragnarok");
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot(InfernalEclipseAPI.ProvidenceNightPath), "Unholy Finality", "by Brimston Premium", "Infernal Eclipse of Ragnarok");
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/LastBattle"), "Last Battle (Ballos Mix)", "by DM DOKURO", "Infernal Eclipse of Ragnarok");
@@ -69,8 +73,8 @@ namespace InfernalEclipseAPI.Core.Systems
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/Interlude04"), "Calamity before the cynosure", "by theforge129", "Infernal Eclipse of Ragnarok");
 
             //Boss Rush Themes
-            musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/tier5"), "Descent Of Divinities", "by psykomatic", "Infernal Eclipse of Ragnarok");
-            musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/tier6"), "Omiscience Of Gods", "by TheTrester", "Infernal Eclipse of Ragnarok");
+            musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/tier5"), "Omiscience Of Gods", "by TheTrester", "Infernal Eclipse of Ragnarok");
+            musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/tier6"), "Onslaught of Beasts (Encore Mix)", "by CDMusic", "Infernal Eclipse of Ragnarok");
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/TWISTEDGARDENRemix"), "TWISTED GARDEN [Remix]", "by Kuudray", "Infernal Eclipse of Ragnarok");
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/EnsembleofFools(EncoreMix)"), "Ensemble of Fools (Encore Mix)", "by CDMusic", "Infernal Eclipse of Ragnarok");
 
@@ -91,7 +95,15 @@ namespace InfernalEclipseAPI.Core.Systems
                 musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("NoxusBoss/Assets/Sounds/Music/NamelessDeity"), "TWISTED GARDEN", "by ENNWAY & HeartPlusUp!", "Calamity: Wrath of the Gods");
             }
         }
-
+        private static void RecipeBrowserSetup()
+        {
+            if (ModLoader.TryGetMod("RecipeBrowser", out Mod mod))
+            {
+                const string path = "InfernalEclipseAPI/Assets/Images/UI/RecipeBrowser/ClassIcon";
+                mod.Call("AddItemCategory", Language.GetTextValue("Mods.InfernalEclipseAPI.UI.RecipeBrowserCategories.Legendary"), "Weapons", ModContent.Request<Texture2D>(path + "Legendary"), (Predicate<Item>)(item => item.DamageType == ModContent.GetInstance<LegendaryMagic>() || item.DamageType == ModContent.GetInstance<LegendaryMelee>() || item.DamageType == ModContent.GetInstance<LegendaryRanged>() || item.DamageType == ModContent.GetInstance<LegendarySummonMeleeSpeed>() || item.type == ModContent.ItemType<Catlight>()));
+                mod.Call("AddItemCategory", Language.GetTextValue("Mods.InfernalEclipseAPI.UI.RecipeBrowserCategories.Mythical"), "Weapons", ModContent.Request<Texture2D>(path + "Mythic"), (Predicate<Item>)(item => item.DamageType == ModContent.GetInstance<MythicMagic>() || item.DamageType == ModContent.GetInstance<MythicMelee>() || item.DamageType == ModContent.GetInstance<MythicRanged>() || item.DamageType == ModContent.GetInstance<MythicSummon>()));
+            }
+        }
         private static void BossChecklistSetup()
         {
             Mod mod1;

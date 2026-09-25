@@ -1,29 +1,33 @@
-﻿using InfernalEclipseAPI.Core.World;
-using InfernalEclipseAPI.Content.Items.Placeables.Paintings;
-using Terraria.GameContent.ItemDropRules;
-using InfernalEclipseAPI.Core.Systems;
-using System.Collections.Generic;
-using InfernumMode.Core.GlobalInstances.Systems;
-using CalamityMod.World;
-using CalamityMod.NPCs.Crags;
-using CalamityMod.Items.Fishing.FishingRods;
-using System.Linq;
-using InfernalEclipseAPI.Content.Items.Materials;
-using InfernalEclipseAPI.Core.Players;
-using CalamityMod.Items.Placeables.Furniture.Paintings;
-using Terraria.DataStructures;
+﻿using CalamityMod;
 using CalamityMod.Buffs.StatBuffs;
-using CalamityMod.CalPlayer;
-using CalamityMod;
-using InfernalEclipseAPI.Core.Players.ThoriumPlayerOverrides.ThoriumMulticlassNerf;
-using InfernalEclipseAPI.Core.Utils;
 using CalamityMod.Buffs.StatDebuffs;
-using InfernumMode.Content.BehaviorOverrides.BossAIs.ProfanedGuardians;
+using CalamityMod.CalPlayer;
 using CalamityMod.Events;
-using Terraria.GameContent.Events;
+using CalamityMod.Items.Fishing.FishingRods;
+using CalamityMod.Items.Placeables.Furniture.Paintings;
+using CalamityMod.NPCs.Crags;
+using CalamityMod.NPCs.TownNPCs;
+using CalamityMod.World;
+using InfernalEclipseAPI.Content.Buffs;
 using InfernalEclipseAPI.Content.Items.Consumables;
-using InfernalEclipseAPI.Core.Configs;
+using InfernalEclipseAPI.Content.Items.Materials;
 using InfernalEclipseAPI.Content.Items.Placeables.MusicBoxes;
+using InfernalEclipseAPI.Content.Items.Placeables.Paintings;
+using InfernalEclipseAPI.Content.Items.SpawnItems;
+using InfernalEclipseAPI.Core.Configs;
+using InfernalEclipseAPI.Core.Players;
+using InfernalEclipseAPI.Core.Players.ThoriumPlayerOverrides.ThoriumMulticlassNerf;
+using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Utils;
+using InfernalEclipseAPI.Core.World;
+using InfernumMode.Content.BehaviorOverrides.BossAIs.ProfanedGuardians;
+using InfernumMode.Core.GlobalInstances.Systems;
+using System.Collections.Generic;
+using System.Linq;
+using Terraria.DataStructures;
+using Terraria.GameContent.Events;
+using Terraria.GameContent.ItemDropRules;
+using ThoriumMod.Items.Depths;
 
 namespace InfernalEclipseAPI.Common.GlobalNPCs
 {
@@ -56,6 +60,18 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
 
         public override void ModifyActiveShop(NPC npc, string shopName, Item[] items)
         {
+            if (npc.type == NPCID.Painter)
+            {
+                for (int i = 0; i < items.Length; i++)
+                {
+                    if (items[i] == null || items[i].IsAir)
+                    {
+                        items[i] = new Item(ModContent.ItemType<InfernalArsenalPainting>());
+                        break;
+                    }
+                }
+            }
+
             if (npc.type == NPCID.PartyGirl && BirthdayParty.GenuineParty)
             {
                 for (int i = 0; i < items.Length; i++)
@@ -68,14 +84,29 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
                 }
             }
 
-            if (npc.type == NPCID.Princess && DownedBossSystem.downedCalamitas && DownedBossSystem.downedExoMechs)
+            if (npc.type == NPCID.Princess)
             {
-                for (int i = 0; i < items.Length; i++)
+                if (InfernalWorld.codebreakerCompleted)
                 {
-                    if (items[i] == null || items[i].IsAir)
+                    for (int i = 0; i < items.Length; i++)
                     {
-                        items[i] = new Item(ModContent.ItemType<InterludeFourMusicBox>());
-                        break;
+                        if (items[i] == null || items[i].IsAir)
+                        {
+                            items[i] = new Item(ModContent.ItemType<CodebreakerMusicBox>());
+                            break;
+                        }
+                    }
+                }
+
+                if (DownedBossSystem.downedCalamitas && DownedBossSystem.downedExoMechs) 
+                {
+                    for (int i = 0; i < items.Length; i++)
+                    {
+                        if (items[i] == null || items[i].IsAir)
+                        {
+                            items[i] = new Item(ModContent.ItemType<InterludeFourMusicBox>());
+                            break;
+                        }
                     }
                 }
             }
@@ -134,6 +165,19 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
                 }
             }
 
+            if (npc.type == ModContent.NPCType<ShadySalesman>())
+            {
+                for (int i = 0; i < items.Length; i++)
+                {
+                    Item item = items[i];
+
+                    if (item.type != ModContent.ItemType<TrustyOldRod>())
+                        continue;
+
+                    item.TurnToAir();
+                }
+            }
+
             if (ModLoader.TryGetMod("CalamityAmmo", out Mod calamityAmmo) && InfernalConfig.Instance.CalamityBalanceChanges)
             {
                 int hydroArrow = calamityAmmo.Find<ModItem>("HydrothermicArrow").Type;
@@ -157,6 +201,44 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
                         item.TurnToAir();
                 }
             }
+
+            if (InfernalCrossmod.Thorium.Loaded)
+            {
+                if (npc.type == InfernalCrossmod.Thorium.Mod.Find<ModNPC>("ConfusedZombie").Type)
+                {
+                    /*
+                    for (int i = 0; i < items.Length; i++)
+                    {
+                        if (items[i] == null || items[i].IsAir)
+                        {
+                            if (InfernalCrossmod.SOTS.Loaded)
+                            {
+                                if (AncientPhylacteryRightClickBlocker.DownedExcavator)
+                                {
+                                    items[i] = new Item(InfernalCrossmod.SOTS.Mod.Find<ModItem>("SeismicStation").Type);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    */
+
+                    for (int i = 0; i < items.Length; i++)
+                    {
+                        if (items[i] == null || items[i].IsAir)
+                        {
+                            if (InfernalCrossmod.SOTS.Loaded)
+                            {
+                                if (NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3)
+                                {
+                                    items[i] = new Item(InfernalCrossmod.SOTS.Mod.Find<ModItem>("FrostArtifact").Type);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         public override void OnSpawn(NPC npc, IEntitySource source)
@@ -165,9 +247,9 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
             {
                 if (InfernalWorld.RagnarokModeEnabled && !BossRushEvent.BossRushActive)
                 {
-                    foreach (Player player in Main.player)
+                    foreach (Player player in Main.ActivePlayers)
                     {
-                        if (player.active && !player.dead)
+                        if (!player.dead)
                         {
                             ClearRageAndAdrenaline(player);
 
@@ -199,18 +281,11 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
 
         public static void ClearRageAndAdrenaline()
         {
-            foreach (Player player in Main.player)
+            foreach (Player player in Main.ActivePlayers)
             {
-                if (player.active && !player.dead)
+                if (!player.dead)
                 {
-                    player.ClearBuff(ModContent.BuffType<RageMode>());
-                    player.ClearBuff(ModContent.BuffType<AdrenalineMode>());
-
-                    CalamityPlayer mp = player.Calamity();
-                    mp.rage = 0;
-                    mp.rageModeActive = false;
-                    mp.adrenaline = 0;
-                    mp.adrenalineModeActive = false;
+                    ClearRageAndAdrenaline(player);
                 }
             }
         }
@@ -232,40 +307,50 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
         {
             if (!npc.active) return base.PreAI(npc);
 
-            for (int i = 0; i < Main.maxPlayers; i++)
+            if (InfernalWorld.RagnarokModeEnabled)
             {
-                Player player = Main.player[i];
-                if (player.dead || !player.active || !npc.WithinRange(player.Center, 10000f))
-                    continue;
-
-                if (InfernalConfig.Instance.VanillaBalanceChanges && npc.type == NPCID.HallowBoss)
+                if (npc.type == NPCID.Deerclops)
                 {
-                    if (InfernalCrossmod.Clamity.Loaded)
+                    foreach (Player player in Main.ActivePlayers)
                     {
-                        if (player.mount?.Type == InfernalCrossmod.Clamity.Mod.Find<ModMount>("PlagueChairMount").Type)
-                            player.mount.Dismount(player);
+                        if (!player.dead && !npc.WithinRange(player.Center, 1000f))
+                            continue;
+
+                        player.AddBuff(ModContent.BuffType<FreezingAura>(), 2);
                     }
                 }
 
-                if (InfernalWorld.RagnarokModeEnabled && npc.type == NPCID.Golem)
+                if (npc.type == NPCID.Golem)
                 {
-                    player.AddBuff(ModContent.BuffType<WeakPetrification>(), 2);
+                    foreach (Player player in Main.ActivePlayers)
+                    {
+                        if (player.dead || !npc.WithinRange(player.Center, 10000f))
+                            continue;
+
+                        player.AddBuff(ModContent.BuffType<WeakPetrification>(), 2);
+                        player.RemoveAllGrapplingHooks();
+                    }
                 }
 
                 if (npc.type == ModContent.NPCType<HealerShieldCrystal>())
                 {
-                    player.ClearBuff(ModContent.BuffType<RageMode>());
-                    player.ClearBuff(ModContent.BuffType<AdrenalineMode>());
+                    foreach (Player player in Main.ActivePlayers)
+                    {
+                        if (player.dead || !npc.WithinRange(player.Center, 10000f))
+                            continue;
 
-                    CalamityPlayer mp = player.Calamity();
-                    mp.rage = 0;
-                    mp.rageModeActive = false;
-                    mp.adrenaline = 0;
-                    mp.adrenalineModeActive = false;
+                        player.AddBuff(ModContent.BuffType<HormonalBlockade>(), 2);
+                    }
                 }
+            }
 
-                if (InfernalCrossmod.Thorium.Loaded)
+            if (InfernalCrossmod.Thorium.Loaded)
+            {
+                foreach (Player player in Main.ActivePlayers)
                 {
+                    if (player.dead || !npc.WithinRange(player.Center, 10000f))
+                        continue;
+
                     if (npc.ModNPC?.Mod.Name != "ThoriumMod" && npc.boss)
                     {
                         player.ClearBuff(InfernalCrossmod.Thorium.Mod.Find<ModBuff>("SpiritualistBuff").Type);
@@ -287,9 +372,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
             {
                 int slurperPole = ModContent.ItemType<SlurperPole>();
 
-                npcLoot.RemoveWhere(rule =>
-                    rule is CommonDrop cd && cd.itemId == slurperPole ||
-                    rule is ItemDropWithConditionRule iwc && iwc.itemId == slurperPole);
+                npcLoot.RemoveWhere(rule => rule is CommonDrop cd && cd.itemId == slurperPole || rule is ItemDropWithConditionRule iwc && iwc.itemId == slurperPole);
 
                 foreach (var rule in npcLoot.Get())
                     PruneFromChains(rule, slurperPole);
@@ -320,15 +403,13 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
             if (rule.ChainedRules is null || rule.ChainedRules.Count == 0)
                 return;
 
-            rule.ChainedRules.RemoveAll(c =>
-                c.RuleToChain is CommonDrop cd && cd.itemId == itemId ||
-                c.RuleToChain is ItemDropWithConditionRule iwc && iwc.itemId == itemId);
+            rule.ChainedRules.RemoveAll(c => c.RuleToChain is CommonDrop cd && cd.itemId == itemId || c.RuleToChain is ItemDropWithConditionRule iwc && iwc.itemId == itemId);
 
             foreach (var chain in rule.ChainedRules.ToList())
                 PruneFromChains(chain.RuleToChain, itemId);
         }
 
-        private sealed class EvilBossDownedCondition : IItemDropRuleCondition
+        internal sealed class EvilBossDownedCondition : IItemDropRuleCondition
         {
             public bool CanDrop(DropAttemptInfo info) => NPC.downedBoss2;
             public bool CanShowItemDropInUI() => true;

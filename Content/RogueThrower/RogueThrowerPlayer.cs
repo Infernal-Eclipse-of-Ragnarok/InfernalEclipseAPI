@@ -133,7 +133,7 @@ namespace InfernalEclipseAPI.Content.RogueThrower
 
             ModItem modItem = heldItem.ModItem;
 
-            if (modItem.Mod?.Name == "ThoriumMod")
+            if (modItem.Mod?.Name == "ThoriumMod" || modItem.Mod?.Name == "Consolaria" || modItem.Mod?.Name == "SOTSBardHealer")
             {
                 var field = modItem.GetType().GetField("isThrowerNon", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
                 if (field != null)
