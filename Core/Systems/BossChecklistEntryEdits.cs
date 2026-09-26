@@ -1,12 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using CalamityMod.Systems;
 using InfernalEclipseAPI.Core.Configs;
 using InfernumMode.Content.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using static InfernalEclipseAPI.Core.Systems.BossChecklistEntryEditor;
 
 namespace InfernalEclipseAPI.Core.Systems
@@ -29,36 +29,37 @@ namespace InfernalEclipseAPI.Core.Systems
         public static List<int> BossSpawnList(this object bossEntry) => EntryInfo?.GetField("spawnItem", LumUtils.UniversalBindingFlags)?.GetValue(bossEntry) as List<int>;
         public static void ModifyBossProgression(this object bossEntry, float progression) => EntryInfo?.GetField("progression", LumUtils.UniversalBindingFlags)?.SetValue(bossEntry, progression);
         public static float GetProgression(this object bossEntry) => (float)EntryInfo?.GetField("progression", LumUtils.UniversalBindingFlags)?.GetValue(bossEntry);
-        public static void ModifyBossName(this object bossEntry, string displayName) => EntryInfo?.GetProperty("DisplayName", LumUtils.UniversalBindingFlags)?.SetValue(bossEntry, displayName);
+        //public static void ModifyBossName(this object bossEntry, string displayName) => EntryInfo?.GetProperty("DisplayName", LumUtils.UniversalBindingFlags)?.SetValue(bossEntry, displayName);
     }
+
     public class BossChecklistEntryEdits : ModSystem
     {
         static readonly Func<bool> InfernumOrMore = () => DifficultyModeSystem.GetCurrentDifficulty.CountAs<InfernumDifficulty>() || DifficultyModeSystem.GetCurrentDifficulty is InfernumDifficulty;
         const string path = "InfernalEclipseAPI/Assets/Images/UI/BossChecklist";
+
         public override void PostSetupContent()
         {
-            if (ModLoader.HasMod("CalamityMod"))
+            if (!InfernalCrossmod.BossChecklist.Loaded)
+                return;
+
+            BossEntry("CalamityMod BossRush").ModifyBossProgression(28.1f);
+
+            BossEntry("CalamityMod HiveMind").ModifyBossImage($"{path}/HiveMind");
+            BossEntry("CalamityMod Calamitas").ModifyBossImage($"{path}/SupremeCalamitasHooded");
+
+            object cc = BossEntry("CalamityMod CalamitasClone");
+            cc.ModifyBossHead(() => InfernumOrMore() ? [ModContent.Request<Texture2D>("InfernumMode/Content/BehaviorOverrides/BossAIs/CalamitasShadow/CalShadowMapIcon")] : [ModContent.Request<Texture2D>("CalamityMod/NPCs/CalClone/CalamitasClone_Head_Boss")]);
+
+            static Texture2D texture() => DifficultyModeSystem.GetCurrentDifficulty.CountAs<InfernumDifficulty>() || DifficultyModeSystem.GetCurrentDifficulty is InfernumDifficulty ? ModContent.Request<Texture2D>("InfernalEclipseAPI/Assets/Images/UI/BossChecklist/CalCloneShadow").Value : ModContent.Request<Texture2D>("InfernalEclipseAPI/Assets/Images/UI/BossChecklist/CalClone").Value;
+            Action<SpriteBatch, Rectangle, Color> drawingCode = (spritebatch, rect, color) =>
             {
-                BossEntry("CalamityMod BossRush").ModifyBossProgression(28.1f);
-
-                BossEntry("CalamityMod HiveMind").ModifyBossImage($"{path}/HiveMind");
-                BossEntry("CalamityMod Calamitas").ModifyBossImage($"{path}/Calamitas");
-
-                object cc = BossEntry("CalamityMod CalamitasClone");
-                cc.ModifyBossHead(() => InfernumOrMore() ? [ModContent.Request<Texture2D>("InfernumMode/Content/BehaviorOverrides/BossAIs/CalamitasShadow/CalShadowMapIcon")] : [ModContent.Request<Texture2D>("CalamityMod/NPCs/CalClone/CalamitasClone_Head_Boss")]);
-
-                static Texture2D texture() => DifficultyModeSystem.GetCurrentDifficulty.CountAs<InfernumDifficulty>() || DifficultyModeSystem.GetCurrentDifficulty is InfernumDifficulty ? ModContent.Request<Texture2D>("InfernalEclipseAPI/Assets/Images/UI/BossChecklist/CalCloneShadow").Value : ModContent.Request<Texture2D>("InfernalEclipseAPI/Assets/Images/UI/BossChecklist/CalClone").Value;
-                Action<SpriteBatch, Rectangle, Color> drawingCode = (spritebatch, rect, color) =>
-                {
-                    Vector2 centered = new(rect.X + (rect.Width / 2) - (texture().Width / 2), rect.Y + (rect.Height / 2) - (texture().Height / 2));
-                    spritebatch.Draw(texture(), centered, color);
-                };
-                EntryInfo?.GetField("customDrawing", LumUtils.UniversalBindingFlags)?.SetValue(cc, drawingCode);
-            }
-
+                Vector2 centered = new(rect.X + (rect.Width / 2) - (texture().Width / 2), rect.Y + (rect.Height / 2) - (texture().Height / 2));
+                spritebatch.Draw(texture(), centered, color);
+            };
+            EntryInfo?.GetField("customDrawing", LumUtils.UniversalBindingFlags)?.SetValue(cc, drawingCode);
 
             if (InfernalConfig.Instance.MoveDeerclopsChecklistEntry)
-                BossEntry("Terraria Deerclops").ModifyBossProgression(6);
+                BossEntry("Terraria Deerclops").ModifyBossProgression(5.9f);
 
             if (InfernalCrossmod.Consolaria.Loaded)
             {
@@ -74,12 +75,8 @@ namespace InfernalEclipseAPI.Core.Systems
 
             if (InfernalCrossmod.Thorium.Loaded)
             {
-                if (InfernalCrossmod.ThoriumRework.Loaded)
-                    BossEntry("ThoriumMod ThePrimordials").ModifyBossProgression(21.5f);
-
-                BossEntry("ThoriumMod StarScouter").ModifyBossProgression(6.91f);
-
-                /*    BossEntry("ThoriumMod GraniteEnergyStorm").ModifyBossImage($"{path}/GES");
+                /*    
+                    BossEntry("ThoriumMod GraniteEnergyStorm").ModifyBossImage($"{path}/GES");
                     BossEntry("ThoriumMod GraniteEnergyStorm").ModifyBossHead($"{path}/GES_Head");
 
                     BossEntry("ThoriumMod QueenJellyfish").ModifyBossImage($"{path}/QueenJelly");
@@ -89,11 +86,14 @@ namespace InfernalEclipseAPI.Core.Systems
                     BossEntry("ThoriumMod Viscount").ModifyBossHead($"{path}/QueenJelly_Head");
                 */
 
+                BossEntry("ThoriumMod StarScouter").ModifyBossProgression(6.91f);
+
+                if (InfernalCrossmod.ThoriumRework.Loaded)
+                    BossEntry("ThoriumMod ThePrimordials").ModifyBossProgression(21.5f);
             }
         }
     }
 }
-
 
 // Old code shoved here so it doesn't fill up main file
 
@@ -158,4 +158,3 @@ MakeVanillaBoss(ref DeerclopsEntry, $"{bossChecklist.Name}/Resources/BossTexture
 List_EntryInfo_SetMethod?.Invoke(SortedEntries, [6, DeerclopsEntry]); // Set the matching entry to the original List<>
 }
 */
-

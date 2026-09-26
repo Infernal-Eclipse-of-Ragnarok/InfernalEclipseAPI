@@ -2618,16 +2618,6 @@ Configs: {
 			Label: Boss Rush添加众神之怒Boss
 		}
 
-		BetsyInBossRush: {
-			Tooltip: 为Boss Rush添加双足翼龙 - 当前存在bug
-			Label: Boss Rush添加双足翼龙
-		}
-
-		DreadnautillusInBossRush: {
-			Tooltip: 为Boss Rush添加恐惧鹦鹉螺
-			Label: Boss Rush添加恐惧鹦鹉螺
-		}
-
 		Headers: {
 			BossRushChanges: Boss Rush调整
 			BalanceChanges: 模组平衡修改
@@ -2910,24 +2900,9 @@ Configs: {
 			Tooltip: 切换是否在诸神黄昏模式下，神明吞噬者最终阶段以及绝望尾杀播放 “Last Battle (Ballos Mix)” 作者：DM DOKURO
 		}
 
-		WarMachineBossInBossRush: {
-			Label: 为Boss Rush添加钨钢母舰
-			Tooltip: Boss Rush添加钨钢母舰
-		}
-
-		MothershipMusic: {
-			Label: 钨钢母舰音乐
-			Tooltip: 切换钨钢母舰Boss战中的播放的主题曲
-		}
-
 		MaxVoidOnRespawn: {
 			Tooltip: 切换重生时虚空值为最大值，还是默认值
 			Label: 重生时恢复到最大虚空值
-		}
-
-		SolynCampsiteFixes: {
-			Label: 索琳营地修复
-			Tooltip: ""
 		}
 
 		CnidrionMusic: {
@@ -3035,30 +3010,6 @@ Configs: {
 		On: {
 			Label: 启用
 			Tooltip: 播放第三阶段主题曲
-		}
-	}
-
-	MothershipSong: {
-		Tooltip: ""
-
-		Vanilla: {
-			Label: 原版
-			Tooltip: 播放 “Boss 1”
-		}
-
-		WarMachine: {
-			Label: 战争机器
-			Tooltip: 播放原主题曲
-		}
-
-		Thorium: {
-			Label: 瑟银
-			Tooltip: 播放 “Stronger Foe”
-		}
-
-		Infernum: {
-			Label: 炼狱
-			Tooltip: 播放 “Misanthropic Encounters”
 		}
 	}
 

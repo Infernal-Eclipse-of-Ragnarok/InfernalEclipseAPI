@@ -2615,16 +2615,6 @@ Configs: {
 			Label: Боссы мода Wrath of the Gods в Босс-раше
 		}
 
-		BetsyInBossRush: {
-			Tooltip: Добавляет Бэтси в Босс-раш. (КРАЙНЕ ЗАБАГОВАННО)
-			Label: Бэтси в Босс-раше
-		}
-
-		DreadnautillusInBossRush: {
-			Tooltip: Добавляет Дреднаутилуса в Босс-раш.
-			Label: Дреднаутилус в Босс-раше
-		}
-
 		Headers: {
 			BossRushChanges: Добавление боссов в Босс-раш
 			BalanceChanges: Изменения баланса
@@ -2906,24 +2896,9 @@ Configs: {
 			Tooltip: Включает проигрывание трека «Last Battle (Ballos Mix)» за авторством DM DOKURO во время финальной фазы и фазы отчаяния Пожирателя богов в режиме Рагнарёк.
 		}
 
-		WarMachineBossInBossRush: {
-			Label: Вульфрумовый корабль-носитель в Босс-раше
-			Tooltip: Добавляет Вульфрумовый корабль-носитель в Босс-раш.
-		}
-
-		MothershipMusic: {
-			Label: Трек Вульфрумового корабля-носителя
-			Tooltip: Позволяет переключать темы, проигрывающиеся при битве с Вульфрумовым кораблём-носителем.
-		}
-
 		MaxVoidOnRespawn: {
 			Tooltip: Включает увеличение количества пустоты, которое вы получаете при возрождении, до вашего лимита.
 			Label: Возрождения с максимальным количеством пустоты
-		}
-
-		SolynCampsiteFixes: {
-			Label: Исправление ошибок с лагерем Солин
-			Tooltip: ""
 		}
 
 		CnidrionMusic: {
@@ -3027,30 +3002,6 @@ Configs: {
 		On: {
 			Label: Вкл
 			Tooltip: Тема 3 фазы будет проигрываться как и должна.
-		}
-	}
-
-	MothershipSong: {
-		Tooltip: ""
-
-		Vanilla: {
-			Label: Ванилла
-			Tooltip: При битве с кораблём-носителем будет проигрываться трек «Boss 1».
-		}
-
-		WarMachine: {
-			Label: War Machine
-			Tooltip: При битве с кораблём-носителем будет проигрываться оригинальная тема босса.
-		}
-
-		Thorium: {
-			Label: Thorium
-			Tooltip: При битве с кораблём-носителем будет проигрываться трек «Stronger Foe».
-		}
-
-		Infernum: {
-			Label: Infernum
-			Tooltip: При битве с кораблём-носителем будет проигрываться трек «Misanthropic Encounters».
 		}
 	}
 
