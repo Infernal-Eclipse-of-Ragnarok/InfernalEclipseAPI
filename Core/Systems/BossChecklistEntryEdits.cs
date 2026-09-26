@@ -59,7 +59,7 @@ namespace InfernalEclipseAPI.Core.Systems
             EntryInfo?.GetField("customDrawing", LumUtils.UniversalBindingFlags)?.SetValue(cc, drawingCode);
 
             if (InfernalConfig.Instance.MoveDeerclopsChecklistEntry)
-                BossEntry("Terraria Deerclops").ModifyBossProgression(5.9f);
+                BossEntry("Terraria Deerclops").ModifyBossProgression(4.9f);
 
             if (InfernalCrossmod.Consolaria.Loaded)
             {
