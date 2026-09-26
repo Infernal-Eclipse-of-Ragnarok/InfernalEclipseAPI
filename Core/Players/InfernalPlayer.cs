@@ -369,10 +369,8 @@ namespace InfernalEclipseAPI.Core.Players
             blixerCoreSummon = false;
             InverseAmberRing = false;
         }
-
         public override void PreUpdate()
         {
-            Main.NewText(ItemID.Sets.Deprecated[ItemID.CultistBossBag]);
             if (BoostPressTimer > 0)
                 BoostPressTimer--;
 
