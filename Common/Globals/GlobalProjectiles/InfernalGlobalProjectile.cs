@@ -1,7 +1,6 @@
 ﻿using CalamityMod.Buffs.DamageOverTime;
 using CalamityMod.Projectiles.Healing;
 using InfernalEclipseAPI.Core.Systems;
-using log4net;
 using Microsoft.Xna.Framework;
 
 namespace InfernalEclipseAPI.Common.GlobalProjectiles
@@ -26,6 +25,21 @@ namespace InfernalEclipseAPI.Common.GlobalProjectiles
                 projectile.localNPCHitCooldown = 20;
 
                 projectile.usesIDStaticNPCImmunity = false;
+            }
+
+            if (ModLoader.TryGetMod("CatalystMod", out Mod catalyst))
+            {
+                int pro3Type = catalyst.Find<ModProjectile>("RookOfVengeanceMFireballSpin")?.Type ?? -1;
+                int pro4Type = catalyst.Find<ModProjectile>("RookOfVengeanceMFireball")?.Type ?? -1;
+
+                if (projectile.type == pro3Type || projectile.type == pro4Type)
+                {
+                    projectile.usesLocalNPCImmunity = true;
+                    projectile.localNPCHitCooldown = 40;
+
+                    // Make sure it's NOT using static ID-based immunity
+                    projectile.usesIDStaticNPCImmunity = false;
+                }
             }
         }
 

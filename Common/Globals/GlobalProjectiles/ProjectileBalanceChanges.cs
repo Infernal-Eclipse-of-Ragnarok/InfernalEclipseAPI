@@ -284,6 +284,15 @@ namespace InfernalEclipseAPI.Common.Projectiles
             {
                 entity.penetrate = 2;
             }
+
+            if (entity.type == ProjectileID.Trimarang)
+            {
+                entity.usesLocalNPCImmunity = true;
+                entity.localNPCHitCooldown = 40;
+
+                // Make sure it's NOT using static ID-based immunity
+                entity.usesIDStaticNPCImmunity = false;
+            }
             #endregion
 
             #region Clamity

@@ -9,9 +9,20 @@ namespace InfernalEclipseAPI.Common.GlobalItems
     // Wardrobe Hummus
     public class MeleeDebuffs : GlobalItem
     {
-        public bool WHummusEnabled = ModLoader.TryGetMod("WHummusMultiModBalancing", out _);
+        public bool WHummusEnabled = ModLoader.HasMod("WHummusMultiModBalancing");
 
         public override bool InstancePerEntity => true;
+
+        private bool healedThisSwing;
+
+        public override void HoldItem(Item item, Player player)
+        {
+            // When a new swing begins, reset
+            if (player.itemAnimation == item.useAnimation)
+            {
+                healedThisSwing = false;
+            }
+        }
 
         public override void OnHitNPC(Item item, Player player, NPC target, NPC.HitInfo hit, int damageDone)
         {
@@ -23,17 +34,76 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     target.AddBuff(BuffID.Electrified, 180);
                 }
 
-                var lifeQuartz = thoriumMod.Find<ModItem>("LifeQuartzClaymore");
-                if (lifeQuartz != null && item.type == lifeQuartz.Type)
+                if (item.type == ModLoader.GetMod("ThoriumMod")?.Find<ModItem>("LifeQuartzClaymore")?.Type)
                 {
-                    HealPlayer(player, 2);
+                    if (player.statLife >= player.statLifeMax2)
+                    {
+                        return;
+                    }
+
+                    int bonusHealing = 0;
+
+                    if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium))
+                    {
+                        object result = thorium.Call("GetHealerHealBonus", player);
+
+                        if (result is int healBonus)
+                        {
+                            bonusHealing = healBonus;
+                        }
+                    }
+
+                    float healAmount = 1 + bonusHealing;
+
+                    if (!healedThisSwing)
+                    {
+                        healAmount += 2;
+                    }
+
+                    if (healAmount > player.lifeSteal)
+                    {
+                        healAmount = player.lifeSteal;
+                    }
+                    if (player.lifeSteal < 0)
+                    {
+                        healAmount += player.lifeSteal;
+
+                        if (healAmount <= 0)
+                        {
+                            return;
+                        }
+
+                        if (healAmount > player.statLifeMax2 - player.statLife)
+                        {
+                            healAmount = player.statLifeMax2 - player.statLife;
+                        }
+                    }
+
+                    Projectile.NewProjectile(player.GetSource_ItemUse(item), target.Center, Vector2.Zero, ProjectileID.VampireHeal, 0, 0f, player.whoAmI, player.whoAmI, healAmount, 0f);
+                    player.lifeSteal -= healAmount;
+
+                    healedThisSwing = true;
+
                     return;
                 }
 
-                var hereticBreaker = thoriumMod.Find<ModItem>("HereticBreaker");
-                if (hereticBreaker != null && item.type == hereticBreaker.Type)
+                // Thorium HereticBreaker
+                if (item.type == ModLoader.GetMod("ThoriumMod")?.Find<ModItem>("HereticBreaker")?.Type)
                 {
-                    HealPlayer(player, 3);
+                    HealPlayer(player, 1);
+                    if (!healedThisSwing)
+                    {
+                        HealPlayer(player, 2);
+                        healedThisSwing = true;
+                    }
+                    return;
+                }
+
+                // Thorium Terrarian's Last Knife
+                if (item.type == ModLoader.GetMod("ThoriumMod")?.Find<ModItem>("TerrariansLastKnife")?.Type && ModLoader.TryGetMod("CalamityMod", out Mod calamity2))
+                {
+                    target.AddBuff(calamity2.Find<ModBuff>("Laceration")?.Type ?? -1, 180);
+                    return;
                 }
             }
 

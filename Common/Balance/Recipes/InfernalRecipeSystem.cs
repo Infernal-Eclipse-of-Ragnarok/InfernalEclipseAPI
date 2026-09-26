@@ -1066,6 +1066,18 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                                 }
                             }
 
+                            if (recipe.HasResult(thorium.Find<ModItem>("HeadSpinner")))
+                            {
+                                recipe.RemoveIngredient(ItemID.WoodYoyo);
+                                recipe.AddIngredient(ItemID.CrimsonYoyo);
+                            }
+
+                            if (recipe.HasResult(thorium.Find<ModItem>("Salivation")))
+                            {
+                                recipe.RemoveIngredient(ItemID.WoodYoyo);
+                                recipe.AddIngredient(ItemID.CorruptYoyo);
+                            }
+
                             if (CalamityServerConfig.Instance.EarlyHardmodeProgressionRework)
                             {
                                 ModItem[] preMechIngredients =

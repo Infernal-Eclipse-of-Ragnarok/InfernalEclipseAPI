@@ -151,6 +151,31 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                 {
                     item.damage = 70;
                 }
+
+                if (item.type == ItemID.Cascade)
+                {
+                    item.damage = 41;
+                }
+
+                if (item.type == ItemID.DarkLance)
+                {
+                    item.damage = 38;
+                }
+
+                if (item.type == ItemID.JungleYoyo)
+                {
+                    item.damage = 22;
+                }
+
+                if (item.type == ItemID.Rally)
+                {
+                    item.damage = 22;
+                }
+
+                if (item.type == ItemID.Trimarang)
+                {
+                    item.useTime = 8;
+                }
             }
             #endregion
 
@@ -211,19 +236,15 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                 ModLoader.TryGetMod("CalamityMod", out Mod cal);
 
                 #region Melee
-                /*
-                if (item.type == ModContent.ItemType<Auger>())
+                if (item.type == ModContent.ItemType<Riptide>())
                 {
-                    item.damage = 76;
+                    item.damage = 14;
                 }
-                /*
 
-                /*
-                if (GetItem(cal, "SubmarineShocker", item))
+                if (item.type == ModContent.ItemType<SmokingComet>())
                 {
-                    item.damage = 55;
+                    item.damage = 18;
                 }
-                */
 
                 if (item.type == ModContent.ItemType<InfernaCutter>())
                 {
@@ -373,11 +394,6 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                 #endregion
 
                 #region Summonerr
-                if (item.type == ModContent.ItemType<EnchantedKnifeStaff>())
-                {
-                    item.damage = 13;
-                }
-
                 if (item.type == ModContent.ItemType<SunSpiritStaff>())
                 {
                     item.damage = 20;
@@ -2598,7 +2614,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                     if (GetItem(thorium, "SeaFoamScepter", item))
                     {
                         item.shootSpeed = 12;
-                        item.damage = 44;
+                        item.damage = 30;
                     }
 
                     if (GetItem(thorium, "PrismStaff", item))
@@ -3142,7 +3158,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                     //Gel Glove
                     if (item.type == thorium.Find<ModItem>("GelGlove").Type)
                     {
-                        item.damage = 24;
+                        item.damage = 14;
                         item.shootSpeed = 15;
                     }
 
@@ -3826,6 +3842,12 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                     #endregion
 
                     #region Hardmode
+                    if (GetItem(thorium, "LifeSurgeStaff", item))
+                    {
+                        item.useTime = 30;
+                        item.useAnimation = 30;
+                    }
+
                     if (GetItem(thorium, "DemonBloodRipper", item))
                     {
                         item.damage = 36;

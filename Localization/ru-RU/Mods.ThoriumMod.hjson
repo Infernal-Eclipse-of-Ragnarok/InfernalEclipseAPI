@@ -86,6 +86,11 @@ Items: {
 			'''
 	}
 
+	LifeQuartzClaymore: {
+		// DisplayName: Life Quartz Claymore
+		// Tooltip: Steals an additional 2 life if it's the first hit that swing
+	}
+
 	HereticBreaker: {
 		DisplayName: Сокрушитель еретиков
 		Tooltip: Крадёт 3 ед. здоровья
