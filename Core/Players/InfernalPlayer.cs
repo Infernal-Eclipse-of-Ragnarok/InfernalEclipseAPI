@@ -201,7 +201,6 @@ namespace InfernalEclipseAPI.Core.Players
                     }
                 }
             }
-        //    BossChecklistEntryEdits.ChangeScalName();
         }
 
         public override void PlayerConnect()
@@ -373,6 +372,7 @@ namespace InfernalEclipseAPI.Core.Players
 
         public override void PreUpdate()
         {
+            Main.NewText(ItemID.Sets.Deprecated[ItemID.CultistBossBag]);
             if (BoostPressTimer > 0)
                 BoostPressTimer--;
 

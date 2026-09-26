@@ -23,7 +23,7 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Relics.Platinum
 			Item.width = 30;
 			Item.height = 40;
 			Item.maxStack = 9999;
-            Item.rare = Catalyst.Mod != null ? Catalyst.Mod.Find<ModRarity>("SuperbossMasterRarity").Type : ItemRarityID.Master;
+            Item.rare = Catalyst.Loaded ? Catalyst.Mod.Find<ModRarity>("SuperbossMasterRarity").Type : ItemRarityID.Master;
             Item.master = true;
 			Item.value = Item.buyPrice(0, 5, 0, 0);
 
