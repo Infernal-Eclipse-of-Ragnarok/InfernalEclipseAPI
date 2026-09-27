@@ -201,7 +201,6 @@ namespace InfernalEclipseAPI.Core.Players
                     }
                 }
             }
-        //    BossChecklistEntryEdits.ChangeScalName();
         }
 
         public override void PlayerConnect()
@@ -370,7 +369,6 @@ namespace InfernalEclipseAPI.Core.Players
             blixerCoreSummon = false;
             InverseAmberRing = false;
         }
-
         public override void PreUpdate()
         {
             if (BoostPressTimer > 0)

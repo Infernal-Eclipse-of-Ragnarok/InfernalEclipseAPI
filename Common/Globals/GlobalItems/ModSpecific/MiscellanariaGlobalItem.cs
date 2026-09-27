@@ -22,19 +22,11 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
         }
     }
 
-    public class MiscellanariaCultistBossBag : GlobalItem
+    public class MiscellanariaCultistBossBag : ModSystem
     {
-        public override bool IsLoadingEnabled(Mod mod)
-        {
-            return InfernalCrossmod.Thorium.Loaded && ModLoader.HasMod("Miscellanaria");
-        }
-
-        public override bool AppliesToEntity(Item entity, bool lateInstantiation)
-        {
-            return entity.type == ItemID.CultistBossBag;
-        }
-
-        public override void SetStaticDefaults()
+        public override bool IsLoadingEnabled(Mod mod) => ModLoader.HasMod("ThoriumMod") && ModLoader.HasMod("Miscellanaria");
+    //    public override bool AppliesToEntity(Item entity, bool lateInstantiation) => entity.type == ItemID.CultistBossBag;
+        public override void PostSetupContent()
         {
             ItemID.Sets.Deprecated[ItemID.CultistBossBag] = true;
         }
