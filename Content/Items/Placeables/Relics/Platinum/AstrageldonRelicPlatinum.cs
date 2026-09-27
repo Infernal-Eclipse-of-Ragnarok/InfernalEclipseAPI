@@ -73,12 +73,12 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Relics.Platinum
         {
             if (glintTex == null || !glintTex.IsLoaded)
             {
-                glintTex = ModContent.Request<Texture2D>("InfernalEclipseWeaponsDLC/Assets/Textures/Enchanted", AssetRequestMode.ImmediateLoad);
+                glintTex = ModContent.Request<Texture2D>("InfernalEclipseAPI/Assets/Textures/Enchanted", AssetRequestMode.ImmediateLoad);
             }
 
             if (glintFx == null)
             {
-                glintFx = ModContent.Request<Effect>("InfernalEclipseWeaponsDLC/Assets/Effects/Transform", AssetRequestMode.ImmediateLoad).Value;
+                glintFx = ModContent.Request<Effect>("InfernalEclipseAPI/Assets/Effects/Transform", AssetRequestMode.ImmediateLoad).Value;
             }
         }
 

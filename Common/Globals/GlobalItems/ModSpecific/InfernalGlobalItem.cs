@@ -290,10 +290,10 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
         private static void EnsureAssetsLoaded()
         {
             if (glintTex == null || !glintTex.IsLoaded)
-                glintTex = ModContent.Request<Texture2D>("InfernalEclipseWeaponsDLC/Assets/Textures/Enchanted", AssetRequestMode.ImmediateLoad);
+                glintTex = ModContent.Request<Texture2D>("InfernalEclipseAPI/Assets/Textures/Enchanted", AssetRequestMode.ImmediateLoad);
 
             if (glintFx == null)
-                glintFx = ModContent.Request<Effect>("InfernalEclipseWeaponsDLC/Assets/Effects/Transform", AssetRequestMode.ImmediateLoad).Value;
+                glintFx = ModContent.Request<Effect>("InfernalEclipseAPI/Assets/Effects/Transform", AssetRequestMode.ImmediateLoad).Value;
         }
 
         public override bool PreDrawInInventory(Item item, SpriteBatch sb, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin,float scale)

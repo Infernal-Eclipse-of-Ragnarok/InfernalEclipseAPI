@@ -571,6 +571,7 @@ ItemTooltip: {
 		cat: StarlightCat
 		Arkangel: Arkangel
 		Minesky: Mineskye
+		Bomber: Bomberr
 	}
 
 	MergedCraftingTreeTooltip: {
@@ -2545,6 +2546,11 @@ Items: {
 		DisplayName: Hover Item Dummy
 		Tooltip: ""
 	}
+
+	FiendsmithsRequiem: {
+		DisplayName: Fiendsmith's Requiem
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -2598,6 +2604,8 @@ Projectiles: {
 	BlixerArm.DisplayName: Blixer Arm
 	BlixerHand.DisplayName: Blixer Hand
 	BlixerCannonPro.DisplayName: Blixer Bullet
+	FiendsmithsRequiemPro.DisplayName: Fiendsmith's Requiem
+	FiendsmithChainsaw.DisplayName: Fiendsmith Chainsaw
 }
 
 DiaryTooltip:
