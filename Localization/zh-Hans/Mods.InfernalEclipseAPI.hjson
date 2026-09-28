@@ -2555,8 +2555,8 @@ Items: {
 		/* Paradise:
 			'''
 			Using this weapon for a third time unlocks the Paradise ability
-			While Paradise is unlocked, <right> to cause Requiem to release homing laser bolts
-			The <right> has a cooldown of 18 seconds
+			While Paradise is unlocked, Right Click to cause Requiem to release homing laser bolts
+			The Right Click has a cooldown of 18 seconds
 			''' */
 
 		Progression: {

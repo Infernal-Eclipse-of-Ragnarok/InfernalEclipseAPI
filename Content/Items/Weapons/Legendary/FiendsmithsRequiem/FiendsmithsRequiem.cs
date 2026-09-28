@@ -2,7 +2,6 @@
 using CalamityMod.Items;
 using InfernalEclipseAPI.Content.Buffs;
 using InfernalEclipseAPI.Content.Cooldowns;
-using InfernalEclipseAPI.Core.Configs;
 using InfernalEclipseAPI.Core.DamageClasses.LegendaryClass;
 using InfernalEclipseAPI.Core.Players;
 using InfernumMode.Content.Rarities.InfernumRarities;
@@ -40,6 +39,8 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.FiendsmithsRequiem
             Item.UseSound = SoundID.Item8;
             Item.rare = ModContent.RarityType<InfernumProfanedRarity>();
             Item.value = CalamityGlobalItem.RarityYellowBuyPrice;
+
+            Item.shootSpeed = 16f; //bullet velocity
         }
 
         public override void ModifyWeaponDamage(Player player, ref StatModifier damage)
