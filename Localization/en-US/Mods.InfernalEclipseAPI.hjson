@@ -3,6 +3,7 @@ UI: {
 		ManaSteal: Mana Steal Remaining
 		TerminalLucidity: Terminal Lucidity
 		LucidRetaliation: Lucid Retaliation
+		ParadisePower: Paradise Cooldown
 	}
 
 	TitleLinks: {
@@ -207,7 +208,7 @@ ItemTooltip: {
 	}
 
 	Dreadmine: "[s:InfernalEclipseAPI/IEoRIcon] Only one dreadmine turret can be active at once, and spawning a new turret will cause all active mines to explode"
-	Calculator: Reduces summon damage by 20%
+	Calculator: "[s:InfernalEclipseAPI/IEoRIcon] Reduces summon damage by 20%"
 	Wiesnbrau:
 		'''
 		Inflicts [cbuff:PotionSickness]
@@ -229,7 +230,7 @@ ItemTooltip: {
 		Player2: Soul Anchor set. You have 20 seconds to return.
 	}
 
-	WhiteDwarfSetBonus: Ivory flares spawn on a 2 second cooldown
+	WhiteDwarfSetBonus: "[s:InfernalEclipseAPI/IEoRIcon] Ivory flares spawn on a 2 second cooldown"
 	PhoenixStaff:
 		'''
 		Right Click to spew a stream of flames that inflict [cbuff:ThoriumMod/HolyGlare]
@@ -332,7 +333,7 @@ ItemTooltip: {
 		Increases damage by {0}%
 		Decreases defense by {1}
 		'''
-	EarthDrive: Max boost to melee speed is 10%
+	EarthDrive: "[s:InfernalEclipseAPI/IEoRIcon] Max boost to melee speed is 10%"
 	SyntheticLiver:
 		'''
 		Increases void received from food by 25%
@@ -585,8 +586,8 @@ ItemTooltip: {
 			'''
 		Hellfire:
 			'''
-			Multiplies all fire-based debuff damage by 1.5, does not stack with downgrades
-			All attacks inflict Hellfire
+			[s:InfernalEclipseAPI/IEoRIcon] Multiplies all fire-based debuff damage by 1.5, does not stack with downgrades
+			[s:InfernalEclipseAPI/IEoRIcon] All attacks inflict Hellfire
 			'''
 
 		BagOfAmmoConsume: {
@@ -655,15 +656,15 @@ ItemTooltip: {
 			'''
 		HypersonicTooltip: '''"Channel the power of sounds beyond hearing range!"'''
 		4DTooltip: '''"Sound that can create wormholes to other worlds"'''
-		CrystalScorpian: Minion attacks have a 15% chance to produce a crystal scorpion and deal 3 more damage while a scorpion is active
+		CrystalScorpian: "[s:InfernalEclipseAPI/IEoRIcon] Minion attacks have a 15% chance to produce a crystal scorpion and deal 3 more damage while a scorpion is active"
 		Skull:
 			'''
-			Enemies struck by the tips of summoner whips take {0}% extra damage, become cursed, and spawn up to [c/{1}:{2}] wisps
-			Right Click with a whip to send the wisps towards your cursor, damaging nearby enemies
-			Killing cursed enemies or continually damaging bosses releases an exploding ghost dealing 40 damage, which can also curse enemies
+			[s:InfernalEclipseAPI/IEoRIcon] Enemies struck by the tips of summoner whips take {0}% extra damage, become cursed, and spawn up to [c/{1}:{2}] wisps
+			[s:InfernalEclipseAPI/IEoRIcon] Right Click with a whip to send the wisps towards your cursor, damaging nearby enemies
+			[s:InfernalEclipseAPI/IEoRIcon] Killing cursed enemies or continually damaging bosses releases an exploding ghost dealing 40 damage, which can also curse enemies
 			'''
-		CyanPearl: Halves summon penalty for sentries
-		Watch: Your sentries last forever and gain up to 15% damage over the course of 2 minutes
+		CyanPearl: "[s:InfernalEclipseAPI/IEoRIcon] Halves summon penalty for sentries"
+		Watch: "[s:InfernalEclipseAPI/IEoRIcon] Your sentries last forever and gain up to 15% damage over the course of 2 minutes"
 
 		FortressGenerator: {
 			OrigTooltip1: Increases damage by 10% and life regeneration by 2
@@ -687,8 +688,8 @@ ItemTooltip: {
 		OneSentry: Increases max sentries by 1
 		TwoSentry: Increases max sentries by 2
 		ThreeSentry: Increases max sentries by 3
-		Murky: Every sixth magic cast is free and grants you the mana cost
-		Hungering: Grants the effects of the Hungering Blossom when visibility is off
+		Murky: "[s:InfernalEclipseAPI/IEoRIcon] Every sixth magic cast is free and grants you the mana cost"
+		Hungering: "[s:InfernalEclipseAPI/IEoRIcon] Grants the effects of the Hungering Blossom when visibility is off"
 		SlagsplitterCooldown: This effect has a 1.5 second cooldown
 		Grace:
 			'''
@@ -737,16 +738,16 @@ ItemTooltip: {
 		Magneto: Increases pickup range of rogue items on the ground
 		Bone:
 			'''
-			Picking up a rogue item has a 33% chance to duplicate it and increase your rogue attack speed  
-			This effect can only trigger once every half-second while out of combat  
+			[s:InfernalEclipseAPI/IEoRIcon] Picking up a rogue item has a 33% chance to duplicate it and increase your rogue attack speed  
+			[s:InfernalEclipseAPI/IEoRIcon] This effect can only trigger once every half-second while out of combat  
 			'''
 		Bone2:
 			'''
-			Thrower projectiles have a 20% chance to grant the player 15% thrower attack speed for 1 second upon hitting anything
-			This effect can only trigger once every one-and-a-half seconds
+			[s:InfernalEclipseAPI/IEoRIcon] Thrower projectiles have a 20% chance to grant the player 15% thrower attack speed for 1 second upon hitting anything
+			[s:InfernalEclipseAPI/IEoRIcon] This effect can only trigger once every one-and-a-half seconds
 			'''
-		Scuttler: Stealth strike projectiles spawn a jewel spike when destroyed
-		BloodyFilthy: Stealth strikes have +8 armor penetration, deal 8% more damage, and heal for 2 HP
+		Scuttler: "[s:InfernalEclipseAPI/IEoRIcon] Stealth strike projectiles spawn a jewel spike when destroyed"
+		BloodyFilthy: "[s:InfernalEclipseAPI/IEoRIcon] Stealth strikes have +8 armor penetration, deal 8% more damage, and heal for 2 HP"
 		NoExhaustion: Removes all Exhaustion when equipped
 
 		ToothNecklace: {
@@ -812,12 +813,12 @@ ItemTooltip: {
 
 		OmniIns: Increase maximum inspiration by 5
 		OmniEmp: Each unique empowerment you have increases movement speed by 2% and playing speed by 1%
-		ShinobiNerf: This effect has a cooldown of 2 seconds
+		ShinobiNerf: "[s:InfernalEclipseAPI/IEoRIcon] This effect has a cooldown of 2 seconds"
 		ShinobiEffect:
 			'''
-			6% increased throwing critical strike chance
-			Dealing two consecutive throwing critical strikes will discharge dark lightning and increase throwing speed briefly
-			This effect has a cooldown of 2 seconds.
+			[s:InfernalEclipseAPI/IEoRIcon] 6% increased throwing critical strike chance
+			[s:InfernalEclipseAPI/IEoRIcon] Dealing two consecutive throwing critical strikes will discharge dark lightning and increase throwing speed briefly
+			[s:InfernalEclipseAPI/IEoRIcon] This effect has a cooldown of 2 seconds.
 			'''
 		CloverNerf: Life steal & inspiration regeneration have a 1 second cooldown
 		CloverNerf2: Life steal has a 1 second cooldown
@@ -840,8 +841,8 @@ ItemTooltip: {
 
 		AscendantInsignia:
 			'''
-			Pressing the Ascendant Insignia keybind will give you the power of ascension, providing infinite flight time for 4 seconds
-			Ascension has a 40 second cooldown
+			[s:InfernalEclipseAPI/IEoRIcon] Pressing the Ascendant Insignia keybind will give you the power of ascension, providing infinite flight time for 4 seconds
+			[s:InfernalEclipseAPI/IEoRIcon] Ascension has a 40 second cooldown
 			'''
 
 		MachinaBooster: {
@@ -867,7 +868,7 @@ ItemTooltip: {
 				'''
 		}
 
-		GildedVoid: Increases void drain by 16 while active
+		GildedVoid: "[s:InfernalEclipseAPI/IEoRIcon] Increases void drain by 16 while active"
 		MonsterCharm: While in combat, your armor penetration, defense, and life recovery increase over time
 		GreedierRing:
 			'''
@@ -881,7 +882,7 @@ ItemTooltip: {
 			Does not stack with downgrades
 			Increases buff duration by 67%
 			'''
-		SubspaceBoostersDash: Press {0} while on the ground to blast forward, granting higher speed and acceleration
+		SubspaceBoostersDash: "[s:InfernalEclipseAPI/IEoRIcon] Press {0} while on the ground to blast forward, granting higher speed and acceleration"
 		SubspaceBoosters:
 			'''
 			Provides tremendous acceleration while running
@@ -1094,7 +1095,7 @@ Items: {
 				'''
 			Plantera:
 				'''
-				With the defeat of Draedon's machines, it now inflicts [cbuff:CalamityMod/AstralInfectionDebuff]
+				With the defeat of Draedon's machines, it now inflicts [cbuff:LacerationAstralInfectionDebuff]
 				Defeat the guardian of the jungle to gain more power...
 				'''
 			Golem:
@@ -2549,7 +2550,51 @@ Items: {
 
 	FiendsmithsRequiem: {
 		DisplayName: Fiendsmith's Requiem
-		Tooltip: ""
+		Tooltip:
+			'''
+			Summons Fiendsmith's Requiem to attack with your other summon weapons
+			Only one of each of the fiends can be active at once
+			'''
+		Tremendae: Using this weapon for a second time summons Rex Tremendae which will fire bullets at nearby foes
+		Paradise:
+			'''
+			Using this weapon for a third time unlocks the Paradise ability
+			While Paradise is unlocked, Right Click to cause Requiem to release homing laser bolts
+			The Right Click has a cooldown of 18 seconds
+			'''
+
+		Progression: {
+			Ravager:
+				'''
+				Defeat The Fortress of Flesh to gain more power...
+				No extra power has been gained...
+				'''
+			Deus:
+				'''
+				With the defeat of Ravager, this weapon now deals extra damage
+				Defeat the star weaver to gain more power...
+				'''
+			Dragonfolly:
+				'''
+				With the defeat of Astrum Deus, you can now summon Rex Tremendae in addition to Requiem
+				Defeat the false offspring to gain more power...
+				'''
+			Providence:
+				'''
+				With the defeat of Dragonfolly, you can now unlock the Paradise ability
+				Defeat the Profaned Goddess to gain more power...
+				'''
+			Polterghast:
+				'''
+				With the defeat of Providence, Requiem's chainsaws now inflict [cbuff:CalamityMod/Laceration]
+				Defeat the wrathful coalescence to gain more power...
+				'''
+			Full:
+				'''
+				The Fiendsmith's Requiem is fully awakend, and all abilities have been further buffed!
+				The weapon's maximum power is unleashed!
+				'''
+		}
 	}
 }
 
@@ -2605,7 +2650,9 @@ Projectiles: {
 	BlixerHand.DisplayName: Blixer Hand
 	BlixerCannonPro.DisplayName: Blixer Bullet
 	FiendsmithsRequiemPro.DisplayName: Fiendsmith's Requiem
-	FiendsmithChainsaw.DisplayName: Fiendsmith Chainsaw
+	FiendsmithChainsaw.DisplayName: Fiendsmith's Chainsaw
+	FiendsmithsTremendae.DisplayName: Fiendsmith's Tremendae
+	FiendsmithsParadise.DisplayName: Fiendsmith's Paradise
 }
 
 DiaryTooltip:
@@ -3481,6 +3528,11 @@ Buffs: {
 	FreezingAura: {
 		DisplayName: Freezing Aura
 		Description: Mods.InfernalEclipseAPI.Buffs.FreezingAura.Description
+	}
+
+	FiendsmithsRequiemBuff: {
+		DisplayName: Fiendsmith's Requiem
+		Description: The Fiendsmith's fiends are helping you fight!
 	}
 }
 

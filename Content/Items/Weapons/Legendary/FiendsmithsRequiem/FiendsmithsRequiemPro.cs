@@ -1,21 +1,20 @@
 ﻿using CalamityMod;
+using CalamityMod.Buffs.DamageOverTime;
+using InfernalEclipseAPI.Content.Buffs;
 using InfernalEclipseAPI.Core.Configs;
 using InfernalEclipseAPI.Core.DamageClasses.LegendaryClass;
+using InfernalEclipseAPI.Core.Players;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.IO;
+using Terraria.Audio;
 using Terraria.GameContent;
 
 namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.FiendsmithsRequiem
 {
     public class FiendsmithsRequiemPro : ModProjectile
     {
-        public override bool IsLoadingEnabled(Mod mod)
-        {
-            return InfernalConfig.Instance.DeveloperMode;
-        }
-
-        private const float TargetRange = 750f;
+        public static float TargetRange = DownedBossSystem.downedProvidence ? 1250f : DownedBossSystem.downedAstrumDeus ? 1000f : 750f;
 
         public int AttackState;
         public int TargetIndex = -1;
@@ -35,6 +34,11 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.FiendsmithsRequiem
                 return npc;
             }
         }
+
+        private const int LightningBarrageDuration = 180; // 3 seconds.
+        private const int LightningShootRate = 6;
+
+        private int lightningBarrageTimer;
 
         public override void SetStaticDefaults()
         {
@@ -57,6 +61,8 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.FiendsmithsRequiem
             Projectile.ignoreWater = true;
 
             Projectile.netImportant = true;
+
+            Projectile.timeLeft = 8;
         }
 
         public override bool? CanDamage() => false;
@@ -65,12 +71,14 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.FiendsmithsRequiem
         {
             writer.Write(AttackState);
             writer.Write(TargetIndex);
+            writer.Write(lightningBarrageTimer);
         }
 
         public override void ReceiveExtraAI(BinaryReader reader)
         {
             AttackState = reader.ReadInt32();
             TargetIndex = reader.ReadInt32();
+            lightningBarrageTimer = reader.ReadInt32();
         }
 
         public override void AI()
@@ -83,13 +91,24 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.FiendsmithsRequiem
                 return;
             }
 
+            if (!player.HasBuff<FiendsmithsRequiemBuff>())
+            {
+                Projectile.Kill();
+                return;
+            }
+
             Projectile.timeLeft = 2;
+
+            if (player.GetModPlayer<InfernalPlayer>().fiendsmithParadise)
+                Projectile.minionSlots = 4f;
+            else
+                Projectile.minionSlots = 2f;
 
             EnsureChainsawsExist();
 
             Vector2 followPosition = player.Center;
 
-            followPosition.X -= (5f + player.width * 0.5f) * player.direction;
+            followPosition.X -= (15f + player.width * 0.5f) * player.direction;
 
             followPosition.Y -= 25f;
 
@@ -98,7 +117,14 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.FiendsmithsRequiem
             int oldAttackState = AttackState;
             int oldTargetIndex = TargetIndex;
 
-            if (target != null && player.HeldItem.IsWhip() && player.ItemAnimationActive)
+            if (lightningBarrageTimer > 0)
+            {
+                DoLightningBarrage(player, target);
+                lightningBarrageTimer--;
+                return;
+            }
+
+            if (target != null && (player.HeldItem.CountsAsClass<SummonDamageClass>() || player.HeldItem.CountsAsClass<AverageDamageClass>()) && player.ItemAnimationActive)
             {
                 AttackState = 1;
                 TargetIndex = target.whoAmI;
@@ -113,18 +139,6 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.FiendsmithsRequiem
                 IdleMovement(player, followPosition);
             }
 
-            float bobOffset = Sin(Main.GlobalTimeWrappedHourly * 3f) * 8f;
-
-            Vector2 idlePosition = followPosition;
-
-            idlePosition.Y += bobOffset;
-
-            Projectile.Center = Vector2.Lerp(Projectile.Center, idlePosition, 0.05f);
-
-            Projectile.velocity *= 0.5f;
-
-            Projectile.direction = Projectile.spriteDirection = player.direction;
-
             if (oldAttackState != AttackState || oldTargetIndex != TargetIndex)
             {
                 Projectile.netUpdate = true;
@@ -132,12 +146,8 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.FiendsmithsRequiem
 
             if (Projectile.Distance(player.Center) > 2000f)
             {
-                Projectile.Center =
-                    followPosition;
-
-                Projectile.velocity =
-                    Vector2.Zero;
-
+                Projectile.Center = followPosition;
+                Projectile.velocity = Vector2.Zero;
                 Projectile.netUpdate = true;
             }
         }
@@ -161,9 +171,9 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.FiendsmithsRequiem
         {
             int direction = (target.Center - player.Center).X > 0f ? 1 : -1;
 
-            const float behindDistance = 70f;
+            const float behindDistance = -200f;
 
-            float bobOffset = Sin(Main.GlobalTimeWrappedHourly * 3f) * 5f;
+            float bobOffset = Sin(Main.GlobalTimeWrappedHourly * 3f) * 3f;
 
             Vector2 desiredPosition = target.Center + new Vector2(direction * (target.width * 0.5f + behindDistance), bobOffset);
 
@@ -201,6 +211,89 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.FiendsmithsRequiem
 
             // Requiem faces back toward the target.
             Projectile.direction = Projectile.spriteDirection = -direction;
+        }
+
+        public void StartLightningBarrage()
+        {
+            if (lightningBarrageTimer > 0)
+                return;
+
+            lightningBarrageTimer = LightningBarrageDuration;
+            Projectile.netUpdate = true;
+        }
+
+        private void DoLightningBarrage(Player player, NPC target)
+        {
+            // Put the coffin in front of the player.
+            Vector2 desiredPosition =
+                player.Center +
+                new Vector2(player.direction * 100f, -25f);
+
+            float bobOffset =
+                Sin(Main.GlobalTimeWrappedHourly * 4f) * 5f;
+
+            desiredPosition.Y += bobOffset;
+
+            Projectile.Center =
+                Vector2.Lerp(
+                    Projectile.Center,
+                    desiredPosition,
+                    0.15f
+                );
+
+            Projectile.velocity = Vector2.Zero;
+
+            // Face toward the target when one exists.
+            if (target != null)
+            {
+                Projectile.direction =
+                    Projectile.spriteDirection =
+                    target.Center.X >= Projectile.Center.X
+                        ? 1
+                        : -1;
+            }
+            else
+            {
+                Projectile.direction =
+                    Projectile.spriteDirection =
+                    player.direction;
+            }
+
+            // Fire throughout the 3-second barrage.
+            if (lightningBarrageTimer % LightningShootRate != 0)
+                return;
+
+            if (target == null)
+                return;
+
+            if (Projectile.owner != Main.myPlayer)
+                return;
+
+            Vector2 targetPosition =
+                Main.rand.NextVector2FromRectangle(target.Hitbox);
+
+            Projectile.NewProjectile(
+                Projectile.GetSource_FromThis(),
+                Projectile.Center,
+                Vector2.Zero,
+                ModContent.ProjectileType<FiendsmithsParadise>(),
+                Projectile.damage,
+                Projectile.knockBack,
+                Projectile.owner,
+                targetPosition.X,
+                targetPosition.Y
+            );
+
+            SoundStyle lightning = SoundID.DD2_LightningBugZap with
+            {
+                MaxInstances = 0,
+                PitchVariance = 0.1f
+            };
+
+            SoundEngine.PlaySound(
+                lightning.WithPitchOffset(1f),
+                Projectile.Center
+            );
         }
 
         private void EnsureChainsawsExist()
@@ -289,11 +382,6 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.FiendsmithsRequiem
 
     public class FiendsmithChainsaw : ModProjectile
     {
-        public override bool IsLoadingEnabled(Mod mod)
-        {
-            return InfernalConfig.Instance.DeveloperMode;
-        }
-
         private const float SegmentOverlap = 4f;
 
         // Duration of one individual arm swing.
@@ -318,6 +406,8 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.FiendsmithsRequiem
         // Thickness of the damaging arm segments.
         private const float SegmentCollisionWidth = 16f;
 
+        private const int MiddleSegmentCount = 2;
+
         // Both arms run the same 48-tick cycle.
         // 0-23  = left arm
         // 24-47 = right arm
@@ -332,6 +422,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.FiendsmithsRequiem
         // Used for drawing.
         private Vector2 baseCenter;
         private Vector2 middleCenter;
+        private Vector2 middleCenter2;
 
         private float baseRotation;
         private float middleRotation;
@@ -548,6 +639,11 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.FiendsmithsRequiem
 
             int localTimer = leftArmTurn ? elapsed : elapsed - SwingDuration;
 
+            if (localTimer == 0)
+            {
+                SoundEngine.PlaySound(SoundID.Item22, attachmentPosition);
+            }
+
             float swingCompletion = Clamp(localTimer / (float)SwingDuration, 0f, 1f);
 
             PerformWhipSwing(parent, target, attachmentPosition, fullBaseLength, fullMiddleLength, bladeHalfLength, swingCompletion);
@@ -567,16 +663,13 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.FiendsmithsRequiem
             bool parentBelowTarget = parent.Center.Y > target.Center.Y;
             float comboDirection = IsLeftArm ? 1f : -1f;
 
-            if (parentBelowTarget)
-                comboDirection *= -1f;
-
             float startAngle = SwingArc * comboDirection;
             float endAngle = -SwingArc * comboDirection;
             float swingOffset = Lerp(startAngle, endAngle, easedSwing);
             float swingRotation = targetRotation + swingOffset;
             Vector2 swingDirection = swingRotation.ToRotationVector2();
 
-            float totalReach = (fullBaseLength + fullMiddleLength + bladeHalfLength - SegmentOverlap * 2f) * smoothExtension;
+            float totalReach = (fullBaseLength + fullMiddleLength * MiddleSegmentCount + bladeHalfLength - SegmentOverlap * 3f) * smoothExtension;
             Vector2 bladePosition =  attachmentPosition + swingDirection * totalReach;
 
             // Strongest bend at the middle of the swing.
@@ -600,12 +693,45 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.FiendsmithsRequiem
             baseCenter = attachmentPosition + baseDirection * (currentBaseLength * 0.5f);
             baseDrawScale = fullBaseLength > 0f ? currentBaseLength / fullBaseLength : 0f;
 
-            Vector2 middleDirection = (bladePosition - elbowPosition).SafeNormalize(swingDirection);
-            float currentMiddleLength =Vector2.Distance(elbowPosition, bladePosition);
+            Vector2 middleDirection =
+                (bladePosition - elbowPosition)
+                .SafeNormalize(swingDirection);
 
-            middleRotation = middleDirection.ToRotation();
-            middleCenter = elbowPosition + middleDirection * (currentMiddleLength * 0.5f);
-            middleDrawScale = fullMiddleLength > 0f ? currentMiddleLength / fullMiddleLength : 0f;
+            float currentMiddleSpan =
+                Vector2.Distance(
+                    elbowPosition,
+                    bladePosition
+                );
+
+            // Divide the middle portion into two equal physical segments.
+            float currentMiddleLength =
+                currentMiddleSpan * 0.5f;
+
+            Vector2 middleJoint =
+                elbowPosition +
+                middleDirection *
+                currentMiddleLength;
+
+            middleRotation =
+                middleDirection.ToRotation();
+
+            // First middle segment.
+            middleCenter =
+                elbowPosition +
+                middleDirection *
+                (currentMiddleLength * 0.5f);
+
+            // Second middle segment.
+            middleCenter2 =
+                middleJoint +
+                middleDirection *
+                (currentMiddleLength * 0.5f);
+
+            // Both are full-sized when the arm is fully extended.
+            middleDrawScale =
+                fullMiddleLength > 0f
+                    ? currentMiddleLength / fullMiddleLength
+                    : 0f;
 
             Projectile.Center = bladePosition;
 
@@ -621,8 +747,8 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.FiendsmithsRequiem
 
             baseCenter = attachmentPosition;
             middleCenter = attachmentPosition;
+            middleCenter2 = attachmentPosition;
 
-            // Reset collision geometry so the previous swing cannot leave behind an invisible damaging arm.
             armAttachmentPosition = attachmentPosition;
             armElbowPosition = attachmentPosition;
 
@@ -636,6 +762,14 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.FiendsmithsRequiem
             float horizontalOffset = parent.width * AttachmentXFactor;
 
             return parent.Center + new Vector2(Side * horizontalOffset, AttachmentYOffset);
+        }
+
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            if (DownedBossSystem.downedProvidence)
+            {
+                target.AddBuff(ModContent.BuffType<Laceration>(), 60 * 3);
+            }
         }
 
         public override bool PreDraw(ref Color lightColor)
@@ -666,7 +800,39 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.FiendsmithsRequiem
 
             if (middleDrawScale > 0.001f)
             {
-                Main.EntitySpriteDraw(middleTexture, middleCenter - Main.screenPosition, null, Projectile.GetAlpha(Lighting.GetColor(middleCenter.ToTileCoordinates())), middleRotation, middleTexture.Size() * 0.5f, middleScale, middleEffects, 0f);
+                // Middle segment #1.
+                Main.EntitySpriteDraw(
+                    middleTexture,
+                    middleCenter - Main.screenPosition,
+                    null,
+                    Projectile.GetAlpha(
+                        Lighting.GetColor(
+                            middleCenter.ToTileCoordinates()
+                        )
+                    ),
+                    middleRotation,
+                    middleTexture.Size() * 0.5f,
+                    middleScale,
+                    middleEffects,
+                    0f
+                );
+
+                // Middle segment #2.
+                Main.EntitySpriteDraw(
+                    middleTexture,
+                    middleCenter2 - Main.screenPosition,
+                    null,
+                    Projectile.GetAlpha(
+                        Lighting.GetColor(
+                            middleCenter2.ToTileCoordinates()
+                        )
+                    ),
+                    middleRotation,
+                    middleTexture.Size() * 0.5f,
+                    middleScale,
+                    middleEffects,
+                    0f
+                );
             }
 
             float bladeProgress = Utils.GetLerpValue(0f, 0.25f, extensionProgress, true);

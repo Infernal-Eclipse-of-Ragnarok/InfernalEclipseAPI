@@ -1,14 +1,14 @@
-﻿using ThoriumMod;
+﻿using CalamityMod;
+using CalamityMod.CalPlayer;
 using InfernalEclipseAPI.Content.Buffs;
+using InfernalEclipseAPI.Core.Configs;
 using InfernalEclipseAPI.Core.DamageClasses.LegendaryClass;
 using InfernalEclipseAPI.Core.DamageClasses.MythicClass;
-using CalamityMod.CalPlayer;
-using Terraria.GameContent.Events;
-using CalamityMod;
-using ThoriumMod.Utilities;
 using InfernalEclipseAPI.Core.Systems;
+using Terraria.GameContent.Events;
+using ThoriumMod;
 using ThoriumMod.Buffs;
-using InfernalEclipseAPI.Core.Configs;
+using ThoriumMod.Utilities;
 
 namespace InfernalEclipseAPI.Core.Players.ThoriumPlayerOverrides.ThoriumMulticlassNerf
 {
@@ -85,12 +85,12 @@ namespace InfernalEclipseAPI.Core.Players.ThoriumPlayerOverrides.ThoriumMulticla
         }
 
         private static bool IsExcluded(Item item) =>
-            item.CountsAsClass<LegendaryMelee>() || item.CountsAsClass<LegendaryRanged>() || item.CountsAsClass<LegendaryMagic>() ||item.CountsAsClass<LegendarySummonMeleeSpeed>() ||
+            item.CountsAsClass<LegendaryMelee>() || item.CountsAsClass<LegendaryRanged>() || item.CountsAsClass<LegendaryMagic>() || item.CountsAsClass<LegendarySummon>() || item.CountsAsClass<LegendarySummonMeleeSpeed>() ||
             item.CountsAsClass<MythicMelee>() || item.CountsAsClass<MythicMagic>() || item.CountsAsClass<MythicRanged>() || item.CountsAsClass<MythicSummon>() 
             || item.CountsAsClass<AverageDamageClass>();
 
         private static bool IsExcluded(Projectile proj) =>
-            proj.CountsAsClass<LegendaryMelee>() || proj.CountsAsClass<LegendaryRanged>() || proj.CountsAsClass<LegendaryMagic>() || proj.CountsAsClass<LegendarySummonMeleeSpeed>() ||
+            proj.CountsAsClass<LegendaryMelee>() || proj.CountsAsClass<LegendaryRanged>() || proj.CountsAsClass<LegendaryMagic>() || proj.CountsAsClass<LegendarySummon>() || proj.CountsAsClass<LegendarySummonMeleeSpeed>() ||
             proj.CountsAsClass<MythicMelee>() || proj.CountsAsClass<MythicMagic>() || proj.CountsAsClass<MythicRanged>() || proj.CountsAsClass<MythicSummon>() ||
             proj.CountsAsClass<AverageDamageClass>();
 
@@ -229,7 +229,7 @@ namespace InfernalEclipseAPI.Core.Players.ThoriumPlayerOverrides.ThoriumMulticla
                 ranged += (float)(0.02 * emptySummonSlots);
             }
 
-            if (Player.HeldItem.CountsAsClass<LegendaryMelee>() || Player.HeldItem.CountsAsClass<LegendaryRanged>() || Player.HeldItem.CountsAsClass<LegendaryMagic>() || Player.HeldItem.CountsAsClass<LegendarySummonMeleeSpeed>() ||
+            if (Player.HeldItem.CountsAsClass<LegendaryMelee>() || Player.HeldItem.CountsAsClass<LegendaryRanged>() || Player.HeldItem.CountsAsClass<LegendaryMagic>() || Player.HeldItem.CountsAsClass<LegendarySummon>() || Player.HeldItem.CountsAsClass<LegendarySummonMeleeSpeed>() ||
                 Player.HeldItem.CountsAsClass<MythicMelee>() || Player.HeldItem.CountsAsClass<MythicRanged>() || Player.HeldItem.CountsAsClass<MythicMagic>() || Player.HeldItem.CountsAsClass<MythicSummon>())
             {
                 bool hasLunateCharm = false;

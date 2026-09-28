@@ -100,7 +100,7 @@ namespace InfernalEclipseAPI.Core.Systems
             if (ModLoader.TryGetMod("RecipeBrowser", out Mod mod))
             {
                 const string path = "InfernalEclipseAPI/Assets/Images/UI/RecipeBrowser/ClassIcon";
-                mod.Call("AddItemCategory", Language.GetTextValue("Mods.InfernalEclipseAPI.UI.RecipeBrowserCategories.Legendary"), "Weapons", ModContent.Request<Texture2D>(path + "Legendary"), (Predicate<Item>)(item => item.DamageType == ModContent.GetInstance<LegendaryMagic>() || item.DamageType == ModContent.GetInstance<LegendaryMelee>() || item.DamageType == ModContent.GetInstance<LegendaryRanged>() || item.DamageType == ModContent.GetInstance<LegendarySummonMeleeSpeed>() || item.type == ModContent.ItemType<Catlight>()));
+                mod.Call("AddItemCategory", Language.GetTextValue("Mods.InfernalEclipseAPI.UI.RecipeBrowserCategories.Legendary"), "Weapons", ModContent.Request<Texture2D>(path + "Legendary"), (Predicate<Item>)(item => item.DamageType == ModContent.GetInstance<LegendaryMagic>() || item.DamageType == ModContent.GetInstance<LegendaryMelee>() || item.DamageType == ModContent.GetInstance<LegendaryRanged>() || item.DamageType == ModContent.GetInstance<LegendarySummon>() || item.DamageType == ModContent.GetInstance<LegendarySummonMeleeSpeed>() || item.type == ModContent.ItemType<Catlight>()));
                 mod.Call("AddItemCategory", Language.GetTextValue("Mods.InfernalEclipseAPI.UI.RecipeBrowserCategories.Mythical"), "Weapons", ModContent.Request<Texture2D>(path + "Mythic"), (Predicate<Item>)(item => item.DamageType == ModContent.GetInstance<MythicMagic>() || item.DamageType == ModContent.GetInstance<MythicMelee>() || item.DamageType == ModContent.GetInstance<MythicRanged>() || item.DamageType == ModContent.GetInstance<MythicSummon>()));
             }
         }
@@ -379,6 +379,7 @@ namespace InfernalEclipseAPI.Core.Systems
                 coloredDamageTypes.Call("AddDamageType", LegendaryMelee.Instance, legendaryColor, legendaryColor, legendaryCritColor);
                 coloredDamageTypes.Call("AddDamageType", LegendaryRanged.Instance, legendaryColor, legendaryColor, legendaryCritColor);
                 coloredDamageTypes.Call("AddDamageType", LegendaryMagic.Instance, legendaryColor, legendaryColor, legendaryCritColor);
+                coloredDamageTypes.Call("AddDamageType", LegendarySummon.Instance, legendaryColor, legendaryColor, legendaryCritColor);
                 coloredDamageTypes.Call("AddDamageType", LegendarySummonMeleeSpeed.Instance, legendaryColor, legendaryColor, legendaryCritColor);
 
                 Color mythicColor = Color.Cyan;

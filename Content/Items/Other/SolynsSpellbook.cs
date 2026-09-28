@@ -158,6 +158,7 @@ namespace InfernalEclipseAPI.Content.Items.Other
                     namelessDisplay.OverrideColor = new Color(201, 41, 255);
                     list.Insert(insertIndex, namelessDisplay);
 
+                    /*
                     if (ModLoader.TryGetMod("CalamitySimpleWhipAddon", out Mod calSimpleWhips))
                     {
                         insertIndex++;
@@ -166,6 +167,7 @@ namespace InfernalEclipseAPI.Content.Items.Other
                         aurelianDisplay.OverrideColor = new Color(236, 255, 31); //yellow used be schematics
                         list.Insert(insertIndex, aurelianDisplay);
                     }
+                    */
 
                     if (InfernalCrossmod.SOTS.Loaded)
                     {

@@ -18,6 +18,7 @@ using CalamityMod.NPCs.SupremeCalamitas;
 using CalamityMod.NPCs.Yharon;
 using CalamityMod.Projectiles.Melee;
 using CalamityMod.Projectiles.Melee.Shortswords;
+using CalamityMod.Projectiles.Melee.Yoyos;
 using CalamityMod.Projectiles.Rogue;
 using CalamityMod.World;
 using InfernalEclipseAPI.Content.Buffs;
@@ -76,6 +77,8 @@ namespace InfernalEclipseAPI.Core.Players
         public bool exoSights;
         public bool blixerCoreSummon;
         public bool blixerLaserMode;
+        public bool fiendsmithRequiemSummon;
+        public bool fiendsmithParadise;
 
         // Consumables & Player States
         public int voidMagePrevention;
@@ -98,6 +101,7 @@ namespace InfernalEclipseAPI.Core.Players
         private int batCoinTimer = 0;
         public int resonatorTimer = 0;
         public int incubatorTextTime = 0;
+        public int fiendsmithParadiseCooldown = 0;
         public int BoostPressTimer;
         public int namelessDialogueCooldown;
         private int nightmareArmCD;
@@ -367,6 +371,7 @@ namespace InfernalEclipseAPI.Core.Players
             gutWrench = false;
             bagOfCharms = false;
             blixerCoreSummon = false;
+            fiendsmithRequiemSummon = false;
             InverseAmberRing = false;
         }
         public override void PreUpdate()
@@ -403,6 +408,8 @@ namespace InfernalEclipseAPI.Core.Players
             Player.ClearBuff(ModContent.BuffType<StarboundHorrification>());
 
             teleportRespawnKilldown = 30;
+
+            fiendsmithParadiseCooldown = 0;
         }
 
         public override void PostUpdate()
@@ -554,6 +561,9 @@ namespace InfernalEclipseAPI.Core.Players
                     }
                 }
             }
+
+            if (fiendsmithParadiseCooldown > 0)
+                fiendsmithParadiseCooldown--;
 
             if (InfernalWorld.RagnarokModeEnabled)
             {

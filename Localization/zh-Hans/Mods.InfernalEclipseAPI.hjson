@@ -3,6 +3,7 @@ UI: {
 		ManaSteal: 剩余魔力吸取量
 		TerminalLucidity: 混乱的现实
 		LucidRetaliation: 恢复的现实
+		// ParadisePower: Paradise Cooldown
 	}
 
 	TitleLinks: {
@@ -566,7 +567,7 @@ ItemTooltip: {
 		cat: StarlightCat
 		Arkangel: Arkangel
 		Minesky: Mineskye
-		// Bomber: Bomber
+		// Bomber: Bomberr
 	}
 
 	MergedCraftingTreeTooltip: {
@@ -2545,7 +2546,51 @@ Items: {
 
 	FiendsmithsRequiem: {
 		// DisplayName: Fiendsmith's Requiem
-		// Tooltip: ""
+		/* Tooltip:
+			'''
+			Summons Fiendsmith's Requiem to attack with your other summon weapons
+			Only one of each of the fiends can be active at once
+			''' */
+		// Tremendae: Using this weapon for a second time summons Rex Tremendae which will fire bullets at nearby foes
+		/* Paradise:
+			'''
+			Using this weapon for a third time unlocks the Paradise ability
+			While Paradise is unlocked, <right> to cause Requiem to release homing laser bolts
+			The <right> has a cooldown of 18 seconds
+			''' */
+
+		Progression: {
+			/* Ravager:
+				'''
+				Defeat The Fortress of Flesh to gain more power...
+				No extra power has been gained...
+				''' */
+			/* Deus:
+				'''
+				With the defeat of Ravager, this weapon now deals extra damage
+				Defeat the star weaver to gain more power...
+				''' */
+			/* Dragonfolly:
+				'''
+				With the defeat of Astrum Deus, you can now summon Rex Tremendae in addition to Requiem
+				Defeat the false offspring to gain more power...
+				''' */
+			/* Providence:
+				'''
+				With the defeat of Dragonfolly, you can now unlock the Paradise ability
+				Defeat the Profaned Goddess to gain more power...
+				''' */
+			/* Polterghast:
+				'''
+				With the defeat of Providence, Requiem's chainsaws now inflict [cbuff:CalamityMod/Laceration]
+				Defeat the wrathful coalescence to gain more power...
+				''' */
+			/* Full:
+				'''
+				The Fiendsmith's Requiem is fully awakend, and all abilities have been further buffed!
+				The weapon's maximum power is unleashed!
+				''' */
+		}
 	}
 }
 
@@ -2601,7 +2646,9 @@ Projectiles: {
 	BlixerHand.DisplayName: Blixer手
 	BlixerCannonPro.DisplayName: Blixer子弹
 	// FiendsmithsRequiemPro.DisplayName: Fiendsmith's Requiem
-	// FiendsmithChainsaw.DisplayName: Fiendsmith Chainsaw
+	// FiendsmithChainsaw.DisplayName: Fiendsmith's Chainsaw
+	// FiendsmithsTremendae.DisplayName: Fiendsmith's Tremendae
+	// FiendsmithsParadise.DisplayName: Fiendsmith's Paradise
 }
 
 DiaryTooltip:
@@ -3477,6 +3524,11 @@ Buffs: {
 	FreezingAura: {
 		// DisplayName: Freezing Aura
 		// Description: Mods.InfernalEclipseAPI.Buffs.FreezingAura.Description
+	}
+
+	FiendsmithsRequiemBuff: {
+		// DisplayName: Fiendsmith's Requiem
+		// Description: The Fiendsmith's fiends are helping you fight!
 	}
 }
 
