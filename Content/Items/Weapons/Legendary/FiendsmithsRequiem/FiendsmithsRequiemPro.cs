@@ -770,6 +770,10 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.FiendsmithsRequiem
             {
                 target.AddBuff(ModContent.BuffType<Laceration>(), 60 * 3);
             }
+            else if (DownedBossSystem.downedRavager)
+            {
+                target.AddBuff(ModContent.BuffType<HeavyBleeding>(), 60 * 3);
+            }
         }
 
         public override bool PreDraw(ref Color lightColor)

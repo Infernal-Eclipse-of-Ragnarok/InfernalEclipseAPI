@@ -24,7 +24,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.FiendsmithsRequiem
         {
             Item.width = 34;
             Item.height = 36;
-            Item.damage = 100; //TEMP
+            Item.damage = 90;
             Item.useTime = Item.useAnimation = 19;
             Item.knockBack = 3f;
             Item.mana = 10;
@@ -50,11 +50,11 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.FiendsmithsRequiem
             else if (DownedBossSystem.downedProvidence)
                 damage += 1.25f; //TEMP
             else if (DownedBossSystem.downedDragonfolly)
-                damage += 1.15f; //TEMP
+                damage += 2.00f; //RE-TEST DUE TO BUG
             else if (DownedBossSystem.downedAstrumDeus)
-                damage += 0.75f; //TEMP
+                damage += 0.35f; //RE-TEST DUE TO BUG
             else if (DownedBossSystem.downedRavager)
-                damage += 0.25f; //TEMP
+                damage += 0.25f; //RE-TEST DUE TO BUG
         }
 
         public override bool CanUseItem(Player player) =>player.maxMinions >= 2;
@@ -113,8 +113,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.FiendsmithsRequiem
             player.AddBuff(ModContent.BuffType<FiendsmithsRequiemBuff>(), 3600);
 
             var minion = Projectile.NewProjectileDirect(source, player.Center, Vector2.Zero, type, damage, knockback, player.whoAmI);
-            minion.originalDamage = Item.damage;
-
+            Main.NewText($"Spawn damage: {damage} | Projectile damage: {minion.damage} | Original: {minion.originalDamage}");
             return false;
         }
 
