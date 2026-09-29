@@ -14,7 +14,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.FiendsmithsRequiem
 {
     public class FiendsmithsRequiemPro : ModProjectile
     {
-        public static float TargetRange = DownedBossSystem.downedProvidence ? 1250f : DownedBossSystem.downedAstrumDeus ? 1000f : 750f;
+        public static float TargetRange => DownedBossSystem.downedPolterghast ? 1200f : DownedBossSystem.downedProvidence ? 1050f : DownedBossSystem.downedAstrumDeus ? 900f : 750f;
 
         public int AttackState;
         public int TargetIndex = -1;
@@ -277,7 +277,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.FiendsmithsRequiem
                 Projectile.Center,
                 Vector2.Zero,
                 ModContent.ProjectileType<FiendsmithsParadise>(),
-                Projectile.damage,
+                (int)(FiendsmithsRequiem.FiendSmithsRequiemDamage(Projectile.damage)),
                 Projectile.knockBack,
                 Projectile.owner,
                 targetPosition.X,
@@ -338,7 +338,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.FiendsmithsRequiem
 
             Vector2 spawnPosition = Projectile.Center + Vector2.UnitX * side * spawnOffset;
 
-            Projectile.NewProjectile(Projectile.GetSource_FromThis(), spawnPosition, Vector2.Zero, ModContent.ProjectileType<FiendsmithChainsaw>(), Projectile.damage, Projectile.knockBack, Projectile.owner, Projectile.whoAmI, side);
+            Projectile.NewProjectile(Projectile.GetSource_FromThis(), spawnPosition, Vector2.Zero, ModContent.ProjectileType<FiendsmithChainsaw>(), (int)(FiendsmithsRequiem.FiendSmithsRequiemDamage(Projectile.damage)), Projectile.knockBack, Projectile.owner, Projectile.whoAmI, side);
         }
 
         private NPC FindTarget(Player player)

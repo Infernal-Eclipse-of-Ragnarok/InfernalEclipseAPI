@@ -9,7 +9,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.FiendsmithsRequiem
 {
     public class FiendsmithsTremendae : ModProjectile
     {
-        private const int ShootRate = 24;
+        private const int ShootRate = 36;
 
         private int shootTimer;
 
@@ -186,7 +186,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.FiendsmithsRequiem
 
                         Vector2 bulletSpawnPosition = Projectile.Center + directionToTarget * (Projectile.width * 0.5f) + directionToTarget.RotatedBy(PiOver2) * (8f * Projectile.spriteDirection);
 
-                        projIndex = Projectile.NewProjectile(Projectile.GetSource_FromThis(), bulletSpawnPosition, bulletVelocity, projID, (int)((Projectile.damage) + damage - 100), kb, Projectile.owner);
+                        projIndex = Projectile.NewProjectile(Projectile.GetSource_FromThis(), bulletSpawnPosition, bulletVelocity, projID, (int)(FiendsmithsRequiem.FiendSmithsRequiemDamage(Projectile.damage) + damage - 100), kb, Projectile.owner);
 
                         if (projIndex.WithinBounds(Main.maxProjectiles))
                         {
