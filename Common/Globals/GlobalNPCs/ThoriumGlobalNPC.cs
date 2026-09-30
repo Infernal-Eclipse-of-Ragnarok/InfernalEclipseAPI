@@ -102,11 +102,14 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
             }
 
             int[] meteoriteEnemies =
-{
+            {
                 ModContent.NPCType<UFO>(),
                 ModContent.NPCType<MartianScout>(),
                 ModContent.NPCType<MartianSentry>(),
             };
+
+            if (npc.type == NPCID.BloodNautilus)
+                npcLoot.AddIf(() => Main.hardMode, ModContent.ItemType<BloodCell>(), 1, 15, 20);
 
             if (ModLoader.HasMod("SOTS"))
             {
@@ -218,7 +221,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
 
             if (item.type == ModContent.ItemType<LichTreasureBag>() && InfernalCrossmod.ThoriumRework.Loaded && !InfernalCrossmod.Hummus.Loaded)
             {
-                if (InfernalCrossmod.ThoriumRework.Mod.TryFind("SoulSnatcher", out ModItem soulSnacter)) 
+                if (InfernalCrossmod.ThoriumRework.Mod.TryFind("SoulSnatcher", out ModItem soulSnacter))
                 {
                     var rule = new CommonDropNotScalingWithLuck(soulSnacter.Type, 5, 1, 1)
                     {
