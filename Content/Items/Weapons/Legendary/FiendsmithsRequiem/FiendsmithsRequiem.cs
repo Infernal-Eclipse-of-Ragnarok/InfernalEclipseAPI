@@ -173,6 +173,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.FiendsmithsRequiem
         public override void AddRecipes()
         {
             CreateRecipe()
+                .AddIngredient(ItemID.EmeraldBunnyCage)
                 .AddIngredient(ItemID.SpookyWood, 40)
                 .AddIngredient(ItemID.Ectoplasm, 12)
                 .AddIngredient(ItemID.SoulofFright, 10)

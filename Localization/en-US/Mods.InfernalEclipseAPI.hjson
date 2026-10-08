@@ -2553,7 +2553,7 @@ Items: {
 		Tooltip:
 			'''
 			Summons Fiendsmith's Requiem to attack with your other summon weapons
-			Only one of each of the fiends can be active at once
+			Only one Requiem can be active at once
 			'''
 		Tremendae:
 			'''
