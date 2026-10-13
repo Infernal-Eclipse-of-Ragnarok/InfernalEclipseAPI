@@ -3,7 +3,7 @@ UI: {
 		ManaSteal: 剩余魔力吸取量
 		TerminalLucidity: 混乱的现实
 		LucidRetaliation: 恢复的现实
-		// ParadisePower: Paradise Cooldown
+		ParadisePower: 乐园冷却
 	}
 
 	TitleLinks: {
@@ -12,8 +12,8 @@ UI: {
 	}
 
 	RecipeBrowserCategories: {
-		// Legendary: Legendary
-		// Mythical: Mythical
+		Legendary: 传说
+		Mythical: 神话
 	}
 
 	NoVoidConsumable: 你现在可吃不下那个！
@@ -103,12 +103,12 @@ UI: {
 		该模组加入了大量未注明的改动，可能会使您的游玩体验比预期更糟。
 		我们强烈建议您禁用该模组。
 		'''
-	// MediumWorldWarning: "[c/FF0000:MEDIUM WORLDS NOT RECOMMENDED WITH IEOR]"
-	/* WorldWarningRemnants:
+	MediumWorldWarning: "[c/FF0000:游玩IEoR时不推荐使用中型世界]"
+	WorldWarningRemnants:
 		'''
-		[c/FF0000:INFERNUM MODE AND SOTS NOT SUPPORTED BY REMNANTS]
-		[c/FF0000:It is recommended to Remnants before continuing!]
-		''' */
+		[c/FF0000:Remnants不支持灾厄炼狱和SOTS]
+		[c/FF0000:建议在继续前禁用Remnants]
+		'''
 }
 
 DifficultyUI: {
@@ -163,8 +163,8 @@ ItemBalance: {
 	Modified2: 按住{0}以查看修改
 	DamageUpGeneric: "    伤害增加[c/00A36C:{0}%]"
 	DamageDownGeneric: "    伤害降低[c/FF0000:{0}%]"
-	ShootSpeedUpGeneric: "    射弹速度降低[c/FF0000:{0}%]"
-	ShootSpeedDownGeneric: "    射弹速度增加[c/00A36C:{0}%]"
+	ShootSpeedUpGeneric: "    射弹速度增加[c/00A36C:{0}%]"
+	ShootSpeedDownGeneric: "    射弹速度降低[c/FF0000:{0}%]"
 	UseTimeUpGeneric: "    使用时间降低[c/00A36C:{0}%]"
 	UseTimeDownGeneric: "    使用时间增加[c/FF0000:{0}%]"
 	UseAnimationUpGeneric: "    使用动画减少[c/00A36C:{0}%]"
@@ -207,8 +207,8 @@ ItemTooltip: {
 		SOTSAdditional: 禁用所有二十面体的效果
 	}
 
-	// Dreadmine: "[s:InfernalEclipseAPI/IEoRIcon] Only one dreadmine turret can be active at once, and spawning a new turret will cause all active mines to explode"
-	Calculator: 降低20%召唤伤害
+	Dreadmine: "[s:InfernalEclipseAPI/IEoRIcon] 同一时间只能存在一座由此武器召唤的炮台，召唤新的炮台会引爆所有现存地雷"
+	Calculator: "[s:InfernalEclipseAPI/IEoRIcon] 降低20%召唤伤害"
 	Wiesnbrau:
 		'''
 		施加[cbuff:PotionSickness]减益
@@ -230,7 +230,7 @@ ItemTooltip: {
 		Player2: 定魂锚已设置，你有20秒的时间返回。
 	}
 
-	WhiteDwarfSetBonus: 象牙状火焰触发后有2秒冷却时间
+	WhiteDwarfSetBonus: "[s:InfernalEclipseAPI/IEoRIcon] 象牙状火焰触发后有2秒冷却时间"
 	PhoenixStaff:
 		'''
 		右键喷射火焰流，对敌怪造成[cbuff:ThoriumMod/HolyGlare]减益
@@ -333,7 +333,7 @@ ItemTooltip: {
 		增加{0}%伤害
 		降低{1}点防御
 		'''
-	EarthDrive: 最多增加10%的近战攻速
+	EarthDrive: "[s:InfernalEclipseAPI/IEoRIcon] 最多增加10%的近战攻速"
 	SyntheticLiver:
 		'''
 		增加25%从食物中获得的虚空值
@@ -572,7 +572,7 @@ ItemTooltip: {
 		cat: StarlightCat
 		Arkangel: Arkangel
 		Minesky: Mineskye
-		// Bomber: Bomberr
+		Bomber: Bomberr
 	}
 
 	MergedCraftingTreeTooltip: {
@@ -586,8 +586,8 @@ ItemTooltip: {
 			'''
 		Hellfire:
 			'''
-			所有火系减益的伤害倍率乘以1.5，不与下位效果叠加
-			攻击附带狱火效果
+			[s:InfernalEclipseAPI/IEoRIcon] 所有火系减益的伤害倍率乘以1.5，不与下位效果叠加
+			[s:InfernalEclipseAPI/IEoRIcon] 攻击附带狱火效果
 			'''
 
 		BagOfAmmoConsume: {
@@ -656,15 +656,15 @@ ItemTooltip: {
 			'''
 		HypersonicTooltip: '''"引导听觉上限之外的音波之力！"'''
 		4DTooltip: '''"声波的力量足以创造通往异世的虫洞"'''
-		CrystalScorpian: 仆从攻击有15%概率产生一只水晶蝎并在水晶蝎存在时仆从攻击多造成3点伤害
+		CrystalScorpian: "[s:InfernalEclipseAPI/IEoRIcon] 仆从攻击有15%概率产生一只水晶蝎并在水晶蝎存在时仆从攻击多造成3点伤害"
 		Skull:
 			'''
-			被召唤师鞭尖端命中的敌怪会受到{0}%额外伤害并被诅咒，生成至多[c/{1}:{2}]个微粒
-			手持鞭时<right>将微粒送向你的光标处，伤害附近的敌怪
-			击杀被诅咒的敌怪或持续伤害Boss会释放一只造成40点伤害的爆炸鬼魂，也会诅咒敌怪
+			[s:InfernalEclipseAPI/IEoRIcon] 被召唤师鞭尖端命中的敌怪会受到{0}%额外伤害并被诅咒，生成至多[c/{1}:{2}]个微粒
+			[s:InfernalEclipseAPI/IEoRIcon] 手持鞭时<right>将微粒送向你的光标处，伤害附近的敌怪
+			[s:InfernalEclipseAPI/IEoRIcon] 击杀被诅咒的敌怪或持续伤害Boss会释放一只造成40点伤害的爆炸鬼魂，也会诅咒敌怪
 			'''
-		CyanPearl: 减半哨兵受到的召唤伤害惩罚
-		Watch: 你的哨兵会永久存在，并在两分钟内增加最多15%伤害
+		CyanPearl: "[s:InfernalEclipseAPI/IEoRIcon] 减半哨兵受到的召唤伤害惩罚"
+		Watch: "[s:InfernalEclipseAPI/IEoRIcon] 你的哨兵会永久存在，并在两分钟内增加最多15%伤害"
 
 		FortressGenerator: {
 			OrigTooltip1: 增加10%伤害和2点生命恢复速度
@@ -688,8 +688,8 @@ ItemTooltip: {
 		OneSentry: 提升1格最大哨兵栏位
 		TwoSentry: 提升2格最大哨兵栏位
 		ThreeSentry: 提升3格最大哨兵栏位
-		Murky: 每第六次施法不消耗魔力并返还你魔力花费
-		Hungering: 饰品可见性关闭时，给予你饮魔玫瑰的效果
+		Murky: "[s:InfernalEclipseAPI/IEoRIcon] 每第六次施法不消耗魔力并返还你魔力花费"
+		Hungering: "[s:InfernalEclipseAPI/IEoRIcon] 饰品可见性关闭时，给予你饮魔玫瑰的效果"
 		SlagsplitterCooldown: 这个效果有1.5秒冷却时间
 		Grace:
 			'''
@@ -738,16 +738,16 @@ ItemTooltip: {
 		Magneto: 增加地面上盗贼物品的拾取范围
 		Bone:
 			'''
-			拾取盗贼物品时有33%概率复制它并增加你的盗贼弹幕速度
-			此效果只能在脱战时每半秒触发一次
+			[s:InfernalEclipseAPI/IEoRIcon] 拾取盗贼物品时有33%概率复制它并增加你的盗贼攻击速度
+			[s:InfernalEclipseAPI/IEoRIcon] 此效果只能在脱战时每半秒触发一次
 			'''
 		Bone2:
 			'''
-			盗贼弹幕击中任意目标时，有20%几率使玩家获得15%盗贼攻击速度，持续1秒
-			此效果每1.5秒只能触发一次
+			[s:InfernalEclipseAPI/IEoRIcon] 盗贼弹幕击中任意目标时，有20%几率使玩家获得15%盗贼攻击速度，持续1秒
+			[s:InfernalEclipseAPI/IEoRIcon] 此效果每1.5秒只能触发一次
 			'''
-		Scuttler: 潜伏攻击的弹幕消失时会生成一根宝石尖刺
-		BloodyFilthy: 潜伏攻击会附带8点护甲穿透，额外造成8%伤害并为你回复2点生命值
+		Scuttler: "[s:InfernalEclipseAPI/IEoRIcon] 潜伏攻击的弹幕消失时会生成一根宝石尖刺"
+		BloodyFilthy: "[s:InfernalEclipseAPI/IEoRIcon] 潜伏攻击会附带8点护甲穿透，额外造成8%伤害并为你回复2点生命值"
 		NoExhaustion: 装备时移除所有疲劳值效果
 
 		ToothNecklace: {
@@ -813,12 +813,12 @@ ItemTooltip: {
 
 		OmniIns: 最大灵感值增加5
 		OmniEmp: 每拥有一种咒音增幅使移动速度增加2%，音波演奏速度增加1%
-		ShinobiNerf: 这个效果有2秒冷却时间
+		ShinobiNerf: "[s:InfernalEclipseAPI/IEoRIcon] 这个效果有2秒冷却时间"
 		ShinobiEffect:
 			'''
-			投掷暴击率提高6%
-			连续两次投掷暴击将释放暗影闪电，并短暂提升投掷速度
-			这个效果有2秒冷却时间
+			[s:InfernalEclipseAPI/IEoRIcon] 投掷暴击率提高6%
+			[s:InfernalEclipseAPI/IEoRIcon] 连续两次投掷暴击将释放暗影闪电，并短暂提升投掷速度
+			[s:InfernalEclipseAPI/IEoRIcon] 这个效果有2秒冷却时间
 			'''
 		CloverNerf: 吸血效果和灵感恢复有1秒冷却时间
 		CloverNerf2: 吸血效果有1秒冷却时间
@@ -841,8 +841,8 @@ ItemTooltip: {
 
 		AscendantInsignia:
 			'''
-			按下进升证章按键会给予你飞升之力，提供4秒的无限飞行时间
-			飞升有40秒冷却时间
+			[s:InfernalEclipseAPI/IEoRIcon] 按下进升证章按键会给予你飞升之力，提供4秒的无限飞行时间
+			[s:InfernalEclipseAPI/IEoRIcon] 飞升有40秒冷却时间
 			'''
 
 		MachinaBooster: {
@@ -868,7 +868,7 @@ ItemTooltip: {
 				'''
 		}
 
-		GildedVoid: 激活时会增加16点虚空流失值
+		GildedVoid: "[s:InfernalEclipseAPI/IEoRIcon] 激活时会增加16点虚空流失值"
 		MonsterCharm: 战斗中你的盔甲穿透，防御和生命恢复会随时间增加
 		GreedierRing:
 			'''
@@ -882,7 +882,7 @@ ItemTooltip: {
 			无法与下位饰品叠加
 			增加67%buff持续时间
 			'''
-		SubspaceBoostersDash: 在地面上按下{0}键可向前方进行爆裂冲刺，提供更快的的速度和加速度
+		SubspaceBoostersDash: "[s:InfernalEclipseAPI/IEoRIcon] 在地面上按下{0}键可向前方进行爆裂冲刺，提供更快的速度和加速度"
 		SubspaceBoosters:
 			'''
 			在奔跑时会获得极大的加速度
@@ -972,7 +972,7 @@ ItemTooltip: {
 		Line3: 你所克服的逆境终将结出可贵的硕果。
 	}
 
-	// AstrageldonPlatinumRelic: A trophy for defeating the multiversal terror before the fall of the eldritch remains
+	AstrageldonPlatinumRelic: 在邪神遗骸陨落前击败多元宇宙凝胶的证明
 	PrimordialsRelic:
 		'''
 		你做得很好，成功击败了《瑟银》。现在还剩十个
@@ -2129,7 +2129,7 @@ Items: {
 			按住右键开始为强化斩击蓄力
 			完全蓄力后松开右键，释放必定暴击的毁灭性斩击
 			命中敌人时造成[cbuff:CalamityMod/AuricRebuke]减益
-			“愿幸运垂青于你。除此之外，皆不足恃。”
+			[c/E3AF40:“愿幸运垂青于你。除此之外，皆不足恃”]
 			'''
 	}
 
@@ -2407,7 +2407,7 @@ Items: {
 		DisplayName: 蚀光武库
 		Tooltip:
 			'''
-			恭喜所有完成 Low% 或 Boss Rush 的挑战者！
+			恭喜所有完成 Low%、仅使用鞭子或 Boss Rush 的挑战者！
 			这幅画的空间不足以容纳每一位胜者
 			胜者将按完成挑战的先后顺序列出
 			长按SHIFT键以查看完整致谢名单
@@ -2483,117 +2483,117 @@ Items: {
 	}
 
 	SubspaceSerpentRelicPlatinum: {
-		// DisplayName: Platinum Subspace Serpent Relic
-		// Tooltip: "{0}"
-		// PlatinumTooltip: A trophy for defeating the serpent of sages before the fall of the eldritch remains
+		DisplayName: 亚空骇蟒铂金圣物
+		Tooltip: "{0}"
+		PlatinumTooltip: 在邪神遗骸陨落前击败贤者之蛇的证明
 	}
 
 	TerraBladeRelicPlatinum: {
-		// DisplayName: Platinum Terra Blade Relic
-		// Tooltip: "{0}"
-		// PlatinumTooltip: A trophy for defeating the dark reflection before the death of the Devourer of Gods
+		DisplayName: 泰拉刃铂金圣物
+		Tooltip: "{0}"
+		PlatinumTooltip: 在神明吞噬者殒命前击败黑暗镜像的证明
 	}
 
 	AstrageldonRelicGold: {
-		// DisplayName: Astrageldon Relic
-		// Tooltip: ""
+		DisplayName: 末世星史莱姆圣物
+		Tooltip: ""
 	}
 
 	QueenJellyfishMusicBox: {
-		// DisplayName: Music Box (Queen Jellyfish - Ragnarok Mode)
-		// Tooltip: Plays 'Mutant Majesty' by Techhy
+		DisplayName: 音乐盒 (水母皇后-诸神黄昏模式)
+		Tooltip: 播放“Mutant Majesty” 作者：Techhy
 	}
 
 	InfernalHypnosRelic: {
-		// DisplayName: Infernal Hypnos Relic
-		// Tooltip: "{0}"
+		DisplayName: 修普诺斯炼狱圣物
+		Tooltip: "{0}"
 	}
 
 	TerraBladeTreasureBag: {
-		// DisplayName: Treasure Bag (Terra Blade)
-		// Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+		DisplayName: 宝藏袋 (泰拉刃)
+		Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 	}
 
 	SoulBaguette: {
-		// DisplayName: Soul Baguette
-		/* Tooltip:
+		DisplayName: 灵魂法棍
+		Tooltip:
 			'''
 			{0}{$CommonItemTooltip.MediumStats}
-			Heals 250 with [cbuffplr:CalamityMod/RedWineBuff], but reduces by 1 HP/s for 15 seconds
-			''' */
-		// VoidTooltip: Refills 60 void
+			拥有[cbuffplr:CalamityMod/RedWineBuff]时恢复250点生命值，但生命再生速度降低1点/秒，持续15秒
+			'''
+		VoidTooltip: 恢复60点虚空值
 	}
 
 	ExoBaguette: {
-		// DisplayName: Exo Baguette
-		/* Tooltip:
+		DisplayName: 星流法棍
+		Tooltip:
 			'''
-			Permanently allows you to drink 1 more alcohol than normal
-			Can only be used once
-			''' */
+			永久使你可同时饮用的酒类数量上限增加1
+			只能使用一次
+			'''
 	}
 
 	ChestLockIcon: {
-		// DisplayName: Chest Lock Icon
-		// Tooltip: ""
+		DisplayName: 宝箱锁定图标
+		Tooltip: ""
 	}
 
 	HoverItemDummy: {
-		// DisplayName: Hover Item Dummy
-		// Tooltip: ""
+		DisplayName: 悬停物品占位
+		Tooltip: ""
 	}
 
 	FiendsmithsRequiem: {
-		// DisplayName: Fiendsmith's Requiem
-		/* Tooltip:
+		DisplayName: 刻魔的镇魂棺
+		Tooltip:
 			'''
-			Summons Fiendsmith's Requiem to attack with your other summon weapons
-			Only one Requiem can be active at once
-			''' */
-		/* Tremendae:
+			召唤刻魔的镇魂棺，在你使用其他召唤武器时一同攻击
+			同一时间只能存在一具镇魂棺
 			'''
-			Using this weapon for a second time summons Rex Tremendae which will fire bullets at nearby foes
-			Tremendae will fire bullets from your inventory, or High Velocity bullets if you have none
-			Converts normal bullets into High Velocity bullets
-			''' */
-		/* Paradise:
+		Tremendae:
 			'''
-			Using this weapon for a third time unlocks the Paradise ability
-			While Paradise is unlocked, Right Click to cause Requiem to release homing laser bolts
-			The Right Click has a cooldown of 18 seconds
-			''' */
+			第二次使用此武器会召唤赫赫君王，向附近敌人发射子弹
+			优先使用物品栏中的子弹，若无子弹则发射高速子弹
+			将普通子弹转换为高速子弹
+			'''
+		Paradise:
+			'''
+			第三次使用此武器可解锁“乐园”能力
+			解锁后，右键可使镇魂棺发射追踪激光弹
+			右键能力有18秒冷却时间
+			'''
 
 		Progression: {
-			/* Ravager:
+			Ravager:
 				'''
-				Defeat The Fortress of Flesh to gain more power...
-				No extra power has been gained...
-				''' */
-			/* Deus:
+				击败血肉堡垒以获得更多力量……
+				尚未获得额外力量……
 				'''
-				With the defeat of Ravager, this weapon now deals extra damage
-				Defeat the star weaver to gain more power...
-				''' */
-			/* Dragonfolly:
+			Deus:
 				'''
-				With the defeat of Astrum Deus, you can now summon Rex Tremendae in addition to Requiem
-				Defeat the false offspring to gain more power...
-				''' */
-			/* Providence:
+				击败毁灭魔像后，该武器造成的伤害提高
+				击败织星游龙以获得更多力量……
 				'''
-				With the defeat of Dragonfolly, you can now unlock the Paradise ability
-				Defeat the Profaned Goddess to gain more power...
-				''' */
-			/* Polterghast:
+			Dragonfolly:
 				'''
-				With the defeat of Providence, Requiem's chainsaws now inflict [cbuff:CalamityMod/Laceration]
-				Defeat the wrathful coalescence to gain more power...
-				''' */
-			/* Full:
+				击败星神游龙后，你可以在镇魂棺之外额外召唤赫赫君王
+				击败伪造龙裔以获得更多力量……
 				'''
-				The Fiendsmith's Requiem is fully awakend, and all abilities have been further buffed!
-				The weapon's maximum power is unleashed!
-				''' */
+			Providence:
+				'''
+				击败痴愚金龙后，你可以解锁“乐园”能力
+				击败亵渎天神以获得更多力量……
+				'''
+			Polterghast:
+				'''
+				击败亵渎天神后，镇魂棺的链锯会施加[cbuff:CalamityMod/Laceration]减益
+				击败怨怒凝聚体以获得更多力量……
+				'''
+			Full:
+				'''
+				刻魔的镇魂棺已完全苏醒，所有能力都被大幅强化
+				武器的最大威能解禁！
+				'''
 		}
 	}
 }
@@ -2649,10 +2649,10 @@ Projectiles: {
 	BlixerArm.DisplayName: Blixer手臂
 	BlixerHand.DisplayName: Blixer手
 	BlixerCannonPro.DisplayName: Blixer子弹
-	// FiendsmithsRequiemPro.DisplayName: Fiendsmith's Requiem
-	// FiendsmithChainsaw.DisplayName: Fiendsmith's Chainsaw
-	// FiendsmithsTremendae.DisplayName: Fiendsmith's Tremendae
-	// FiendsmithsParadise.DisplayName: Fiendsmith's Paradise
+	FiendsmithsRequiemPro.DisplayName: 刻魔的镇魂棺
+	FiendsmithChainsaw.DisplayName: 刻魔链锯
+	FiendsmithsTremendae.DisplayName: 刻魔·赫赫君王
+	FiendsmithsParadise.DisplayName: 刻魔的乐园
 }
 
 DiaryTooltip:
@@ -2994,13 +2994,13 @@ Configs: {
 		}
 
 		ViscountRagnarok: {
-			// Label: Ragnarok Viscount Theme
-			// Tooltip: Toggles if 'Carotid Crypt' by Techhy & PFungi plays during the Queen Jellyfish boss fight in Ragnarok Mode.
+			Label: 蝙蝠子爵-诸神黄昏模式主题曲
+			Tooltip: 切换是否在诸神黄昏模式下，蝙蝠子爵Boss战播放“Carotid Crypt” 作者：Techhy & PFungi
 		}
 
 		GESRagnarok: {
-			// Label: Ragnarok Granite Energy Storm Theme
-			// Tooltip: Toggles if 'Stonewarden' by Techhy plays during the Queen Jellyfish boss fight in Ragnarok Mode.
+			Label: 花岗岩流能风暴-诸神黄昏模式主题曲
+			Tooltip: 切换是否在诸神黄昏模式下，花岗岩流能风暴Boss战播放“Stonewarden” 作者：Techhy
 		}
 	}
 
@@ -3109,41 +3109,41 @@ DamageClasses: {
 }
 
 InfernumIntegration: {
-	/* BossRushIntroText1:
+	BossRushIntroText1:
 		'''
-		Boss Rush - Tier 1
-		Ensemble of Fools
-		''' */
-	/* BossRushIntroText2:
+		Boss Rush - 第1阶段
+		痴愚合奏
 		'''
-		Boss Rush - Tier 2
-		Onslaught of Beasts
-		''' */
-	/* BossRushIntroText3:
+	BossRushIntroText2:
 		'''
-		Boss Rush - Tier 3
-		Reign of Lords
-		''' */
-	/* BossRushIntroText4:
+		Boss Rush - 第2阶段
+		群兽狂潮
 		'''
-		Boss Rush - Tier 4
-		Trial of the Insane
-		''' */
-	/* BossRushIntroText5:
+	BossRushIntroText3:
 		'''
-		Boss Rush - Tier 5
-		Apotheosis of the Deranged
-		''' */
-	/* BossRushIntroText6:
+		Boss Rush - 第3阶段
+		诸王之治
 		'''
-		Boss Rush - Tier 6
-		Finale of the Deities
-		''' */
-	/* BossRushIntroText7:
+	BossRushIntroText4:
 		'''
-		Boss Rush - Tier ???
-		Test of Resolve
-		''' */
+		Boss Rush - 第4阶段
+		狂人之劫
+		'''
+	BossRushIntroText5:
+		'''
+		Boss Rush - 第5阶段
+		癫者登神
+		'''
+	BossRushIntroText6:
+		'''
+		Boss Rush - 第6阶段
+		诸神终曲
+		'''
+	BossRushIntroText7:
+		'''
+		Boss Rush - 第???阶段
+		决意之证
+		'''
 	Astrageldon:
 		'''
 		诸界惊骇
@@ -3526,13 +3526,13 @@ Buffs: {
 	}
 
 	FreezingAura: {
-		// DisplayName: Freezing Aura
-		// Description: Mods.InfernalEclipseAPI.Buffs.FreezingAura.Description
+		DisplayName: 冻结光环
+		Description: 你的移动速度大幅下降！
 	}
 
 	FiendsmithsRequiemBuff: {
-		// DisplayName: Fiendsmith's Requiem
-		// Description: The Fiendsmith's fiends are helping you fight!
+		DisplayName: 刻魔的镇魂棺
+		Description: 刻魔们正在协助你战斗
 	}
 }
 
@@ -3554,7 +3554,7 @@ Tiles: {
 	ProvidenceNightMusicBoxTile.MapEntry: 音乐盒
 	ThunderBirdMusicBoxTile.MapEntry: 音乐盒
 	VassalMusicBoxTile.MapEntry: 音乐盒
-	// QueenJellyfishMusicBoxTile.MapEntry: Music Box
+	QueenJellyfishMusicBoxTile.MapEntry: 音乐盒
 }
 
 NPCs: {
@@ -3602,8 +3602,8 @@ BossName: {
 	BereftVassal: Dead Kingdom's Champion - Bereft Vassal (Ragnarok Mode)
 	DoG: Last Battle (Ballos Mix) - Devourer of Gods (Phase 3)
 	Interlude4: Calamity before the cynosure - Interlude 4
-	Tier5: Descent Of Divinities - Boss Rush (Tier 5)
-	Tier6: Omiscience Of Gods - Boss Rush (Tier 6)
+	Tier5: Omiscience Of Gods - Boss Rush (Tier 5)
+	Tier6: Onslaught of Beasts (Encore Mix) - Boss Rush (Tier 6)
 	TierNameless: TWISTED GARDEN [Remix] - Nameless Deity (Boss Rush)
 	Encore: Ensemble of Fools (Encore Mix) - Boss Rush (End)
 	You: FINAL FRACTAL - Terra Blade
@@ -3613,8 +3613,8 @@ BossName: {
 	Arsenal: Arsenal - Codebreaker Interlude
 	ThunderBird: Infernal Thunder Bird - The Grand Thunder Bird (Ragnarok Mode)
 	QueenJellyfish: Mutant Majesty - Queen Jellyfish (Ragnarok Mode)
-	// GraniteEnergyStorm: Stonewarden - Granite Energy Storm (Ragnarok Mode)
-	// Viscount: Carotid Crypt - Viscount (Ragnarok Mode)
+	GraniteEnergyStorm: Stonewarden - Granite Energy Storm (Ragnarok Mode)
+	Viscount: Carotid Crypt - Viscount (Ragnarok Mode)
 }
 
 PetDialog.DoGDSPTip: 激光网格会在他冲刺的同时生成！优先冲撞神吞，然后移动到安全位置——但别忘了那些火球！

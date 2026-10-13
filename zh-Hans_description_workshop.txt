@@ -75,12 +75,12 @@
 感谢以下作者的音乐
 [list]
 	[*]Brimston Premium：《Seahorse Scrutiny (Rebirth)》和《Unholy Finality》
-	[*]CDMusic：《Ensemble of Fools (Encore Mix)》
+	[*]CDMusic：《Ensemble of Fools (Encore Mix)》和《Onslaught of Beasts (Encore Mix)》
 	[*]DM DOKURO：《Last Battle (Ballos Mix)》
 	[*]Kuudray：《TWISTED GARDEN [Remix]》
 	[*]PFungi：《Teardrops of Dragonfire》
-	[*]psykomatic：《Descent Of Divinities》
-	[*]Techhy：《Infernal Thunder Bird》、《Mutant Majesty》和《Dead Kingdom's Champion》
+	[*]Techhy：《Infernal Thunder Bird》、《Mutant Majesty》、《Stonewarden》和《Dead Kingdom's Champion》
+	[*]Techhy和PFungi：《Carotid Crypt》
 	[*]TheTrester：《Omiscience Of Gods》和《Arsenal》
 	[*]theforge128：《Calamity before the Cynosure》
 [/list]

@@ -88,13 +88,18 @@ Items: {
 	}
 
 	LifeQuartzClaymore: {
-		// DisplayName: Life Quartz Claymore
-		// Tooltip: Steals an additional 2 life if it's the first hit that swing
+		DisplayName: 生命石英刃
+		Tooltip: 每次挥动的首次命中额外吸取2点生命值
 	}
 
 	HereticBreaker: {
 		DisplayName: 异教毁灭者
-		Tooltip: 吸取3生命值
+		Tooltip:
+			'''
+			造成伤害会治疗附近所有受伤的盟友
+			命中时恢复1点生命值
+			每次挥动的首次命中额外恢复2点生命值
+			'''
 	}
 
 	ShroomachineGun: {
