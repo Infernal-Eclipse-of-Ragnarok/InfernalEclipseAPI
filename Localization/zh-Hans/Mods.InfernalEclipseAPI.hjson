@@ -2950,7 +2950,7 @@ Configs: {
 		}
 
 		BereftVassalRagnarok: {
-			Label: 无邦封臣诸神黄昏模式主题曲
+			Label: 无邦封臣-诸神黄昏模式主题曲
 			Tooltip: 切换是否在诸神黄昏模式下，无邦封臣Boss战播放 “Dead Kingdom's Champion” 作者：Techhy
 		}
 
