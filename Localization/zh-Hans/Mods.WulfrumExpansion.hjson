@@ -1,14 +1,14 @@
 Items: {
 	Metalash: {
-		DisplayName: Metalash
-		/* Tooltip:
+		DisplayName: 金属鞭
+		Tooltip:
 			'''
-			3 summon tag damage
-			Hitting an enemy lodges a Wulfrum Dagger into them
-			The dagger deals passive damage while lodged in an enemy
-			Only one dagger can be lodged in each enemy at a time
-			[c/83B87E:'The blade at the end of this whip was one of many standard-issue weapons created by the Wulfrum Rebellion.]
-			[c/83B87E:Cheaply made and flimsy to use, these old daggers find use by strengthening other weapons.']
-			''' */
+			施加3点召唤标记伤害
+			击中敌人时会将一把钨钢匕首嵌入其体内
+			匕首嵌在敌人体内时会持续造成伤害
+			每个敌人同一时间只能被嵌入一把匕首
+			[c/83B87E:“这条鞭子末端的刀刃，曾是钨钢叛军制造的众多制式武器之一]
+			[c/83B87E:这些旧匕首廉价而脆弱，如今被用来强化其他武器”]
+			'''
 	}
 }

@@ -7,8 +7,8 @@ UI: {
 	}
 
 	TitleLinks: {
-		// Patreon: Patreon
-		// Github: GitHub
+		Patreon: Patreon
+		Github: GitHub
 	}
 
 	RecipeBrowserCategories: {
@@ -18,9 +18,9 @@ UI: {
 
 	NoVoidConsumable: 你现在可吃不下那个！
 	RagnarokIconText: 诸神黄昏模式已启用
-	NoRespawn: 复活受限：在 {0} 人联机时，每场 Boss 战中每位玩家只有一次重生机会！
-	NoRespawn2: 复活受限：在 {1} 人联机时，每场 Boss 战中每位玩家只有 {0} 次重生机会！
-	NoRespawn3: 复活受限：在 {0} 人联机时，Boss 战期间不允许复活！
+	NoRespawn: 复活受限：在 {0}的多人游戏中，每场 Boss 战中每位玩家只有一次重生机会！
+	NoRespawn2: 复活受限：在 {1}的多人游戏中，每场 Boss 战中每位玩家只有 {0} 次重生机会！
+	NoRespawn3: 复活受限：在 {0}的多人游戏中，Boss 战期间不允许复活！
 	NoRespawn4: 复活受限：多人联机时，Boss 战期间不允许复活！
 	NoRespawn5: 复活受限：多人联机时，每场 Boss 战中每位玩家只有一次复活机会！
 	NoRespawn6: 复活受限：多人联机时，每场 Boss 战中每位玩家只有 {0} 次复活机会！
@@ -73,7 +73,7 @@ UI: {
 	WarningRagnarok:
 		'''
 		注意：检测到已启用瑟银！
-		在继续游玩前，强烈建议你安装“Ragnarok 诸神黄昏”模组，以启用预设的瑟银Boss AI，再继续游戏！
+		在继续游玩前，强烈建议你安装“Ragnarok 诸神的黄昏”模组，以确保这些模组之间的兼容性！
 		若您希望在未安装该模组的情况下继续，可在诸神黄昏：炼狱蚀光的模组配置中关闭此弹窗。
 		'''
 	WarningOverhaul:
@@ -135,7 +135,7 @@ WelcomeMessage: {
 	TBRNotice: 注意：检测到已启用瑟银冥界，请在兼容性配置中将生命、伤害与速度倍率均设为 1（除非你想要更高难度），该模组会根据当前难度自动调整瑟银 Boss 属性。
 	SoulsWarning:
 		'''
-		警告：检测到您已启用 Fargo魂石模组！
+		警告：Fargo魂石与炼狱蚀光不兼容！
 		请注意，炼狱模式与永恒模式不兼容，同时启用可能会导致严重错误。
 		'''
 	InfernumActive: 身负异兆之人归来，再度直面炼狱蚀光……
@@ -159,19 +159,19 @@ TimeFreezePrevention: {
 }
 
 ItemBalance: {
-	Modified: 已被诸神黄昏：炼狱蚀光修改
+	Modified: "[s:InfernalEclipseAPI/IEoRIcon] 已被诸神黄昏：炼狱蚀光修改"
 	Modified2: 按住{0}以查看修改
 	DamageUpGeneric: "    伤害增加[c/00A36C:{0}%]"
 	DamageDownGeneric: "    伤害降低[c/FF0000:{0}%]"
-	ShootSpeedUpGeneric: "    发射速度降低[c/FF0000:{0}%]"
-	ShootSpeedDownGeneric: "    发射速度增加[c/00A36C:{0}%]"
+	ShootSpeedUpGeneric: "    射弹速度降低[c/FF0000:{0}%]"
+	ShootSpeedDownGeneric: "    射弹速度增加[c/00A36C:{0}%]"
 	UseTimeUpGeneric: "    使用时间降低[c/00A36C:{0}%]"
 	UseTimeDownGeneric: "    使用时间增加[c/FF0000:{0}%]"
 	UseAnimationUpGeneric: "    使用动画减少[c/00A36C:{0}%]"
 	UseAnimationDownGeneric: "    使用动画增加[c/FF0000:{0}%]"
 	UseSpeedUpGeneric: "    使用速度增加[c/00A36C:{0}%]"
 	UseSpeedDownGeneric: "    使用速度降低[c/FF0000:{0}%]"
-	PickUpGeneric: "    镐力增加[c/FF0000:{0}%]"
+	PickUpGeneric: "    镐力增加[c/00A36C:{0}%]"
 	PickDownGeneric: "    镐力降低[c/FF0000:{0}%]"
 	CritUpGeneric: "    暴击率增加[c/00A36C:{0}%]"
 	CritDownGeneric: "    暴击率降低[c/FF0000:{0}%]"
@@ -187,7 +187,7 @@ ItemTooltip: {
 	Contributor: -贡献者物品-
 	NamelessDowned: 你必须通过考验
 	DisabledBossRush: 该效果在Boss Rush中不生效
-	// JungleCurse: It has been cursed by a powerful Jungle creature
+	JungleCurse: 它受到了某个强大丛林生物的诅咒
 	SBeamUsage: 长按左键，发射神话魔法伤害的光束
 	NBeamUsage: 长按左键，发射寰宇死光，造成神话魔法伤害
 	MBeamUsage: 长按左键，发射星流解离炮，造成神话远程伤害
@@ -198,7 +198,7 @@ ItemTooltip: {
 	ScytheThrow: 右键投掷镰刀，它会以弧线轨迹返回
 	ThorsHammerPro: 命中时施加3秒的带电
 	BountifulHarvest: 交替射出穿透毒刺
-	TwoAlchs: 在酒精中毒效果中被视为两种酒
+	TwoAlchs: 在{$Mods.CalamityMod.Buffs.AlcoholPoisoning.DisplayName}效果中被视为两种酒
 	HornScale: 治疗量随游戏进度而增加
 
 	GrapeBeer: {
@@ -327,21 +327,26 @@ ItemTooltip: {
 		'咕噜！'
 		'''
 	SpiritGlove: 增加5%虚空恢复速度和4%近战暴击率
-	DiamondRingText: 根据防御增加伤害，然后会降低伤害增益的三分之二防御值
+	DiamondRingText:
+		'''
+		根据防御增加伤害，然后降低相当于伤害增益数值三分之二的防御值
+		增加{0}%伤害
+		降低{1}点防御
+		'''
 	EarthDrive: 最多增加10%的近战攻速
 	SyntheticLiver:
 		'''
 		增加25%从食物中获得的虚空值
 		多次获得相同的buff会增加buff持续时间，而非重置时间，最多可达初始持续时间的两倍
 		'''
-	MutantSkeletron: "[炼狱蚀光] 该物品在至少击败一次骷髅王前无法使用，请改用炼狱的召唤物"
+	MutantSkeletron: "[s:InfernalEclipseAPI/IEoRIcon] 该物品在至少击败一次骷髅王前无法使用，请改用炼狱的召唤物"
 	VibePotion: 静止时增加10%攻击速度，移动时增加5%
 	BloodPotion: 增加15%挖掘速度
 	FrenzyPotion: 增加5%所有攻击速度
 	FlowerCrown:
 		'''
 		降低10%所受伤害
-		增加4点虚空恢复量和生命恢复速度
+		增加4点虚空恢复量和2点生命恢复速度
 		在使用虚空值时，使用的30%虚空值会转化为生命值
 		'''
 	TravelBoot:
@@ -449,7 +454,7 @@ ItemTooltip: {
 		AuroraFlipped: 放置于物品栏时会增加1%移动速度，最多4%
 		DelugeFlipped: 放置于物品栏时会增加2%远程伤害，最多8%
 		AetherFlipped: 放置于物品栏时会增加2%魔法伤害，最多8%
-		NetherFlipped: 放置于物品栏时会增加2%近战伤害，最多4%
+		NetherFlipped: 放置于物品栏时会增加2%近战伤害，最多8%
 		BrillianceFlipped: 放置于物品栏时会增加2%召唤伤害，最多8%
 	}
 
@@ -707,9 +712,9 @@ ItemTooltip: {
 		SweetAlt: 受伤时释放蜜蜂和星星，并将使用者浸入蜂蜜
 		COTS:
 			'''
-			你随时间快速地获取至多20%伤害减免
+			你随时间快速地获取至多15%伤害减免
 			受击时会短暂地将此加成变为-10%伤害减免
-			当此加成高于0%时，你会获得至多2点生命恢复并能阻挡1次伤害性攻击
+			当此加成高于0%时，你会获得至多2点生命恢复
 			'''
 		DA:
 			'''
@@ -760,7 +765,7 @@ ItemTooltip: {
 
 			Reaper: {
 				OrigTooltip: 增加15点护甲穿透
-				SOTSReplace: 增加12点护甲穿透，5%暴击率和40点最大生命值
+				SOTSReplace: 增加15点护甲穿透，5%暴击率和40点最大生命值
 			}
 		}
 
@@ -815,7 +820,7 @@ ItemTooltip: {
 			连续两次投掷暴击将释放暗影闪电，并短暂提升投掷速度
 			这个效果有2秒冷却时间
 			'''
-		CloverNerf: 吸血效果有0.5秒冷却时间
+		CloverNerf: 吸血效果和灵感恢复有1秒冷却时间
 		CloverNerf2: 吸血效果有1秒冷却时间
 		RingofRestNerf: 灵感恢复效果有1秒冷却时间
 
@@ -986,7 +991,7 @@ ItemTooltip: {
 		总有一天，这份运气将耗尽。
 		'''
 	NamelessRelic: 你通过了试炼。
-	NoxusRelic: 所以你是作弊弄到这个道具的，还是说你真的装了我那个早就不在创意工坊上的冷门模组？不管怎样，恭喜吧。
+	NoxusRelic: 呃……你不该看到这个的
 	DeviRelic:
 		'''
 		她是那三兄妹中最年幼的一个。
@@ -1125,11 +1130,10 @@ Items: {
 		SOTSBardHealerTooltip:
 			'''
 			暴击率提高15%，无法与下位饰品叠加
-			暴击最多额外造成40点伤害，并有概率引爆敌人，造成75%额外伤害
+			暴击最多额外造成40点伤害，并有概率引爆敌人，造成100%伤害
 			初始伤害加成为15点，并会随物品使用速度的降低而增加
 			你的当前加成为{0}点
 			暴击汲取生命，恢复虚空值，回复魔力，并返还灵感值
-			吸血效果和灵感值返还有1秒冷却时间
 			按下 “{$ThoriumMod.Keybinds.AccessoryAbility.DisplayName}” 键使你必定暴击，持续10秒
 			在之后1分钟，你造成的伤害降低10%
 			免疫流血与中毒效果，并给予你夜视能力
@@ -1137,10 +1141,9 @@ Items: {
 		ThoriumTooltip:
 			'''
 			暴击率提高15%，无法与下位饰品叠加
-			暴击最多额外造成40点伤害，汲取生命，恢复虚空值并回复魔力，并有概率引爆敌人，造成75%额外伤害
+			暴击最多额外造成40点伤害，汲取生命，恢复虚空值并回复魔力，并有概率引爆敌人，造成100%伤害
 			初始伤害加成为15点，并会随物品使用速度的降低而增加
 			你的当前加成为{0}点
-			吸血效果有1秒冷却时间
 			按下 “{$ThoriumMod.Keybinds.AccessoryAbility.DisplayName}” 键使你必定暴击，持续10秒
 			在之后1分钟，你造成的伤害降低10%
 			免疫流血与中毒效果，并给予你夜视能力
@@ -1148,11 +1151,10 @@ Items: {
 		DefaultTooltip:
 			'''
 			暴击率提高15%，无法与下位饰品叠加
-			暴击最多额外造成40点伤害，并有概率引爆敌人，造成75%额外伤害
+			暴击最多额外造成40点伤害，并有概率引爆敌人，造成100%伤害
 			初始伤害加成为15点，并会随物品使用速度的降低而增加
 			你的当前加成为{0}点
 			暴击汲取生命，恢复虚空值并回复魔力
-			吸血效果有1秒冷却时间
 			免疫流血与中毒效果，并给予你夜视能力
 			'''
 		Lore: 在埃雷利安从嘉登处获得星流棱镜后，他终于完善了战甲的灵魂AI——现在，暴君的身影已映入他的瞄准镜中。
@@ -1277,8 +1279,6 @@ Items: {
 				且其中关键的材料似乎是「蚀日尊戒」。
 				或许那位向导能帮助你进一步解读这张纸条。
 				无论如何，我相信你终将找出它的制作方法。
-
-				–敬请期待《诸神黄昏：炼狱蚀光》的未来篇章！–
 				'''
 		}
 
@@ -1952,8 +1952,7 @@ Items: {
 		# Opposite of Lust, Chastity
 		I6:
 			'''
-			当生命值超过90%时，增益的持续时间将不会减少
-			当生命值低于90%时，受伤后会导致所有增益的持续时间减半
+			武器命中时会施加随机减益
 			'''
 		NormalTooltip:
 			'''
@@ -2459,28 +2458,28 @@ Items: {
 	}
 
 	CnidrionMusicBox: {
-		// DisplayName: Music Box (Cnidrion)
-		// Tooltip: Plays 'Seahorse Scrutiny (Rebirth)' by Brimston Premium
+		DisplayName: 音乐盒 (卧龙海马)
+		Tooltip: 播放“Seahorse Scrutiny (Rebirth)” 作者：Brimston Premium
 	}
 
 	CodebreakerMusicBox: {
-		// DisplayName: Music Box (Codebreaker Interlude)
-		// Tooltip: Plays 'Arsenal' by TheTrester
+		DisplayName: 音乐盒 (密码破译器插曲)
+		Tooltip: 播放“Arsenal” 作者：TheTrester
 	}
 
 	ProvidenceNightMusicBox: {
-		// DisplayName: Music Box (Providence - Night)
-		// Tooltip: Plays 'Unholy Finality' by Brimston Premium
+		DisplayName: 音乐盒 (亵渎天神-夜间)
+		Tooltip: 播放“Unholy Finality” 作者：Brimston Premium
 	}
 
 	ThunderBirdMusicBox: {
-		// DisplayName: Music Box (The Grand Thunder Bird - Ragnarok Mode)
-		// Tooltip: Plays 'Infernal Thunder Bird' by Techhy
+		DisplayName: 音乐盒 (惊雷王鹰-诸神黄昏模式)
+		Tooltip: 播放“Infernal Thunder Bird” 作者：Techhy
 	}
 
 	VassalMusicBox: {
-		// DisplayName: Music Box (Bereft Vassal - Ragnarok Mode)
-		// Tooltip: Plays 'Dead Kingdom's Champion' by Techhy
+		DisplayName: 音乐盒 (无邦封臣-诸神黄昏模式)
+		Tooltip: 播放“Dead Kingdom's Champion” 作者：Techhy
 	}
 
 	SubspaceSerpentRelicPlatinum: {
@@ -2663,10 +2662,10 @@ DiaryTooltip:
 	'''
 BullyingTooltip:
 	'''
-	每有一个未使用的召唤栏，非召唤伤害提升2%
+	每有一个未使用的召唤栏，大部分非召唤伤害提升2%
 	每有一个已使用的召唤栏，召唤伤害降低10%
-	鞭子现在将受益于近战伤害加成，而不是召唤伤害加成
-	鞭子伤害提升25%
+	鞭子现在将受益于近战加成，而不是召唤加成
+	鞭子伤害提升25%，攻击范围增加50%
 	[c/E3AF40:一张附带芯片的纸条，由迪伦设计]
 	[c/BEBEBE:按住"左Shift"以阅读便笺背面的文字]
 	'''
@@ -2951,7 +2950,7 @@ Configs: {
 		}
 
 		BereftVassalRagnarok: {
-			Label: 无邦封臣诸-神黄昏模式主题曲
+			Label: 无邦封臣诸神黄昏模式主题曲
 			Tooltip: 切换是否在诸神黄昏模式下，无邦封臣Boss战播放 “Dead Kingdom's Champion” 作者：Techhy
 		}
 
@@ -2985,13 +2984,13 @@ Configs: {
 		}
 
 		GrandThunderBirdRagnarok: {
-			// Label: Ragnarok Grand Thunder Bird Theme
-			// Tooltip: Toggles if 'Infernal Thunder Bird' by Techhy plays during the Grand Thunder Bird boss fight in Ragnarok Mode.
+			Label: 惊雷王鹰-诸神黄昏模式主题曲
+			Tooltip: 切换是否在诸神黄昏模式下，惊雷王鹰Boss战播放“Infernal Thunder Bird” 作者：Techhy
 		}
 
 		QueenJellyfishRagnarok: {
-			// Label: Ragnarok Queen Jellyfish Theme
-			// Tooltip: Toggles if 'Mutant Majesty' by Techhy plays during the Queen Jellyfish boss fight in Ragnarok Mode.
+			Label: 水母皇后-诸神黄昏模式主题曲
+			Tooltip: 切换是否在诸神黄昏模式下，水母皇后Boss战播放“Mutant Majesty” 作者：Techhy
 		}
 
 		ViscountRagnarok: {
@@ -3522,8 +3521,8 @@ Buffs: {
 	}
 
 	HormonalBlockade: {
-		// DisplayName: Hormonal Blockade
-		// Description: You can't access your Rage or Adrenaline!
+		DisplayName: 激素封锁
+		Description: 你无法使用怒气或肾上腺素
 	}
 
 	FreezingAura: {
@@ -3550,11 +3549,11 @@ Tiles: {
 	LastBattleMusicBoxTile.MapEntry: 音乐盒
 	PlanteraMusicBoxTile.MapEntry: 音乐盒
 	QueenSlimeMusicBoxTile.MapEntry: 音乐盒
-	// CnidrionMusicBoxTile.MapEntry: Music Box
-	// CodebreakerMusicBoxTile.MapEntry: Music Box
-	// ProvidenceNightMusicBoxTile.MapEntry: Music Box
-	// ThunderBirdMusicBoxTile.MapEntry: Music Box
-	// VassalMusicBoxTile.MapEntry: Music Box
+	CnidrionMusicBoxTile.MapEntry: 音乐盒
+	CodebreakerMusicBoxTile.MapEntry: 音乐盒
+	ProvidenceNightMusicBoxTile.MapEntry: 音乐盒
+	ThunderBirdMusicBoxTile.MapEntry: 音乐盒
+	VassalMusicBoxTile.MapEntry: 音乐盒
 	// QueenJellyfishMusicBoxTile.MapEntry: Music Box
 }
 
@@ -3612,8 +3611,8 @@ BossName: {
 	ProvidenceNight: Unholy Finality - Providence (Night)
 	Seahorse: Seahorse Scrutiny (Rebirth) - Cnidrion
 	Arsenal: Arsenal - Codebreaker Interlude
-	// ThunderBird: Infernal Thunder Bird - The Grand Thunder Bird (Ragnarok Mode)
-	// QueenJellyfish: Mutant Majesty - Queen Jellyfish (Ragnarok Mode)
+	ThunderBird: Infernal Thunder Bird - The Grand Thunder Bird (Ragnarok Mode)
+	QueenJellyfish: Mutant Majesty - Queen Jellyfish (Ragnarok Mode)
 	// GraniteEnergyStorm: Stonewarden - Granite Energy Storm (Ragnarok Mode)
 	// Viscount: Carotid Crypt - Viscount (Ragnarok Mode)
 }

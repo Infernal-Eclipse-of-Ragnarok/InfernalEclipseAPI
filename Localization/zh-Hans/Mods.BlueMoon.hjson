@@ -50,17 +50,17 @@ Items: {
 
 Buffs: {
 	LunarEmpowermentBuff: {
-		// DisplayName: Lunar Empowerment
-		// Description: The moon bestows some of it's luck onto you.
+		DisplayName: 月华赐福
+		Description: 月亮将些许幸运赐予了你
 	}
 
 	MintyFreshnessBuff: {
-		// DisplayName: Minty Freshness
-		// Description: The Mint Moon's sparkling light enhances your abilities. You deal more damage and move faster.
+		DisplayName: 薄荷清新
+		Description: 薄荷月光提高了伤害和移动速度
 	}
 
 	MoonsRingBuff: {
-		// DisplayName: Moonlight Harmony
-		// Description: You are blessed by the power of all enchanted moons.
+		DisplayName: 月华和鸣
+		Description: 所有附魔之月的力量庇佑着你
 	}
 }
