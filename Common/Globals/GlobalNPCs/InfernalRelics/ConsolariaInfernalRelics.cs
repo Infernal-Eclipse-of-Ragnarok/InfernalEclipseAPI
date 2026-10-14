@@ -9,7 +9,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.InfernalRelics
     [ExtendsFromMod("Consolaria")]
     public class ConsolariaInfernalRelics : GlobalNPC
     {
-        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
+        public override void ModifyNPCLoot(NPC npc, Terraria.ModLoader.NPCLoot npcLoot)
         {
             if (ModLoader.TryGetMod("Consolaria", out Mod console))
             {

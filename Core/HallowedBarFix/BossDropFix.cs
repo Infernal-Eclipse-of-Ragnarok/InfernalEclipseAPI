@@ -5,7 +5,7 @@ namespace InfernalEclipseAPI.Core.HallowedBarFix
 {
     public class BossDropFix : GlobalNPC
     {
-        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
+        public override void ModifyNPCLoot(NPC npc, Terraria.ModLoader.NPCLoot npcLoot)
         {
             if (!IsMechBoss(npc.type))
                 return;

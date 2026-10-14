@@ -95,7 +95,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
             return base.PreKill(npc);
         }
 
-        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
+        public override void ModifyNPCLoot(NPC npc, Terraria.ModLoader.NPCLoot npcLoot)
         {
             if (npc.type == ModContent.NPCType<GigaClam>())
             {

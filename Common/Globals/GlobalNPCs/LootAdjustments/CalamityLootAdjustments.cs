@@ -12,7 +12,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.LootAdjustments
 {
     public class CalamityLootAdjustments : GlobalNPC
     {
-        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
+        public override void ModifyNPCLoot(NPC npc, Terraria.ModLoader.NPCLoot npcLoot)
         {
             if (InfernalCrossmod.RagnarokMod.Loaded)
             {

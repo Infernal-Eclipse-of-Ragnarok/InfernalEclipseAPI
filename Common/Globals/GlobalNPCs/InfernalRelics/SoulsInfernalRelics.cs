@@ -25,7 +25,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.InfernalRelics
     public class SoulsInfernalRelics : GlobalNPC
     {
         public override bool IsLoadingEnabled(Mod mod) => InfernalConfig.Instance.DontEnableThis;
-        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
+        public override void ModifyNPCLoot(NPC npc, Terraria.ModLoader.NPCLoot npcLoot)
         {
             bool isInfernum() => InfernumSaveSystem.InfernumModeEnabled;
             if (npc.type == ModContent.NPCType<AbomBoss>())
