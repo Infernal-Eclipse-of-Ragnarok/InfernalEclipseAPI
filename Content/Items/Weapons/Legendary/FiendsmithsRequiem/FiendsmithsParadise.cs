@@ -1,4 +1,5 @@
 ﻿using InfernalEclipseAPI.Core.DamageClasses.LegendaryClass;
+using InfernalEclipseAPI.Common.Tools;
 using InfernalEclipseAPI.Core.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

@@ -200,6 +200,7 @@ ItemTooltip: {
 	BountifulHarvest: 交替射出穿透毒刺
 	TwoAlchs: 在{$Mods.CalamityMod.Buffs.AlcoholPoisoning.DisplayName}效果中被视为两种酒
 	HornScale: 治疗量随游戏进度而增加
+	ManaInjectionKitSupreme: "{0}可将衰减魔法伤害的上限提高至{1}%"
 
 	GrapeBeer: {
 		Orig: 降低75%暴击伤害
