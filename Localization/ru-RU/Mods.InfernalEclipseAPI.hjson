@@ -8,7 +8,7 @@ UI: {
 
 	TitleLinks: {
 		Patreon: Patreon
-		Github: Github
+		Github: GitHub
 	}
 
 	RecipeBrowserCategories: {
@@ -163,8 +163,8 @@ ItemBalance: {
 	Modified2: Удерживайте {0} для просмотра изменений в характеристиках
 	DamageUpGeneric: "    Урон увеличен на [c/00A36C:{0}%]"
 	DamageDownGeneric: "    Урон снижен на [c/FF0000:{0}%]"
-	ShootSpeedUpGeneric: "    Скорость снарядов снижена на [c/FF0000:{0}%]"
-	ShootSpeedDownGeneric: "    Скорость снарядов увеличена на [c/00A36C:{0}%]"
+	ShootSpeedUpGeneric: "    Скорость снарядов увеличена на [c/FF0000:{0}%]"
+	ShootSpeedDownGeneric: "    Скорость снарядов снижена на [c/00A36C:{0}%]"
 	UseTimeUpGeneric: "    Длительность использования увеличена на [c/00A36C:{0}%]"
 	UseTimeDownGeneric: "    Длительность использования снижена на [c/FF0000:{0}%]"
 	UseAnimationUpGeneric: "    Анимация использования увеличена на [c/00A36C:{0}%]"
@@ -199,7 +199,7 @@ ItemTooltip: {
 	ThorsHammerPro: При попадании накладывает дебафф [cbuff:Electrified] на 3 секунды
 	BountifulHarvest: Стреляет пронзающими жалами в чередующейся последовательности
 	TwoAlchs: Считается за 2 единицы алкоголя для дебаффа [cbuff:CalamityMod/AlcoholPoisoning]
-	HornScale: Количество исцеляемого здоровья зависит от вашего этапа игры
+	HornScale: Количество восстанавливаемого здоровья зависит от вашего этапа игры
 
 	GrapeBeer: {
 		Orig: Снижает урон критических ударов на 75%
@@ -207,7 +207,7 @@ ItemTooltip: {
 		SOTSAdditional: Отключает эффекты икосаэдров
 	}
 
-	// Dreadmine: "[s:InfernalEclipseAPI/IEoRIcon] Only one dreadmine turret can be active at once, and spawning a new turret will cause all active mines to explode"
+	Dreadmine: "[s:InfernalEclipseAPI/IEoRIcon] Только одна такая турель может быть активна одновременно, а попытка размещения новых турелей будет взрывать все выпущенные мины"
 	Calculator: Снижает урон призывателя на 20%
 	Wiesnbrau:
 		'''
@@ -520,7 +520,7 @@ ItemTooltip: {
 		Nerf: Увеличивает скорость передвижения на 15%
 	}
 
-	SteamkeeperWatch: Призванные стражи существуют бесконечно и увеличивают свой урон вплоть до 15% в течении первых 2 минут
+	SteamkeeperWatch: Призванные стражи существуют бесконечно и увеличивают свой урон вплоть до 15% в течение первых 2 минут
 
 	YumasPendant: {
 		Orig: Увеличивает урон призывателя на 10%
@@ -573,7 +573,7 @@ ItemTooltip: {
 		cat: StarlightCat
 		Arkangel: Arkangel
 		Minesky: Mineskye
-		// Bomber: Bomberr
+		Bomber: Bomberr
 	}
 
 	MergedCraftingTreeTooltip: {
@@ -601,11 +601,11 @@ ItemTooltip: {
 			Даёт шанс вернуть потраченные боеприпасы при попадании по врагу
 			Боеприпасы, потраченные на добивающие удары, возвращаются гарантированно
 			'''
-		InfintyBag: Если видимость аксессуара включена, вместо боеприпасов вы будете тратить пустоту
+		InfintyBag: Если отображение аксессуара включено, вы будете расходовать свою пустоту вместо боеприпасов
 		SerpentsTongue:
 			'''
 			Увеличивает лучезарный урон на 15%
-			Увеличивает урон критических ударов на 20%
+			Увеличивает критический урон на 20%
 			При убийстве врага с шансом 10% с него может выпасть удвоенная добыча
 			Этот шанс увеличивается до 20%, если враг был добит критическим ударом
 			Усиливает некоторые атаки потусторонней энергией
@@ -617,14 +617,14 @@ ItemTooltip: {
 
 		SealedContract: {
 			OrigTooltip1: Увеличивает максимальный запас здоровья на 60 ед.
-			OrigTooltip2: Исцеляющие заклинания восстанавливают дополнительно 5 ед. здоровья
+			OrigTooltip2: Увеличивает бонусное исцеление на 5 ед. здоровья
 		}
 
-		ContractNerf: Исцеляющие заклинания восстанавливают дополнительно 2 ед. здоровья
+		ContractNerf: Увеличивает бонусное исцеление на 2 ед. здоровья
 		Tuner1:
 			'''
-			Эффекты предмета зависят от видимости аксессуара
-			Если предмет видимость аксессуара включена, даёт следующие эффекты:
+			Эффекты предмета зависят от отображения аксессуара
+			Даёт следующие эффекты, если отображение аксессуара включено:
 			Добавляет максимальный запас вдохновения к максимальному запасу пустоты
 			Всё симфоническое оружие расходует пустоту заместо вдохновения
 			Любое дополнительное ускорение регенерации вдохновения будет преобразовано в регенерацию пустоты
@@ -643,8 +643,8 @@ ItemTooltip: {
 			'''
 		Tuner2:
 			'''
-			Эффекты предмета зависят от видимости аксессуара
-			Если предмет видимость аксессуара включена, даёт следующие эффекты:
+			Эффекты предмета зависят от отображения аксессуара
+			Даёт следующие эффекты, если отображение аксессуара включено:
 			Добавляет максимальный запас вдохновения к максимальному запасу пустоты
 			Всё симфоническое оружие расходует пустоту заместо вдохновения
 			Любое дополнительное ускорение регенерации вдохновения будет преобразовано в регенерацию пустоты
@@ -669,7 +669,7 @@ ItemTooltip: {
 			Убийство проклятых врагов или непрерывное нанесение урона боссам выпускает взрывающегося призрака, который наносит 40 ед. урона и также может проклясть врагов
 			'''
 		CyanPearl: Вдвое снижает штраф на урон для стражей
-		Watch: Призванные стражи существуют бесконечно и увеличивают свой урон на 15% в течении первых 2 минут
+		Watch: Призванные стражи существуют бесконечно и увеличивают свой урон на 15% в течение первых 2 минут
 
 		FortressGenerator: {
 			OrigTooltip1: Увеличивает урон на 10% и скорость регенерации здоровья на 1 ед./сек
@@ -692,7 +692,7 @@ ItemTooltip: {
 		TwoSentry: Увеличивает максимальное количество стражей на 2
 		ThreeSentry: Увеличивает максимальное количество стражей на 3
 		Murky: Каждая шестая магическая атака не расходует ману и возвращает вам затраченную на неё ману
-		Hungering: Даёт эффекты от предмета «{$Mods.ThoriumMod.Items.HungeringBlossom.DisplayName}», если видимость аксессуара отключена
+		Hungering: Даёт эффекты от предмета «{$Mods.ThoriumMod.Items.HungeringBlossom.DisplayName}», если отображение аксессуара отключено
 		SlagsplitterCooldown: Этот эффект имеет полторы секунды перезарядки
 		Grace:
 			'''
@@ -704,7 +704,7 @@ ItemTooltip: {
 			Вокруг вас будет вращаться 4 снаряда
 			При получении удара из вас выдвинется копьё, отбрасывающее атакующего вас врага
 			'''
-		ChiseledHidden: Отключите видимость аксессуара, чтобы скрыть отображение снарядов
+		ChiseledHidden: Снаряды становятся невидимыми, если отображение аксессуара отключено
 		Olympian:
 			'''
 			Увеличивает получаемое количество пустоты на 2 ед. и регенерацию здоровья на 1 ед./сек
@@ -715,9 +715,9 @@ ItemTooltip: {
 		SweetAlt: При получении урона вызывает звездопад и даёт бафф [cbuff:Honey]
 		COTS:
 			'''
-			Вы быстро накапливаете сопротивление урону до 15% с течением времени
-			При получении урона этот бонус временно снижается до -10% сопротивления урону
-			Пока этот бонус выше 0%, вы получаете до 2 единиц восполнения здоровья и блокируете 1 атаку, наносящую урон
+			Со временем увеличивает сопротивление урону вплоть до 15%
+			При получении урона этот бонус снижается до -10%
+            Пока бонус превышает 0%, вы получаете до 2 единиц восполнения здоровья и блокируете атаки, наносящие урон
 			'''
 		DA:
 			'''
@@ -774,7 +774,7 @@ ItemTooltip: {
 
 		Prisma: Периодически выпускает наносящие урон волны, игнорирующие 16 ед. защиты врага
 		Prisma2: Чем ниже ваше здоровье, тем больше волн выпускается
-		Prisma3: Волны не будут выпускаться, если видимость аксессуара отключена
+		Prisma3: Волны не будут выпускаться, если отображение аксессуара отключено
 		Midnight1: Ваши критические удары будут призывать кошмарные руки, наносящие 10% урона от удара, призвавшего их, и стягивающие ближайших врагов
 		Midnight2: Этот эффект имеет 5 секунд перезарядки
 
@@ -895,7 +895,7 @@ ItemTooltip: {
 			Thorium:
 				'''
 				Увеличивает шанс критического удара на 8%
-				Увеличивает урон критических ударов на 15%
+				Увеличивает критический урон на 15%
 				'''
 			SOTS:
 				'''
@@ -970,50 +970,50 @@ ItemTooltip: {
 		Line3: Преодолённые тобой препятствия в будущем принесут достойные плоды
 	}
 
-	// AstrageldonPlatinumRelic: A trophy for defeating the multiversal terror before the fall of the eldritch remains
+	AstrageldonPlatinumRelic: Трофей, полученный за победу над вселенским ужасом до гибели жутких останков
 	PrimordialsRelic:
 		'''
-		Ты молодец, у тебя получилось одолеть Thorium. Осталась всего десятка
-		Не забывай, что не стоит заставлять себя двигаться дальше
+		Ты молодец, у тебя получилось одолеть Thorium. Осталась последняя десятка
+		Не забывай, что заставлять себя двигаться дальше через силу — плохая идея
 		Если нужно, сделай небольшой перерыв, это может изменить многое
 		'''
 	AvatarRelic:
 		'''
-		Ты молодец.
-		Теперь Терминус — твоя следующая цель. Твоё последнее испытание находится внутри него.
+		Ты молодец
+		Теперь Терминус — твоя следующая цель. Твоё последнее испытание находится внутри него
 		'''
 	GoozmaRelic:
 		'''
 		Забавно, не правда ли?
 		Даже убив кого только можно, ты продолжаешь находить богов, которых можешь сразить...
-		Когда-нибудь твоя удача закончится.
+		Когда-нибудь твоя удача закончится
 		'''
 	NamelessRelic: Ты прошёл испытание.
-	NoxusRelic: То есть, ты решил считерить и достать этот предмет, ИЛИ же у тебя был установлен мой сверхдревний мод, возвращающий Ноксуса в Wrath of the Gods, которого даже нет в мастерской? Если это так... поздравляю, что ли.
-	/* DeviRelic:
+	NoxusRelic: Э-э-э-м... ты не должен был это увидеть
+	DeviRelic:
 		'''
 		The youngest of the three siblings.
 		Quite chaotic, especially this early in the game, however, you overcame her with confidence.
 		Enjoy the loot upgrades and power boost while you can...
-		''' */
-	/* AbomRelic:
+		'''
+	AbomRelic:
 		'''
 		The second of the three siblings.
 		It has been a while since you fought their sister, but this battle was extreme step up from that.
 		Are you brave enough to challenge the oldest sibling?
-		''' */
-	/* MutantRelic:
+		'''
+	MutantRelic:
 		'''
 		The oldest of the three siblings, as well as the strongest.
 		You have beat what is known as one of the hardest modded bosses, and with all of eternity in your hands surely nothing will stop you now.
 		What will you seek out now?
-		''' */
-	/* EridanusRelic:
+		'''
+	EridanusRelic:
 		'''
 		Your almost to the finish line.
 		The godseeker's army is all that stands in between you and eternity.
 		Make the fullest of your new crafting station...
-		''' */
+		'''
 	AstralCommunicatorInfernum1: Призывает Астрагельдона при использовании в астральной инфекции
 	AstralCommunicatorInfernum2: Голод космического слизня не утолился...
 }
@@ -1127,10 +1127,10 @@ Items: {
 		SOTSBardHealerTooltip:
 			'''
 			Увеличивает шанс критического удара на 15%; не суммируется с предыдущим улучшением
-			Критические удары будут наносить до 40 ед. больше урона, вызывать вспышки наносящих урон искр и смогут вызывать взрывы на месте врагов, нанося 100% урона
+			Критические удары будут наносить до 40 ед. больше урона, вызывать вспышки наносящих урон искр и взрывы на месте врагов, нанося 100% урона
 			Минимальный бонус к урону начинается с 15 ед. и увеличивается по мере снижения скорости использования предмета
 			Текущий бонус к урону: {0} ед.
-			Критические удары похищают здоровье, а также восстанавливают пустоту, ману и вдохновение
+			Критические удары будут похищать здоровье, а также восстанавливают пустоту, ману и вдохновение
 			При нажатии клавиши «{$ThoriumMod.Keybinds.AccessoryAbility.DisplayName}» вы будете гарантированно каждым попаданием наносить критический удар в течение 10 секунд
 			Однако в течение следующей минуты после завершения этого эффекта ваш урон будет снижен на 10%
 			Даёт невосприимчивость к дебаффам [cbuff:Bleeding] и [cbuff:Poisoned], а также ночное зрение
@@ -1138,7 +1138,7 @@ Items: {
 		ThoriumTooltip:
 			'''
 			Увеличивает шанс критического удара на 15%; не суммируется с предыдущим улучшением
-			Критические удары будут наносить до 40 ед. больше урона, вызывать вспышки наносящих урон искр и смогут вызывать взрывы на месте врагов, нанося 100% урона
+			Критические удары будут наносить до 40 ед. больше урона, вызывать вспышки наносящих урон искр и взрывы на месте врагов, нанося 100% урона
 			Минимальный бонус к урону начинается с 15 ед. и увеличивается по мере снижения скорости использования предмета
 			Текущий бонус к урону: {0} ед.
 			При нажатии клавиши «{$ThoriumMod.Keybinds.AccessoryAbility.DisplayName}» вы будете гарантированно каждым попаданием наносить критический удар в течение 10 секунд
@@ -1148,10 +1148,10 @@ Items: {
 		DefaultTooltip:
 			'''
 			Увеличивает шанс критического удара на 15%; не суммируется с предыдущим улучшением
-			Критические удары будут наносить до 40 ед. больше урона, вызывать вспышки наносящих урон искр и смогут вызывать взрывы на месте врагов, нанося 100% урона
+			Критические удары будут наносить до 40 ед. больше урона, вызывать вспышки наносящих урон искр и взрывы на месте врагов, нанося 100% урона
 			Минимальный бонус к урону начинается с 15 ед. и увеличивается по мере снижения скорости использования предмета
 			Текущий бонус к урону: {0} ед.
-			Критические удары похищают здоровье, а также восстанавливают пустоту и ману
+			Критические удары будут похищать здоровье, а также восстанавливают пустоту и ману
 			Даёт невосприимчивость к дебаффам [cbuff:Bleeding] и [cbuff:Poisoned], а также ночное зрение
 			'''
 		Lore: Когда Эрелиян смог раздобыть достаточно экзо-призм для Дрэйдона, тот наконец-то получил всё, что ему было нужно для создания идеальной оболочки для его бесподобного ИИ, и тиран наконец встал под его прицел.
@@ -1286,11 +1286,11 @@ Items: {
 			Tooltip: ""
 			Lore:
 				'''
-				Тор, один из многих богов, избежавших моей чистки,
-				но это и неважно, ведь он никогда не сможет забыть то, что я сделал с ним и его семьёй
-				Асгард был грешен, так что то, что я совершил над ним было лишь наказанием за то, что они делали со многими другими
-				Тору смог сбежать и, как раньше мне казалось, остаться правителем Асгарда,
-				но, раз его молот теперь у тебя в руках, похоже больше нет
+				Тор — один из многих богов, кому удалось избежать моей чистки,
+				но и пусть, ведь он никогда не забудет то, что я сделал с ним и его семьёй
+				Асгард был полон бесславных грешников, так что то, что я совершил, было лишь простым наказанием за их деяния в других мирах
+				Тор бежал и, как раньше мне казалось, смог остаться правителем Асгарда
+				Но раз его молот теперь в твоих руках, видимо, больше нет
 				'''
 		}
 
@@ -1300,11 +1300,11 @@ Items: {
 			Lore:
 				'''
 				До сотворения мира существовали лишь Первородные
-				Каждый из них олицетворял один из элементов нашего мира, а также давая ему защиту от наступления Рагнарёка
-				Вот время моей войны, я желал прикончить каждого из них, думая, что они были такими-же тупоголовыми грешниками, как и другие боги,
+				Каждый из них олицетворял один из элементов нашего мира, а также давал ему защиту от наступления Рагнарёка
+				Во время моего похода я желал истребить каждого из них, думая, что они были такими же тупоголовыми грешниками, как и остальные боги,
 				но, как бы я не старался, мне всё никак не удавалось привлечь их внимание
-				Может быть даже после всего, что сделал для этого мира я всё ещё остаюсь недостойным их внимания?
-				Только не говори мне, что они считают меня ничтожеством по сравнению с тобой...
+				Может быть, даже того, что я успел сделать для этого мира, им было недостаточно?
+				Только не говори мне, что они считают меня никем в сравнении с тобой...
 				'''
 		}
 
@@ -1314,12 +1314,12 @@ Items: {
 			Lore:
 				'''
 				Впервые подобных этой птиц стали замечать уже ближе к концу драконьей эры
-				Изначально многие предполагали, что, как и во множестве других существ того времени, в них текла драконья кровь
-				Это утверждение было невероятно сложно опровергнуть, учитывая их выдающиеся способности поглощать энергию с солнца Зератроса,
-				а также возможность преобразовывать её в молнии
-				В то время, это были, скорее всего, самые сильные существа, не имевшие божественной силы, на планете
-				Но, увы... Из-за совокупности недостатка хищников и того, что солнце было захвачено Предателем «Всемогущим»,
-				эти, когда-то прекрасные создания, остались лишь оболочкой своей былой славы
+				Сначала многие предполагали, что, как и во множестве других существ того времени, в них текла драконья кровь
+				Это утверждение было почти невозможно опровергнуть, ведь их выдающиеся способности поглощать энергию солнца Зератроса,
+				а также возможность преобразовывать её в молнии говорили именно об этом
+				В то время это были, как мне кажется, самые сильные существа без божественной силы на планете
+				Но, увы... Из-за недостатка хищников и того, что солнце было захвачено Предателем «Всевластным»,
+				эти когда-то прекрасные создания, остались лишь оболочкой своей былой славы
 				'''
 		}
 
@@ -1377,33 +1377,33 @@ Items: {
 		LoreAbominationn: {
 			// DisplayName: Abominationn
 			// Tooltip: ""
-			/* Lore:
+			Lore:
 				'''
 				The middle child of the eternal siblings, and one of the laziest beings I've ever seen.
 				While the Abominationn has the ability to fully control the weather and fully turn away invaders, 
 				he truly is super lazy, going to the point of even fusing his weapons to his hands.
 				He weilds a weapon that has the ability to divide the soul itself, on top of being able to use all supernatural phenomena. 
 				Good thing for you he choose not to use any celestial attacks out of respect of the Mutant, or else your victory might have not been possible.
-				''' */
+				'''
 		}
 
 		LoreDeviantt: {
 			// DisplayName: Deviantt
 			// Tooltip: ""
-			/* Lore:
+			Lore:
 				'''
 				The youngest of the eternal siblings, and also the weakest.
 				She has collected a bunch of rare monster items throughout her journey and when in a helping mood, she will sell them to others.
 				However, when she isn't in a helping mood, she fully expresses her lovestruck sadism.
 				The Deviantt has the ability to cast spells using the both the primordial light and pure love, all while wielding a living axe made of evil.
 				Even though you bested her in combat, she seems to not fear death, and this is the first time I have ever seen her go all out in a fight.
-				''' */
+				'''
 		}
 
 		LoreMutant: {
 			// DisplayName: Mutant
 			// Tooltip: ""
-			/* Lore:
+			Lore:
 				'''
 				The oldest and strongest of the eternal siblings.
 				While the other siblings calls the Mutant their brother, he personally refuses to confirm his gender.
@@ -1411,7 +1411,7 @@ Items: {
 				Other than you, he is the strongest being to ever grace the land of Terraria, with master of dominion over every aspect to combat.
 				Even though he had all this power, he always was more interested in watching other battles in the world than partake in any himself. 
 				He always told people that he was looking for someone strong and it looks like he found the person he was looking for.
-				''' */
+				'''
 		}
 
 		LoreLepus: {
@@ -1493,7 +1493,7 @@ Items: {
 	}
 
 	BurriedChampionRelic: {
-		DisplayName: Инфернальная реликвия Погребённого чемпиона
+		DisplayName: Инфернальная реликвия Погребённого воителя
 		Tooltip: "{0}"
 	}
 
@@ -1901,7 +1901,7 @@ Items: {
 	RingofTix: {
 		DisplayName: Обожжённое кольцо Тикс
 		Tooltip: ""
-		SOTSTooltip: Нажмите ПКМ по предмету, когда он находится в избранном, чтобы инвентировать эффект выбранного самоцвета
+		SOTSTooltip: Нажмите ПКМ по предмету, когда он находится в избранном, чтобы инвертировать эффект выбранного самоцвета
 		G0: Объединяет добываемые и ближайшие блоки в единую цепь, позволяющую добывать до 50 блоков за раз
 		G1: Убийство врага даёт случайный 30-секундный бафф
 		G2: Создаёт монеты при восполнении пустоты
@@ -1956,15 +1956,15 @@ Items: {
 		NormalTooltip:
 			'''
 			Увеличивает урон на 18%, а также дополнительно урон от стрел на 5%
-			Увеличивает скорость передвижения на 10% и шанс критического удара на 4
+			Увеличивает скорость передвижения на 10% и шанс критического удара на 4%
 			Увеличивает весь урон на 4 ед. и пробивание брони на 5 ед.
-			Критические удары стрел кратковременно накладывают дебафф [cbuff:ShadowFlame]
+			Критические удары стрел будут кратковременно накладывать дебафф [cbuff:ShadowFlame]
 			Увеличивает регенерацию здоровья на 3,5 ед./сек и максимальное количество миньонов на 2
-			Увеличивает отбрасывание миньонов и количество выпадаемых с врагов монет
+			Увеличивает отбрасывание миньонов и количество выпадающих с врагов монет
 			Даёт различные бонусы в зависимости от текущего времени суток:
-			Днём увеличивает регенерацию здоровья на 2 ед./сек
-			Ночью увеличивает защиту на 20 ед.
-			Во время затмения увеличивает регенерацию здоровья на 1 ед./сек и защиту на 10 ед.
+			 Днём увеличивает регенерацию здоровья на 2 ед./сек
+			 Ночью увеличивает защиту на 20 ед.
+			 Во время затмения увеличивает регенерацию здоровья на 1 ед./сек и защиту на 10 ед.
 			Увеличивает максимальное время полёта на 20%
 			'''
 		VervCaveTooltip: Позволяет собирать исцеляющие сферы с убитых врагов
@@ -2456,7 +2456,7 @@ Items: {
 	}
 
 	CnidrionMusicBox: {
-		DisplayName: Музыкальная шкатулка (Стекарь)
+		DisplayName: Музыкальная шкатулка (Стрекарь)
 		Tooltip: Проигрывает «Seahorse Scrutiny (Rebirth)» за авторством Brimston Premium
 	}
 
@@ -2482,14 +2482,14 @@ Items: {
 
 	SubspaceSerpentRelicPlatinum: {
 		DisplayName: Платиновая реликвия Субпространственного змея
-		Tooltip: ""
-		// PlatinumTooltip: A trophy for defeating the serpent of sages before the fall of the eldritch remains
+		Tooltip: "{0}"
+		PlatinumTooltip: Трофей, полученный за победу над змеем мудрых до гибели жутких останков
 	}
 
 	TerraBladeRelicPlatinum: {
 		DisplayName: Платиновая реликвия Терра-клинка
-		Tooltip: ""
-		// PlatinumTooltip: A trophy for defeating the dark reflection before the death of the Devourer of Gods
+		Tooltip: "{0}"
+		PlatinumTooltip: Трофей, полученный за победу над осквернённым отражением до гибели Пожирателя богов
 	}
 
 	AstrageldonRelicGold: {
@@ -2498,7 +2498,7 @@ Items: {
 	}
 
 	QueenJellyfishMusicBox: {
-		DisplayName: Музыкальная шкатулка (Королева медуза - Рагнарёк)
+		DisplayName: Музыкальная шкатулка (Королева медуз - Рагнарёк)
 		Tooltip: Проигрывает «Mutant Majesty» за авторством Techhy
 	}
 
@@ -2513,85 +2513,85 @@ Items: {
 	}
 
 	SoulBaguette: {
-		// DisplayName: Soul Baguette
-		/* Tooltip:
+		DisplayName: Багет душ
+		Tooltip:
 			'''
 			{0}{$CommonItemTooltip.MediumStats}
-			Heals 250 with [cbuffplr:CalamityMod/RedWineBuff], but reduces by 1 HP/s for 15 seconds
-			''' */
-		// VoidTooltip: Refills 60 void
+			При использовании с баффом [cbuffplr:CalamityMod/RedWineBuff] восстанавливает 250 ед. здоровья, но снижает его скорость регенерации на 1 ед./сек в течение следующих 15 секунд
+			'''
+		VoidTooltip: Восполняет 60 ед. пустоты
 	}
 
 	ExoBaguette: {
-		// DisplayName: Exo Baguette
-		/* Tooltip:
+		DisplayName: Экзо-багет
+		Tooltip:
 			'''
-			Permanently allows you to drink 1 more alcohol than normal
-			Can only be used once
-			''' */
+			Навсегда позволяет вам выпить на 1 единицу алкоголя больше обычного
+			Можно использовать только 1 раз
+			'''
 	}
 
 	ChestLockIcon: {
-		// DisplayName: Chest Lock Icon
-		// Tooltip: ""
+		DisplayName: Chest Lock Icon
+		Tooltip: ""
 	}
 
 	HoverItemDummy: {
-		// DisplayName: Hover Item Dummy
-		// Tooltip: ""
+		DisplayName: Hover Item Dummy
+		Tooltip: ""
 	}
 
 	FiendsmithsRequiem: {
-		// DisplayName: Fiendsmith's Requiem
-		/* Tooltip:
+		DisplayName: Реквием бесокова
+		Tooltip:
 			'''
 			Summons Fiendsmith's Requiem to attack with your other summon weapons
 			Only one Requiem can be active at once
-			''' */
-		/* Tremendae:
+			'''
+		Tremendae:
 			'''
 			Using this weapon for a second time summons Rex Tremendae which will fire bullets at nearby foes
 			Tremendae will fire bullets from your inventory, or High Velocity bullets if you have none
 			Converts normal bullets into High Velocity bullets
-			''' */
-		/* Paradise:
+			'''
+		Paradise:
 			'''
 			Using this weapon for a third time unlocks the Paradise ability
 			While Paradise is unlocked, Right Click to cause Requiem to release homing laser bolts
 			The Right Click has a cooldown of 18 seconds
-			''' */
+			'''
 
 		Progression: {
-			/* Ravager:
+			Ravager:
 				'''
 				Defeat The Fortress of Flesh to gain more power...
 				No extra power has been gained...
-				''' */
-			/* Deus:
+				'''
+			Deus:
 				'''
 				With the defeat of Ravager, this weapon now deals extra damage
 				Defeat the star weaver to gain more power...
-				''' */
-			/* Dragonfolly:
+				'''
+			Dragonfolly:
 				'''
 				With the defeat of Astrum Deus, you can now summon Rex Tremendae in addition to Requiem
 				Defeat the false offspring to gain more power...
-				''' */
-			/* Providence:
+				'''
+			Providence:
 				'''
 				With the defeat of Dragonfolly, you can now unlock the Paradise ability
 				Defeat the Profaned Goddess to gain more power...
-				''' */
-			/* Polterghast:
+				'''
+			Polterghast:
 				'''
 				With the defeat of Providence, Requiem's chainsaws now inflict [cbuff:CalamityMod/Laceration]
 				Defeat the wrathful coalescence to gain more power...
-				''' */
-			/* Full:
+				'''
+			Full:
 				'''
 				The Fiendsmith's Requiem is fully awakend, and all abilities have been further buffed!
 				The weapon's maximum power is unleashed!
-				''' */
+				''' 
 		}
 	}
 }
@@ -2948,7 +2948,7 @@ Configs: {
 
 		BereftVassalRagnarok: {
 			Label: Рагнарёк-тема Обездоленного вассала
-			Tooltip: Включает проигрывание трека «Dead Kingdom's Champion» за авторством Techhy plays во время битвы с Обездоленным вассалом в режиме Рагнарёк.
+			Tooltip: Включает проигрывание трека «Dead Kingdom's Champion» за авторством Techhy во время битвы с Обездоленным вассалом в режиме Рагнарёк.
 		}
 
 		DoGRagnarok: {
@@ -2962,8 +2962,8 @@ Configs: {
 		}
 
 		CnidrionMusic: {
-			Label: Уникальная тема стекаря
-			Tooltip: Включает проигрывание трека «Seahorse Scrutiny (Rebirth)» за авторством Brimston Premium во время битвы со стекарём.
+			Label: Уникальная тема стрекаря
+			Tooltip: Включает проигрывание трека «Seahorse Scrutiny (Rebirth)» за авторством Brimston Premium во время битвы со стрекарём.
 		}
 
 		DisableUnnecessaryContent: {
@@ -2983,17 +2983,17 @@ Configs: {
 
 		QueenJellyfishRagnarok: {
 			Label: Рагнарёк-тема Королевы медуз
-			Tooltip: Включает проигрывание трека «Mutant Majesty» за авторством во время битвы с Королевой медуз в режиме Рагнарёк.
+			Tooltip: Включает проигрывание трека «Mutant Majesty» за авторством Techhy во время битвы с Королевой медуз в режиме Рагнарёк.
 		}
 
 		ViscountRagnarok: {
-			// Label: Ragnarok Viscount Theme
-			// Tooltip: Toggles if 'Carotid Crypt' by Techhy & PFungi plays during the Queen Jellyfish boss fight in Ragnarok Mode.
+			Label: Рагнарёк-тема Виконта
+			Tooltip: Включает проигрывание трека «Carotid Crypt» за авторством Techhy и PFungi во время битвы с Виконтом в режиме Рагнарёк.
 		}
 
 		GESRagnarok: {
-			// Label: Ragnarok Granite Energy Storm Theme
-			// Tooltip: Toggles if 'Stonewarden' by Techhy plays during the Queen Jellyfish boss fight in Ragnarok Mode.
+			Label: Рагнарёк-тема Гранитного энергетического шторма
+			Tooltip: Включает проигрывание трека «Stonewarden» за авторством во время битвы с Гранитным энергетическим штормом в режиме Рагнарёк.
 		}
 	}
 
@@ -3102,44 +3102,44 @@ DamageClasses: {
 }
 
 InfernumIntegration: {
-	/* BossRushIntroText1:
+	BossRushIntroText1:
 		'''
-		Boss Rush - Tier 1
-		Ensemble of Fools
-		''' */
-	/* BossRushIntroText2:
+		БОСС-РАШ - 1 РАНГ
+		АНСАМБЛЬ ШУТОВ
 		'''
-		Boss Rush - Tier 2
-		Onslaught of Beasts
-		''' */
-	/* BossRushIntroText3:
+	BossRushIntroText2:
 		'''
-		Boss Rush - Tier 3
-		Reign of Lords
-		''' */
-	/* BossRushIntroText4:
+		БОСС-РАШ - 2 РАНГ
+		ШЕСТВИЕ БЕСТИЙ
 		'''
-		Boss Rush - Tier 4
-		Trial of the Insane
-		''' */
-	/* BossRushIntroText5:
+	BossRushIntroText3:
 		'''
-		Boss Rush - Tier 5
-		Apotheosis of the Deranged
-		''' */
-	/* BossRushIntroText6:
+		БОСС-РАШ - 3 РАНГ
+		ЦАРСТВИЕ ГОСПОД
 		'''
-		Boss Rush - Tier 6
-		Finale of the Deities
-		''' */
-	/* BossRushIntroText7:
+	BossRushIntroText4:
 		'''
-		Boss Rush - Tier ???
-		Test of Resolve
-		''' */
+		БОСС-РАШ - 4 РАНГ
+		ИСПЫТАНИЕ БЕЗУМИЯ
+		'''
+	BossRushIntroText5:
+		'''
+		БОСС-РАШ - 5 РАНГ
+		АПОФЕОЗ БЕЗРАССУДСТВА
+		'''
+	BossRushIntroText6:
+		'''
+		БОСС-РАШ - 6 РАНГ
+		БОЖЕСТВЕННОЕ ЗАКЛЮЧЕНИЕ
+		'''
+	BossRushIntroText7:
+		'''
+		БОСС-РАШ - ??? РАНГ
+		ИСПЫТАНИЕ РЕШИМОСТИ
+		'''
 	Astrageldon:
 		'''
-		ВСЕЛЕНСКИЙ ТЕРРОР
+		ВСЕЛЕНСКИЙ УЖАС
 		АСТРАГЕЛЬДОН
 		'''
 	Clamitas:
@@ -3280,7 +3280,7 @@ InfernumIntegration: {
 	Echdeath:
 		'''
 		КИТИКЕТ
-		ECHdeath
+		Ъсмерть
 		'''
 	CeilingOfMoonlord:
 		'''
@@ -3519,13 +3519,13 @@ Buffs: {
 	}
 
 	FreezingAura: {
-		// DisplayName: Freezing Aura
-		// Description: Mods.InfernalEclipseAPI.Buffs.FreezingAura.Description
+		DisplayName: Замораживающая аура
+		Description: ""
 	}
 
 	FiendsmithsRequiemBuff: {
-		// DisplayName: Fiendsmith's Requiem
-		// Description: The Fiendsmith's fiends are helping you fight!
+		DisplayName: Fiendsmith's Requiem
+		Description: The Fiendsmith's fiends are helping you fight!
 	}
 }
 
@@ -3602,12 +3602,12 @@ BossName: {
 	You: FINAL FRACTAL - Терра-клинок
 	Ragnarok: Reality's End - Пожиратель снов, Рагнарёк
 	ProvidenceNight: Unholy Finality - Провиденс (Ночь)
-	Seahorse: Seahorse Scrutiny (Rebirth) - Стекарь
+	Seahorse: Seahorse Scrutiny (Rebirth) - Стрекарь
 	Arsenal: Arsenal - Интерлюдия Дешифратора
 	ThunderBird: Infernal Thunder Bird - Великая громовая птица (Рагнарёк)
 	QueenJellyfish: Mutant Majesty - Королева медуз (Рагнарёк)
-	// GraniteEnergyStorm: Stonewarden - Granite Energy Storm (Ragnarok Mode)
-	// Viscount: Carotid Crypt - Viscount (Ragnarok Mode)
+	GraniteEnergyStorm: Stonewarden - Гранитный энергетический шторм (Рагнарёк)
+	Viscount: Carotid Crypt - Виконт (Рагнарёк)
 }
 
 PetDialog.DoGDSPTip: Сетка из лазеров появится в тот же момент, как он начинает совершать рывки! В первую очередь сфокусируйся на таране Пожирателя и только затем ищи безопасное место. А ещё не забывай об его фаерболах!
