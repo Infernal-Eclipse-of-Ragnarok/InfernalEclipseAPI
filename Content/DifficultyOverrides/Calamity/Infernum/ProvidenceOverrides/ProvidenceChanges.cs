@@ -1,5 +1,5 @@
 ﻿using CalamityMod.NPCs.Providence;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using InfernalEclipseAPI.Core.World;
 using InfernumMode;
 using InfernumMode.Content.BehaviorOverrides.BossAIs.Providence;

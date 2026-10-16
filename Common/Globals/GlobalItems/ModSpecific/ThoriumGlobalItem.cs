@@ -7,7 +7,7 @@ using CalamityMod.Items.Weapons.Melee;
 using InfernalEclipseAPI.Content.Items.Materials;
 using InfernalEclipseAPI.Core.Configs;
 using InfernalEclipseAPI.Core.Players;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using InfernalEclipseAPI.Core.Systems.Hooks.ILItemChanges.ThoriumItemHooks;
 using InfernalEclipseAPI.Core.Utils;
 using Terraria.DataStructures;

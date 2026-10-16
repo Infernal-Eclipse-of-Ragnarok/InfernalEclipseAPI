@@ -4,7 +4,7 @@ using CalamityMod.Items.Materials;
 using CalamityMod.Rarities;
 using InfernalEclipseAPI.Content.Buffs;
 using InfernalEclipseAPI.Core.Players;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;

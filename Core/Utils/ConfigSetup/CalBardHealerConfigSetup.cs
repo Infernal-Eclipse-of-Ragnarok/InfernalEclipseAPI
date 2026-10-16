@@ -1,5 +1,5 @@
 ﻿using CalamityBardHealer;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Core.Utils.ConfigSetup
 {

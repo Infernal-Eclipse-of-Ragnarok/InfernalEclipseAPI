@@ -5,6 +5,7 @@ using SOTS;
 using SOTS.Items.Potions;
 using Microsoft.Xna.Framework;
 using SOTS.Helpers;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Core.Systems.Hooks
 {

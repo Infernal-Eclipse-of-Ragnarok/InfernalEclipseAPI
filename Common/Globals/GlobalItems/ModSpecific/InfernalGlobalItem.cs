@@ -18,7 +18,7 @@ using InfernalEclipseAPI.Content.Items.Placeables.Paintings;
 using InfernalEclipseAPI.Content.Items.Weapons.Catlight;
 using InfernalEclipseAPI.Core.Configs;
 using InfernalEclipseAPI.Core.Players;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using InfernalEclipseAPI.Core.Utils;
 using InfernalEclipseAPI.Core.World;
 using InfernalEclipseWeaponsDLC.Content.Items.Weapons.Melee;

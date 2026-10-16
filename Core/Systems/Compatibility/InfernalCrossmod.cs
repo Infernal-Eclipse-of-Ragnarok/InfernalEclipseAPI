@@ -3,7 +3,7 @@ using System.Linq;
 using System.Reflection;
 using InfernalEclipseAPI.Core.Configs;
 
-namespace InfernalEclipseAPI.Core.Systems
+namespace InfernalEclipseAPI.Core.Systems.Compatibility
 {
     public static class InfernalCrossmod
     {

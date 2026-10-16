@@ -2,8 +2,8 @@
 using Terraria.Localization;
 using CalamityMod.Items.Materials;
 using CalamityMod.Tiles.Furniture.CraftingStations;
-using InfernalEclipseAPI.Core.Systems;
 using InfernalEclipseAPI.Core.Configs;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 
 namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.EtherealTalismanCraftingTree

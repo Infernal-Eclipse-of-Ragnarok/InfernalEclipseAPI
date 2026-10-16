@@ -17,7 +17,7 @@ using InfernalEclipseAPI.Content.Items.SpawnItems;
 using InfernalEclipseAPI.Core.Configs;
 using InfernalEclipseAPI.Core.Players;
 using InfernalEclipseAPI.Core.Players.ThoriumPlayerOverrides.ThoriumMulticlassNerf;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using InfernalEclipseAPI.Core.Utils;
 using InfernalEclipseAPI.Core.World;
 using InfernumMode.Content.BehaviorOverrides.BossAIs.ProfanedGuardians;

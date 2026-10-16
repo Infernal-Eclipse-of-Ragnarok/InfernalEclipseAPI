@@ -4,9 +4,9 @@ using CalamityMod.NPCs.AcidRain;
 using CalamityMod;
 using InfernalEclipseAPI.Content.Items.Placeables.Relics;
 using InfernumMode.Core.GlobalInstances.Systems;
-using InfernalEclipseAPI.Core.Systems;
 using CalamityMod.NPCs.Abyss;
 using CalamityMod.Items.Weapons.Melee;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Common.GlobalNPCs.LootAdjustments
 {

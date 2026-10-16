@@ -1,6 +1,6 @@
 ﻿using ThoriumMod.Buffs.Healer;
 using ThoriumMod;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Weapons.Healer
 {

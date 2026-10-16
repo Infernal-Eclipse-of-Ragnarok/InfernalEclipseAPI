@@ -2,7 +2,7 @@
 using CalamityMod.Projectiles.Melee.MaceFlails;
 using CalamityMod.Projectiles.Melee.Yoyos;
 using InfernalEclipseAPI.Content.Buffs.Tag;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using ThoriumMod;
 
 namespace InfernalEclipseAPI.Common.GlobalProjectiles

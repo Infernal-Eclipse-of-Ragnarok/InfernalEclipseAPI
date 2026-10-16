@@ -1,5 +1,5 @@
 ﻿using System.IO;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 

@@ -1,11 +1,11 @@
 ﻿using CalamityMod.Buffs.DamageOverTime;
-using InfernalEclipseAPI.Core.Systems;
 using Clamity.Content.Bosses.Pyrogen.NPCs;
 using System.Reflection;
 using Terraria.DataStructures;
 using InfernumMode.Core.GlobalInstances.Systems;
 using CalamityMod.Events;
 using InfernalEclipseAPI.Content.Items.Materials;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Common.GlobalNPCs
 {

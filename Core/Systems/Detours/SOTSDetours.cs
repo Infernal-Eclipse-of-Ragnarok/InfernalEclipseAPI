@@ -8,6 +8,7 @@ using CalamityMod.NPCs.SunkenSea;
 using InfernalEclipseAPI.Content.Buffs;
 using InfernalEclipseAPI.Core.Configs;
 using InfernalEclipseAPI.Core.Players;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using InfernumMode.Content.BehaviorOverrides.BossAIs.Deerclops;
 using Microsoft.Xna.Framework;
 using Mono.Cecil;

@@ -1,6 +1,6 @@
 ﻿using CalamityMod.Items.Materials;
 using CalamityMod.Tiles.Furniture.CraftingStations;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.OmniSpeakerCraftingTree
 {

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Terraria.GameContent.Creative;
 using Terraria.Localization;
-using static InfernalEclipseAPI.Core.Systems.InfernalCrossmod;
+using static InfernalEclipseAPI.Core.Systems.Compatibility.InfernalCrossmod;
 
 namespace InfernalEclipseAPI.Content.Items.Placeables.Relics.Platinum
 {

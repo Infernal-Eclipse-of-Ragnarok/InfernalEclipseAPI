@@ -1,7 +1,7 @@
 ﻿using Clamity;
 using Clamity.Content.Biomes.FrozenHell.Items;
 
-namespace InfernalEclipseAPI.Core.Systems
+namespace InfernalEclipseAPI.Core.Systems.Compatibility
 {
     [JITWhenModsEnabled("Clamity")]
     [ExtendsFromMod("Clamity")]

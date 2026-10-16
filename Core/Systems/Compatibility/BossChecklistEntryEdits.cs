@@ -7,9 +7,9 @@ using ReLogic.Content;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using static InfernalEclipseAPI.Core.Systems.BossChecklistEntryEditor;
+using static InfernalEclipseAPI.Core.Systems.Compatibility.BossChecklistEntryEditor;
 
-namespace InfernalEclipseAPI.Core.Systems
+namespace InfernalEclipseAPI.Core.Systems.Compatibility
 {
     public static class BossChecklistEntryEditor
     {

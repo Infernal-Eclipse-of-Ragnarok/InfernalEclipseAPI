@@ -6,13 +6,13 @@ using InfernalEclipseAPI.Core.DamageClasses;
 using CalamityMod.Buffs.StatDebuffs;
 using CalamityMod.Buffs.DamageOverTime;
 using Terraria.DataStructures;
-using InfernalEclipseAPI.Core.Systems;
-using static InfernalEclipseAPI.Core.Systems.InfernalCrossmod;
+using static InfernalEclipseAPI.Core.Systems.Compatibility.InfernalCrossmod;
 using ReLogic.Content;
 using System.Collections.Generic;
 using InfernalEclipseAPI.Core.Configs;
 using Terraria;
 using static ThrowerUnification.ModCompatibility;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Common.Projectiles
 {

@@ -1,8 +1,8 @@
 ﻿using InfernalEclipseAPI.Core.Players;
-using InfernalEclipseAPI.Core.Systems;
 using Terraria.DataStructures;
 using ThoriumMod.Items.Donate;
 using Microsoft.Xna.Framework;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.ItemReworks
 {

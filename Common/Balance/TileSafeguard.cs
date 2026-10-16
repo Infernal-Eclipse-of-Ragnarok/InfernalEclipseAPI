@@ -1,7 +1,7 @@
 ﻿using CalamityMod.Tiles.Ores;
 using InfernalEclipseAPI.Content.Items.SpawnItems;
 using InfernalEclipseAPI.Core.Configs;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using Terraria.ObjectData;
 using ThoriumMod;
 using ThoriumMod.Tiles;

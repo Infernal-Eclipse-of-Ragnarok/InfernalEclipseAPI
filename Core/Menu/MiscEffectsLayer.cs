@@ -3,7 +3,7 @@ using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
 using InfernalEclipseAPI.Core.Players.ThoriumPlayerOverrides;
 
-namespace InfernalEclipseAPI.Core
+namespace InfernalEclipseAPI.Core.Menu
 {
     public class MiscEffectsLayer : PlayerDrawLayer
     {

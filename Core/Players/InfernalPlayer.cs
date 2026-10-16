@@ -29,7 +29,7 @@ using InfernalEclipseAPI.Content.Projectiles;
 using InfernalEclipseAPI.Content.UI.Notificatons;
 using InfernalEclipseAPI.Core.Configs;
 using InfernalEclipseAPI.Core.DamageClasses;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using InfernalEclipseAPI.Core.World;
 using InfernumMode;
 using InfernumMode.Common.DataStructures;

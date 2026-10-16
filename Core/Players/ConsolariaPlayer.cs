@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using System.Security.Policy;
 using Consolaria.Content.Items.Armor.Misc;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using InfernalEclipseAPI.Core.Utils;
 using Microsoft.Xna.Framework;
 using Terraria.Audio;

@@ -1,7 +1,7 @@
 ﻿using CalamityMod.Items;
 using CalamityMod.Items.Materials;
 using InfernalEclipseAPI.Content.Items.Other;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using NoxusBoss.Content.Items;
 using NoxusBoss.Content.Rarities;
 using NoxusBoss.Content.Tiles;

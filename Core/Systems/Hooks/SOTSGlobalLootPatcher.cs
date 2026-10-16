@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using MonoMod.RuntimeDetour;
 using Terraria.GameContent.ItemDropRules;
 

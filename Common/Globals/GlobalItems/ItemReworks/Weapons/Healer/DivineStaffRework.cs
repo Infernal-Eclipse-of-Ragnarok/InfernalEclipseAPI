@@ -1,6 +1,6 @@
-﻿using InfernalEclipseAPI.Core.Systems;
-using ThoriumMod.Projectiles.Healer;
+﻿using ThoriumMod.Projectiles.Healer;
 using ThoriumMod;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Weapons.Healer
 {

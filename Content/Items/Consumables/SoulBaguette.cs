@@ -3,7 +3,7 @@ using CalamityMod.Buffs.Alcohol;
 using CalamityMod.Buffs.Potions;
 using CalamityMod.Items.Potions.Food;
 using InfernalEclipseAPI.Content.Buffs;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 using Terraria.Localization;

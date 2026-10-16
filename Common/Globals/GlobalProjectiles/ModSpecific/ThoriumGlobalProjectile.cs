@@ -4,12 +4,12 @@ using CalamityMod.Projectiles.Melee;
 using CalamityMod;
 using Terraria;
 using Terraria.DataStructures;
-using InfernalEclipseAPI.Core.Systems;
 using ThoriumMod.Projectiles.Thrower;
 using System.Collections.Generic;
 using Terraria.Audio;
 using Microsoft.Xna.Framework;
 using InfernalEclipseAPI.Core.Configs;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalProjectiles.ModSpecific
 {

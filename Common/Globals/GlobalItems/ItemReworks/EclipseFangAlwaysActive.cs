@@ -2,8 +2,8 @@
 using ThoriumMod;
 using Microsoft.Xna.Framework;
 using Terraria.Localization;
-using InfernalEclipseAPI.Core.Systems;
 using InfernalEclipseAPI.Core.Configs;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.ItemReworks
 {

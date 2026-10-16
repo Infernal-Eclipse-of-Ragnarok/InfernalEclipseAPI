@@ -1,4 +1,4 @@
-﻿using InfernalEclipseAPI.Core.Systems;
+﻿using InfernalEclipseAPI.Core.Systems.Compatibility;
 using ThoriumMod.Buffs;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalBuffs

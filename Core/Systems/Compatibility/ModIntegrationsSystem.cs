@@ -12,7 +12,7 @@ using Terraria.Audio;
 using Terraria.Localization;
 using ThoriumMod.Scenes;
 
-namespace InfernalEclipseAPI.Core.Systems
+namespace InfernalEclipseAPI.Core.Systems.Compatibility
 {
     public class ModIntegrationsSystem : ModSystem
     {

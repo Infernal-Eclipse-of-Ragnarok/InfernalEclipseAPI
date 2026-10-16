@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using InfernalEclipseAPI.Core.Configs;
 using ThoriumMod.Items.SummonItems;
 using ThoriumMod.Projectiles.Minions;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
 {

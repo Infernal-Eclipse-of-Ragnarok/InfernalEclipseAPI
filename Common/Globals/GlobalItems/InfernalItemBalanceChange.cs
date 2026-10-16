@@ -12,7 +12,6 @@ using CalamityMod.Items;
 using Terraria.Localization;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using InfernalEclipseAPI.Core.Systems;
 using InfernumMode.Content.Items.Weapons.Magic;
 using InfernumMode.Content.Items.Weapons.Rogue;
 using CalamityMod.Rarities;
@@ -20,6 +19,7 @@ using InfernalEclipseAPI.Core.Configs;
 using Terraria.GameInput;
 using System.Linq;
 using InfernumMode.Content.Rarities.InfernumRarities;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalItems
 {

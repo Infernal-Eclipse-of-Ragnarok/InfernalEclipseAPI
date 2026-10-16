@@ -1,6 +1,6 @@
 ﻿using CalamityMod.Events;
 using InfernalEclipseAPI.Core.Players;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using InfernumMode.Content.BossIntroScreens;
 using InfernumMode.Content.BossIntroScreens.InfernumScreens;
 using Microsoft.Xna.Framework;

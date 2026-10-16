@@ -41,6 +41,7 @@ using CalamityMod.Systems;
 using CalamityMod.UI.DraedonSummoning;
 using InfernalEclipseAPI.Content.Projectiles;
 using InfernalEclipseAPI.Core.Configs;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using InfernalEclipseAPI.Core.World;
 using InfernumMode.Content.BehaviorOverrides.BossAIs.AstrumDeus;
 using InfernumMode.Content.BehaviorOverrides.BossAIs.BoC;

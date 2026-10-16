@@ -20,7 +20,7 @@ using InfernalEclipseAPI.Content.Items.Placeables.Relics.SOTS;
 using InfernalEclipseAPI.Content.Projectiles;
 using InfernalEclipseAPI.Core.Configs;
 using InfernalEclipseAPI.Core.Players;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using InfernumMode;
 using InfernumMode.Content.BehaviorOverrides.BossAIs.BoC;
 using InfernumMode.Content.BehaviorOverrides.BossAIs.Deerclops;

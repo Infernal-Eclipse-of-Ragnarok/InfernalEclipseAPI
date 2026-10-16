@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 
-namespace InfernalEclipseAPI.Core.Utils
+namespace InfernalEclipseAPI.Common.Tools
 {
     //Credit: Calamity: Hunt of the Old God
     public readonly struct BezierCurve

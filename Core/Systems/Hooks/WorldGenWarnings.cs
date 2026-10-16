@@ -3,7 +3,7 @@ using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using Terraria.GameContent.UI.States;
 
-namespace InfernalEclipseAPI.Core.Utils
+namespace InfernalEclipseAPI.Core.Systems.Hooks
 {
     public class WorldGenWarnings : ModSystem
     {

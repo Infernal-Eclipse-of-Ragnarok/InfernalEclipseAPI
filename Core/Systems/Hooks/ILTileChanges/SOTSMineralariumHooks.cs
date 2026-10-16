@@ -10,6 +10,7 @@ using CalamityMod.Tiles.Ores;
 using static SOTS.Items.Furniture.Functional.MineralariumTE;
 using MonoMod.RuntimeDetour;
 using SOTS.Items.Furniture.Functional;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Core.Systems.Hooks.ILTileChanges
 {

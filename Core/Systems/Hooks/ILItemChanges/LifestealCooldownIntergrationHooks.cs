@@ -1,4 +1,5 @@
 ﻿using CalamityMod.Projectiles.Healing;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using MonoMod.Cil;
 using System.Reflection;
 using Terraria.DataStructures;

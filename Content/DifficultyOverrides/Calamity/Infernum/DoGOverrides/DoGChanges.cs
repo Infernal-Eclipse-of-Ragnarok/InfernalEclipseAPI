@@ -9,7 +9,7 @@ using CalamityMod.World;
 using InfernalEclipseAPI.Content.Buffs;
 using InfernalEclipseAPI.Core.Configs;
 using InfernalEclipseAPI.Core.Players;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using InfernalEclipseAPI.Core.World;
 using InfernumMode;
 using InfernumMode.Content.BehaviorOverrides.BossAIs.DoG;

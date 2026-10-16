@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using InfernalEclipseAPI.Core.Graphics.Automators;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using Luminance.Assets;
 using Luminance.Core.Graphics;
 using Microsoft.Xna.Framework;

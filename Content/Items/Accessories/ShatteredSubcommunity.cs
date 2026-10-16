@@ -4,10 +4,10 @@ using CalamityMod.Items;
 using CalamityMod.Rarities;
 using Clamity;
 using Clamity.Content.Items.Accessories;
-using InfernalEclipseAPI.Core.Systems;
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 using System.Linq;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Content.Items.Accessories
 {

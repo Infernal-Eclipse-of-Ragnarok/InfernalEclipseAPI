@@ -10,7 +10,7 @@ using InfernalEclipseAPI.Core.Configs;
 using InfernalEclipseAPI.Core.DamageClasses;
 using InfernalEclipseAPI.Core.Players;
 using InfernalEclipseAPI.Core.Players.SOTSPlayerOverrides;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using InfernalEclipseAPI.Core.Utils;
 using InfernumMode.Content.Items.Accessories;
 using Microsoft.Xna.Framework;

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using InfernalEclipseAPI.Content.Projectiles;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using Microsoft.Xna.Framework;
 using Terraria.Audio;
 using Terraria.DataStructures;

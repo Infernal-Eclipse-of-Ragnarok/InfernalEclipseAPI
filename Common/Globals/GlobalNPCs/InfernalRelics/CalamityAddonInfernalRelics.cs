@@ -15,7 +15,6 @@ using InfernalEclipseAPI.Content.Items.Materials;
 using InfernalEclipseAPI.Content.Items.Placeables.Relics.CalamityAddons;
 using InfernalEclipseAPI.Content.Items.Placeables.Relics.CalamityAddons.Clamity;
 using InfernalEclipseAPI.Content.Items.Placeables.Relics.CalamityAddons.WoTG;
-using InfernalEclipseAPI.Core.Systems;
 using InfernalEclipseAPI.Core.World;
 using NoxusBoss.Assets;
 using NoxusBoss.Content.Items;
@@ -30,6 +29,7 @@ using InfernalEclipseAPI.Core.Configs;
 using CalamityMod.Buffs.StatDebuffs;
 using CatalystMod.NPCs;
 using InfernalEclipseAPI.Common.GlobalNPCs.LootAdjustments;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Common.GlobalNPCs.InfernalRelics
 {

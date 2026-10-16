@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 using Terraria.Localization;
 using InfernalEclipseAPI.Core.Configs;
 using ThrowerUnification;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.RogueCraftingTrees
 {

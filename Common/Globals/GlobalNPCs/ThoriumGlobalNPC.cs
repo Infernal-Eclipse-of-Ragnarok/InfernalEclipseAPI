@@ -3,7 +3,6 @@ using CalamityMod.NPCs.Perforator;
 using CalamityMod.NPCs.ProfanedGuardians;
 using CalamityMod.NPCs.SlimeGod;
 using InfernalEclipseAPI.Content.Items.Lore.Thorium;
-using InfernalEclipseAPI.Core.Systems;
 using Terraria.GameContent.ItemDropRules;
 using ThoriumMod;
 using ThoriumMod.Buffs;
@@ -33,6 +32,7 @@ using ThoriumMod.NPCs.BossQueenJellyfish;
 using ThoriumMod.NPCs.BossViscount;
 using InfernumMode.Core.GlobalInstances.Systems;
 using InfernalEclipseAPI.Content.Items.SpawnItems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Common.GlobalNPCs
 {

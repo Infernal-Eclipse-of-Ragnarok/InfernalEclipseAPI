@@ -29,7 +29,7 @@ using InfernalEclipseAPI.Content.Items.Weapons.Legendary.StellarSabre;
 using InfernalEclipseAPI.Content.Items.Weapons.Magic.ChaosBlaster;
 using InfernalEclipseAPI.Content.Items.Weapons.Nameless.NebulaGigabeam;
 using InfernalEclipseAPI.Core.Configs;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using InfernumMode.Content.Items.Weapons.Magic;
 using SOTS;
 using System.Linq;

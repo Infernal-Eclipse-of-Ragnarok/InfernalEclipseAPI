@@ -1,6 +1,6 @@
 ﻿using CalamityMod.Buffs.DamageOverTime;
 using CalamityMod.Projectiles.Healing;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using Microsoft.Xna.Framework;
 
 namespace InfernalEclipseAPI.Common.GlobalProjectiles
