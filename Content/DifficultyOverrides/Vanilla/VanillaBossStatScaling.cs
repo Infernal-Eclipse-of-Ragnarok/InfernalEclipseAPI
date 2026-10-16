@@ -137,7 +137,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Vanilla
             return base.PreAI(npc);
         }
 
-        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
+        public override void ModifyNPCLoot(NPC npc, Terraria.ModLoader.NPCLoot npcLoot)
         {
             //TODO: make cultist not drop two bags
         }

@@ -361,7 +361,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
             return base.PreAI(npc);
         }
 
-        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
+        public override void ModifyNPCLoot(NPC npc, Terraria.ModLoader.NPCLoot npcLoot)
         {
             if (npc.boss && npc.type != NPCID.TorchGod) //anything that is considered a boss will have a 1/100 chance to drop our dev painting directly
             {

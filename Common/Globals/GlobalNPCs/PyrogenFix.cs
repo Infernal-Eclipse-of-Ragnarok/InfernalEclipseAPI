@@ -52,7 +52,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
                 hurtInfo.Damage = 400;
         }
 
-        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
+        public override void ModifyNPCLoot(NPC npc, Terraria.ModLoader.NPCLoot npcLoot)
         {
             if (npc.type != ModContent.NPCType<PyrogenBoss>())
                 return;
