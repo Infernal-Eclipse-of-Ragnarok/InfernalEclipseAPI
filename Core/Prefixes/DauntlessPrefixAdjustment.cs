@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using CalamityMod.Prefixes;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using Terraria.Localization;
 using ThoriumMod;
 

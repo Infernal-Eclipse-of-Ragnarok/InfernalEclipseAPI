@@ -1,6 +1,6 @@
 ﻿using CalamityMod.Buffs.DamageOverTime;
 using Clamity.Content.Bosses.Pyrogen.NPCs;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Common.GlobalProjectiles.ProjectileReworks
 {

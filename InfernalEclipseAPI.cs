@@ -13,7 +13,6 @@ using System.IO;
 using InfernalEclipseAPI.Core.Players;
 using System.Reflection;
 using InfernalEclipseAPI.Core.World;
-using InfernalEclipseAPI.Core;
 using InfernalEclipseAPI.Core.Systems;
 using InfernalEclipseAPI.Core.Utils.ConfigSetup;
 using Microsoft.Xna.Framework.Graphics;
@@ -35,6 +34,8 @@ using ReLogic.Content;
 using InfernalEclipseAPI.Core.Configs;
 using Terraria.UI.Chat;
 using InfernalEclipseAPI.Core.ChatTags;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
+using InfernalEclipseAPI.Core.Menu;
 
 [assembly: InternalsVisibleTo("HomewardRagnarok")]
 namespace InfernalEclipseAPI

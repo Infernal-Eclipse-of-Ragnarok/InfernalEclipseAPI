@@ -1,5 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 using CalamityMod;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using InfernalEclipseAPI.Core.Utils;
 using Microsoft.Xna.Framework;
 using RevengeancePlus.Projectiles;

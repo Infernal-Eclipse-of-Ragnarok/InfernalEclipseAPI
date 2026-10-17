@@ -1,4 +1,4 @@
-﻿using InfernalEclipseAPI.Core.Systems;
+﻿using InfernalEclipseAPI.Core.Systems.Compatibility;
 using Terraria.Audio;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalProjectiles

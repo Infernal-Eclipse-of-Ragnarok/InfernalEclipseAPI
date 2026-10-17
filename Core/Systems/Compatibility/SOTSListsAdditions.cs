@@ -3,7 +3,7 @@ using System.Reflection;
 using SOTS;
 using ThoriumMod.Projectiles;
 
-namespace InfernalEclipseAPI.Core.Systems
+namespace InfernalEclipseAPI.Core.Systems.Compatibility
 {
     [JITWhenModsEnabled("SOTS", "ThoriumMod")]
     [ExtendsFromMod("SOTS", "ThoriumMod")]

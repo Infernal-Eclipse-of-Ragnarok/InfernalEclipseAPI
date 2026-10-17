@@ -29,7 +29,7 @@ using InfernalEclipseAPI.Content.Items.Weapons.Legendary.StellarSabre;
 using InfernalEclipseAPI.Content.Items.Weapons.Magic.ChaosBlaster;
 using InfernalEclipseAPI.Content.Items.Weapons.Nameless.NebulaGigabeam;
 using InfernalEclipseAPI.Core.Configs;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using InfernumMode.Content.Items.Weapons.Magic;
 using SOTS;
 using System.Linq;
@@ -1409,12 +1409,12 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
 
                     if (InfernalConfig.Instance.DisableUnnecessaryContent)
                     {
-                        if (recipe.HasResult(GetItem(thorRework, "TitanHat"))
-                         || recipe.HasResult(GetItem(thorRework, "TitanHood"))
-                         || recipe.HasResult(GetItem(thorRework, "TitanVisage"))
-                         || recipe.HasResult(GetItem(thorRework, "TitanVisor")))
-                        {
-                            recipe.DisableRecipe();
+                        if (thorRework.TryFind("TitanHat", out ModItem titanHat))
+                        { 
+                            if (recipe.HasResult(titanHat) || recipe.HasResult(GetItem(thorRework, "TitanHood")) || recipe.HasResult(GetItem(thorRework, "TitanVisage")) || recipe.HasResult(GetItem(thorRework, "TitanVisor")))
+                            {
+                                recipe.DisableRecipe();
+                            }
                         }
                     }
                 }

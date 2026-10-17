@@ -1,9 +1,9 @@
-﻿using InfernalEclipseAPI.Core.Systems;
-using ReLogic.Utilities;
+﻿using ReLogic.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.Audio;
 using Luminance.Assets;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Content.Items.Weapons.Ranged.ExoDisintegrator
 {

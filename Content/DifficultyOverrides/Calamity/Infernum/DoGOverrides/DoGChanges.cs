@@ -9,7 +9,7 @@ using CalamityMod.World;
 using InfernalEclipseAPI.Content.Buffs;
 using InfernalEclipseAPI.Core.Configs;
 using InfernalEclipseAPI.Core.Players;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using InfernalEclipseAPI.Core.World;
 using InfernumMode;
 using InfernumMode.Content.BehaviorOverrides.BossAIs.DoG;
@@ -50,7 +50,6 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.DoGOv
         */
 
         #region Coil Punishment
-
         private int coilDetectionTimer;
         private int coilLaserWallTimer;
         private bool coilLaserWallActive;
@@ -64,9 +63,6 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.DoGOv
 
         // Exactly one Calamity laser-wall cycle.
         private const int CoilLaserWallDuration = 120;
-
-
-
         #endregion
 
         public override bool InstancePerEntity => true;

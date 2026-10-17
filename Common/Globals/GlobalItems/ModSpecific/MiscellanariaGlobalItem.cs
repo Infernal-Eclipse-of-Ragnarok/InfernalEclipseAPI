@@ -1,4 +1,4 @@
-﻿using InfernalEclipseAPI.Core.Systems;
+﻿using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 {

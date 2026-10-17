@@ -4,12 +4,12 @@ using CalamityMod.Projectiles.Melee;
 using CalamityMod;
 using Terraria;
 using Terraria.DataStructures;
-using InfernalEclipseAPI.Core.Systems;
 using ThoriumMod.Projectiles.Thrower;
 using System.Collections.Generic;
 using Terraria.Audio;
 using Microsoft.Xna.Framework;
 using InfernalEclipseAPI.Core.Configs;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalProjectiles.ModSpecific
 {
@@ -198,7 +198,9 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalProjectiles.ModSpecific
 
                 if (ModLoader.TryGetMod("ThoriumRework", out Mod helheim))
                 {
-                    int sporeSpearTipProj = helheim.Find<ModProjectile>("SpearExtraSpore")?.Type ?? -1;
+                    if (!helheim.TryFind("SpearExtraSpore", out ModProjectile sporeSpearTipProj))
+                        return;
+
                     int electronSpearTipProj = helheim.Find<ModProjectile>("SpearExtraElectronWave")?.Type ?? -1;
 
                     if (projectile.type == electronSpearTipProj)
@@ -215,7 +217,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalProjectiles.ModSpecific
                         SpearTipCooldown.SpearTipSpawnCooldown[projectile.owner] = 10;
                     }
 
-                    if (projectile.type == sporeSpearTipProj)
+                    if (projectile.type == sporeSpearTipProj.Type)
                     {
                         if (projectile.owner < 0 || projectile.owner >= Main.maxPlayers)
                             return;

@@ -1,6 +1,6 @@
 ﻿using InfernalEclipseAPI.Content.Items.Placeables.Relics.FargosSouls;
 using InfernalEclipseAPI.Core.Configs;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using InfernumMode.Content.Tiles.Relics;
 
 namespace InfernalEclipseAPI.Content.Tiles.Relics.FargosSouls

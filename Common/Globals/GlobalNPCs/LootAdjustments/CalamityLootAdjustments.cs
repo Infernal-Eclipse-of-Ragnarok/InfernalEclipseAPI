@@ -4,15 +4,16 @@ using CalamityMod.NPCs.AcidRain;
 using CalamityMod;
 using InfernalEclipseAPI.Content.Items.Placeables.Relics;
 using InfernumMode.Core.GlobalInstances.Systems;
-using InfernalEclipseAPI.Core.Systems;
 using CalamityMod.NPCs.Abyss;
 using CalamityMod.Items.Weapons.Melee;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
+using InfernalEclipseAPI.Common.Globals.GlobalNPCs;
 
 namespace InfernalEclipseAPI.Common.GlobalNPCs.LootAdjustments
 {
     public class CalamityLootAdjustments : GlobalNPC
     {
-        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
+        public override void ModifyNPCLoot(NPC npc, Terraria.ModLoader.NPCLoot npcLoot)
         {
             if (InfernalCrossmod.RagnarokMod.Loaded)
             {

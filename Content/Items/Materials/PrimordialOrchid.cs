@@ -1,5 +1,5 @@
 ﻿using CalamityMod.Items;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using NoxusBoss.Content.Rarities;
 
 namespace InfernalEclipseAPI.Content.Items.Materials

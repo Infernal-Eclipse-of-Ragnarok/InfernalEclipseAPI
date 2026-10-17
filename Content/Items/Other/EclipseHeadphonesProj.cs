@@ -1,6 +1,6 @@
 ﻿using CalamityMod;
 using InfernalEclipseAPI.Common.GlobalNPCs.NPCDebuffs;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using InfernalEclipseAPI.Core.World;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

@@ -2,7 +2,7 @@
 using CalamityMod.Events;
 using CalamityMod.NPCs.NormalNPCs;
 using CalamityMod.Systems;
-using InfernalEclipseAPI.Common.GlobalNPCs;
+using InfernalEclipseAPI.Common.Globals.GlobalNPCs;
 using InfernalEclipseAPI.Core.Configs;
 using InfernalEclipseAPI.Core.World;
 

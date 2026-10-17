@@ -1,5 +1,4 @@
 ﻿using CalamityMod;
-using InfernalEclipseAPI.Core.Systems;
 using static Terraria.ModLoader.ModContent;
 using Consolaria.Content.Items.Misc;
 using System.Collections.Generic;
@@ -7,6 +6,7 @@ using Microsoft.Xna.Framework;
 using InfernalEclipseAPI.Core.Utils;
 using Terraria.Localization;
 using InfernalEclipseAPI.Core.Configs;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 {

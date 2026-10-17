@@ -3,7 +3,6 @@ using CalamityMod.NPCs.Perforator;
 using CalamityMod.NPCs.ProfanedGuardians;
 using CalamityMod.NPCs.SlimeGod;
 using InfernalEclipseAPI.Content.Items.Lore.Thorium;
-using InfernalEclipseAPI.Core.Systems;
 using Terraria.GameContent.ItemDropRules;
 using ThoriumMod;
 using ThoriumMod.Buffs;
@@ -33,6 +32,7 @@ using ThoriumMod.NPCs.BossQueenJellyfish;
 using ThoriumMod.NPCs.BossViscount;
 using InfernumMode.Core.GlobalInstances.Systems;
 using InfernalEclipseAPI.Content.Items.SpawnItems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Common.GlobalNPCs
 {
@@ -46,7 +46,8 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
             int stunned = ModContent.BuffType<Stunned>();
 
             // Perforator worms
-            if (npc.type == ModContent.NPCType<PerforatorHeadSmall>() ||
+            if (
+                npc.type == ModContent.NPCType<PerforatorHeadSmall>() ||
                 npc.type == ModContent.NPCType<PerforatorBodySmall>() ||
                 npc.type == ModContent.NPCType<PerforatorTailSmall>() ||
 
@@ -94,7 +95,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
             return base.PreKill(npc);
         }
 
-        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
+        public override void ModifyNPCLoot(NPC npc, Terraria.ModLoader.NPCLoot npcLoot)
         {
             if (npc.type == ModContent.NPCType<GigaClam>())
             {
@@ -102,11 +103,14 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
             }
 
             int[] meteoriteEnemies =
-{
+            {
                 ModContent.NPCType<UFO>(),
                 ModContent.NPCType<MartianScout>(),
                 ModContent.NPCType<MartianSentry>(),
             };
+
+            if (npc.type == NPCID.BloodNautilus)
+                npcLoot.AddIf(() => Main.hardMode, ModContent.ItemType<BloodCell>(), 1, 15, 20);
 
             if (ModLoader.HasMod("SOTS"))
             {
@@ -218,7 +222,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
 
             if (item.type == ModContent.ItemType<LichTreasureBag>() && InfernalCrossmod.ThoriumRework.Loaded && !InfernalCrossmod.Hummus.Loaded)
             {
-                if (InfernalCrossmod.ThoriumRework.Mod.TryFind("SoulSnatcher", out ModItem soulSnacter)) 
+                if (InfernalCrossmod.ThoriumRework.Mod.TryFind("SoulSnatcher", out ModItem soulSnacter))
                 {
                     var rule = new CommonDropNotScalingWithLuck(soulSnacter.Type, 5, 1, 1)
                     {
@@ -234,69 +238,27 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
     [ExtendsFromMod(InfernalCrossmod.Thorium.Name)]
     public class PrimordialPotionPatch : ModSystem
     {
-        public override bool IsLoadingEnabled(Mod mod)
-        {
-            return ModLoader.TryGetMod("ThoriumRework", out _);
-        }
+        public override bool IsLoadingEnabled(Mod mod) => ModLoader.HasMod("ThoriumRework");
+
         public override void Load()
         {
-            var method = typeof(PrimordialBase).GetMethod(
-                "BossLoot",
-                BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic,
-                null, // binder
-                new Type[] { typeof(string).MakeByRefType(), typeof(int).MakeByRefType() },
-                null
-            );
-            if (method != null)
-                MonoModHooks.Modify(method, IL_BossLoot);
+            var primodialMethod = typeof(PrimordialBase).GetMethod(nameof(PrimordialBase.BossLoot), LumUtils.UniversalBindingFlags, null, new Type[] { typeof(int).MakeByRefType() }, null);
+            var dreamEaterMethod = typeof(DreamEater).GetMethod(nameof(DreamEater.BossLoot), LumUtils.UniversalBindingFlags, null, new Type[] { typeof(int).MakeByRefType() }, null);
+
+            if (primodialMethod != null)
+                MonoModHooks.Modify(primodialMethod, IL_BossLoot);
+
+            if (dreamEaterMethod != null)
+                MonoModHooks.Modify(dreamEaterMethod, IL_BossLoot);
         }
 
         private void IL_BossLoot(ILContext il)
         {
             var c = new ILCursor(il);
 
-            // Find: ldc.i4 3544
             while (c.TryGotoNext(i => i.OpCode == OpCodes.Ldc_I4 && (int)i.Operand == 3544))
             {
-                // Remove the integer load
                 c.Remove();
-                // Replace with a call to ModContent.ItemType<OmegaHealingPotion>()
-                c.Emit(OpCodes.Call, typeof(ModContent).GetMethod(nameof(ModContent.ItemType)).MakeGenericMethod(typeof(OmegaHealingPotion)));
-            }
-        }
-    }
-
-    [JITWhenModsEnabled(InfernalCrossmod.Thorium.Name)]
-    [ExtendsFromMod(InfernalCrossmod.Thorium.Name)]
-    public class DreamEaterPotionPatch : ModSystem
-    {
-        public override bool IsLoadingEnabled(Mod mod)
-        {
-            return ModLoader.TryGetMod("ThoriumRework", out _);
-        }
-        public override void Load()
-        {
-            var method = typeof(DreamEater).GetMethod(
-                "BossLoot",
-                BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic,
-                null, // binder
-                new Type[] { typeof(string).MakeByRefType(), typeof(int).MakeByRefType() },
-                null
-            );
-            if (method != null)
-                MonoModHooks.Modify(method, IL_BossLoot);
-        }
-
-        private void IL_BossLoot(ILContext il)
-        {
-            var c = new ILCursor(il);
-
-            // Find: ldc.i4 3544
-            while (c.TryGotoNext(i => i.OpCode == OpCodes.Ldc_I4 && (int)i.Operand == 3544))
-            {
-                // Remove the integer load
-                c.Remove();
-                // Replace with a call to ModContent.ItemType<OmegaHealingPotion>()
                 c.Emit(OpCodes.Call, typeof(ModContent).GetMethod(nameof(ModContent.ItemType)).MakeGenericMethod(typeof(OmegaHealingPotion)));
             }
         }

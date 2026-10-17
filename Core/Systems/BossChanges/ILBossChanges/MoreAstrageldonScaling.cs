@@ -8,6 +8,7 @@ using CatalystMod.Tiles.Ores;
 using CatalystMod;
 using InfernalEclipseAPI.Core.Systems.Hooks.ILTileChanges;
 using InfernumMode.Core.GlobalInstances.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Core.Systems.BossChanges.ILBossChanges
 {

@@ -2,8 +2,8 @@
 using InfernumMode.Content.Items.Relics;
 using Terraria.Localization;
 using Microsoft.Xna.Framework;
-using InfernalEclipseAPI.Core.Systems;
 using InfernalEclipseAPI.Core.Configs;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Content.Items.Placeables.Relics.FargosSouls
 {

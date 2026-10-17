@@ -8,7 +8,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.LootAdjustments
 {
     public class VanillaLootAdjustments : GlobalNPC
     {
-        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
+        public override void ModifyNPCLoot(NPC npc, Terraria.ModLoader.NPCLoot npcLoot)
         {
             if (npc.type == NPCID.BloodNautilus)
             {

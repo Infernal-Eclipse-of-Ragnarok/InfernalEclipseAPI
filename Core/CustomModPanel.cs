@@ -9,7 +9,7 @@ using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 using Terraria.Utilities;
 
-namespace InfernalEclipseAPI
+namespace InfernalEclipseAPI.Core
 {
     [Autoload(Side = ModSide.Client)]
     [ExtendsFromMod("Daybreak")]

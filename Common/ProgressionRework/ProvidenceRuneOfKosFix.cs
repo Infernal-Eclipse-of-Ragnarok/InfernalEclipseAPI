@@ -7,7 +7,7 @@ namespace InfernalEclipseAPI.Common.ProgressionRework
     public class ProvidenceRuneOfKosFix : GlobalNPC
     {
         public override bool InstancePerEntity => false;
-        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
+        public override void ModifyNPCLoot(NPC npc, Terraria.ModLoader.NPCLoot npcLoot)
         {
             //Ensures Providence drops the Rune of Kos
             if (npc.type == ModContent.NPCType<Providence>())

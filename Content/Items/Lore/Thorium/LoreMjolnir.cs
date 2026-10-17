@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using CalamityMod.Items.LoreItems;
 using CalamityMod.Rarities;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using Microsoft.Xna.Framework.Input;
 using Terraria.Localization;
 

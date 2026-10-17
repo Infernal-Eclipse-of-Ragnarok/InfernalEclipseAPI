@@ -1,5 +1,5 @@
 ﻿using CalamityMod.Events;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using InfernumActive = InfernalEclipseAPI.Content.DifficultyOverrides.hellActive;
 namespace InfernalEclipseAPI.Content.DifficultyOverrides.Consolaria.OcramOverridess
 {

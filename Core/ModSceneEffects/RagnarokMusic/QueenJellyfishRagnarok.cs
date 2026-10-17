@@ -1,6 +1,6 @@
 ﻿using CalamityMod.Events;
 using InfernalEclipseAPI.Core.Configs;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using InfernalEclipseAPI.Core.World;
 using ThoriumMod.NPCs.BossQueenJellyfish;
 

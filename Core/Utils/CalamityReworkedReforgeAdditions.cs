@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 using CalamityMod.Prefixes;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using MonoMod.RuntimeDetour;

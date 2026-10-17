@@ -1,6 +1,6 @@
 ﻿using CalamityMod.NPCs.CeaselessVoid;
 using InfernalEclipseAPI.Common.Globals.GlobalNPCs;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using InfernumMode.Content.BehaviorOverrides.BossAIs.CeaselessVoid;
 
 namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.CeaselessOverrides

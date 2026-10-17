@@ -10,7 +10,7 @@ using InfernalEclipseAPI.Core.Configs;
 using InfernalEclipseAPI.Core.DamageClasses;
 using InfernalEclipseAPI.Core.Players;
 using InfernalEclipseAPI.Core.Players.SOTSPlayerOverrides;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using InfernalEclipseAPI.Core.Utils;
 using InfernumMode.Content.Items.Accessories;
 using Microsoft.Xna.Framework;
@@ -393,28 +393,30 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
             }
             else if (player.HeldItem.useTime <= 9)
             {
-                return 2;
+                return 3;
             }
             else if (player.HeldItem.useTime <= 14)
             {
-                return 3;
+                return 4;
             }
             else if (player.HeldItem.useTime <= 22)
             {
-                return 4;
+                return 5;
             }
             else if (player.HeldItem.useTime <= 29)
             {
-                return 5;
+                return 6;
             }
             else if (player.HeldItem.useTime <= 37)
             {
-                return 6;
+                return 7;
             }
+            /*
             else if (player.HeldItem.useTime <= 45)
             {
                 return 7;
             }
+            */
             return 8;
         }
 

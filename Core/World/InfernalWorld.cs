@@ -1,7 +1,6 @@
 ﻿using Terraria.ModLoader.IO;
 using System.IO;
 using CalamityMod.UI;
-using InfernalEclipseAPI.Core.Systems;
 using InfernumMode.Core.GlobalInstances.Systems;
 using CalamityMod.Events;
 using InfernalEclipseAPI.Core.Systems.BossRush;
@@ -9,6 +8,7 @@ using SubworldLibrary;
 using InfernalEclipseAPI.Content.Items.Other;
 using InfernalEclipseAPI.Core.Configs;
 using Microsoft.Xna.Framework;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Core.World
 {

@@ -9,7 +9,7 @@ using CalamityMod.UI.DialogueDisplay.DisplayEffects;
 using CalamityMod.World;
 using InfernalEclipseAPI.Common.GlobalItems;
 using InfernalEclipseAPI.Content.Buffs;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using InfernalEclipseAPI.Core.World;
 using InfernumMode;
 using InfernumMode.Assets.Sounds;

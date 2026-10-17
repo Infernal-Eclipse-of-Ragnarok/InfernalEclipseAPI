@@ -1,4 +1,4 @@
-﻿using InfernalEclipseAPI.Common.GlobalNPCs;
+﻿using InfernalEclipseAPI.Common.Globals.GlobalNPCs;
 
 namespace InfernalEclipseAPI.Content.Buffs
 {

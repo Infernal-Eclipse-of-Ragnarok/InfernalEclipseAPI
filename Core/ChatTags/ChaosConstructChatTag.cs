@@ -1,4 +1,4 @@
-﻿using InfernalEclipseAPI.Core.Systems;
+﻿using InfernalEclipseAPI.Core.Systems.Compatibility;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SOTS.Helpers;

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 

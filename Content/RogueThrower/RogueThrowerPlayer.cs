@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 using InfernalEclipseAPI.Core.Players;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using Terraria.DataStructures;
 using Terraria.Localization;
 using ThoriumMod.Items.Terrarium;

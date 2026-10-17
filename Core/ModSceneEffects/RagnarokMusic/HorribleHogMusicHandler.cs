@@ -1,6 +1,6 @@
 ﻿using CalamityMod.Events;
 using CalamityMod.NPCs.NormalNPCs.HorribleHog;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Core.ModSceneEffects.RagnarokMusic
 {

@@ -88,13 +88,18 @@ Items: {
 	}
 
 	LifeQuartzClaymore: {
-		// DisplayName: Life Quartz Claymore
-		// Tooltip: Steals an additional 2 life if it's the first hit that swing
+		DisplayName: 生命石英刃
+		Tooltip: 每次挥动的首次命中额外吸取2点生命值
 	}
 
 	HereticBreaker: {
 		DisplayName: 异教毁灭者
-		Tooltip: 吸取3生命值
+		Tooltip:
+			'''
+			造成伤害会治疗附近所有受伤的盟友
+			命中时恢复1点生命值
+			每次挥动的首次命中额外恢复2点生命值
+			'''
 	}
 
 	ShroomachineGun: {
@@ -156,7 +161,7 @@ Items: {
 	FlightMail.Tooltip:
 		'''
 		“天空是你的飞行场地”
-		增加5%投掷伤害
+		增加3%投掷伤害
 		'''
 
 	BronzeHelmet: {
@@ -217,7 +222,7 @@ Items: {
 		DisplayName: 真菌帽
 		Tooltip:
 			'''
-			增加5%投掷伤害
+			增加10%投掷伤害
 			33%概率不消耗投掷物品
 			最大技巧值增加1
 			'''
@@ -225,11 +230,7 @@ Items: {
 
 	FungusGuard: {
 		DisplayName: 真菌胸甲
-		Tooltip:
-			'''
-			增加10%投掷伤害
-			增加5%投掷速度
-			'''
+		Tooltip: 增加10%投掷伤害
 	}
 
 	HallowedGuise: {
@@ -288,7 +289,7 @@ Items: {
 			'''
 			“生活在暗影中并精确打击”
 			增加10%投掷伤害
-			增加20%投掷暴击率
+			增加15%投掷暴击率
 			增加15%移动速度
 			'''
 	}
@@ -297,7 +298,7 @@ Items: {
 		DisplayName: 白矮星面具
 		Tooltip:
 			'''
-			增加10%投掷伤害
+			增加15%投掷伤害
 			33%概率不消耗投掷物品
 			最大技巧值增加2
 			'''
@@ -308,7 +309,6 @@ Items: {
 		Tooltip:
 			'''
 			增加10%投掷伤害
-			增加15%投掷速度
 			增加30%投掷弹幕速度
 			'''
 	}

@@ -4,7 +4,7 @@ using InfernalEclipseAPI.Content.Buffs;
 using InfernalEclipseAPI.Core.Configs;
 using InfernalEclipseAPI.Core.DamageClasses.LegendaryClass;
 using InfernalEclipseAPI.Core.DamageClasses.MythicClass;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using Terraria.GameContent.Events;
 using ThoriumMod;
 using ThoriumMod.Buffs;

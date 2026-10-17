@@ -2,7 +2,7 @@
 using InfernalEclipseAPI.Common.Globals.GlobalNPCs;
 using InfernalEclipseAPI.Content.Buffs;
 using InfernalEclipseAPI.Core.Configs;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using InfernalEclipseAPI.Core.World;
 using InfernumMode;
 using InfernumMode.Core.GlobalInstances.Systems;
@@ -137,7 +137,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Vanilla
             return base.PreAI(npc);
         }
 
-        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
+        public override void ModifyNPCLoot(NPC npc, Terraria.ModLoader.NPCLoot npcLoot)
         {
             //TODO: make cultist not drop two bags
         }

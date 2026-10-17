@@ -7,7 +7,7 @@ using CalamityMod.Items.Weapons.Melee;
 using InfernalEclipseAPI.Content.Items.Materials;
 using InfernalEclipseAPI.Core.Configs;
 using InfernalEclipseAPI.Core.Players;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using InfernalEclipseAPI.Core.Systems.Hooks.ILItemChanges.ThoriumItemHooks;
 using InfernalEclipseAPI.Core.Utils;
 using Terraria.DataStructures;
@@ -901,24 +901,30 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 
                 if (InfernalCrossmod.ThoriumRework.Loaded)
                 {
-                    if (item.type == InfernalCrossmod.ThoriumRework.Mod.Find<ModItem>("TitanHat").Type)
-                        InfernalUtilities.AddDisabledItemTag(tooltips);
+                    if (InfernalCrossmod.ThoriumRework.Mod.TryFind("TitanHat", out ModItem titanHat))
+                    {
+                        if (item.type == titanHat.Type)
+                            InfernalUtilities.AddDisabledItemTag(tooltips);
 
-                    if (item.type == InfernalCrossmod.ThoriumRework.Mod.Find<ModItem>("TitanHood").Type)
-                        InfernalUtilities.AddDisabledItemTag(tooltips);
+                        if (item.type == InfernalCrossmod.ThoriumRework.Mod.Find<ModItem>("TitanHood").Type)
+                            InfernalUtilities.AddDisabledItemTag(tooltips);
 
-                    if (item.type == InfernalCrossmod.ThoriumRework.Mod.Find<ModItem>("TitanVisage").Type)
-                        InfernalUtilities.AddDisabledItemTag(tooltips);
+                        if (item.type == InfernalCrossmod.ThoriumRework.Mod.Find<ModItem>("TitanVisage").Type)
+                            InfernalUtilities.AddDisabledItemTag(tooltips);
 
-                    if (item.type == InfernalCrossmod.ThoriumRework.Mod.Find<ModItem>("TitanVisor").Type)
-                        InfernalUtilities.AddDisabledItemTag(tooltips);
+                        if (item.type == InfernalCrossmod.ThoriumRework.Mod.Find<ModItem>("TitanVisor").Type)
+                            InfernalUtilities.AddDisabledItemTag(tooltips);
+                    }
                 }
             }
 
             if (InfernalCrossmod.ThoriumRework.Loaded)
             {
-                if (item.type == InfernalCrossmod.ThoriumRework.Mod.Find<ModItem>("DeathsingerPotion").Type)
-                    InfernalUtilities.AddDisabledItemTag(tooltips);
+                if (InfernalCrossmod.ThoriumRework.Mod.TryFind("DeathsingerPotion", out ModItem deathsingerPot))
+                {
+                    if (item.type == deathsingerPot.Type)
+                        InfernalUtilities.AddDisabledItemTag(tooltips);
+                }
             }
         }
     }

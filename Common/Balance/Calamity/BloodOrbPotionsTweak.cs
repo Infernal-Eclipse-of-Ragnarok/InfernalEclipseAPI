@@ -2,7 +2,7 @@
 using CalamityMod.Items.Potions;
 using InfernalEclipseAPI.Common.Balance.Recipes;
 using InfernalEclipseAPI.Core.Configs;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Common.Balance.Calamity
 {

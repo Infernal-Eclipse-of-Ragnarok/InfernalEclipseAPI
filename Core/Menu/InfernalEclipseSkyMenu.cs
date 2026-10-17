@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 
-namespace InfernalEclipseAPI.Core
+namespace InfernalEclipseAPI.Core.Menu
 {
     public class InfernalEclipseSkyMenu : ModMenu
     {

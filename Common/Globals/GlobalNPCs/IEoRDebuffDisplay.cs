@@ -10,12 +10,12 @@ using ReLogic.Graphics;
 using System.Linq;
 using Terraria.GameContent;
 using static Terraria.ModLoader.ModContent;
-using InfernalEclipseAPI.Core.Systems;
 using InfernalEclipseAPI.Content.Buffs.SoulBurn;
-using static InfernalEclipseAPI.Core.Systems.InfernalCrossmod;
+using static InfernalEclipseAPI.Core.Systems.Compatibility.InfernalCrossmod;
 using Terraria;
 using System.Reflection;
 using static ThrowerUnification.ModCompatibility;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
 {

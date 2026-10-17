@@ -42,7 +42,7 @@ namespace InfernalEclipseAPI.Common.Balance.Vanilla
             return InfernalConfig.Instance.VanillaBalanceChanges;
         }
 
-        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
+        public override void ModifyNPCLoot(NPC npc, Terraria.ModLoader.NPCLoot npcLoot)
         {
             int demonDropChanceDenom = 100;
             int demonDropChanceMin = 1;

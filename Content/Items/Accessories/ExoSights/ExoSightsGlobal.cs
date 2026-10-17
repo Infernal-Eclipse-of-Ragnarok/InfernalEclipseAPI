@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using Terraria.Localization;
 using ThoriumMod;
 using ThoriumMod.Utilities;

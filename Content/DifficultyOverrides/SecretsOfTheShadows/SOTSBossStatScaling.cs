@@ -4,7 +4,6 @@ using InfernumSaveSystem = InfernumMode.Core.GlobalInstances.Systems.WorldSaveSy
 using SOTS.NPCs.Boss;
 using SOTS.NPCs.Boss.Advisor;
 using CalamityMod.UI;
-using InfernalEclipseAPI.Core.Systems;
 using SOTS.NPCs.Boss.Glowmoth;
 using System.Linq;
 using SOTS.Projectiles.Earth.Glowmoth;
@@ -24,6 +23,7 @@ using SOTS.Projectiles.Celestial;
 using InfernumMode.Content.BehaviorOverrides.BossAIs.DoG;
 using Microsoft.Xna.Framework;
 using SOTS;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Content.DifficultyOverrides.SecretsOfTheShadows
 {

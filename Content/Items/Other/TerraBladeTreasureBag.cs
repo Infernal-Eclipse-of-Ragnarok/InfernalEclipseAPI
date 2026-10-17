@@ -2,7 +2,7 @@ using Microsoft.Xna.Framework;
 using CalamityMod;
 using Microsoft.Xna.Framework.Graphics;
 using YouBoss.Content.Items.ItemReworks;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Content.Items.Other
 {

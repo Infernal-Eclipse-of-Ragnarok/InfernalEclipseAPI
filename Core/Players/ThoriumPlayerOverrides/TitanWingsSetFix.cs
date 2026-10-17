@@ -1,4 +1,4 @@
-﻿using InfernalEclipseAPI.Core.Systems;
+﻿using InfernalEclipseAPI.Core.Systems.Compatibility;
 using ThoriumMod.Utilities;
 
 namespace InfernalEclipseAPI.Core.Players.ThoriumPlayerOverrides
@@ -8,15 +8,15 @@ namespace InfernalEclipseAPI.Core.Players.ThoriumPlayerOverrides
     [ExtendsFromMod(InfernalCrossmod.ThoriumRework.Name)]
     public class TitanWingsSetFix : ModPlayer
     {
-        public override bool IsLoadingEnabled(Mod mod)
-        {
-            return !InfernalCrossmod.Hummus.Loaded;
-        }
+        public override bool IsLoadingEnabled(Mod mod) => !InfernalCrossmod.Hummus.Loaded;
 
         public override void UpdateEquips()
         {
             Mod thorium = InfernalCrossmod.Thorium.Mod;
             Mod rework = InfernalCrossmod.ThoriumRework.Mod;
+
+            if (!rework.TryFind("TitanHat", out ModItem titanHat))
+                return;
 
             // Thorium items
             int titanWings = thorium.Find<ModItem>("TitanWings")?.Type ?? -1;
@@ -24,7 +24,6 @@ namespace InfernalEclipseAPI.Core.Players.ThoriumPlayerOverrides
             int titanGreaves = thorium.Find<ModItem>("TitanGreaves")?.Type ?? -1;
 
             // ThoriumRework helmets
-            int titanHat = rework.Find<ModItem>("TitanHat")?.Type ?? -1;
             int titanHood = rework.Find<ModItem>("TitanHood")?.Type ?? -1;
             int titanVisage = rework.Find<ModItem>("TitanVisage")?.Type ?? -1;
             int titanVisor = rework.Find<ModItem>("TitanVisor")?.Type ?? -1;
@@ -34,11 +33,7 @@ namespace InfernalEclipseAPI.Core.Players.ThoriumPlayerOverrides
             bool hasGreaves = Player.armor[2].type == titanGreaves;
 
             int helmet = Player.armor[0].type;
-            bool hasValidHelmet =
-                helmet == titanHat ||
-                helmet == titanHood ||
-                helmet == titanVisage ||
-                helmet == titanVisor;
+            bool hasValidHelmet = helmet == titanHat.Type || helmet == titanHood || helmet == titanVisage || helmet == titanVisor;
 
             bool hasWings = false;
 

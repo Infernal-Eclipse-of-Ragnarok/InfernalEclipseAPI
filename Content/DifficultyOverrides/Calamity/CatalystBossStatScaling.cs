@@ -1,7 +1,7 @@
 ﻿using CatalystMod.NPCs.Boss.Astrageldon;
 using CatalystMod.Projectiles.Enemy;
 using InfernalEclipseAPI.Common.Globals.GlobalNPCs;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using InfernalEclipseAPI.Core.Utils;
 using InfernumMode.Core.GlobalInstances.Systems;
 using InfernumActive = InfernalEclipseAPI.Content.DifficultyOverrides.hellActive;

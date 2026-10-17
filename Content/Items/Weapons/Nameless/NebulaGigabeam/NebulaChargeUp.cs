@@ -1,5 +1,4 @@
-﻿using InfernalEclipseAPI.Core.Systems;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using NoxusBoss.Core.Graphics.Meshes;
 using ReLogic.Utilities;
@@ -7,6 +6,7 @@ using Terraria.Audio;
 using InfernalEclipseAPI.Core.Graphics.Automators;
 using Luminance.Core.Graphics;
 using Luminance.Assets;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Content.Items.Weapons.Nameless.NebulaGigabeam
 {

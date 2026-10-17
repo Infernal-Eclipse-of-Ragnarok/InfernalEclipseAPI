@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using CalamityMod.Items.LoreItems;
 using CalamityMod.Rarities;
 using InfernalEclipseAPI.Content.Items.Materials;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using Microsoft.Xna.Framework.Input;
 using Terraria.Localization;
 using ThoriumMod.Items.BossThePrimordials;

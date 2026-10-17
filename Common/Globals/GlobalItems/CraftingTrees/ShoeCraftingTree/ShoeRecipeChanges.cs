@@ -2,7 +2,7 @@
 using CalamityMod.Items.Accessories.Wings;
 using CalamityMod.Items.Materials;
 using InfernalEclipseAPI.Core.Configs;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShoeCraftingTree
 {

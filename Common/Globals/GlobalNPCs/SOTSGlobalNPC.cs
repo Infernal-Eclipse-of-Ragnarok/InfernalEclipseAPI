@@ -20,7 +20,7 @@ using InfernalEclipseAPI.Content.Items.Placeables.Relics.SOTS;
 using InfernalEclipseAPI.Content.Projectiles;
 using InfernalEclipseAPI.Core.Configs;
 using InfernalEclipseAPI.Core.Players;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using InfernumMode;
 using InfernumMode.Content.BehaviorOverrides.BossAIs.BoC;
 using InfernumMode.Content.BehaviorOverrides.BossAIs.Deerclops;
@@ -492,7 +492,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
             }
         }
 
-        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
+        public override void ModifyNPCLoot(NPC npc, Terraria.ModLoader.NPCLoot npcLoot)
         {
             if (npc.type == ModContent.NPCType<CrimsonTreasureSlime>() || npc.type == ModContent.NPCType<CorruptionTreasureSlime>())
             {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using CalamityMod.Events;
 using CalamityMod.Items;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using InfernumMode.Content.Items.SummonItems;
 using Microsoft.Xna.Framework;
 using SOTS;

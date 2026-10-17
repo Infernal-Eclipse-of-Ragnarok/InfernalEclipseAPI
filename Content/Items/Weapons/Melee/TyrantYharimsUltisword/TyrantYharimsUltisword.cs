@@ -7,7 +7,7 @@ using CalamityMod.Items.Weapons.Melee;
 using CalamityMod.Systems.Collections;
 using CalamityMod.Tiles.Furniture.CraftingStations;
 using InfernalEclipseAPI.Core.DamageClasses.MythicClass;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using InfernumMode.Content.Rarities.InfernumRarities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

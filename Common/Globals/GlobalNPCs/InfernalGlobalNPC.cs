@@ -13,11 +13,10 @@ using InfernalEclipseAPI.Content.Items.Consumables;
 using InfernalEclipseAPI.Content.Items.Materials;
 using InfernalEclipseAPI.Content.Items.Placeables.MusicBoxes;
 using InfernalEclipseAPI.Content.Items.Placeables.Paintings;
-using InfernalEclipseAPI.Content.Items.SpawnItems;
 using InfernalEclipseAPI.Core.Configs;
 using InfernalEclipseAPI.Core.Players;
 using InfernalEclipseAPI.Core.Players.ThoriumPlayerOverrides.ThoriumMulticlassNerf;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using InfernalEclipseAPI.Core.Utils;
 using InfernalEclipseAPI.Core.World;
 using InfernumMode.Content.BehaviorOverrides.BossAIs.ProfanedGuardians;
@@ -27,9 +26,8 @@ using System.Linq;
 using Terraria.DataStructures;
 using Terraria.GameContent.Events;
 using Terraria.GameContent.ItemDropRules;
-using ThoriumMod.Items.Depths;
 
-namespace InfernalEclipseAPI.Common.GlobalNPCs
+namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
 {
     public class InfernalGlobalNPC : GlobalNPC
     {
@@ -361,7 +359,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
             return base.PreAI(npc);
         }
 
-        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
+        public override void ModifyNPCLoot(NPC npc, Terraria.ModLoader.NPCLoot npcLoot)
         {
             if (npc.boss && npc.type != NPCID.TorchGod) //anything that is considered a boss will have a 1/100 chance to drop our dev painting directly
             {

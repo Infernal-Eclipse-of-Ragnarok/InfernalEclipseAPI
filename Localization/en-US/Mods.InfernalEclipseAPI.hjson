@@ -200,6 +200,7 @@ ItemTooltip: {
 	BountifulHarvest: Fires piercing stingers in an alternating pattern
 	TwoAlchs: Counts as 2 alcohols for {$Mods.CalamityMod.Buffs.AlcoholPoisoning.DisplayName}
 	HornScale: Heal amount scales with progression
+	ManaInjectionKitSupreme: "{0} can raise the decaying magic damage cap to {1}%"
 
 	GrapeBeer: {
 		Orig: 75% reduced critical strike damage
@@ -2553,7 +2554,7 @@ Items: {
 		Tooltip:
 			'''
 			Summons Fiendsmith's Requiem to attack with your other summon weapons
-			Only one of each of the fiends can be active at once
+			Only one Requiem can be active at once
 			'''
 		Tremendae:
 			'''

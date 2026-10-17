@@ -2,6 +2,7 @@
 using CatalystMod.Items.SummonItems;
 using CatalystMod.NPCs;
 using InfernalEclipseAPI.Core.Configs;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using InfernumMode.Content.BossIntroScreens;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using InfernumMode.Content.Items.Weapons.Summoner;
 using InfernumMode.Content.Buffs;
 using InfernalEclipseAPI.Core.Configs;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Core.Systems.UI
 {
