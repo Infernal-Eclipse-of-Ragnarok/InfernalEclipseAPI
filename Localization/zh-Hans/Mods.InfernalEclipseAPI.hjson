@@ -1950,10 +1950,7 @@ Items: {
 			降低{1}%伤害
 			'''
 		# Opposite of Lust, Chastity
-		I6:
-			'''
-			武器命中时会施加随机减益
-			'''
+		I6: 武器命中时会施加随机减益
 		NormalTooltip:
 			'''
 			增加18%伤害和5%箭矢伤害

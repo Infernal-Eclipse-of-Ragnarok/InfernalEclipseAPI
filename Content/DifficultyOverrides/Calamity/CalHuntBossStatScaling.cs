@@ -4,7 +4,6 @@ using CalamityHunt.Content.NPCs.Bosses.GoozmaBoss;
 using CalamityHunt.Content.NPCs.Bosses.GoozmaBoss.Projectiles;
 using CalamityMod.Buffs.StatDebuffs;
 using CalamityMod.Events;
-using InfernalEclipseAPI.Common.GlobalNPCs;
 using InfernalEclipseAPI.Common.Globals.GlobalNPCs;
 using InfernalEclipseAPI.Content.Buffs;
 using InfernalEclipseAPI.Core.Systems.Compatibility;

@@ -50,7 +50,6 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.DoGOv
         */
 
         #region Coil Punishment
-
         private int coilDetectionTimer;
         private int coilLaserWallTimer;
         private bool coilLaserWallActive;
@@ -64,9 +63,6 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.DoGOv
 
         // Exactly one Calamity laser-wall cycle.
         private const int CoilLaserWallDuration = 120;
-
-
-
         #endregion
 
         public override bool InstancePerEntity => true;

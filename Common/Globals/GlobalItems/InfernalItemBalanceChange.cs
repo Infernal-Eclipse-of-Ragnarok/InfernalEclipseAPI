@@ -1,31 +1,33 @@
 ﻿using CalamityMod;
-using System.Reflection;
+using CalamityMod.Items;
 using CalamityMod.Items.Tools;
-using CalamityMod.Items.Weapons.Melee;
-using InfernalEclipseAPI.Core.DamageClasses.MythicClass;
 using CalamityMod.Items.Weapons.DraedonsArsenal;
 using CalamityMod.Items.Weapons.Magic;
+using CalamityMod.Items.Weapons.Melee;
 using CalamityMod.Items.Weapons.Ranged;
 using CalamityMod.Items.Weapons.Rogue;
 using CalamityMod.Items.Weapons.Summon;
-using CalamityMod.Items;
-using Terraria.Localization;
-using System.Collections.Generic;
-using Microsoft.Xna.Framework;
-using InfernumMode.Content.Items.Weapons.Magic;
-using InfernumMode.Content.Items.Weapons.Rogue;
 using CalamityMod.Rarities;
 using InfernalEclipseAPI.Core.Configs;
-using Terraria.GameInput;
-using System.Linq;
-using InfernumMode.Content.Rarities.InfernumRarities;
+using InfernalEclipseAPI.Core.DamageClasses.MythicClass;
 using InfernalEclipseAPI.Core.Systems.Compatibility;
+using InfernumMode.Content.Items.Weapons.Magic;
+using InfernumMode.Content.Items.Weapons.Rogue;
+using InfernumMode.Content.Rarities.InfernumRarities;
+using Microsoft.Xna.Framework;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using Terraria.GameInput;
+using Terraria.Localization;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalItems
 {
     public class InfernalItemBalanceChange : GlobalItem
     {
         public override bool InstancePerEntity => true;
+
+        private static readonly Dictionary<(Mod, string), int> cache = new();
 
         public float damage;
         public float pick;
@@ -36,6 +38,11 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
         public float defense;
 
         public bool modified = false;
+
+        public override void Unload()
+        {
+            cache.Clear();
+        }
 
         public override void SetDefaults(Item item)
         {
@@ -776,12 +783,12 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
             #region Draedon's Expansion
             if (ModLoader.TryGetMod("DraedonExpansion", out Mod draedonExpansion) && InfernalConfig.Instance.CalamityBalanceChanges)
             {
-                if (UnsafeGetItem(draedonExpansion, "StunGun", item))
+                if (GetItem(draedonExpansion, "StunGun", item))
                 {
                     item.damage = 19;
                 }
 
-                if (UnsafeGetItem(draedonExpansion, "EnergyPistol", item))
+                if (GetItem(draedonExpansion, "EnergyPistol", item))
                 {
                     item.useTime = 24;
                     item.useAnimation = 24;
@@ -793,12 +800,12 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
             #region War Machine Invasion
             if (ModLoader.TryGetMod("CalamityAddon", out Mod warMachineInvasion) && InfernalConfig.Instance.CalamityBalanceChanges)
             {
-                if (UnsafeGetItem(warMachineInvasion, "WulfrumLuncher", item))
+                if (GetItem(warMachineInvasion, "WulfrumLuncher", item))
                 {
                     item.damage = 20;
                 }
 
-                if (UnsafeGetItem(warMachineInvasion, "WulfrumBook", item))
+                if (GetItem(warMachineInvasion, "WulfrumBook", item))
                 {
                     item.damage = 48;
                 }
@@ -808,12 +815,12 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
             #region Calamity Overdrive
             if (ModLoader.TryGetMod("WulfrumExpansion", out Mod overdrive) && InfernalConfig.Instance.CalamityBalanceChanges)
             {
-                if (UnsafeGetItem(overdrive, "WulfrumSapper", item))
+                if (GetItem(overdrive, "WulfrumSapper", item))
                 {
                     item.damage = 18;
                 }
                 /*
-                if (UnsafeGetItem(overdrive, "ArcScepterBeam", item))
+                if (GetItem(overdrive, "ArcScepterBeam", item))
                 {
                     item.damage = 48;
                 }
@@ -826,151 +833,151 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
             {
                 //Pre-Hardmode
                 /*
-                if (UnsafeGetItem(simpleWhipAddon, "RapierWhip", item))
+                if (GetItem(simpleWhipAddon, "RapierWhip", item))
                 {
                     item.damage = 9;
                     item.useAnimation = 30;
                     item.useTime = 30;
                 }
-                if (UnsafeGetItem(simpleWhipAddon, "MandibleLash", item))
+                if (GetItem(simpleWhipAddon, "MandibleLash", item))
                 {
                     item.rare = ItemRarityID.Blue;
                 }
-                if (UnsafeGetItem(simpleWhipAddon, "Droptide", item))
+                if (GetItem(simpleWhipAddon, "Droptide", item))
                 {
                     item.damage = 28;
                 }
-                if (UnsafeGetItem(simpleWhipAddon, "DarkMandibleLash", item))
+                if (GetItem(simpleWhipAddon, "DarkMandibleLash", item))
                 {
                     item.damage = 20;
                 }
-                if (UnsafeGetItem(simpleWhipAddon, "BreezePiercer", item))
+                if (GetItem(simpleWhipAddon, "BreezePiercer", item))
                 {
                     item.damage = 21;
                 }
-                if (UnsafeGetItem(simpleWhipAddon, "AncientBonds", item))
+                if (GetItem(simpleWhipAddon, "AncientBonds", item))
                 {
                     item.useAnimation = 42;
                     item.useTime = 42;
                 }
-                if (UnsafeGetItem(simpleWhipAddon, "Gelxyribose", item))
+                if (GetItem(simpleWhipAddon, "Gelxyribose", item))
                 {
                     item.useAnimation = 40;
                     item.useTime = 40;
                 }
 
                 //Hardmode
-                if (UnsafeGetItem(simpleWhipAddon, "NightButterfly", item))
+                if (GetItem(simpleWhipAddon, "NightButterfly", item))
                 {
                     item.useAnimation = 36;
                     item.useTime = 36;
                 }
-                if (UnsafeGetItem(simpleWhipAddon, "GlitterGutter", item))
+                if (GetItem(simpleWhipAddon, "GlitterGutter", item))
                 {
                     item.useAnimation = 19;
                     item.useTime = 19;
                 }
-                if (UnsafeGetItem(simpleWhipAddon, "ActiasAliena", item))
+                if (GetItem(simpleWhipAddon, "ActiasAliena", item))
                 {
                     item.useAnimation = 42;
                     item.useTime = 42;
                 }
-                if (UnsafeGetItem(simpleWhipAddon, "Loadout", item))
+                if (GetItem(simpleWhipAddon, "Loadout", item))
                 {
                     item.useAnimation = 36;
                     item.useTime = 36;
                 }
-                if (UnsafeGetItem(simpleWhipAddon, "Ectopia", item))
+                if (GetItem(simpleWhipAddon, "Ectopia", item))
                 {
                     item.useAnimation = 18;
                     item.useTime = 18;
                 }
-                if (UnsafeGetItem(simpleWhipAddon, "Unfathomable", item))
+                if (GetItem(simpleWhipAddon, "Unfathomable", item))
                 {
                     item.damage = 250;
                 }
-                if (UnsafeGetItem(simpleWhipAddon, "DestructionChain", item))
+                if (GetItem(simpleWhipAddon, "DestructionChain", item))
                 {
                     item.useAnimation = 32;
                     item.useTime = 32;
                 }
-                if (UnsafeGetItem(simpleWhipAddon, "GoldRush", item))
+                if (GetItem(simpleWhipAddon, "GoldRush", item))
                 {
                     item.useAnimation = 40;
                     item.useTime = 40;
                 }
-                if (UnsafeGetItem(simpleWhipAddon, "ExistenceBonds", item))
+                if (GetItem(simpleWhipAddon, "ExistenceBonds", item))
                 {
                     item.useAnimation = 26;
                     item.useTime = 26;
                 }
 
                 //Post Moonlord
-                if (UnsafeGetItem(simpleWhipAddon, "ButterflyEffect", item))
+                if (GetItem(simpleWhipAddon, "ButterflyEffect", item))
                 {
                     item.useAnimation = 42;
                     item.useTime = 42;
                 }
-                if (UnsafeGetItem(simpleWhipAddon, "Satellite", item))
+                if (GetItem(simpleWhipAddon, "Satellite", item))
                 {
                     item.useAnimation = 12;
                     item.useTime = 12;
                     item.damage = 120;
                 }
-                if (UnsafeGetItem(simpleWhipAddon, "EntwinedBranches", item))
+                if (GetItem(simpleWhipAddon, "EntwinedBranches", item))
                 {
                     item.damage = 270;
                 }
-                if (UnsafeGetItem(simpleWhipAddon, "ShieldConduitMkIV", item))
+                if (GetItem(simpleWhipAddon, "ShieldConduitMkIV", item))
                 {
                     item.useAnimation = 40;
                     item.useTime = 40;
                     item.damage = 200;
                 }
-                if (UnsafeGetItem(simpleWhipAddon, "GildedReliquary", item))
+                if (GetItem(simpleWhipAddon, "GildedReliquary", item))
                 {
                     item.useAnimation = 44;
                     item.useTime = 44;
                     item.damage = 216;
                 }
-                if (UnsafeGetItem(simpleWhipAddon, "EtaCarinae", item))
+                if (GetItem(simpleWhipAddon, "EtaCarinae", item))
                 {
                     item.useAnimation = 36;
                     item.useTime = 36;
                 }
-                if (UnsafeGetItem(simpleWhipAddon, "ResonantVoid", item))
+                if (GetItem(simpleWhipAddon, "ResonantVoid", item))
                 {
                     item.useAnimation = 31;
                     item.useTime = 31;
                 }
-                if (UnsafeGetItem(simpleWhipAddon, "Milkyway", item))
+                if (GetItem(simpleWhipAddon, "Milkyway", item))
                 {
                     item.useAnimation = 36;
                     item.useTime = 36;
                 }
 
                 //Added in updates
-                if (UnsafeGetItem(simpleWhipAddon, "KingsMajesty", item))
+                if (GetItem(simpleWhipAddon, "KingsMajesty", item))
                 {
                     item.damage = 18;
                 }
-                if (UnsafeGetItem(simpleWhipAddon, "EmeraldSplash", item))
+                if (GetItem(simpleWhipAddon, "EmeraldSplash", item))
                 {
                     item.damage = 100;
                 }
-                if (UnsafeGetItem(simpleWhipAddon, "WulfrumArm", item))
+                if (GetItem(simpleWhipAddon, "WulfrumArm", item))
                 {
                     item.useAnimation = 60;
                     item.useTime = 60;
                 }
-                if (UnsafeGetItem(simpleWhipAddon, "Rubellus", item))
+                if (GetItem(simpleWhipAddon, "Rubellus", item))
                 {
                     item.rare = ModContent.RarityType<PureGreen>();
                     item.damage = 130;
                     item.useAnimation = 40;
                     item.useTime = 40;
                 }
-                if (UnsafeGetItem(simpleWhipAddon, "MassofWailing", item))
+                if (GetItem(simpleWhipAddon, "MassofWailing", item))
                 {
                     item.damage = 96;
                 }
@@ -995,7 +1002,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                 }
 
                 /*
-                if (UnsafeGetItem(simpleWhipAddon, "BuddyEmblem", item))
+                if (GetItem(simpleWhipAddon, "BuddyEmblem", item))
                 {
                     item.rare = ItemRarityID.LightRed;
                     item.expert = false;
@@ -1003,7 +1010,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                     item.accessory = false; //temp disabled
                 }
 
-                if (UnsafeGetItem(simpleWhipAddon, "StrikerEmblem", item))
+                if (GetItem(simpleWhipAddon, "StrikerEmblem", item))
                 {
                     item.rare = ItemRarityID.LightRed;
                     item.expert = false;
@@ -1015,136 +1022,136 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
             #region Calamity Ranger Expansion
             if (ModLoader.TryGetMod("CalamityAmmo", out Mod calAmmo) && InfernalConfig.Instance.CalamityBalanceChanges)
             {
-                if (UnsafeGetItem(calAmmo, "SandWorm", item))
+                if (GetItem(calAmmo, "SandWorm", item))
                 {
                     item.damage = 16;
                     item.useTime = 22;
                     item.useAnimation = 22;
                 }
 
-                if (UnsafeGetItem(calAmmo, "SpectreRifle", item))
+                if (GetItem(calAmmo, "SpectreRifle", item))
                 {
                     item.damage = 117;
                 }
 
-                if (UnsafeGetItem(calAmmo, "PlaguenadeLauncher", item))
+                if (GetItem(calAmmo, "PlaguenadeLauncher", item))
                 {
                     item.damage = 30;
                 }
 
                 //Bullets
-                if (UnsafeGetItem(calAmmo, "WulfrumBullet", item))
+                if (GetItem(calAmmo, "WulfrumBullet", item))
                 {
                     item.damage = 4;
                 }
 
-                if (UnsafeGetItem(calAmmo, "VictideBullet", item))
+                if (GetItem(calAmmo, "VictideBullet", item))
                 {
                     item.damage = 7;
                 }
 
-                if (UnsafeGetItem(calAmmo, "PearlBullet", item))
+                if (GetItem(calAmmo, "PearlBullet", item))
                 {
                     item.damage = 6;
                 }
 
-                if (UnsafeGetItem(calAmmo, "SPBullet", item))
+                if (GetItem(calAmmo, "SPBullet", item))
                 {
                     item.damage = 8;
                 }
 
-                if (UnsafeGetItem(calAmmo, "BloodBullet", item))
+                if (GetItem(calAmmo, "BloodBullet", item))
                 {
                     item.damage = 3;
                 }
 
-                if (UnsafeGetItem(calAmmo, "RottenBullet", item))
+                if (GetItem(calAmmo, "RottenBullet", item))
                 {
                     item.damage = 13;
                 }
 
-                if (UnsafeGetItem(calAmmo, "ElementalBullet", item))
+                if (GetItem(calAmmo, "ElementalBullet", item))
                 {
                     item.damage = 13;
                 }
 
-                if (UnsafeGetItem(calAmmo, "HydrothermicBullet", item))
+                if (GetItem(calAmmo, "HydrothermicBullet", item))
                 {
                     item.damage = 3;
                 }
 
-                if (UnsafeGetItem(calAmmo, "FossilBullet", item))
+                if (GetItem(calAmmo, "FossilBullet", item))
                 {
                     item.damage = 10;
                 }
 
-                if (UnsafeGetItem(calAmmo, "WeakAstralBullet", item))
+                if (GetItem(calAmmo, "WeakAstralBullet", item))
                 {
                     item.damage = 7;
                 }
 
-                if (UnsafeGetItem(calAmmo, "AstralBullet", item))
+                if (GetItem(calAmmo, "AstralBullet", item))
                 {
                     item.damage = 7;
                 }
 
-                if (UnsafeGetItem(calAmmo, "DazzlingAstralBullet", item))
+                if (GetItem(calAmmo, "DazzlingAstralBullet", item))
                 {
                     item.damage = 1;
                 }
 
-                if (UnsafeGetItem(calAmmo, "NapalmBullet", item))
+                if (GetItem(calAmmo, "NapalmBullet", item))
                 {
                     item.damage = 9;
                 }
 
                 //Arrows
-                if (UnsafeGetItem(calAmmo, "WulfrumArrow", item))
+                if (GetItem(calAmmo, "WulfrumArrow", item))
                 {
                     item.damage = 10;
                 }
 
-                if (UnsafeGetItem(calAmmo, "DesertFeatherArrow", item))
+                if (GetItem(calAmmo, "DesertFeatherArrow", item))
                 {
                     item.damage = 9;
                 }
 
-                if (UnsafeGetItem(calAmmo, "GoldenFeatherArrow", item))
+                if (GetItem(calAmmo, "GoldenFeatherArrow", item))
                 {
                     item.damage = 9;
                 }
 
-                if (UnsafeGetItem(calAmmo, "DivineArrow", item))
+                if (GetItem(calAmmo, "DivineArrow", item))
                 {
                     item.damage = 30;
                 }
 
-                if (UnsafeGetItem(calAmmo, "FossilArrow", item))
+                if (GetItem(calAmmo, "FossilArrow", item))
                 {
                     item.damage = 8;
                 }
 
-                if (UnsafeGetItem(calAmmo, "HydrothermicArrow", item))
+                if (GetItem(calAmmo, "HydrothermicArrow", item))
                 {
                     item.damage = 3;
                 }
 
-                if (UnsafeGetItem(calAmmo, "AstralArrow", item))
+                if (GetItem(calAmmo, "AstralArrow", item))
                 {
                     item.damage = 10;
                 }
 
-                if (UnsafeGetItem(calAmmo, "DazzlingAstralArrow", item))
+                if (GetItem(calAmmo, "DazzlingAstralArrow", item))
                 {
                     item.damage = 1;
                 }
 
-                if (UnsafeGetItem(calAmmo, "MushroomUnitedNations", item))
+                if (GetItem(calAmmo, "MushroomUnitedNations", item))
                 {
                     item.rare = item.rare = ItemRarityID.Purple;
                 }
 
-                if (UnsafeGetItem(calAmmo, "AutoCalculationCoil", item))
+                if (GetItem(calAmmo, "AutoCalculationCoil", item))
                 {
                     item.rare = ModContent.RarityType<ExoticRainbow>();
                 }
@@ -1155,101 +1162,101 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
             if (ModLoader.TryGetMod("Clamity", out Mod clam) && InfernalConfig.Instance.CalamityBalanceChanges)
             {
                 /*
-                if (UnsafeGetItem(clam, "MoonstoneKnives", item))
+                if (GetItem(clam, "MoonstoneKnives", item))
                 {
                     item.damage = 8;
                 }
 
-                if (UnsafeGetItem(clam, "Obsidigun", item))
+                if (GetItem(clam, "Obsidigun", item))
                 {
                     item.useTime = 18;
                     item.useAnimation = 18;
                 }
 
-                if (UnsafeGetItem(clam, "TheGenerator", item))
+                if (GetItem(clam, "TheGenerator", item))
                 {
                     item.damage = 77;
                 }
 
-                if (UnsafeGetItem(clam, "MoltenPiercer", item))
+                if (GetItem(clam, "MoltenPiercer", item))
                 {
                     item.damage = 144;
                     item.useTime = 16;
                     item.useAnimation = 16;
                 }
 
-                if (UnsafeGetItem(clam, "ClamitasCrusher", item))
+                if (GetItem(clam, "ClamitasCrusher", item))
                 {
                     item.damage = 130;
                 }
 
-                if (UnsafeGetItem(clam, "DepthsEchoRifle", item))
+                if (GetItem(clam, "DepthsEchoRifle", item))
                 {
                     item.damage = 40;
                 }
 
-                if (UnsafeGetItem(clam, "HellstoneShellfishStaff", item))
+                if (GetItem(clam, "HellstoneShellfishStaff", item))
                 {
                     item.damage = 200;
                 }
 
-                if (UnsafeGetItem(clam, "Disease", item))
+                if (GetItem(clam, "Disease", item))
                 {
                     item.damage = 194;
                 }
 
-                if (UnsafeGetItem(clam, "PlanterrorStaff", item))
+                if (GetItem(clam, "PlanterrorStaff", item))
                 {
                     item.damage = 100;
                 }
 
-                if (UnsafeGetItem(clam, "RoseBow", item))
+                if (GetItem(clam, "RoseBow", item))
                 {
                     item.damage = 400;
                 }
 
-                if (UnsafeGetItem(clam, "AuricKunai", item))
+                if (GetItem(clam, "AuricKunai", item))
                 {
                     item.damage = 140;
                 }
 
-                if (UnsafeGetItem(clam, "Omega", item))
+                if (GetItem(clam, "Omega", item))
                 {
                     item.damage = 80;
                 }
 
-                if (UnsafeGetItem(clam, "Everest", item))
+                if (GetItem(clam, "Everest", item))
                 {
                     item.damage = 1300;
                 }
 
-                if (UnsafeGetItem(clam, "FrozenVolcano", item))
+                if (GetItem(clam, "FrozenVolcano", item))
                 {
                     item.damage = 2500;
                     item.useTime = 12;
                     item.useAnimation = 12;
                 }
 
-                if (UnsafeGetItem(clam, "FrozenStarShuriken", item))
+                if (GetItem(clam, "FrozenStarShuriken", item))
                 {
                     item.useAnimation = 8;
                     item.useTime = 8;
                     item.damage = 900;
                 }
 
-                if (UnsafeGetItem(clam, "WulfrumLeechDagger", item))
+                if (GetItem(clam, "WulfrumLeechDagger", item))
                 {
                     item.value = 0;
                 }
                 */
 
-                if (UnsafeGetItem(clam, "HellFlare", item))
+                if (GetItem(clam, "HellFlare", item))
                 {
                     item.expert = true;
                     item.rare = ItemRarityID.Expert;
                 }
 
-                if (UnsafeGetItem(clam, "WitheredBoneBow", item))
+                if (GetItem(clam, "WitheredBoneBow", item))
                 {
                     item.damage = 70;
                 }
@@ -1308,7 +1315,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
 
             if (ModLoader.TryGetMod("NoxusBoss", out Mod wrath))
             {
-                if (UnsafeGetItem(wrath, "MetallicChunk", item))
+                if (GetItem(wrath, "MetallicChunk", item))
                 {
                     item.maxStack = Item.CommonMaxStack;
                 }
@@ -1316,7 +1323,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
 
             if (ModLoader.TryGetMod("CalValEX", out Mod calVal))
             {
-                if (UnsafeGetItem(calVal, "ScryllianWings", item))
+                if (GetItem(calVal, "ScryllianWings", item))
                 {
                     ArmorIDs.Wing.Sets.Stats[item.wingSlot] = new Terraria.DataStructures.WingStats(25);
                 }
@@ -1347,7 +1354,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
 
                 if (InfernalConfig.Instance.ThoriumBalanceChangess)
                 {
-                    if (UnsafeGetItem(thorium, "WaterwickCandle", item))
+                    if (GetItem(thorium, "WaterwickCandle", item))
                     {
                         item.useTime = 15;
                         item.useAnimation = 15;
@@ -1626,14 +1633,14 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                     #endregion
 
                     #region Hardmode
-                    if (UnsafeGetItem(thorium, "ToothOfTheConsumer", item))
+                    if (GetItem(thorium, "ToothOfTheConsumer", item))
                     {
                         item.crit = 0;
                         item.useTime = 35;
                         item.useAnimation = 35;
                     }
 
-                    if (UnsafeGetItem(thorium, "EssenceofFlame", item))
+                    if (GetItem(thorium, "EssenceofFlame", item))
                     {
                         item.damage = 300;
                     }
@@ -1998,7 +2005,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                     }
 
                     //Frost Pelter
-                    if (UnsafeGetItem(thorium, "FrostPelter", item))
+                    if (GetItem(thorium, "FrostPelter", item))
                     {
                         item.shootSpeed = 20;
                     }
@@ -2521,7 +2528,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                         item.damage = 44;
                     }
 
-                    if (UnsafeGetItem(thorium, "InfernoStaff", item))
+                    if (GetItem(thorium, "InfernoStaff", item))
                     {
                         item.damage = 45;
                     }
@@ -2833,7 +2840,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                         item.damage = 120;
                     }
 
-                    if (UnsafeGetItem(thorium, "ChromaticFury", item))
+                    if (GetItem(thorium, "ChromaticFury", item))
                     {
                         item.damage = 30;
                     }
@@ -2949,7 +2956,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                     #endregion
 
                     #region Hardmode
-                    if (UnsafeGetItem(thorium, "Thrombosis", item))
+                    if (GetItem(thorium, "Thrombosis", item))
                     {
                         item.damage = 40;
                     }
@@ -3985,7 +3992,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                         item.damage = 104;
                     }
 
-                    if (UnsafeGetItem(thorium, "BubbleBulwarkWand", item))
+                    if (GetItem(thorium, "BubbleBulwarkWand", item))
                     {
                         item.useTime = 56;
                         item.useAnimation = 56;
@@ -4036,7 +4043,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                         item.damage = 30;
                     }
 
-                    if (UnsafeGetItem(thorium, "CelestialWand", item))
+                    if (GetItem(thorium, "CelestialWand", item))
                     {
                         item.useTime = 46;
                         item.useAnimation = 46;
@@ -4062,19 +4069,19 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                     #endregion
 
                     #region Tools
-                    if (UnsafeGetItem(thorium, "Syringe", item))
+                    if (GetItem(thorium, "Syringe", item))
                     {
                         item.shootSpeed = 12;
                     }
 
-                    if (UnsafeGetItem(thorium, "SpiritBendersStaff", item))
+                    if (GetItem(thorium, "SpiritBendersStaff", item))
                     {
                         item.damage = 100;
                         item.useTime = 30;
                         item.useAnimation = 30;
                     }
 
-                    if (UnsafeGetItem(thorium, "PocketGuardian", item))
+                    if (GetItem(thorium, "PocketGuardian", item))
                     {
                         item.useTime = 28;
                         item.useAnimation = 28;
@@ -4083,12 +4090,12 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                     #endregion
 
                     #region Bard
-                    if (UnsafeGetItem(thorium, "HellBell", item))
+                    if (GetItem(thorium, "HellBell", item))
                     {
                         item.damage = 66;
                     }
 
-                    if (UnsafeGetItem(thorium, "SongofIceAndFire", item))
+                    if (GetItem(thorium, "SongofIceAndFire", item))
                     {
                         item.damage = 34;
                         item.crit = 0;
@@ -4214,7 +4221,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                         item.damage = 30;
                     }
 
-                    if (UnsafeGetItem(thorium, "MeteoriteOboe", item))
+                    if (GetItem(thorium, "MeteoriteOboe", item))
                     {
                         TrySetInspirationCost(item, 2);
                     }
@@ -4261,24 +4268,24 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                     #endregion
 
                     #region Hardmode
-                    if (UnsafeGetItem(thorium, "SunflareGuitar", item))
+                    if (GetItem(thorium, "SunflareGuitar", item))
                     {
                         item.damage = 104;
                     }
 
-                    if (UnsafeGetItem(thorium, "Organ", item))
+                    if (GetItem(thorium, "Organ", item))
                     {
                         item.damage = 40;
                     }
 
-                    if (UnsafeGetItem(thorium, "SerpentsCry", item))
+                    if (GetItem(thorium, "SerpentsCry", item))
                     {
                         TrySetInspirationCost(item, 2);
                         item.useTime = 16;
                         item.useAnimation = 16;
                     }
 
-                    if (UnsafeGetItem(thorium, "CallofCthulhu", item))
+                    if (GetItem(thorium, "CallofCthulhu", item))
                     {
                         TrySetInspirationCost(item, 1);
                         item.damage = 204;
@@ -4286,7 +4293,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                         item.useAnimation = 28;
                     }
 
-                    if (UnsafeGetItem(thorium, "TheTriangle", item))
+                    if (GetItem(thorium, "TheTriangle", item))
                     {
                         item.damage = 114;
                     }
@@ -4663,7 +4670,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                     }
 
                     //Blacksmith's Barrier
-                    if (UnsafeGetItem(thorium, "BlacksmithsBarrier", item))
+                    if (GetItem(thorium, "BlacksmithsBarrier", item))
                     {
                         item.defense = 4;
                     }
@@ -4705,14 +4712,14 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                     */
 
                     //Shinobi Sigil
-                    if (UnsafeGetItem(thorium, "ShinobiSigil", item))
+                    if (GetItem(thorium, "ShinobiSigil", item))
                     {
                         TrySetAccessoryDamage(item, $"25% {Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.BasicDamage")}");
                     }
                     #endregion
 
                     #region Ammo
-                    if (UnsafeGetItem(thorium, "IcyArrow", item))
+                    if (GetItem(thorium, "IcyArrow", item))
                     {
                         item.damage = 7;
                     }
@@ -4724,34 +4731,34 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
             #region Unofficial Calamity Bard & Healer
             if (ModLoader.TryGetMod("CalamityBardHealer", out Mod calBardHeal) && (ModContent.GetInstance<InfernalConfig>().ThoriumBalanceChangess || ModContent.GetInstance<InfernalConfig>().CalamityBalanceChanges))
             {
-                if (UnsafeGetItem(calBardHeal, "InfestedCastanet", item))
+                if (GetItem(calBardHeal, "InfestedCastanet", item))
                 {
                     item.damage = 22;
                     item.useTime = 7;
                     item.useAnimation = 7;
                 }
 
-                if (UnsafeGetItem(calBardHeal, "HyphaeBaton", item))
+                if (GetItem(calBardHeal, "HyphaeBaton", item))
                 {
                     item.damage = 16;
                 }
 
-                if (UnsafeGetItem(calBardHeal, "TheWindmill", item))
+                if (GetItem(calBardHeal, "TheWindmill", item))
                 {
                     item.damage = 20;
                 }
 
-                if (UnsafeGetItem(calBardHeal, "SlagFurysIntent", item))
+                if (GetItem(calBardHeal, "SlagFurysIntent", item))
                 {
                     item.damage = 22;
                 }
 
-                if (UnsafeGetItem(calBardHeal, "HarpY", item))
+                if (GetItem(calBardHeal, "HarpY", item))
                 {
                     item.damage = 22;
                 }
 
-                if (UnsafeGetItem(calBardHeal, "ColdShoulder", item))
+                if (GetItem(calBardHeal, "ColdShoulder", item))
                 {
                     item.damage = 59;
                 }
@@ -4826,7 +4833,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                     item.damage = 231;
                 }
 
-                if (UnsafeGetItem(calBardHeal, "HydrogenSulfide", item))
+                if (GetItem(calBardHeal, "HydrogenSulfide", item))
                 {
                     item.damage = 101;
                 }
@@ -4949,13 +4956,13 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
 
                 #region Pre-Hardmode
                 //Wullfrum Megaphone
-                if (UnsafeGetItem(calBardHeal, "WulfrumMegaphone", item))
+                if (GetItem(calBardHeal, "WulfrumMegaphone", item))
                 {
                     item.damage = 13;
                 }
 
                 //Crystal Hydraulophone
-                if (UnsafeGetItem(calBardHeal, "CrystalHydraulophone", item))
+                if (GetItem(calBardHeal, "CrystalHydraulophone", item))
                 {
                     item.damage = 26;
                 }
@@ -4966,12 +4973,12 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                     item.damage = 9;
                 }
 
-                if (UnsafeGetItem(calBardHeal, "FilthyFlute", item))
+                if (GetItem(calBardHeal, "FilthyFlute", item))
                 {
                     item.damage = 32;
                 }
 
-                if (UnsafeGetItem(calBardHeal, "ScrapGuitar", item))
+                if (GetItem(calBardHeal, "ScrapGuitar", item))
                 {
                     item.damage = 53;
                 }
@@ -5233,17 +5240,17 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
             /*
             if (ModLoader.TryGetMod("RagnarokMod", out Mod ragnarok) && ModContent.GetInstance<InfernalConfig>().ThoriumBalanceChangess)
             {
-                if (UnsafeGetItem(ragnarok, "GraspofVoid", item))
+                if (GetItem(ragnarok, "GraspofVoid", item))
                 {
                     item.damage = 150;
                 }
 
-                if (UnsafeGetItem(ragnarok, "PhantasmalEdge", item))
+                if (GetItem(ragnarok, "PhantasmalEdge", item))
                 {
                     item.damage = 320;
                 }
 
-                if (UnsafeGetItem(ragnarok, "DragonForce", item))
+                if (GetItem(ragnarok, "DragonForce", item))
                 {
                     item.damage = 145;
                 }
@@ -5325,7 +5332,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                     item.shootSpeed = 2;
                 }
 
-                if (UnsafeGetItem(ragnarok, "Virusprayer", item))
+                if (GetItem(ragnarok, "Virusprayer", item))
                 {
                     item.damage = 160;
                 }
@@ -5414,7 +5421,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                     item.damage = 250;
                 }
 
-                if (UnsafeGetItem(ragnarok, "Lamentation", item))
+                if (GetItem(ragnarok, "Lamentation", item))
                 {
                     item.damage = 1300;
                     item.shootSpeed = 24;
@@ -6214,25 +6221,25 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
             #region Consolaria
             if (ModLoader.TryGetMod("Consolaria", out Mod console) && ModContent.GetInstance<InfernalConfig>().ConsolariaBalanceChanges)
             {
-                if (UnsafeGetItem(console, "AlbinoMandible", item))
+                if (GetItem(console, "AlbinoMandible", item))
                 {
                     item.damage = 20;
                 }
 
-                if (UnsafeGetItem(console, "RomanCandle", item))
+                if (GetItem(console, "RomanCandle", item))
                 {
                     item.useTime = 30;
                     item.useAnimation = 30;
                 }
 
-                if (UnsafeGetItem(console, "EggCannon", item))
+                if (GetItem(console, "EggCannon", item))
                 {
                     item.useTime = 16;
                     item.useAnimation = 16;
                     item.damage = 24;
                 }
 
-                if (UnsafeGetItem(console, "GreatDrumstick", item))
+                if (GetItem(console, "GreatDrumstick", item))
                 {
                     item.scale *= 1.5f;
                     item.useTime = 26;
@@ -6240,40 +6247,40 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                     item.damage = 62;
                 }
 
-                if (UnsafeGetItem(console, "FeatherStorm", item))
+                if (GetItem(console, "FeatherStorm", item))
                 {
                     item.damage = 35;
                 }
 
-                if (UnsafeGetItem(console, "DragonBreath", item))
+                if (GetItem(console, "DragonBreath", item))
                 {
                     item.damage = 44;
                 }
 
-                if (UnsafeGetItem(console, "VolcanicRepeater", item))
+                if (GetItem(console, "VolcanicRepeater", item))
                 {
                     item.damage = 36;
                 }
 
-                if (UnsafeGetItem(console, "EternityStaff", item))
+                if (GetItem(console, "EternityStaff", item))
                 {
                     item.damage = 42;
                 }
 
-                if (UnsafeGetItem(console, "OcramsEye", item))
+                if (GetItem(console, "OcramsEye", item))
                 {
                     item.useTime = 7;
                     item.useAnimation = 21;
                 }
 
-                if (UnsafeGetItem(console, "Tizona", item))
+                if (GetItem(console, "Tizona", item))
                 {
                     item.useTime = 18;
                     item.useAnimation = 18;
                     item.damage = 87;
                 }
 
-                if (UnsafeGetItem(console, "Tonbogiri", item))
+                if (GetItem(console, "Tonbogiri", item))
                 {
                     item.useTime = 26;
                     item.useAnimation = 26;
@@ -6503,47 +6510,16 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
 
         public static int FindItem(Mod mod, string name)
         {
-            return mod.Find<ModItem>(name).Type;
+            if (cache.TryGetValue((mod, name), out int type))
+                return type;
+
+            type = mod.TryFind(name, out ModItem found) ? found.Type : -1;
+            cache[(mod, name)] = type;
+            return type;
         }
+        public static bool GetItem(Mod mod, string name, Item item) => item.type == FindItem(mod, name);
 
-        public static bool GetItem(Mod mod, string name, Item item)
-        {
-            ModItem foundItem;
-            ModLoader.TryGetMod("CalamityBardHealer", out Mod calBardHealer);
-            ModLoader.TryGetMod("ThoriumMod", out Mod thorium);
-            ModLoader.TryGetMod("ThoriumRework", out Mod thorRework);
-            if (mod == calBardHealer || mod == thorium || mod == thorRework)
-            {
-                if (!mod.TryFind(name, out foundItem))
-                    return false;
-            }
-            else
-            {
-                foundItem = mod.Find<ModItem>(name);
-            }
-
-            if (item.type == foundItem.Type)
-            {
-                return true;
-            }
-            return false;
-        }
-
-        //used for testing
-        public static bool UnsafeGetItem(Mod mod, string name, Item item)
-        {
-            ModItem foundItem;
-            foundItem = mod.Find<ModItem>(name);
-
-            if (item.type == foundItem.Type)
-            {
-                return true;
-            }
-            return false;
-        }
-
-        //method by Wardrobe Hummus
-        private void TrySetInspirationCost(Item item, int newCost)
+        private static void TrySetInspirationCost(Item item, int newCost)
         {
             try
             {
@@ -6579,8 +6555,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                 Main.NewText($"Error setting InspirationCost: {ex.Message}");
             }
         }
-        //Refactored by Akira
-        private void TrySetHealAmmount(Item item, int newCost)
+        private static void TrySetHealAmmount(Item item, int newCost)
         {
             try
             {
@@ -6616,8 +6591,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                 //Main.NewText($"Error setting healAmount: {ex.Message}");
             }
         }
-
-        private void TrySetAccessoryDamage(Item item, string newDamage)
+        private static void TrySetAccessoryDamage(Item item, string newDamage)
         {
             try
             {

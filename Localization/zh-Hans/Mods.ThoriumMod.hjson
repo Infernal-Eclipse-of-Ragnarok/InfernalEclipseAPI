@@ -230,10 +230,7 @@ Items: {
 
 	FungusGuard: {
 		DisplayName: 真菌胸甲
-		Tooltip:
-			'''
-			增加10%投掷伤害
-			'''
+		Tooltip: 增加10%投掷伤害
 	}
 
 	HallowedGuise: {

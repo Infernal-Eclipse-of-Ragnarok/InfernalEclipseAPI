@@ -12,6 +12,12 @@ namespace InfernalEclipseAPI.Common.GlobalProjectiles.ProjectileReworks
         {
             Mod thorium = InfernalCrossmod.Thorium.Mod;
 
+            if (projectile.ModProjectile is null)
+                return;
+
+            if (projectile.ModProjectile.Mod != thorium || projectile.ModProjectile.Mod.Name != "ThoriumRework")
+                return;
+
             int pro1Type = thorium.Find<ModProjectile>("CactusNeedlePro")?.Type ?? -1;
             int pro2Type = thorium.Find<ModProjectile>("BatScythePro2")?.Type ?? -1;
             int pro3type = thorium.Find<ModProjectile>("EchoWave")?.Type ?? -1;
@@ -63,20 +69,31 @@ namespace InfernalEclipseAPI.Common.GlobalProjectiles.ProjectileReworks
             {
                 Mod thoriumRework = InfernalCrossmod.ThoriumRework.Mod;
 
-                int rework1Type = thoriumRework.Find<ModProjectile>("ValadiumHeavyScytheWave")?.Type ?? -1;
-                int rework2Type = thoriumRework.Find<ModProjectile>("ValadiumHeavyScythe")?.Type ?? -1;
-                int rework3Type = thorium.Find<ModProjectile>("GraniteCharge")?.Type ?? -1;
-
-                if (projectile.type == rework1Type)
+                if (thoriumRework.TryFind("ValadiumHeavyScytheWave", out ModProjectile valScytheWave))
                 {
-                    projectile.usesLocalNPCImmunity = true;
-                    projectile.localNPCHitCooldown = 40;
+                    if (projectile.type == valScytheWave.Type)
+                    {
+                        projectile.usesLocalNPCImmunity = true;
+                        projectile.localNPCHitCooldown = 40;
 
-                    //Make sure it's NOT using static ID-based immunity
-                    projectile.usesIDStaticNPCImmunity = false;
+                        //Make sure it's NOT using static ID-based immunity
+                        projectile.usesIDStaticNPCImmunity = false;
+                    }
                 }
 
-                if (projectile.type == rework2Type || projectile.type == rework3Type)
+                if (thoriumRework.TryFind("ValadiumHeavyScythe", out ModProjectile valScythe))
+                {
+                    if (projectile.type == valScythe.Type)
+                    {
+                        projectile.usesLocalNPCImmunity = true;
+                        projectile.localNPCHitCooldown = 60;
+
+                        //Make sure it's NOT using static ID-based immunity
+                        projectile.usesIDStaticNPCImmunity = false;
+                    }
+                }
+
+                if (projectile.type == thorium.Find<ModProjectile>("GraniteCharge").Type)
                 {
                     projectile.usesLocalNPCImmunity = true;
                     projectile.localNPCHitCooldown = 60;

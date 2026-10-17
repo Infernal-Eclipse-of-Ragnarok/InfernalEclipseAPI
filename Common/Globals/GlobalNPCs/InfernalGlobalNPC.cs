@@ -13,7 +13,6 @@ using InfernalEclipseAPI.Content.Items.Consumables;
 using InfernalEclipseAPI.Content.Items.Materials;
 using InfernalEclipseAPI.Content.Items.Placeables.MusicBoxes;
 using InfernalEclipseAPI.Content.Items.Placeables.Paintings;
-using InfernalEclipseAPI.Content.Items.SpawnItems;
 using InfernalEclipseAPI.Core.Configs;
 using InfernalEclipseAPI.Core.Players;
 using InfernalEclipseAPI.Core.Players.ThoriumPlayerOverrides.ThoriumMulticlassNerf;
@@ -27,9 +26,8 @@ using System.Linq;
 using Terraria.DataStructures;
 using Terraria.GameContent.Events;
 using Terraria.GameContent.ItemDropRules;
-using ThoriumMod.Items.Depths;
 
-namespace InfernalEclipseAPI.Common.GlobalNPCs
+namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
 {
     public class InfernalGlobalNPC : GlobalNPC
     {

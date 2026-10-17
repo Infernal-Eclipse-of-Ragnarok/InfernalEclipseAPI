@@ -1409,12 +1409,12 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
 
                     if (InfernalConfig.Instance.DisableUnnecessaryContent)
                     {
-                        if (recipe.HasResult(GetItem(thorRework, "TitanHat"))
-                         || recipe.HasResult(GetItem(thorRework, "TitanHood"))
-                         || recipe.HasResult(GetItem(thorRework, "TitanVisage"))
-                         || recipe.HasResult(GetItem(thorRework, "TitanVisor")))
-                        {
-                            recipe.DisableRecipe();
+                        if (thorRework.TryFind("TitanHat", out ModItem titanHat))
+                        { 
+                            if (recipe.HasResult(titanHat) || recipe.HasResult(GetItem(thorRework, "TitanHood")) || recipe.HasResult(GetItem(thorRework, "TitanVisage")) || recipe.HasResult(GetItem(thorRework, "TitanVisor")))
+                            {
+                                recipe.DisableRecipe();
+                            }
                         }
                     }
                 }
