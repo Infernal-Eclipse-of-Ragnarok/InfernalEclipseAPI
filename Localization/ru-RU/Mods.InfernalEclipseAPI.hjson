@@ -718,7 +718,7 @@ ItemTooltip: {
 			'''
 			Со временем увеличивает сопротивление урону вплоть до 15%
 			При получении урона этот бонус снижается до -10%
-            Пока бонус превышает 0%, вы получаете до 2 единиц восполнения здоровья и блокируете атаки, наносящие урон
+			         Пока бонус превышает 0%, вы получаете до 2 единиц восполнения здоровья и блокируете атаки, наносящие урон
 			'''
 		DA:
 			'''
@@ -1968,6 +1968,21 @@ Items: {
 			 Во время затмения увеличивает регенерацию здоровья на 1 ед./сек и защиту на 10 ед.
 			Увеличивает максимальное время полёта на 20%
 			'''
+		// DarkSunTooltip: Grants various buff as the day goes on
+		/* DarkSunShiftTooltip:
+			'''
+			 [c/C3DFFF:During the day, grants +2 HP/s life regen]
+			 [c/C3DFFF:During the night, grants +20 defense]
+			 [c/C3DFFF:During an eclipse, grants +1 HP/s life regen and +10 defense]
+			''' */
+		// BlueMoonTooltip: You are blessed by the power of all enchanted moons
+		/* BlueMoonShiftTooltip:
+			'''
+			 [c/A8FFD4:Increasing damage and movement speed by 7%]
+			[c/DE3163:Granting +2HP/s life regeneration]
+			[c/1F75FE:Increasing the luck of the wearer, moreso in hardmode]
+			[c/DA9100:Increasing the amount of coins dropped by enemies by x1.5, x2 in hardmode]
+			''' */
 		VervCaveTooltip: Позволяет собирать исцеляющие сферы с убитых врагов
 		FlavorText: "'Если заглянуть внутрь него достаточно пристально, то за этой стеной пламени и искр можно увидеть и своё прошлое, и даже будущее'"
 	}
@@ -2592,7 +2607,7 @@ Items: {
 				'''
 				The Fiendsmith's Requiem is fully awakend, and all abilities have been further buffed!
 				The weapon's maximum power is unleashed!
-				''' 
+				'''
 		}
 	}
 }

@@ -1962,17 +1962,27 @@ Items: {
 		I6: Weapons will inflict a random debuff on hit
 		NormalTooltip:
 			'''
-			18% increased damage and 5% increased arrow damaage
-			10% increased movement speed and 4% increased critical strike chance
-			Increases all damage by 4 and armor penetration by 5
+			16% increased damage and 5% increased arrow damage
+			20% increased movement speed and flight time
+			4% increased critical strike chance and increases armor penetration by 3
 			Arrow critical strikes briefly shadowflame enemies
-			+3.5 HP/s life regen and +2 max minions
-			Increased minion knockback & coin drops
-			Grants various buff as the day goes on
-			    During the day, grants +2 HP/s life regen
-			    During the night, grants +20 defense
-			    During an eclipse, grants +1 HP/s life regen and +10 defense
-			Boosts your maximum flight time by 20%
+			+0.5 HP/s life regen and +2 max minions
+			Increased minion knockback
+			'''
+		DarkSunTooltip: Grants various buff as the day goes on
+		DarkSunShiftTooltip:
+		    '''
+			    [c/C3DFFF:During the day, grants +2 HP/s life regen]
+			    [c/C3DFFF:During the night, grants +20 defense]
+			    [c/C3DFFF:During an eclipse, grants +1 HP/s life regen and +10 defense]
+			'''
+		BlueMoonTooltip: You are blessed by the power of all enchanted moons
+		BlueMoonShiftTooltip:
+		    '''
+			    [c/A8FFD4:Increasing damage and movement speed by 7%]
+			    [c/DE3163:Granting +2HP/s life regeneration]
+			    [c/1F75FE:Increasing the luck of the wearer, moreso in hardmode]
+			    [c/DA9100:Increasing the amount of coins dropped by enemies by x1.5, x2 in hardmode]
 			'''
 		VervCaveTooltip: Slain enemies release healing orbs
 		FlavorText: "'Behind the flames and the sparks, if you look deep enough, you will see your past and your future'"

@@ -1966,6 +1966,21 @@ Items: {
 			在日食时+1HP/s生命再生和10点防御
 			增加20%最大飞行时间
 			'''
+		// DarkSunTooltip: Grants various buff as the day goes on
+		/* DarkSunShiftTooltip:
+			'''
+			 [c/C3DFFF:During the day, grants +2 HP/s life regen]
+			 [c/C3DFFF:During the night, grants +20 defense]
+			 [c/C3DFFF:During an eclipse, grants +1 HP/s life regen and +10 defense]
+			''' */
+		// BlueMoonTooltip: You are blessed by the power of all enchanted moons
+		/* BlueMoonShiftTooltip:
+			'''
+			 [c/A8FFD4:Increasing damage and movement speed by 7%]
+			[c/DE3163:Granting +2HP/s life regeneration]
+			[c/1F75FE:Increasing the luck of the wearer, moreso in hardmode]
+			[c/DA9100:Increasing the amount of coins dropped by enemies by x1.5, x2 in hardmode]
+			''' */
 		VervCaveTooltip: 击杀敌怪会释放治疗法球
 		FlavorText: “于炽炎与火花之后，若你凝视得足够深远，便能洞悉你的过去和未来”
 	}
