@@ -1962,10 +1962,10 @@ Items: {
 		I6: Weapons will inflict a random debuff on hit
 		NormalTooltip:
 			'''
-			16% increased damage and 5% increased arrow damage
-			20% increased movement speed and flight time
-			4% increased critical strike chance and increases armor penetration by 3
-			Arrow critical strikes briefly shadowflame enemies
+			16% increased damage and 20% increased movement speed and flight time
+			4% increased critical strike chance
+			Increases all damage by 4 and increases armor penetration by 5
+			5% increased arrow damage and arrow critical strikes briefly shadowflame enemies
 			+0.5 HP/s life regen and +2 max minions
 			Increased minion knockback
 			'''

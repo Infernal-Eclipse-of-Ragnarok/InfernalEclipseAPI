@@ -34,7 +34,7 @@ namespace InfernalEclipseAPI.Content.Items.Accessories.RingofTix
             Item.value = CalamityGlobalItem.RarityHotPinkBuyPrice;
             Item.rare = ModContent.RarityType<HotPink>();
             Item.accessory = true;
-            Item.defense = 4;
+            Item.defense = 6;
             //Item.lifeRegen = 1;
 
             Item.Infernum_Tooltips().DeveloperItem = true;
@@ -53,16 +53,13 @@ namespace InfernalEclipseAPI.Content.Items.Accessories.RingofTix
             player.arrowDamage += 0.05f;
             infernalPlayer.tixThumbRing = true;
 
-            //player.GetDamage(DamageClass.Generic).Flat += 4;
+            player.GetDamage(DamageClass.Generic).Flat += 4;
             player.GetArmorPenetration(DamageClass.Generic) += 5;
             player.GetDamage(DamageClass.Generic) += 0.16f;
             player.GetCritChance(DamageClass.Generic) += 4;
 
             //player.lifeRegen += 3;
             //player.luck += 0.25f;
-
-            InfernalPlayer infernal = player.GetModPlayer<InfernalPlayer>();
-            //infernal.HarvestMoonBuff = true;
 
             if (ModLoader.TryGetMod("BlueMoon", out Mod moons))
             {
