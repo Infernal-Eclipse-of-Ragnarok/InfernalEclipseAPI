@@ -13,6 +13,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using System.Security.Policy;
 using Terraria;
+using Terraria.DataStructures;
+using InfernumMode;
 
 namespace InfernalEclipseAPI.Content.Items.Accessories.RingofTix
 {
@@ -21,6 +23,8 @@ namespace InfernalEclipseAPI.Content.Items.Accessories.RingofTix
         public override void SetStaticDefaults()
         {
             Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
+            Main.RegisterItemAnimation(Type, new DrawAnimationVertical(6, 7));
         }
 
         public override void SetDefaults()
@@ -30,9 +34,10 @@ namespace InfernalEclipseAPI.Content.Items.Accessories.RingofTix
             Item.value = CalamityGlobalItem.RarityHotPinkBuyPrice;
             Item.rare = ModContent.RarityType<HotPink>();
             Item.accessory = true;
-            Item.defense = 12;
-            Item.lifeRegen = 1;
-            Item.Calamity().devItem = true;
+            Item.defense = 4;
+            //Item.lifeRegen = 1;
+
+            Item.Infernum_Tooltips().DeveloperItem = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -41,23 +46,28 @@ namespace InfernalEclipseAPI.Content.Items.Accessories.RingofTix
             InfernalPlayer infernalPlayer = player.GetModPlayer<InfernalPlayer>();
 
             modPlayer.harpyRing = true;
-            player.moveSpeed += 0.1f;
+            player.moveSpeed += 0.2f;
 
             modPlayer.darkSunRing = true;
 
             player.arrowDamage += 0.05f;
             infernalPlayer.tixThumbRing = true;
 
-            player.GetDamage(DamageClass.Generic).Flat += 4;
+            //player.GetDamage(DamageClass.Generic).Flat += 4;
             player.GetArmorPenetration(DamageClass.Generic) += 5;
-            player.GetDamage(DamageClass.Generic) += 0.06f;
+            player.GetDamage(DamageClass.Generic) += 0.16f;
             player.GetCritChance(DamageClass.Generic) += 4;
 
-            player.lifeRegen += 3;
-            player.luck += 0.25f;
+            //player.lifeRegen += 3;
+            //player.luck += 0.25f;
 
             InfernalPlayer infernal = player.GetModPlayer<InfernalPlayer>();
-            infernal.HarvestMoonBuff = true;
+            //infernal.HarvestMoonBuff = true;
+
+            if (ModLoader.TryGetMod("BlueMoon", out Mod moons))
+            {
+                moons.Find<ModItem>("MoonsRing").UpdateAccessory(player, hideVisual);
+            }
 
             if (ModLoader.TryGetMod("VervCaves", out Mod vervCaves))
             {
@@ -70,8 +80,25 @@ namespace InfernalEclipseAPI.Content.Items.Accessories.RingofTix
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             // Always show the normal stats tooltip.
-            tooltips.Add(new TooltipLine(Mod, "NormalTip",
-                Language.GetTextValue("Mods.InfernalEclipseAPI.Items.RingofTix.NormalTooltip")));
+            tooltips.Add(new TooltipLine(Mod, "NormalTip", Language.GetTextValue("Mods.InfernalEclipseAPI.Items.RingofTix.NormalTooltip")));
+
+            tooltips.Add(new TooltipLine(Mod, "DarkSunTip", Language.GetTextValue("Mods.InfernalEclipseAPI.Items.RingofTix.DarkSunTooltip")));
+
+            if (Main.keyState.IsKeyDown(Keys.LeftShift))
+            {
+                tooltips.Add(new TooltipLine(Mod, "DarkSunShiftTip", Language.GetTextValue("Mods.InfernalEclipseAPI.Items.RingofTix.DarkSunShiftTooltip")));
+            }
+
+            //Enchanted Moons
+            if (ModLoader.HasMod("BlueMoon"))
+            {
+                tooltips.Add(new TooltipLine(Mod, "MoonTip", Language.GetTextValue("Mods.InfernalEclipseAPI.Items.RingofTix.BlueMoonTooltip")));
+
+                if (Main.keyState.IsKeyDown(Keys.LeftShift))
+                {
+                    tooltips.Add(new TooltipLine(Mod, "MoonShiftTip", Language.GetTextValue("Mods.InfernalEclipseAPI.Items.RingofTix.BlueMoonShiftTooltip")));
+                }
+            }
 
             // Show SOTS-specific usage text only if SOTS is enabled.
             if (ModLoader.HasMod("SOTS"))

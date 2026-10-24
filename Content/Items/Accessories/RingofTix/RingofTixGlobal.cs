@@ -131,7 +131,7 @@ namespace InfernalEclipseAPI.Content.Items.Accessories.RingofTix
                 }
             }
 
-            spriteBatch.Draw(TextureAssets.Item[item.type].Value, position, null, drawColor, 0f, origin, scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(TextureAssets.Item[item.type].Value, position, frame, drawColor, 0f, origin, scale, SpriteEffects.None, 0f);
             return false;
         }
 
@@ -145,25 +145,58 @@ namespace InfernalEclipseAPI.Content.Items.Accessories.RingofTix
         }
 
         // -------- World draw --------
-        public override bool PreDrawInWorld(Item item, SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
-        {
-            DrawOrbitals(spriteBatch, item.Center - Main.screenPosition, lightColor, scale, rotation, front: false);
 
-            Texture2D glow = TryGetGlowTexture(item);
-            if (glow != null)
+        public override bool PreDrawInWorld(
+            Item item,
+            SpriteBatch spriteBatch,
+            Color lightColor,
+            Color alphaColor,
+            ref float rotation,
+            ref float scale,
+            int whoAmI)
+        {
+            Vector2 position = item.Center - Main.screenPosition;
+
+            DrawOrbitals(
+                spriteBatch,
+                position,
+                lightColor,
+                scale,
+                rotation,
+                front: false);
+
+            Texture2D texture = TextureAssets.Item[item.type].Value;
+
+            Rectangle frame = new Rectangle(
+                0,
+                0,
+                texture.Width,
+                texture.Height
+            );
+
+            if (Main.itemAnimations[item.type] != null)
             {
-                var tex = TextureAssets.Item[item.type].Value;
-                Vector2 origin = tex.Size() * 0.5f;
-                for (int i = 0; i < 6; i++)
-                {
-                    Vector2 bump = new Vector2(0f, 2f).RotatedBy(MathHelper.ToRadians(i * 60 + SOTSWorld.GlobalCounter * 2));
-                    Color c = new Color(70 - i * 7, 45 - i * 2, 40 + i * 4, 250);
-                    spriteBatch.Draw(glow, item.Center - Main.screenPosition + bump, null, c * (1f - item.alpha / 255f) * 1.2f, rotation, origin, scale, SpriteEffects.None, 0f);
-                }
+                frame = Main.itemAnimations[item.type]
+                    .GetFrame(texture);
             }
 
-            return true;
+            Vector2 origin = frame.Size() * 0.5f;
+
+            // Draw the item's current animation frame ourselves.
+            spriteBatch.Draw(
+                texture,
+                position,
+                frame,
+                alphaColor,
+                rotation,
+                origin,
+                (scale) * 0.75f,
+                SpriteEffects.None,
+                0f);
+
+            return false;
         }
+
 
         public override void PostDrawInWorld(Item item, SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
         {
@@ -171,7 +204,7 @@ namespace InfernalEclipseAPI.Content.Items.Accessories.RingofTix
             if (glow != null)
             {
                 var tex = TextureAssets.Item[item.type].Value;
-                Vector2 origin = tex.Size() * 0.5f;
+                Vector2 origin = new Vector2(item.width, item.height) * 0.5f;
                 spriteBatch.Draw(glow, item.Center - Main.screenPosition, null, Color.Lerp(lightColor, Color.White, 0.5f), rotation, origin, scale, SpriteEffects.None, 0f);
             }
 

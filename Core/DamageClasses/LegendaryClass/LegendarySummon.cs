@@ -16,7 +16,7 @@
 
         public override bool GetPrefixInheritance(DamageClass damageClass)
         {
-            return damageClass == Summon;
+            return damageClass == Magic;
         }
 
         public override StatInheritanceData GetModifierInheritance(DamageClass damageClass)

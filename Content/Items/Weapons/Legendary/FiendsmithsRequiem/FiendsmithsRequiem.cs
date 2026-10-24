@@ -24,7 +24,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.FiendsmithsRequiem
         {
             Item.width = 34;
             Item.height = 36;
-            Item.damage = 100; //TEMP
+            Item.damage = 90;
             Item.useTime = Item.useAnimation = 19;
             Item.knockBack = 3f;
             Item.mana = 10;
@@ -46,15 +46,35 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.FiendsmithsRequiem
         public override void ModifyWeaponDamage(Player player, ref StatModifier damage)
         {
             if (DownedBossSystem.downedPolterghast)
-                damage += 2.00f; //TEMP
+                damage += 1.30f;
             else if (DownedBossSystem.downedProvidence)
-                damage += 1.25f; //TEMP
+                damage += 1.20f;
             else if (DownedBossSystem.downedDragonfolly)
-                damage += 1.15f; //TEMP
+                damage += 1.00f;
             else if (DownedBossSystem.downedAstrumDeus)
-                damage += 0.75f; //TEMP
+                damage += 0.15f;
             else if (DownedBossSystem.downedRavager)
-                damage += 0.25f; //TEMP
+                damage += 0.15f;
+        }
+
+        public static int FiendSmithsRequiemDamage(int damage)
+        {
+            if (DownedBossSystem.downedPolterghast)
+                return (int)(damage * 2.30f);
+
+            if (DownedBossSystem.downedProvidence)
+                return (int)(damage * 2.20f);
+
+            if (DownedBossSystem.downedDragonfolly)
+                return (int)(damage * 2.00f);
+
+            if (DownedBossSystem.downedAstrumDeus)
+                return (int)(damage * 1.15f);
+
+            if (DownedBossSystem.downedRavager)
+                return (int)(damage * 1.15f);
+
+            return damage;
         }
 
         public override bool CanUseItem(Player player) =>player.maxMinions >= 2;
@@ -113,8 +133,6 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.FiendsmithsRequiem
             player.AddBuff(ModContent.BuffType<FiendsmithsRequiemBuff>(), 3600);
 
             var minion = Projectile.NewProjectileDirect(source, player.Center, Vector2.Zero, type, damage, knockback, player.whoAmI);
-            minion.originalDamage = Item.damage;
-
             return false;
         }
 

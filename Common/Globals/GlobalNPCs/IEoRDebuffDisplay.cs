@@ -139,6 +139,11 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
                     {
                         RegisterExternalBuff(entropyLegacy, "RagnarokMod", "NightfallenDebuff");
                     }
+                    //Infernal Arsenal
+                    if (InfernalCrossmod.InfernalEclipseWeaponsDLC.Loaded)
+                    {
+                        RegisterExternalBuff(entropyLegacy, "InfernalEclipseWeaponsDLC", "LimbBurn");
+                    }
 
                     RegisteredWithEntropy = true;
                 }
@@ -218,6 +223,11 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
                     if (InfernalCrossmod.RagnarokMod.Loaded)
                     {
                         RegisterExternalBuff(entropy, "RagnarokMod", "NightfallenDebuff");
+                    }
+                    //Infernal Arsenal
+                    if (InfernalCrossmod.InfernalEclipseWeaponsDLC.Loaded)
+                    {
+                        RegisterExternalBuff(entropyLegacy, "InfernalEclipseWeaponsDLC", "LimbBurn");
                     }
 
                     RegisteredWithEntropy = true;
@@ -377,6 +387,11 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
                     if (InfernalCrossmod.RagnarokMod.Loaded)
                     {
                         AddExternalBuff(currentDebuffs, npc, "RagnarokMod", "NightfallenDebuff");
+                    }
+                    //Infernal Arsenal
+                    if (InfernalCrossmod.InfernalEclipseWeaponsDLC.Loaded)
+                    {
+                        AddExternalBuff(currentDebuffs, npc, "InfernalEclipseWeaponsDLC", "LimbBurn");
                     }
 
                     // Total amount of elements in the buff list
