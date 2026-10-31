@@ -15,6 +15,7 @@ using System.Security.Policy;
 using Terraria;
 using Terraria.DataStructures;
 using InfernumMode;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Content.Items.Accessories.RingofTix
 {

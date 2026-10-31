@@ -1020,6 +1020,9 @@ namespace InfernalEclipseAPI.Core.Players
                     modifiers.FinalDamage *= 0.2f;
                 }
             }
+
+            if (tixThumbRing)
+                modifiers.CritDamage += 4;
         }
 
         private static bool BypassesScalingArmorPen(int type)
