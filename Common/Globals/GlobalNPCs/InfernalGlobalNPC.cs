@@ -172,7 +172,8 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
                     if (item.type != ModContent.ItemType<TrustyOldRod>())
                         continue;
 
-                    item.TurnToAir();
+                    if (Main.LocalPlayer.name != "Shanakor" && Main.LocalPlayer.name != "Shanny")
+                        item.TurnToAir();
                 }
             }
 

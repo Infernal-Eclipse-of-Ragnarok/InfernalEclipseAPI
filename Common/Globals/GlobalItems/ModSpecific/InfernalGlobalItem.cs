@@ -1,7 +1,6 @@
 ﻿using CalamityMod;
 using CalamityMod.Items.DraedonMisc;
 using CalamityMod.Items.Fishing.FishingRods;
-using CalamityMod.Items.Potions.Alcohol;
 using CalamityMod.Items.SummonItems;
 using CalamityMod.Items.TreasureBags.MiscGrabBags;
 using CalamityMod.Items.Weapons.Summon;
@@ -21,13 +20,11 @@ using InfernalEclipseAPI.Core.Players;
 using InfernalEclipseAPI.Core.Systems.Compatibility;
 using InfernalEclipseAPI.Core.Utils;
 using InfernalEclipseAPI.Core.World;
-using InfernalEclipseWeaponsDLC.Content.Items.Weapons.Melee;
 using InfernumMode.Content.Items.Misc;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System.Collections.Generic;
-using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.Localization;
@@ -42,7 +39,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 
         public override void SetDefaults(Item item)
         {
-            if (item.type == ModContent.ItemType<TrustyOldRod>())
+            if (item.type == ModContent.ItemType<TrustyOldRod>() && (Main.LocalPlayer.name != "Shanakor" || Main.LocalPlayer.name != "Shanny"))
             {
                 item.fishingPole = 0;
             }
@@ -59,7 +56,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
             if (item.type == ModContent.ItemType<Wayfinder>() && player.Calamity().ZoneAbyss && !DownedBossSystem.downedYharon)
                 return false;
 
-            if (item.type == ModContent.ItemType<TrustyOldRod>())
+            if (item.type == ModContent.ItemType<TrustyOldRod>() && (Main.LocalPlayer.name != "Shanakor" || Main.LocalPlayer.name != "Shanny"))
                 return false;
 
             return base.CanUseItem(item, player);
@@ -233,7 +230,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
-            if (item.type == ModContent.ItemType<TrustyOldRod>())
+            if (item.type == ModContent.ItemType<TrustyOldRod>() && (Main.LocalPlayer.name != "Shanakor" || Main.LocalPlayer.name != "Shanny"))
             {
                 InfernalUtilities.AddDisabledItemTag(tooltips);
             }
