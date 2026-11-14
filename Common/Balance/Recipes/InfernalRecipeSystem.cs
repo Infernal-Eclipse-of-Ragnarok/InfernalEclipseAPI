@@ -33,17 +33,6 @@ using InfernumMode.Content.Items.Weapons.Magic;
 using SOTS;
 using System.Linq;
 using Terraria.Localization;
-using ThoriumMod.Items.ArcaneArmor;
-using ThoriumMod.Items.MeleeItems;
-using ThoriumMod.Items.Misc;
-using ThoriumMod.Items.Placeable;
-using ThoriumMod.Tiles;
-using Verdant;
-using Verdant.Items.Verdant.Armour;
-using Verdant.Items.Verdant.Armour.ApotheoticArmor;
-using Verdant.Items.Verdant.Blocks.Aquamarine;
-using Verdant.Items.Verdant.Weapons;
-using Verdant.Items.Verdant.Tools;
 
 namespace InfernalEclipseAPI.Common.Balance.Recipes
 {
@@ -254,9 +243,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                     }
                 }
 
-#endregion
-
-                #region Verdant
+                #region Verdant Replacements
                 if (ModLoader.TryGetMod("Verdant", out Mod Verdant))
                 {
                     //aquamarine tile conversion recipes are created here, this one turns thorium aquamarine into verdant aquamarine
@@ -357,9 +344,9 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                     aquabladedeconv.AddCondition(Condition.InGraveyard);
                     aquabladedeconv.Register();
                 }
+                #endregion
             }
             #endregion
-
 
             #region Secrets of the Shadows
             if (InfernalCrossmod.SOTS.Loaded)
@@ -470,7 +457,6 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
             foreach (var recipe in Main.recipe)
             {
                 #region Verdant
-                //do we have verdant
                 if (ModLoader.TryGetMod("Verdant", out Mod Verdant))
                 {
                     //yes? do all of this stuff
@@ -482,18 +468,19 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                         //Add the arcane armor fabricator
                         recipe.AddTile(thorium.Find<ModTile>("ArcaneArmorFabricator"));
                     }
+
                     //check for any peice of apoth armor
                     if (recipe.HasResult(Verdant.Find<ModItem>("ApotheoticChestplate")) || recipe.HasResult(Verdant.Find<ModItem>("ApotheoticLeggings")) || recipe.HasResult(Verdant.Find<ModItem>("ApotheoticTreeHelmet")) || recipe.HasResult(Verdant.Find<ModItem>("ApotheoticBeeHelmet")))
-                {
-                    //Add 4 stardust fragments to apoth armor
-                    recipe.AddIngredient(ItemID.FragmentStardust, 4);
-                }
+                    {
+                        //Add 4 stardust fragments to apoth armor
+                        recipe.AddIngredient(ItemID.FragmentStardust, 4);
+                    }
+
                     if (recipe.HasResult(Verdant.Find<ModItem>("AquamarineStaff").Type) || recipe.HasResult(Verdant.Find<ModItem>("AquamarinePlatinumStaff")))
                     {
-                        recipe.AddIngredient<SeaRemains>(1);
+                        recipe.AddIngredient<SeaRemains>();
                     }
                 }
-                //no? do nothing
                 #endregion
 
                 #region tPackBuilder Subsititons
