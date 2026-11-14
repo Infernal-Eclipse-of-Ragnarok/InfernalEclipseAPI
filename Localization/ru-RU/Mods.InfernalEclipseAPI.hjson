@@ -2667,6 +2667,7 @@ Projectiles: {
 	// FiendsmithChainsaw.DisplayName: Fiendsmith's Chainsaw
 	// FiendsmithsTremendae.DisplayName: Fiendsmith's Tremendae
 	// FiendsmithsParadise.DisplayName: Fiendsmith's Paradise
+	// CryogenRingSpike.DisplayName: Icicle Spike
 }
 
 DiaryTooltip:
