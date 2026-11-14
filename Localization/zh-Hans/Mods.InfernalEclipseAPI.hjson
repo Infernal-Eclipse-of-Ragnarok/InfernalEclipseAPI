@@ -2666,6 +2666,7 @@ Projectiles: {
 	FiendsmithChainsaw.DisplayName: 刻魔链锯
 	FiendsmithsTremendae.DisplayName: 刻魔·赫赫君王
 	FiendsmithsParadise.DisplayName: 刻魔的乐园
+	// CryogenRingSpike.DisplayName: Icicle Spike
 	// AcceleratingGel.DisplayName: Accelerating Gel
 	// ArenaSlime.DisplayName: Arena Slime
 	// DashingSlime.DisplayName: Dashing Slime
