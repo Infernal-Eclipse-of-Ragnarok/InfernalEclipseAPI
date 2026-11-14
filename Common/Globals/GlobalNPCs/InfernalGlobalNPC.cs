@@ -6,6 +6,7 @@ using CalamityMod.Events;
 using CalamityMod.Items.Fishing.FishingRods;
 using CalamityMod.Items.Placeables.Furniture.Paintings;
 using CalamityMod.NPCs.Crags;
+using CalamityMod.NPCs.SlimeGod;
 using CalamityMod.NPCs.TownNPCs;
 using CalamityMod.World;
 using InfernalEclipseAPI.Content.Buffs;
@@ -316,6 +317,17 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
                             continue;
 
                         player.AddBuff(ModContent.BuffType<FreezingAura>(), 2);
+                    }
+                }
+
+                if (npc.type == ModContent.NPCType<CrimulanPaladin>())
+                {
+                    foreach (Player player in Main.ActivePlayers)
+                    {
+                        if (!player.dead && !npc.WithinRange(player.Center, 10000f))
+                            continue;
+
+                        player.AddBuff(ModContent.BuffType<CrimulanAura>(), 2);
                     }
                 }
 

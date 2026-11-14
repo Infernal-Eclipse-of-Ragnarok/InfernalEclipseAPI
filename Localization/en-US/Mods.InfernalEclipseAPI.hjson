@@ -2670,6 +2670,17 @@ Projectiles: {
 	FiendsmithsTremendae.DisplayName: Fiendsmith's Tremendae
 	FiendsmithsParadise.DisplayName: Fiendsmith's Paradise
 	CryogenRingSpike.DisplayName: Icicle Spike
+	AcceleratingGel.DisplayName: Accelerating Gel
+	ArenaSlime.DisplayName: Arena Slime
+	DashingSlime.DisplayName: Dashing Slime
+	FastDeathray.DisplayName: Fast Deathray
+	PulledInSlime.DisplayName: Pulled-In Slime
+	SlimeDeathray.DisplayName: Slime Deathray
+	SlowedGelBlob.DisplayName: Gel Blob
+	SlowWeirdGel.DisplayName: Weird Gel
+	TelegraphedGel.DisplayName: Gel
+	TelegraphedSlowedBlob.DisplayName: Blob
+	WeirdGel.DisplayName: Weird Gel
 }
 
 DiaryTooltip:

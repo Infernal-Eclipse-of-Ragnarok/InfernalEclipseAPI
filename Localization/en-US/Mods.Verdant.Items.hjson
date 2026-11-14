@@ -1,0 +1,71 @@
+AquamarineItem: {
+	DisplayName: Veridian Aquamarine
+	Tooltip: ""
+}
+
+EmbeddedAquamarineItem: {
+	DisplayName: Veridian Aquamarine Lush Soil Block
+	Tooltip: ""
+}
+
+AquamarineTorchItem: {
+	DisplayName: Veridian Aquamarine Torch
+	Tooltip: ""
+}
+
+EmbeddedStoneAquamarineItem: {
+	DisplayName: Veridian Aquamarine Stone Block
+	Tooltip: ""
+}
+
+GemsparkAquamarineItem: {
+	DisplayName: Veridian Aquamarine Gemspark
+	Tooltip: ""
+}
+
+GemsparkAquamarineWallItem: {
+	DisplayName: Veridian Aquamarine Gemspark Wall
+	Tooltip: ""
+}
+
+GemsparkAquamarineWallOfflineItem: {
+	DisplayName: Veridian Aquamarine Gemspark Wall (Offline)
+	Tooltip: ""
+}
+
+AquamarineHook: {
+	DisplayName: Veridian Aquamarine Hook
+	Tooltip: ""
+}
+
+AquamarinePhaseblade: {
+	DisplayName: Veridian Aquamarine Phaseblade
+	Tooltip: ""
+}
+
+AquamarinePhasesaber: {
+	DisplayName: Veridian Aquamarine Phasesaber
+	Tooltip: ""
+}
+
+AquamarinePlatinumStaff: {
+	DisplayName: Veridian Staff (Platinum)
+	Tooltip:
+		'''
+		Summons bolts to come from your minions
+		The bolts get some added damage from your minions
+		- After much experimentation, a more commonplace version of
+		the experimental fusion array was able to be produced
+		'''
+}
+
+AquamarineStaff: {
+	DisplayName: Veridian Staff (Gold)
+	Tooltip:
+		'''
+		Summons bolts to come from your minions
+		The bolts get some added damage from your minions
+		- After much experimentation, a more commonplace version of
+		the experimental fusion array was able to be produced
+		'''
+}
