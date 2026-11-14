@@ -80,6 +80,97 @@ namespace InfernalEclipseAPI.Core.Utils
             return closest;
         }
 
+        public static void FloatAbovePlayer(Vector2 lookAtPosition, NPC NPC, float speed, float inertia, Vector2 destination, float radians, float fault, bool slowDown, bool lerpRotation, float lerpRate)
+        {
+            if (slowDown && NPC.WithinRange(destination, fault))
+            {
+                NPC.velocity *= 0.85f;
+                return;
+            }
+
+            Vector2 toPlayer = lookAtPosition - NPC.Center;
+            Vector2 toAbovePlayer = destination - NPC.Center;
+            Vector2 toAbovePlayerNormalized = toAbovePlayer.SafeNormalize(Vector2.UnitY);
+
+            Vector2 moveTo = toAbovePlayerNormalized * speed;
+            NPC.velocity = (NPC.velocity * (inertia - 1) + moveTo) / inertia;
+            if (lookAtPosition != Vector2.Zero)
+            {
+                if (lerpRotation)
+                {
+                    NPC.rotation = MathHelper.Lerp(NPC.rotation, toPlayer.ToRotation() + MathHelper.ToRadians(radians), lerpRate);
+                }
+                else
+                {
+                    NPC.rotation = toPlayer.ToRotation() + MathHelper.ToRadians(radians);
+                }
+
+            }
+
+        }
+
+        public static void FloatAbovePlayer(Vector2 lookAtPosition, Projectile NPC, float speed, float inertia, Vector2 destination, float radians, float fault, bool slowDown, bool lerpRotation, float lerpRate)
+        {
+            if (NPC.WithinRange(destination, fault))
+            {
+                if (slowDown)
+                {
+                    NPC.velocity *= 0.85f;
+                }
+
+                return;
+            }
+
+            Vector2 toPlayer = lookAtPosition - NPC.Center;
+            Vector2 toAbovePlayer = destination - NPC.Center;
+            Vector2 toAbovePlayerNormalized = toAbovePlayer.SafeNormalize(Vector2.UnitY);
+
+            Vector2 moveTo = toAbovePlayerNormalized * speed;
+            NPC.velocity = (NPC.velocity * (inertia - 1) + moveTo) / inertia;
+            if (lookAtPosition != Vector2.Zero)
+            {
+                if (lerpRotation)
+                {
+                    NPC.rotation = MathHelper.Lerp(NPC.rotation, toPlayer.ToRotation() + MathHelper.ToRadians(radians), lerpRate);
+                }
+                else
+                {
+                    NPC.rotation = toPlayer.ToRotation() + MathHelper.ToRadians(radians);
+                }
+
+            }
+
+        }
+        public static void ShootProjectile(IEntitySource source, Vector2 targetPosition, float speed, int type, bool hasTileCollide, int count, float startAngle, float angleDecrement, Vector2 startPosition, float radius, int damage, float ai0 = 0f, float ai1 = 0f, float ai2 = 0f, int lifeTime = 0)
+        {
+
+            damage /= 2;
+
+            if (Main.expertMode)
+            {
+                damage /= Main.masterMode ? 3 : 2;
+            }
+
+            Vector2 distance = targetPosition - startPosition;
+            Vector2 distanceNormalized = distance.SafeNormalize(Vector2.UnitX);
+            float angle = startAngle;
+            for (int i = 0; i < count; i++)
+            {
+                int projectile = Projectile.NewProjectile(source, startPosition, (distanceNormalized.RotatedBy(MathHelper.ToRadians(angle)) * speed).RotatedByRandom(MathHelper.ToRadians(radius)), type, damage, 1, -1, ai0, ai1, ai2);
+
+                Main.projectile[projectile].tileCollide = hasTileCollide;
+                Main.projectile[projectile].friendly = false;
+                Main.projectile[projectile].hostile = true;
+
+                if (lifeTime != 0)
+                {
+                    Main.projectile[projectile].timeLeft = lifeTime;
+                }
+
+                angle -= angleDecrement;
+            }
+        }
+
         #region Math Utilities
         public static int INonZeroSign(this float x) => x >= 0f ? 1 : -1;
 
