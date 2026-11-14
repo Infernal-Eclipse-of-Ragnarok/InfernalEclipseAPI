@@ -2672,12 +2672,12 @@ Projectiles: {
 	// ArenaSlime.DisplayName: Arena Slime
 	// DashingSlime.DisplayName: Dashing Slime
 	// FastDeathray.DisplayName: Fast Deathray
-	// PulledInSlime.DisplayName: Pulled In Slime
+	// PulledInSlime.DisplayName: Pulled-In Slime
 	// SlimeDeathray.DisplayName: Slime Deathray
-	// SlowedGelBlob.DisplayName: Slowed Gel Blob
-	// SlowWeirdGel.DisplayName: Slow Weird Gel
-	// TelegraphedGel.DisplayName: Telegraphed Gel
-	// TelegraphedSlowedBlob.DisplayName: Telegraphed Slowed Blob
+	// SlowedGelBlob.DisplayName: Gel Blob
+	// SlowWeirdGel.DisplayName: Weird Gel
+	// TelegraphedGel.DisplayName: Gel
+	// TelegraphedSlowedBlob.DisplayName: Blob
 	// WeirdGel.DisplayName: Weird Gel
 }
 
