@@ -6,13 +6,13 @@ using InfernalEclipseAPI.Core.DamageClasses;
 using CalamityMod.Buffs.StatDebuffs;
 using CalamityMod.Buffs.DamageOverTime;
 using Terraria.DataStructures;
-using InfernalEclipseAPI.Core.Systems;
-using static InfernalEclipseAPI.Core.Systems.InfernalCrossmod;
+using static InfernalEclipseAPI.Core.Systems.Compatibility.InfernalCrossmod;
 using ReLogic.Content;
 using System.Collections.Generic;
 using InfernalEclipseAPI.Core.Configs;
 using Terraria;
 using static ThrowerUnification.ModCompatibility;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Common.Projectiles
 {
@@ -283,6 +283,15 @@ namespace InfernalEclipseAPI.Common.Projectiles
             if (entity.type == ProjectileID.PewMaticHornShot && InfernalConfig.Instance.VanillaBalanceChanges)
             {
                 entity.penetrate = 2;
+            }
+
+            if (entity.type == ProjectileID.Trimarang)
+            {
+                entity.usesLocalNPCImmunity = true;
+                entity.localNPCHitCooldown = 40;
+
+                // Make sure it's NOT using static ID-based immunity
+                entity.usesIDStaticNPCImmunity = false;
             }
             #endregion
 

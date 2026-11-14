@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using InfernalEclipseAPI.Content.Projectiles;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using Microsoft.Xna.Framework;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -14,19 +14,17 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Weapons.Heal
     {
         public override bool InstancePerEntity => true;
 
-        public override bool Shoot(Item item, Player player, EntitySource_ItemUse_WithAmmo source,
-                                   Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        public override bool AppliesToEntity(Item entity, bool lateInstantiation)
         {
-            // --- Check both mods safely ---
-            if (!ModLoader.TryGetMod("ThoriumRework", out Mod thoriumRework))
-                return base.Shoot(item, player, source, position, velocity, type, damage, knockback);
-            if (!ModLoader.TryGetMod("ThoriumMod", out Mod thorium))
-                return base.Shoot(item, player, source, position, velocity, type, damage, knockback);
+            if (InfernalCrossmod.ThoriumRework.Mod.TryFind("ThoriumHeavyScythe", out ModItem item))
+            {
+                return entity.type == item.Type;
+            }
+            return false;
+        }
 
-            int scytheType = thoriumRework.Find<ModItem>("ThoriumHeavyScythe")?.Type ?? -1;
-            if (item.type != scytheType || scytheType == -1)
-                return base.Shoot(item, player, source, position, velocity, type, damage, knockback);
-
+        public override bool Shoot(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
             int sparkProj = ModContent.ProjectileType<ThoriumHeavyScytheSpark>();
 
             // --- Always aim toward cursor ---
@@ -43,7 +41,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Weapons.Heal
 
             // --- Two-projectile spread (offset from player instead of muzzle) ---
             float sideOffsetDistance = 15f; // how far apart they are (from player center)
-            float spreadAngle = MathHelper.ToRadians(3f); // slight directional spread
+            float spreadAngle = ToRadians(3f); // slight directional spread
 
             player.GetModPlayer<DelayedProjectileHelper>().ScheduleDelayedProjectile(delayFrames, () =>
             {

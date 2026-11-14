@@ -8,9 +8,9 @@ using CalamityMod.NPCs.SupremeCalamitas;
 using InfernalEclipseAPI.Core.Configs;
 using InfernalEclipseAPI.Core.Players;
 using InfernalEclipseAPI.Core.Players.SOTSPlayerOverrides;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using SOTS;
-using static InfernalEclipseAPI.Core.Systems.InfernalCrossmod;
+using static InfernalEclipseAPI.Core.Systems.Compatibility.InfernalCrossmod;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs.NPCDebuffs
 {

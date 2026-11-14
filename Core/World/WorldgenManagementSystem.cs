@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using InfernalEclipseAPI.Core.Configs;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using Microsoft.Xna.Framework;
 using SOTS.Items.AbandonedVillage;
 using SOTS.Items.Fragments;

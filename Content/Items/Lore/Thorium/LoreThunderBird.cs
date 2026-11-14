@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using CalamityMod.Items.LoreItems;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using Microsoft.Xna.Framework.Input;
 using Terraria.Localization;
 using ThoriumMod.Items.BossTheGrandThunderBird;

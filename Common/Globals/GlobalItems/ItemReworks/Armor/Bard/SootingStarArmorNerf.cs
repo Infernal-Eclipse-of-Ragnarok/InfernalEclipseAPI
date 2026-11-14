@@ -1,5 +1,5 @@
 ﻿using System.Reflection;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using MonoMod.Cil;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Armor.Bard

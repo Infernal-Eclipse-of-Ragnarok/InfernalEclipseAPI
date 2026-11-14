@@ -4,10 +4,10 @@ using System.Reflection;
 using CalamityMod.CalPlayer;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
-using InfernalEclipseAPI.Core.Systems;
 using InfernalEclipseWeaponsDLC.Content.Items.Armor.Ocram.Necrosinger;
 using Terraria.Localization;
 using InfernalEclipseAPI.Core.Configs;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Core.Players.ThoriumPlayerOverrides.ThoriumMulticlassNerf
 {

@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
 using CalamityMod;
 using CalamityMod.Items;
-using CalamityMod.Items.Placeables;
-using CalamityMod.World;
 using InfernalEclipseAPI.Content.Items.Materials;
 using InfernalEclipseAPI.Content.Items.Other;
+using InfernalEclipseAPI.Core.DamageClasses.MythicClass;
 using Microsoft.Xna.Framework;
-using NoxusBoss.Content.Items;
 using NoxusBoss.Content.Rarities;
 using NoxusBoss.Content.Tiles;
 using Terraria.DataStructures;
@@ -39,6 +37,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Magic.ChaosBlaster
             Item.consumable = false;
             Item.maxStack = 1;
             Item.useTurn = true;
+            Item.DamageType = MythicMagic.Instance;
         }
 
         public override bool AltFunctionUse(Player player)

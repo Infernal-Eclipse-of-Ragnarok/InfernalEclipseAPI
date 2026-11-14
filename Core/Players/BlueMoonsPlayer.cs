@@ -1,5 +1,5 @@
 ﻿using System.Reflection;
-using static InfernalEclipseAPI.Core.Systems.InfernalCrossmod;
+using static InfernalEclipseAPI.Core.Systems.Compatibility.InfernalCrossmod;
 
 namespace InfernalEclipseAPI.Core.Players
 {

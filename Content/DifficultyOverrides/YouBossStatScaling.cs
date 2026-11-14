@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using InfernalEclipseAPI.Common.Globals.GlobalNPCs;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using YouBoss.Content.NPCs.Bosses.TerraBlade;
 using YouBoss.Content.NPCs.Bosses.TerraBlade.Projectiles;
 using InfernumActive = InfernalEclipseAPI.Content.DifficultyOverrides.hellActive;

@@ -8,7 +8,7 @@ using CalamityMod.Tiles.DraedonSummoner;
 using CalamityMod.Tiles.Furniture.CraftingStations;
 using InfernalEclipseAPI.Content.Items.Materials;
 using InfernalEclipseAPI.Core.Configs;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using InfernumMode.Content.Items.SummonItems;
 
 namespace InfernalEclipseAPI.Common.ProgressionRework

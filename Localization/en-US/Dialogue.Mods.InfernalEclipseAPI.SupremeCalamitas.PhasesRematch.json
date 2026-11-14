@@ -1,0 +1,84 @@
+{
+  "Revision": 1,
+  "DefaultColor": "FFA500",
+  "DefaultSpeaker": "SupremeCalamitas",
+  "AlignType": 1,
+  "TextDelay": 2,
+  "BasePunctuationDelay": {
+    "Delay": 10,
+    "ForceSet": false,
+    "Locks": false
+  },
+  "PunctuationDelayCap": 30,
+  "PunctuationDelays": {
+    "!": {
+      "Delay": 20,
+      "ForceSet": true,
+      "Locks": true
+    },
+    "?": {
+      "Delay": 20,
+      "ForceSet": true,
+      "Locks": true
+    }
+  },
+  "Pages": [
+    {
+      "Lines": [
+        "[Scale(1.5):[Colors(2, 0.5, FFA500, FF0000):If you're looking for some fourth-degree burns,]]",
+        "[Scale(1.5):[Colors(2, 0.5, FFA500, FF0000):you've got the right person.]]"
+      ]
+    },
+    {
+      "Lines": [
+        "[Scale(1.5):[Colors(2, 0.5, FFA500, FF4500):When the time comes, would you like to join my creation?]]"
+      ]
+    },
+    {
+      "Lines": [
+        "[Scale(1.5):[Colors(2, 0.5, FFA500, FF4500):You'll still have to work hard for this victory.]]"
+      ]
+    },
+    {
+      "Lines": [
+        "[Scale(1.5):[Colors(2, 0.5, FFA500, FF4500):I haven't had such an interesting target dummy to test my magic on in a long time.]]"
+      ]
+    },
+    {
+      "Lines": [
+        "[Scale(1.5):[Colors(2, 0.5, FFA500, FF0000):Empty shells of their former selves.]]",
+        "[Scale(1.5):[Colors(2, 0.5, FFA500, FF0000):I doubt even a scrap of their spirits remain.]]"
+      ]
+    },
+    {
+      "Lines": [
+        "[Scale(1.5):[Colors(2, 0.5, FFA500, FF0000):Here we go again.]]"
+      ]
+    },
+    {
+      "Lines": [
+        "[Scale(1.5):[Colors(2, 0.5, FFA500, FF0000):I wonder if you've seen these in your nightmares since our first battle?]]"
+      ]
+    },
+    {
+      "Lines": [
+        "[Scale(1.5):[Colors(2, 0.5, FFA500, FF0000):Your skill hasn't faltered in the least.]]"
+      ]
+    },
+    {
+      "Lines": [
+        "[Scale(1.5):[Colors(2, 0.5, FFA500, FF0000):Isn't this exciting?]]"
+      ]
+    },
+    {
+      "Lines": [
+        "[Colors(2, 0.5, FFA500, FF0000):[Shaking(1.5):[Scale(1.5):Here comes my final attack!]]]"
+      ]
+    },
+    {
+      "Lines": [
+        "[Scale(1.5):...Congratulations.]"
+      ]
+    }
+  ]
+}

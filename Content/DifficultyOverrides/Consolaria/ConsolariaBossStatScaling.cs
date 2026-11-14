@@ -3,7 +3,7 @@ using Consolaria.Content.NPCs.Bosses.Lepus;
 using Consolaria.Content.NPCs.Bosses.Ocram;
 using Consolaria.Content.Projectiles.Enemies;
 using InfernalEclipseAPI.Common.Globals.GlobalNPCs;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using InfernalEclipseAPI.Core.Utils;
 using InfernalEclipseAPI.Core.World;
 using RevengeancePlus.Projectiles;

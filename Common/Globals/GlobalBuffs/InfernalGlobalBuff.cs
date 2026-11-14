@@ -1,7 +1,7 @@
 ﻿using CalamityMod;
 using CalamityMod.Buffs.Alcohol;
 using InfernalEclipseAPI.Core.Configs;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalBuffs
 {

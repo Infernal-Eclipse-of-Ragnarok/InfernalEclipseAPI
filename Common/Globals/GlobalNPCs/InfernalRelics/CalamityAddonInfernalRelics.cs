@@ -15,7 +15,6 @@ using InfernalEclipseAPI.Content.Items.Materials;
 using InfernalEclipseAPI.Content.Items.Placeables.Relics.CalamityAddons;
 using InfernalEclipseAPI.Content.Items.Placeables.Relics.CalamityAddons.Clamity;
 using InfernalEclipseAPI.Content.Items.Placeables.Relics.CalamityAddons.WoTG;
-using InfernalEclipseAPI.Core.Systems;
 using InfernalEclipseAPI.Core.World;
 using NoxusBoss.Assets;
 using NoxusBoss.Content.Items;
@@ -30,13 +29,14 @@ using InfernalEclipseAPI.Core.Configs;
 using CalamityMod.Buffs.StatDebuffs;
 using CatalystMod.NPCs;
 using InfernalEclipseAPI.Common.GlobalNPCs.LootAdjustments;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Common.GlobalNPCs.InfernalRelics
 {
     [ExtendsFromMod("CatalystMod")]
     public class CatalystInfernalRelics : GlobalNPC
     {
-        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
+        public override void ModifyNPCLoot(NPC npc, Terraria.ModLoader.NPCLoot npcLoot)
         {
             bool isInfernum() => InfernumSaveSystem.InfernumModeEnabled;
 
@@ -63,7 +63,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.InfernalRelics
     [ExtendsFromMod("CalamityHunt")]
     public class HuntInfernalRelics : GlobalNPC
     {
-        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
+        public override void ModifyNPCLoot(NPC npc, Terraria.ModLoader.NPCLoot npcLoot)
         {
             bool isInfernum() => InfernumSaveSystem.InfernumModeEnabled;
             if (ModLoader.TryGetMod("CalamityHunt", out Mod hunt))
@@ -188,7 +188,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.InfernalRelics
             return base.PreAI(npc);
         }
 
-        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
+        public override void ModifyNPCLoot(NPC npc, Terraria.ModLoader.NPCLoot npcLoot)
         {
             bool isInfernum() => InfernumSaveSystem.InfernumModeEnabled;
             if (npc.type == ModContent.NPCType<AvatarOfEmptiness>())
@@ -227,7 +227,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.InfernalRelics
     [ExtendsFromMod("Clamity")]
     public class ClamityInfernalRelic : GlobalNPC
     {
-        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
+        public override void ModifyNPCLoot(NPC npc, Terraria.ModLoader.NPCLoot npcLoot)
         {
             bool isInfernum() => InfernumSaveSystem.InfernumModeEnabled;
             if (npc.type == ModContent.NPCType<PyrogenBoss>())
@@ -247,7 +247,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.InfernalRelics
 
     public class WarMachineInfernalRelic : GlobalNPC
     {
-        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
+        public override void ModifyNPCLoot(NPC npc, Terraria.ModLoader.NPCLoot npcLoot)
         {
             bool isInfernum() => InfernumSaveSystem.InfernumModeEnabled;
             if (ModLoader.TryGetMod("CalamityAddon", out Mod warMachine))

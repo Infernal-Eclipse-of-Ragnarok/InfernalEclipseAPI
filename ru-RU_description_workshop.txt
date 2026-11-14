@@ -1,10 +1,10 @@
 [h1]Infernal Eclipse of Ragnarok[/h1]
 [h3]Ультрамодифицированный аддон для Infernum[/h3]
 
-[b]Первым делом советуем вам оценить соответствующий модпак по этой ссылке:[/b]
+[b]Первым делом советуем вам ознакомиться с соответствующим модпаком по ссылке ниже:[/b]
 https://steamcommunity.com/sharedfiles/filedetails/?id=3456508757
 
-Infernal Eclipse of Ragnarok - ультрамодифицированный аддон для Infernum Mode, добавляющий поддержку крупных контентных модов, находящихся в самой сборке:
+Infernal Eclipse of Ragnarok — ультрамодифицированный аддон для Infernum Mode, добавляющий поддержку крупных контентных модов, находящихся в самой сборке:
 [list]
 	[*] Calamity Mod и пара его аддонов
 	[*] Thorium Mod
@@ -21,17 +21,17 @@ Infernal Eclipse of Ragnarok - ультрамодифицированный ад
 	[*] Новая сложность: Рагнарёк.
 	[*] Немного изменённый Босс-раш с поддержкой каждого босса из модпака вместе с кастомным «6 рангом».
 	[*] Новые саундтреки для некоторых моментов игры.
-	[*] Изменения в генерации мира, позволяющие биомам/структурам разных модов спокойно сосуществовать друг с другом в одном мире.
+	[*] Изменения в генерации мира, позволяющие биомам и структурам из разных модов сборки спокойно сосуществовать друг с другом в одном мире.
 	[*] Исправления ошибок, улучшающие совместимость Infernum с мультиплеером.
 	[*] Множество небольших улучшений совместимости для разных модов вне основной сборки.
 [/list]
 
 В моде также есть некоторые уникальные встроенные системы, такие как:
 [list]
-	[*] Система, предоставляемая [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3535746309]Thrower Unification[/url], объединяющая разбойника с метателем в один класс и дополнительно добавляющая уникальные скрытные удары для некоторых метательных предметов из Thorium.
+	[*] Система, предоставляемая [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3535746309]Thrower Unification[/url], объединяющая разбойника с метателем в один класс и дополнительно добавляющая кастомные скрытные удары для некоторых метательных предметов из Thorium.
 	[*] Настраиваемая система возрождений в мультиплеере, позволяющая выставить максимальное количество возрождений для каждого игрока во время битвы с боссом (по умолчанию значение выставлено на 1 в режиме Инфернум и выше).
-	[*] Система, позволяющая отключить возможность менять сложность игры через интерфейс Calamity.
-	[*] Система, позволяющая призывать Астрагельдона даже после победы над Лунным лордом.
+	[*] Система, позволяющая отключить возможность изменения сложности игры через интерфейс Calamity.
+	[*] Система, позволяющая сразиться с Астрагельдоном даже после победы над Лунным лордом.
 [/list]
 
 В будущем у этого мода планируется своя история, включающая в себя и другие моды сборки, а также переработку боссовой прогрессии с использованием модов [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3747472937]Quest Books[/url] и [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3446119263]tPackBuilder[/url].
@@ -46,13 +46,13 @@ Infernal Eclipse of Ragnarok - ультрамодифицированный ад
 
 Также рекомендуем присмотреться к другим модам от тех же разработчиков:
 [list]
-	[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3485175010]Infernal Arsenal[/url] - официальное дополнение, добавляющее множество нового оружия и аксессуаров.
-	[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3557455275]Homeward Ragnarok[/url] - ещё одно официальное дополнение, добавляющее поддержку мода Homeward Journey.
-	[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3754984294]Ragnarok of Redemption[/url] - и ещё одно официальное дополнение, добавляющее поддержку мода Redemption.
-	[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3452171528]WHummus' Calamity/Thorium Balancing[/url] - мод, балансирующий Calamity и Thorium между собой (именно из него мы берём большинство изменений баланса).
+	[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3485175010]Infernal Arsenal[/url] — официальное дополнение, добавляющее множество нового оружия и аксессуаров.
+	[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3557455275]Homeward Ragnarok[/url] — ещё одно официальное дополнение, добавляющее поддержку мода Homeward Journey.
+	[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3754984294]Ragnarok of Redemption[/url] — и ещё одно официальное дополнение, добавляющее поддержку мода Redemption.
+	[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3452171528]WHummus' Calamity/Thorium Balancing[/url] — мод, балансирующий Calamity и Thorium между собой (именно из него мы берём большинство изменений баланса).
 [/list]
 
-Огромное спасибо командам Calamity, Fargo's, Bereft Souls, нашим покровителям, а также каждому отдельному разработчику модов, находящихся в этой сборке, за то, что сделали создание этого возможным.
+Огромное спасибо командам Calamity, Fargo's, Bereft Souls, нашим покровителям, а также каждому отдельному разработчику модов, которые находятся в этой сборке, за то, что сделали создание этого возможным.
 
 Код бросания кос был предоставлен [url=https://steamcommunity.com/profiles/76561199125907379]N0t_UNowen[/url] (огромное ему за это спасибо!).
 
@@ -64,17 +64,17 @@ Infernal Eclipse of Ragnarok - ультрамодифицированный ад
 Контрибьюторы: cheesenuggets, Pudd1ng, Pixus, Nicole, Dandel, Ropro, JalapenoDance,
 Художники: Prime, Pixus, Yelmut, ma3allim, pil, Tyr, JuJiao, Leo, IceSpider, yfn, Dandel, Uncle Sciz, ABrickToTheHead
 Композиторы: PFungi, Techhy
-Локализация: Pudd1ng (Китайский упрощённый), Kraken (Русский)
+Переводчики: Pudd1ng (китайский упрощённый), Kraken (русский)
 
-И отдельная благодарность следующим композиторам за музыку в этом моде:
-«Teardrops of Dragonfire» за авторством PFungi
-«Seahorse Scrutiny (Rebirth)» за авторством Brimston Premium
-«Dead Kingdom's Champion» за авторством Techhy
-«Unholy Finality» за авторством Brimston Premium
-«Last Battle (Ballos Mix)» за авторством DM DOKURO
-«Arsenal» за авторством TheTrester
-«Calamity before the Cynosure» за авторством theforge128
-«Ensemble of Fools (Encore Mix)» за авторством CDMusic
-«Descent Of Divinities» за авторством psykomatic
-«Omniscience Of Gods» за авторством TheTrester
-«TWISTED GARDEN [Remix]» за авторством Kuudray
+И отдельная благодарность следующим композиторам за музыку в нашем моде:
+«Teardrops of Dragonfire» - PFungi
+«Seahorse Scrutiny (Rebirth)» - Brimston Premium
+«Dead Kingdom's Champion» - Techhy
+«Unholy Finality» - Brimston Premium
+«Last Battle (Ballos Mix)» - DM DOKURO
+«Arsenal» - TheTrester
+«Calamity before the Cynosure» - theforge128
+«Ensemble of Fools (Encore Mix)» - CDMusic
+«Descent Of Divinities» - psykomatic
+«Omniscience Of Gods» - TheTrester
+«TWISTED GARDEN [Remix]» - Kuudray

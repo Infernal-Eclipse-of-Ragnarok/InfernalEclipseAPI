@@ -87,9 +87,19 @@ Items: {
 			'''
 	}
 
+	LifeQuartzClaymore: {
+		DisplayName: Life Quartz Claymore
+		Tooltip: Steals an additional 2 life if it's the first hit that swing
+	}
+
 	HereticBreaker: {
 		DisplayName: Heretic Breaker
-		Tooltip: Steals 3 life
+		Tooltip:
+			'''
+			Damage dealt heals all nearby hurt allies
+			Restores 1 life on hit
+			Restores an additional 2 life if it's the first hit that swing
+			'''
 	}
 
 	ShroomachineGun: {

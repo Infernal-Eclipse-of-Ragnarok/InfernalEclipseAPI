@@ -21,7 +21,7 @@ namespace InfernalEclipseAPI.Content.Items.Materials
 
     public class AbandonedWorkshopDrops : GlobalNPC
     {
-        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
+        public override void ModifyNPCLoot(NPC npc, Terraria.ModLoader.NPCLoot npcLoot)
         {
             int[] cthulhuBosses =
             {

@@ -23,7 +23,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.StellarSabre
             Projectile.height = 64;
             Projectile.friendly = true;
             Projectile.DamageType = LegendaryMelee.Instance;
-            Projectile.penetrate = (NPC.downedMoonlord ? -1 : NPC.downedGolemBoss ? 3 : NPC.downedPlantBoss ? 1 : -1);
+            Projectile.penetrate = (NPC.downedMoonlord ? 4 : NPC.downedGolemBoss ? 2 : NPC.downedPlantBoss ? 1 : -1);
             Projectile.tileCollide = false;
             Projectile.ignoreWater = true;
             Projectile.aiStyle = -1;

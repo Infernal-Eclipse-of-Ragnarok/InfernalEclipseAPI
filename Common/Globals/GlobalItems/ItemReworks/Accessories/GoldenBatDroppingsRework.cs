@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using InfernalEclipseAPI.Core.Players;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using RagnarokMod.Items.RevItems;
 using RagnarokMod.Utils;
 using Terraria.Localization;

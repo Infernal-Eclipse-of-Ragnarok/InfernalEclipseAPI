@@ -1,6 +1,6 @@
 ﻿using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Weapons.Bard
 {

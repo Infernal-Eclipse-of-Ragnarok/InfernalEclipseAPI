@@ -8,8 +8,8 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Vanilla
 {
     internal sealed class ReduceDetachDamageHook : ModSystem
     {
-        public static MethodInfo? DetachDamage = typeof(WallOfFleshEyeBehaviorOverride).GetMethod("CheckDead", LumUtils.UniversalBindingFlags);
-        public static ILHook? ReduceDetachDamage_IL_Hook;
+        public static MethodInfo DetachDamage = typeof(WallOfFleshEyeBehaviorOverride).GetMethod("CheckDead", LumUtils.UniversalBindingFlags);
+        public static ILHook ReduceDetachDamage_IL_Hook;
 
         public override void OnModLoad()
         {

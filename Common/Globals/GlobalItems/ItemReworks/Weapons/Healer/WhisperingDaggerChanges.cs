@@ -1,6 +1,6 @@
 ﻿using ThoriumMod.Buffs.Healer;
 using ThoriumMod;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Weapons.Healer
 {
@@ -8,6 +8,8 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Weapons.Heal
     [ExtendsFromMod(InfernalCrossmod.Thorium.Name)]
     public class WhisperingDaggerChanges : ModPlayer
     {
+        public override bool IsLoadingEnabled(Mod mod) => !ModLoader.HasMod("WHummusMultiModBalancing");
+
         public override void PostUpdate()
         {
             if (Player.HasBuff(ModContent.BuffType<WhisperingDaggerBuff>()))

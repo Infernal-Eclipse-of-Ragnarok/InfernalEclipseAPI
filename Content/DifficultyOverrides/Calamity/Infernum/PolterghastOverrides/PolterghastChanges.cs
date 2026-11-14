@@ -1,6 +1,6 @@
 ﻿using CalamityMod.NPCs.Polterghast;
 using InfernalEclipseAPI.Common.Globals.GlobalNPCs;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using InfernumMode.Content.BehaviorOverrides.BossAIs.Polterghast;
 
 namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.PolterghastOverrides

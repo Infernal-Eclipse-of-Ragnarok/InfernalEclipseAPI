@@ -113,7 +113,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Catlight
 
     public class CatlightDamage : DamageClass
     {
-        internal static CatlightDamage? Instance;
+        internal static CatlightDamage Instance;
         public override void Load() => Instance = this;
         public override void Unload() => Instance = null;
         public override StatInheritanceData GetModifierInheritance(DamageClass damageClass) => StatInheritanceData.None;

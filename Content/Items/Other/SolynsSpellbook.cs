@@ -21,7 +21,6 @@ using NoxusBoss.Core.Netcode;
 using Terraria.ModLoader.IO;
 using InfernalEclipseAPI.Content.Items.Materials;
 using CalamityMod.Items.Placeables;
-using InfernalEclipseAPI.Core.Systems;
 using InfernalEclipseAPI.Content.Items.Weapons.BossRush.NovaBomb;
 using InfernalEclipseAPI.Content.Items.Weapons.BossRush.Swordofthe14thGlitch;
 using InfernalEclipseAPI.Content.Items.Weapons.Magic.ChaosBlaster;
@@ -34,6 +33,7 @@ using System.Reflection;
 using NoxusBoss.Content.Items.Placeable;
 using Mono.Cecil.Cil;
 using InfernalEclipseAPI.Core.Configs;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Content.Items.Other
 {
@@ -45,7 +45,7 @@ namespace InfernalEclipseAPI.Content.Items.Other
 
         private static readonly Asset<Texture2D> starBlank = Main.Assets.Request<Texture2D>("Images/UI/Bestiary/Icon_Rank_Dim");
 
-        public Action<Item, int, int>? PreDrawTooltipAction
+        public Action<Item, int, int> PreDrawTooltipAction
         {
             get;
             set;
@@ -158,6 +158,7 @@ namespace InfernalEclipseAPI.Content.Items.Other
                     namelessDisplay.OverrideColor = new Color(201, 41, 255);
                     list.Insert(insertIndex, namelessDisplay);
 
+                    /*
                     if (ModLoader.TryGetMod("CalamitySimpleWhipAddon", out Mod calSimpleWhips))
                     {
                         insertIndex++;
@@ -166,6 +167,7 @@ namespace InfernalEclipseAPI.Content.Items.Other
                         aurelianDisplay.OverrideColor = new Color(236, 255, 31); //yellow used be schematics
                         list.Insert(insertIndex, aurelianDisplay);
                     }
+                    */
 
                     if (InfernalCrossmod.SOTS.Loaded)
                     {
@@ -271,11 +273,11 @@ namespace InfernalEclipseAPI.Content.Items.Other
             return InfernalConfig.Instance.DeveloperMode;
         }
 
-        private ILHook? starlitForgeSetStaticDefaultsHook;
+        private ILHook starlitForgeSetStaticDefaultsHook;
 
         public override void Load()
         {
-            MethodInfo? setStaticDefaultsMethod = typeof(StarlitForgeTile).GetMethod(nameof(StarlitForgeTile.SetStaticDefaults), LumUtils.UniversalBindingFlags);
+            MethodInfo setStaticDefaultsMethod = typeof(StarlitForgeTile).GetMethod(nameof(StarlitForgeTile.SetStaticDefaults), LumUtils.UniversalBindingFlags);
 
             if (setStaticDefaultsMethod is null)
             {
@@ -291,20 +293,20 @@ namespace InfernalEclipseAPI.Content.Items.Other
         {
             ILCursor cursor = new(context);
 
-            MethodInfo? addMapEntryWithoutName = typeof(ModTile).GetMethod(
+            MethodInfo addMapEntryWithoutName = typeof(ModTile).GetMethod(
                 nameof(ModTile.AddMapEntry),
                 BindingFlags.Instance | BindingFlags.Public,
                 binder: null,
-                types: [typeof(Microsoft.Xna.Framework.Color)],
+                types: [typeof(Color)],
                 modifiers: null);
 
-            MethodInfo? addMapEntryWithName = typeof(ModTile).GetMethod(
+            MethodInfo addMapEntryWithName = typeof(ModTile).GetMethod(
                 nameof(ModTile.AddMapEntry),
                 BindingFlags.Instance | BindingFlags.Public,
                 binder: null,
                 types:
                 [
-                    typeof(Microsoft.Xna.Framework.Color),
+                    typeof(Color),
                     typeof(LocalizedText)
                 ],
                 modifiers: null);

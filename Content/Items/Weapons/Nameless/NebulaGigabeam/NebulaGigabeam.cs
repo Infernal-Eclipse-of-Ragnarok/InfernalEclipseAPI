@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using CalamityMod.Items;
 using InfernalEclipseAPI.Core.DamageClasses.MythicClass;
-using InfernalEclipseAPI.Core.Systems;
 using NoxusBoss.Content.Rarities;
 using Terraria.Localization;
 using Microsoft.Xna.Framework;
@@ -12,6 +11,7 @@ using NoxusBoss.Content.Items;
 using NoxusBoss.Content.Tiles;
 using CalamityMod.Items.Placeables;
 using InfernalEclipseAPI.Content.Items.Other;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Content.Items.Weapons.Nameless.NebulaGigabeam
 {

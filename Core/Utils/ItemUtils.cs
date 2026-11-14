@@ -3,7 +3,7 @@ using InfernalEclipseAPI.Content.Items.Weapons.BossRush.Swordofthe14thGlitch;
 using InfernalEclipseAPI.Content.Items.Weapons.Melee.SwordoftheCorrupted;
 using InfernalEclipseAPI.Content.Items.Weapons.Melee.SwordoftheFirst;
 using InfernalEclipseAPI.Core.DamageClasses;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using InfernumMode.Content.Items.Weapons.Rogue;
 using SOTS.FakePlayer;
 using SOTS.Void;

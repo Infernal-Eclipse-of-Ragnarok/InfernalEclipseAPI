@@ -217,9 +217,7 @@ namespace InfernalEclipseAPI.Core.Systems.BossRush
         public static void TeleportToForbiddenArchive()
         {
             // Compute teleport position
-            Vector2 teleportPosition =
-                WorldSaveSystem.ForbiddenArchiveCenter.ToWorldCoordinates() +
-                Vector2.UnitY * 1032f;
+            Vector2 teleportPosition = WorldSaveSystem.ForbiddenArchiveCenter.ToWorldCoordinates() + Vector2.UnitY * 1032f;
 
             // Teleport all active, living players
             foreach (Player player in Main.ActivePlayers)

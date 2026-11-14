@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using Clamity.Content.Bosses.Clamitas.NPCs;
 using Clamity.Content.Bosses.Pyrogen.NPCs;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using Terraria.DataStructures;
 using InfernumSaveSystem = InfernumMode.Core.GlobalInstances.Systems.WorldSaveSystem;
 

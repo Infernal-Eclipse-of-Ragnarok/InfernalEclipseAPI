@@ -1,5 +1,5 @@
 ﻿using CalamityMod.Projectiles.Typeless;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using InfernalEclipseAPI.Core.World;
 using NoxusBoss.Content.Items;
 

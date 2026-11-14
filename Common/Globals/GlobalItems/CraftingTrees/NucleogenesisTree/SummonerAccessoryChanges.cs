@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using InfernalEclipseAPI.Core.Configs;
 using ThoriumMod.Items.SummonItems;
 using ThoriumMod.Projectiles.Minions;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
 {
@@ -63,6 +63,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
 
                     player.lifeRegen -= 2;
                     player.hasPaladinShield = false;
+                    player.noKnockback = false;
                     player.GetDamage(DamageClass.Generic) -= 0.1f;
 
                     steamkeeperWatch.UpdateAccessory(player, hideVisual);
@@ -232,41 +233,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
                 {
                     player.lifeRegen -= 2;
                     player.hasPaladinShield = false;
+                    player.noKnockback = false;
                     player.GetDamage(DamageClass.Generic) -= 0.1f;
-                }
-
-                //ModItem fortressGenerator = sots.Find<ModItem>("FortressGenerator");
-
-                if (item.type == ModContent.ItemType<StatisBlessing>())
-                {
-                    //fortressGenerator.UpdateAccessory(player, hideVisual);
-                    //player.hasPaladinShield = false;
-                    //--player.maxMinions;
-                    //++player.maxTurrets;
-                    //ref StatModifier local = ref player.GetDamage(DamageClass.Generic);
-                    //local -= 0.1f;
-                }
-
-                if (item.type == ModContent.ItemType<Nucleogenesis>())
-                {
-                    //fortressGenerator.UpdateAccessory(player, hideVisual);
-                    //player.hasPaladinShield = false;
-                    //--player.maxMinions;
-                    //++player.maxTurrets;
-                    //ref StatModifier local = ref player.GetDamage(DamageClass.Generic);
-                    //local -= 0.1f;
-
-                    /*
-                    if (clamity != null)
-                    {
-                        ModItem cyanPearl = clamity.Find<ModItem>("CyanPearl");
-                        cyanPearl.UpdateAccessory(player, hideVisual);
-                        ref StatModifier local2 = ref player.GetDamage(DamageClass.Summon);
-                        local2 -= 0.07f;
-                    }
-
-                    ++player.maxTurrets;
-                    */
                 }
             }
         }

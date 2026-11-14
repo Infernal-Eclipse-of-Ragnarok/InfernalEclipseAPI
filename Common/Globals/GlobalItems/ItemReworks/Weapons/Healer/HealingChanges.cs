@@ -23,7 +23,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Weapons.Heal
                 ["BrainCoral"] = 5,
                 ["EaterOfPain"] = 3,
                 ["ChiLantern"] = 5,
-                ["SpiritBendersStaff"] = 2,
+                ["SpiritBendersStaff"] = 5,
                 // Add more ThoriumMod items here
             },
             ["ThoriumRework"] = new Dictionary<string, int>

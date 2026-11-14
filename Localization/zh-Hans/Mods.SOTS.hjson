@@ -1,11 +1,11 @@
 VisionAmuletTextList: {
-	// 2: "[s:InfernalEclipseAPI/IEoRIcon] Increases attack speed by 8%"
-	// 3: "[s:InfernalEclipseAPI/IEoRIcon] Increases critical strike chance by 4%, and is improved to 8% after beating the guardian of the underworld"
-	4: 增加5%暴击伤害，进入困难模式时则增加10%暴击伤害
+	2: "[s:InfernalEclipseAPI/IEoRIcon] 增加8%攻击速度"
+	3: "[s:InfernalEclipseAPI/IEoRIcon] 增加4%暴击率，击败地狱守护者后提高至8%"
+	4: "[s:InfernalEclipseAPI/IEoRIcon] 增加8%暴击伤害，击败地狱守护者后提高至12%"
 	6:
 		'''
 		增加20点最大生命值
-		增加5%伤害，进入困难模式时则增加10%伤害
+		[s:InfernalEclipseAPI/IEoRIcon] 增加5%伤害，击败地狱守护者后提高至10%
 		'''
 }
 
@@ -13,30 +13,30 @@ VisionAmuletTextList2: {
 	1:
 		'''
 
-		降低20%魔力消耗，进入困难模式时则降低25%魔力消耗
+		[s:InfernalEclipseAPI/IEoRIcon] 降低15%魔力消耗，击败地狱守护者后提高至20%
 		'''
-	/* 2:
+	2:
 		'''
 
-		[s:InfernalEclipseAPI/IEoRIcon] Increases melee speed and movement speed by 8%
-		Increases jump speed
-		''' */
+		[s:InfernalEclipseAPI/IEoRIcon] 增加8%近战攻速和移动速度
+		增加跳跃速度
+		'''
 	3:
 		'''
 
 		可访问工作台，熔炉，和铁砧制作站
-		进入困难模式时，可访问炼药桌
+		[s:InfernalEclipseAPI/IEoRIcon] 击败地狱守护者后，可访问炼药桌
 		增加40点最大魔力值和从药水恢复的魔力值
 		'''
 	4:
 		'''
 
-		增加所有伤害，增加量为其他伤害类型造成伤害的10%
+		[s:InfernalEclipseAPI/IEoRIcon] 增加所有伤害，增加量为从其他来源获得的其他伤害类型加成的10%
 		'''
 	5:
 		'''
 
-		降低5%敌人的防御效果，进入困难模式时则降低10%
+		[s:InfernalEclipseAPI/IEoRIcon] 降低5%敌人的防御效果，击败地狱守护者后提高至10%
 		'''
 }
 
@@ -50,20 +50,20 @@ Items: {
 	HarvestersScythe.Tooltip:
 		'''
 		增加5%暴击伤害
-		敌人有10%的概率掉落双倍的战利品，或暴击被击杀时有20%的概率掉落
+		敌人有10%的概率掉落双倍的战利品，被暴击击杀时概率提高至20%
 		'''
 	RockCandy.Tooltip:
 		'''
-		增加4点镐力
+		[s:InfernalEclipseAPI/IEoRIcon] 增加4点镐力
 		增加5%挖矿速度，近战攻速和移动速度
 		'''
 	HydrokineticAntennae.Tooltip:
 		'''
 		使用流体动力来延伸近战武器和其它短距离武器的生效范围，例如鞭子
-		降低15%真近战伤害
+		[s:InfernalEclipseAPI/IEoRIcon] 降低15%真近战伤害
 		'''
-	FrostArtifactHelmet.Tooltip: 增加15%近战和远程伤害
-	FrostArtifactChestplate.Tooltip: 增加15%近战和远程暴击率
+	FrostArtifactHelmet.Tooltip: "[s:InfernalEclipseAPI/IEoRIcon] 增加15%近战和远程伤害"
+	FrostArtifactChestplate.Tooltip: "[s:InfernalEclipseAPI/IEoRIcon] 增加15%近战和远程暴击率"
 
 	ElementalBreastplate: {
 		DisplayName: 元素胸甲
@@ -76,18 +76,18 @@ Items: {
 			'''
 	}
 
-	/* TwilightAssassinsCirclet.Tooltip:
+	TwilightAssassinsCirclet.Tooltip:
 		'''
-		[s:InfernalEclipseAPI/IEoRIcon] Increases max sentries by 1
-		Increases minion and melee damage by 7%
-		Increases max void by 50
-		Provides a Holo Eye minion to assist in combat
-		Press '{0}' to make it launch a destabilizing beam that applies 4 levels of destabilized, but only once per enemy
-		Destabilized enemies gain a 5% flat chance to be critically striked
-		Costs 6 void to launch
-		Holo Eye remains active in the inventory when favorited or while worn in vanity slots, but cannot attack
-		''' */
-	// ChallengerRing.I6: Weapons will inflict a random debuff on hit
+		[s:InfernalEclipseAPI/IEoRIcon] 增加1个哨兵栏
+		增加7%召唤和近战伤害
+		增加50点最大虚空值
+		获得一只全息之眼协助战斗
+		按下'{0}'键会使其射出一道施加4级不稳定化的不稳定光束，但每个敌人只会被施加一次
+		不稳定化的敌人受到暴击的概率额外提高5个百分点
+		发射会消耗6点虚空值
+		全息之眼在物品栏中被收藏或装备于装饰栏时仍会保持激活，但不会攻击
+		'''
+	ChallengerRing.I6: 武器命中时会施加随机减益
 }
 
 ArmorSetBonus.Earthen:

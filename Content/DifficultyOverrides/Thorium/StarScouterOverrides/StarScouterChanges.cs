@@ -2,7 +2,7 @@
 using CalamityMod.World;
 using InfernalEclipseAPI.Content.DifficultyOverrides.Thorium.GESOverrides;
 using InfernalEclipseAPI.Core.Configs;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using InfernalEclipseAPI.Core.Utils;
 using InfernumMode.Core.GlobalInstances.Systems;
 using Newtonsoft.Json.Converters;

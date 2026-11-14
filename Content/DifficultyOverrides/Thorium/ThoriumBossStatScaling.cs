@@ -5,7 +5,6 @@ using ThoriumMod.NPCs.BossBoreanStrider;
 using ThoriumMod.NPCs.BossThePrimordials;
 using ThoriumMod.Projectiles.Boss;
 using System.Linq;
-using InfernalEclipseAPI.Core.Systems;
 using ThoriumRework.Projectiles;
 using InfernalEclipseAPI.Content.Buffs;
 using ThoriumMod.Projectiles.Enemy;
@@ -25,6 +24,7 @@ using ThoriumMod.NPCs.BossGraniteEnergyStorm;
 using CalamityMod.Events;
 using ThoriumMod.NPCs.BossTheGrandThunderBird;
 using ThoriumMod.NPCs.BossBuriedChampion;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
 {
@@ -266,12 +266,12 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
 
             if (npc.ModNPC?.Name?.Contains("BoreanStrider") == true)
             {
-                foreach (Player player in Main.player)
+                foreach (Player player in Main.ActivePlayers)
                 {
-                    if (player.active && !player.dead && npc.WithinRange(player.Center, 1000f))
-                    {
-                        player.AddBuff(ModContent.BuffType<LowGround>(), 1);
-                    }
+                    if (!player.dead && npc.WithinRange(player.Center, 1000f))
+                        continue;
+
+                    player.AddBuff(ModContent.BuffType<FreezingAura>(), 1);
                 }
                 return;
             }

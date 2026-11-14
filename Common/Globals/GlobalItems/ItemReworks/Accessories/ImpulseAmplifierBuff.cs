@@ -1,6 +1,6 @@
-﻿using InfernalEclipseAPI.Core.Systems;
-using ThoriumMod;
+﻿using ThoriumMod;
 using Microsoft.Xna.Framework;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Accessories
 {

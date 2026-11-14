@@ -3,6 +3,7 @@ using MonoMod.RuntimeDetour;
 using Microsoft.Xna.Framework;
 using SOTS;
 using CalamityMod.Events;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Core.Systems.BossChanges.ILBossChanges
 {

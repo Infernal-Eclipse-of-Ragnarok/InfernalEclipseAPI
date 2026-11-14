@@ -5,7 +5,7 @@ using CalamityMod.Items.Placeables;
 using InfernalEclipseAPI.Content.Items.Other;
 using InfernalEclipseAPI.Content.Items.Weapons.Magic.ChaosBlaster;
 using InfernalEclipseAPI.Core.DamageClasses.MythicClass;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using Microsoft.Xna.Framework;
 using NoxusBoss.Content.Rarities;
 using NoxusBoss.Content.Tiles;

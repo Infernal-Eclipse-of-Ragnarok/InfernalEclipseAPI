@@ -1,7 +1,8 @@
 ﻿using CalamityMod.Items.Materials;
 using CalamityMod.Items.Potions;
+using InfernalEclipseAPI.Common.Balance.Recipes;
 using InfernalEclipseAPI.Core.Configs;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Common.Balance.Calamity
 {
@@ -196,7 +197,7 @@ namespace InfernalEclipseAPI.Common.Balance.Calamity
                     if (num == thorium.Find<ModItem>("KineticPotion").Type)
                         recipe.AddIngredient(ItemID.BlackPearl);
                     recipe.AddTile(TileID.AlchemyTable);
-                    recipe.AddCondition(Condition.DownedSkeletron);
+                    recipe.AddCondition(InfernalRecipeSystem.SkeletronOrHardmode);
                     recipe.Register();
                 }
             }

@@ -1,5 +1,5 @@
 ﻿using CalamityMod.Items.Materials;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Content.Items.Materials
 {

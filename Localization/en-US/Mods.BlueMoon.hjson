@@ -3,8 +3,8 @@ Items: {
 		DisplayName: Ring of the Mint Moon
 		Tooltip:
 			'''
-			Gives the [cbuff:BlueMoon/MintyFreshnessBuff] Buff
-			Increasing damage and movement speed by 7%
+			Grants the [cbuff:BlueMoon/MintyFreshnessBuff] Buff
+			[c/A8FFD4:Increasing damage and movement speed by 7%]
 			'''
 	}
 
@@ -12,8 +12,8 @@ Items: {
 		DisplayName: Ring of the Cherry Moon
 		Tooltip:
 			'''
-			Gives the [cbuff:BlueMoon/FloralBlessingBuff] Buff
-			Granting +2HP/s life regeneration
+			Grants the [cbuff:BlueMoon/FloralBlessingBuff] Buff
+			[c/DE3163:Granting +2HP/s life regeneration]
 			'''
 	}
 
@@ -21,8 +21,8 @@ Items: {
 		DisplayName: Ring of the Blue Moon
 		Tooltip:
 			'''
-			Gives the [cbuff:BlueMoon/LunarEmpowermentBuff] Buff
-			Increasing the luck of the wearer, moreso in hardmode
+			Grants the [cbuff:BlueMoon/LunarEmpowermentBuff] Buff
+			[c/1F75FE:Increasing the luck of the wearer, moreso in hardmode]
 			'''
 	}
 
@@ -30,8 +30,8 @@ Items: {
 		DisplayName: Ring of the Harvest Moon
 		Tooltip:
 			'''
-			Gives the [cbuff:BlueMoon/BountifulHarvestBuff] Buff
-			Increasing the amount of coins dropped by enemies by x1.5, x2 in hardmode
+			Grants the [cbuff:BlueMoon/BountifulHarvestBuff] Buff
+			[c/DA9100:Increasing the amount of coins dropped by enemies by x1.5, x2 in hardmode]
 			'''
 	}
 
@@ -40,10 +40,10 @@ Items: {
 		Tooltip:
 			'''
 			You are blessed by the power of all enchanted moons
-			Increasing damage and movement speed by 7%
-			Granting +2HP/s life regeneration
-			Increasing the luck of the wearer, moreso in hardmode
-			Increasing the amount of coins dropped by enemies by x1.5, x2 in hardmode
+			[c/A8FFD4:Increasing damage and movement speed by 7%]
+			[c/DE3163:Granting +2HP/s life regeneration]
+			[c/1F75FE:Increasing the luck of the wearer, moreso in hardmode]
+			[c/DA9100:Increasing the amount of coins dropped by enemies by x1.5, x2 in hardmode]
 			'''
 	}
 }

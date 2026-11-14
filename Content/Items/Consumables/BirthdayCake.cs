@@ -1,5 +1,4 @@
 ﻿using CalamityMod;
-using InfernalEclipseAPI.Core.Systems;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.Audio;
 using Microsoft.Xna.Framework;
@@ -7,6 +6,7 @@ using CalamityMod.Buffs.StatBuffs;
 using CalamityMod.Items;
 using System.Collections.Generic;
 using Terraria.Localization;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Content.Items.Consumables
 {

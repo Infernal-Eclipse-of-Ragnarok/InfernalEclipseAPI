@@ -2,7 +2,7 @@
 using CalamityHunt.Content.NPCs.Bosses.GoozmaBoss;
 using CalamityMod.Projectiles.Ranged;
 using InfernalEclipseAPI.Core.Configs;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using InfernalEclipseAPI.Core.Utils;
 using NoxusBoss.Content.NPCs.Bosses.Avatar.FirstPhaseForm;
 using NoxusBoss.Content.NPCs.Bosses.Avatar.SecondPhaseForm;

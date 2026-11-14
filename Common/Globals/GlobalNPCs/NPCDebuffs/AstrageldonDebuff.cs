@@ -3,7 +3,7 @@ using CatalystMod.NPCs.Boss.Astrageldon;
 using InfernalEclipseAPI.Content.Buffs;
 using InfernalEclipseAPI.Core.Configs;
 using InfernalEclipseAPI.Core.Players;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 
 namespace InfernalEclipseAPI.Common.GlobalNPCs.NPCDebuffs

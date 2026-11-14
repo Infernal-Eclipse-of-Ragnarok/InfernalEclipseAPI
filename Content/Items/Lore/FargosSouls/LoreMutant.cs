@@ -5,8 +5,8 @@ using CalamityMod.Items.LoreItems;
 using Microsoft.Xna.Framework.Graphics;
 using Luminance.Core.Graphics;
 using Microsoft.Xna.Framework;
-using InfernalEclipseAPI.Core.Systems;
 using InfernalEclipseAPI.Core.Configs;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Content.Items.Lore.FargosSouls
 {

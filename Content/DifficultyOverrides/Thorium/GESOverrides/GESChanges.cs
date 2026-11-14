@@ -1,7 +1,7 @@
 ﻿using CalamityMod;
 using CalamityMod.World;
 using InfernalEclipseAPI.Core.Configs;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using InfernumMode.Core.GlobalInstances.Systems;
 using Terraria.DataStructures;
 using ThoriumMod.NPCs.BossGraniteEnergyStorm;

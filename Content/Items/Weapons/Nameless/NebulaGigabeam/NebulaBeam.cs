@@ -1,11 +1,11 @@
-﻿using InfernalEclipseAPI.Core.Systems;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using NoxusBoss.Core.BaseEntities;
 using Luminance.Core.Graphics;
 using InfernalEclipseAPI.Core.Graphics.Automators;
 using CalamityMod;
 using Terraria.DataStructures;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Content.Items.Weapons.Nameless.NebulaGigabeam
 {

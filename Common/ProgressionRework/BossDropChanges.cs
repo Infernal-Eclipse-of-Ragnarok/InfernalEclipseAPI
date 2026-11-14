@@ -5,7 +5,7 @@ namespace InfernalEclipseAPI.Common.ProgressionRework
 {
     public class BossDropChanges : GlobalNPC
     {
-        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
+        public override void ModifyNPCLoot(NPC npc, Terraria.ModLoader.NPCLoot npcLoot)
         {
             if (ModLoader.TryGetMod("SOTS", out Mod sots))
             {

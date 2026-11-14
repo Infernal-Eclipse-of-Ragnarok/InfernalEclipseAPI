@@ -2,7 +2,7 @@
 using CalamityMod.Buffs.StatBuffs;
 using CalamityMod.Cooldowns;
 using CalamityMod.Items.Armor.Silva;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using InfernumMode.Content.Cooldowns;
 using InfernumMode.Content.Items.Accessories;
 using InfernumMode.Content.Items.Weapons.Melee;

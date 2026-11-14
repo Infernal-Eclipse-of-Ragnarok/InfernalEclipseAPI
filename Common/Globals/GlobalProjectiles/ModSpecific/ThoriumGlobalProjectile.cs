@@ -4,12 +4,12 @@ using CalamityMod.Projectiles.Melee;
 using CalamityMod;
 using Terraria;
 using Terraria.DataStructures;
-using InfernalEclipseAPI.Core.Systems;
 using ThoriumMod.Projectiles.Thrower;
 using System.Collections.Generic;
 using Terraria.Audio;
 using Microsoft.Xna.Framework;
 using InfernalEclipseAPI.Core.Configs;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalProjectiles.ModSpecific
 {
@@ -148,7 +148,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalProjectiles.ModSpecific
                 {
                     if (projectile.ModProjectile is ThoriumProjectile thoriumProj)
                     {
-                        thoriumProj.lifeStealHealer = 2;
+                        thoriumProj.lifeStealHealer = 0;
                     }
                 }
 
@@ -162,7 +162,114 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalProjectiles.ModSpecific
                         if (projectile.ModProjectile is ThoriumProjectile thoriumProj)
                         {
                             projectile.ai[2] = -1f;
+
+                            if (projectile.owner < 0 || projectile.owner >= Main.maxPlayers)
+                                return;
+
+                            if (SpearTipCooldown.SpearTipSpawnCooldown[projectile.owner] > 0)
+                            {
+                                projectile.active = false;
+                                return;
+                            }
+
+                            SpearTipCooldown.SpearTipSpawnCooldown[projectile.owner] = 10;
                         }
+                    }
+
+                    if (projectile.type == silverSpearTipProj)
+                    {
+                        if (projectile.velocity != Vector2.Zero)
+                            projectile.velocity =
+                                projectile.velocity.SafeNormalize(Vector2.Zero) * 8f;
+                    }
+                    else if (projectile.type == moltenSpearTipProj)
+                    {
+                        if (projectile.velocity != Vector2.Zero)
+                            projectile.velocity =
+                                projectile.velocity.SafeNormalize(Vector2.Zero) * 10f;
+                    }
+                    else if (projectile.type == crystalSpearTipProj)
+                    {
+                        if (projectile.velocity != Vector2.Zero)
+                            projectile.velocity =
+                                projectile.velocity.SafeNormalize(Vector2.Zero) * 8f;
+                    }
+                }
+
+                if (ModLoader.TryGetMod("ThoriumRework", out Mod helheim))
+                {
+                    if (!helheim.TryFind("SpearExtraSpore", out ModProjectile sporeSpearTipProj))
+                        return;
+
+                    int electronSpearTipProj = helheim.Find<ModProjectile>("SpearExtraElectronWave")?.Type ?? -1;
+
+                    if (projectile.type == electronSpearTipProj)
+                    {
+                        if (projectile.owner < 0 || projectile.owner >= Main.maxPlayers)
+                            return;
+
+                        if (SpearTipCooldown.SpearTipSpawnCooldown[projectile.owner] > 0)
+                        {
+                            projectile.active = false;
+                            return;
+                        }
+
+                        SpearTipCooldown.SpearTipSpawnCooldown[projectile.owner] = 10;
+                    }
+
+                    if (projectile.type == sporeSpearTipProj.Type)
+                    {
+                        if (projectile.owner < 0 || projectile.owner >= Main.maxPlayers)
+                            return;
+
+                        if (SpearTipCooldown.SpearTipSpawnCooldown[projectile.owner] > 0 && projectile.ai[1] == 0)
+                        {
+                            projectile.active = false;
+                            return;
+                        }
+
+                        SpearTipCooldown.SpearTipSpawnCooldown[projectile.owner] = 10;
+                    }
+
+                    if (projectile.type == electronSpearTipProj)
+                    {
+                        if (projectile.velocity != Vector2.Zero)
+                            projectile.velocity =
+                                projectile.velocity.SafeNormalize(Vector2.Zero) * 14f;
+                    }
+                }
+
+                //Infernal Arsenal
+                if (ModLoader.TryGetMod("InfernalEclipseWeaponsDLC", out Mod arsenal))
+                {
+                    int arcticSpearTipProj = arsenal.Find<ModProjectile>("CryonicSpearTip")?.Type ?? -1;
+                    int searingSpearTipProj = arsenal.Find<ModProjectile>("HydrogenSulfideProj")?.Type ?? -1;
+
+                    if (projectile.type == arcticSpearTipProj || projectile.type == searingSpearTipProj)
+                    {
+                        if (projectile.owner < 0 || projectile.owner >= Main.maxPlayers)
+                            return;
+
+                        if (SpearTipCooldown.SpearTipSpawnCooldown[projectile.owner] > 0)
+                        {
+                            projectile.active = false;
+                            return;
+                        }
+
+                        SpearTipCooldown.SpearTipSpawnCooldown[projectile.owner] = 10;
+                    }
+
+                    if (projectile.type == arcticSpearTipProj)
+                    {
+                        if (projectile.velocity != Vector2.Zero)
+                            projectile.velocity =
+                                projectile.velocity.SafeNormalize(Vector2.Zero) * 8f;
+                    }
+                    if (projectile.type == searingSpearTipProj)
+                    {
+                        if (projectile.velocity != Vector2.Zero)
+                            projectile.velocity =
+                                projectile.velocity.SafeNormalize(Vector2.Zero) * 14f;
                     }
                 }
 
@@ -295,6 +402,20 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalProjectiles.ModSpecific
             if (projectile.type == ModContent.ProjectileType<OmniArrow3>())
             {
                 modifiers.DisableCrit();
+            }
+        }
+    }
+
+    public class SpearTipCooldown : ModSystem
+    {
+        public static int[] SpearTipSpawnCooldown = new int[Main.maxPlayers];
+
+        public override void PostUpdateEverything()
+        {
+            for (int i = 0; i < Main.maxPlayers; i++)
+            {
+                if (SpearTipSpawnCooldown[i] > 0)
+                    SpearTipSpawnCooldown[i]--;
             }
         }
     }

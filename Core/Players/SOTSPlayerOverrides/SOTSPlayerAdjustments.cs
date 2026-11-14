@@ -1,7 +1,7 @@
 ﻿using CalamityMod;
 using CalamityMod.CalPlayer;
 using InfernalEclipseAPI.Core.Configs;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using Microsoft.Xna.Framework;
 using SOTS;
 using SOTS.Common.ModPlayers;

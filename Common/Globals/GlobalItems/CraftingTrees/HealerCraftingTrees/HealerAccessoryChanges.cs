@@ -104,26 +104,28 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.HealerCraftingTree
 
             if (ThoriumRework != null)
             {
-                
-                if (item.type == ThoriumRework.Find<ModItem>("SealedContract").Type)
+                if (ThoriumRework.TryFind("SealedContract", out ModItem sealedContract))
                 {
-                    foreach (TooltipLine tooltip in tooltips)
+                    if (item.type == sealedContract.Type)
                     {
-                        if (tooltip.Text.Contains(Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.SealedContract.OrigTooltip1")))
+                        foreach (TooltipLine tooltip in tooltips)
                         {
-                            if (SOTSBardHealer != null)
+                            if (tooltip.Text.Contains(Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.SealedContract.OrigTooltip1")))
                             {
-                                tooltip.Text = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.SerpentsTongue");
-                                tooltip.OverrideColor = new Color?(InfernalRed);
+                                if (SOTSBardHealer != null)
+                                {
+                                    tooltip.Text = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.SerpentsTongue");
+                                    tooltip.OverrideColor = new Color?(InfernalRed);
+                                }
+                                else
+                                {
+                                    //tooltip.Text = null;
+                                }
                             }
-                            else
+                            if (tooltip.Text.Contains(Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.SealedContract.OrigTooltip2")))
                             {
-                                //tooltip.Text = null;
+                                tooltip.Text = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.ContractNerf");
                             }
-                        }
-                        if (tooltip.Text.Contains(Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.SealedContract.OrigTooltip2")))
-                        {
-                            tooltip.Text = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.ContractNerf");
                         }
                     }
                 }

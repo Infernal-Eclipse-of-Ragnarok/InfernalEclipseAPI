@@ -17,6 +17,7 @@
 	<ItemGroup>
 		<Folder Include="Assets\Sounds\Custom\TerraBlade\" />
 		<Folder Include="Assets\Textures\Symbols\" />
+		<Folder Include="Content\DifficultyOverrides\Calamity\Infernum\GolemOverrides\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <None Include="Content\Cooldowns\LucidRetaliation.cs" />

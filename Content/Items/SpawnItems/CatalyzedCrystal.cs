@@ -1,5 +1,5 @@
 ﻿using CalamityMod.Events;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using SOTS.Items.Celestial;
 using SOTS.NPCs.Boss;
 using Terraria.Audio;

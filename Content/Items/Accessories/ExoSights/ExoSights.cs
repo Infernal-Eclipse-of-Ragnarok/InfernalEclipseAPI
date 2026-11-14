@@ -9,10 +9,10 @@ using Terraria.Localization;
 using SOTS.Items.CritBonus;
 using CalamityMod.Items.Materials;
 using CalamityMod.Tiles.Furniture.CraftingStations;
-using InfernalEclipseAPI.Core.Systems;
 using InfernalEclipseAPI.Core.Players;
 using Microsoft.Xna.Framework.Input;
 using InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Content.Items.Accessories.ExoSights
 {

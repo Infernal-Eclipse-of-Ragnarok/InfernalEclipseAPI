@@ -12,7 +12,7 @@
 	[*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2864843929]Consolaria[/url]
 [/list]
 
-运行本API必需的模组为灾厄、炼狱模式、Revengeance+、You、跨模组投手融合以及它们的所有依赖项
+运行本API必需的模组为灾厄、炼狱模式、Revengeance+、跨模组投手融合、InfernumSOTSSanctuaryAdjuster、SubworldLibrary和Luminance，以及它们的所有依赖项
 
 本API当前新增功能包括：
 [list]
@@ -31,7 +31,7 @@
 它还包括一些内置系统，例如：
 [list]
 	[*] 一个新的盗贼/投掷职业合并系统，支持跨模组投掷武器的自定义潜伏攻击，需搭配[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3535746309] 跨模组投手融合 [/url]使用
-	[*] 一个全新且高度可配置的多人重生系统，可在 Boss 战中设定每位玩家的重生次数（在炼狱模式下默认为 1 次重生）
+	[*] 一个全新且高度可配置的多人重生系统，可在 Boss 战中设定每位玩家的重生次数（在炼狱及更高难度下默认为 1 次重生）
 	[*] 一个可锁定灾厄难度的系统
 	[*] 一个允许在击败月亮领主后依然可以召唤末世星史莱姆的系统
 [/list]
@@ -52,12 +52,13 @@
 [list]
 	[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3485175010]诸神黄昏：炼狱蚀光武器DLC[/url]，一个为本模组添加大量额外物品的DLC扩展
 	[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3557455275&searchtext=Homeward+Ragnarok]旅人黄昏[/url]，一个为本模组添加旅人归途兼容的DLC
+	[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3754984294]蚀光救赎[/url]，一个为本模组添加救赎兼容的官方DLC
 	[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3452171528&searchtext=tpackbuilder]WHummus的灾厄/瑟银平衡[/url]，本扩展中大部分物品平衡调整出自该模组并由其作者设计！（已内置在炼狱蚀光中无需再次安装）
 [/list]
 
 特别感谢[b]灾厄[/b]、[b]Fargo魂[/b]、[b]Bereft Souls[/b]以及[b]社区魂石拓展[/b]团队，以及所有捐助者，还有整合包中每一个模组的开发者们，正是你们让这一切成为可能。
 
-镰刀投掷代码由[url=https://steamcommunity.com/profiles/76561199125907379] N0t_UNowen [/url]提供。
+部分代码由[url=https://steamcommunity.com/profiles/76561199125907379] N0t_UNowen [/url]与Nicole提供
 
 诸神黄昏：炼狱蚀光团队成员
 [list]
@@ -65,8 +66,8 @@
 	[*]设计师：Wardrobe Hummus，Yob，Tyr，ma3allim
 	[*]背景故事：Akira，Yob
 	[*]Wiki编写：Akira，Wardrobe Hummus，Soltan，Arkangel
-	[*]贡献者：cheesenuggets，Pudd1ng，Pixus，Nicole，Dandel，Ropro，JalapenoDance,
-	[*]美术：Prime，Pixus，Yelmut，ma3allim，pil，Tyr，JuJiao，Leo，IceSpider，yfn，Dandel，Uncle Sciz，ABrickToTheHead
+	[*]贡献者：cheesenuggets，Pudd1ng，Pixus，Dandel，Ropro，JalapenoDance，Mr. Puzzles，Arkangel
+	[*]美术：Prime，Pixus，Yelmut，ma3allim，pil，Tyr，JuJiao，Leo，IceSpider，yfn，Dandel，Uncle Sciz，ABrickToTheHead，Mr. Puzzles
 	[*]作曲：PFungi，Techhy
 	[*]本地化：Pudd1ng（简体中文），Kraken（俄语）
 [/list]
@@ -74,12 +75,12 @@
 感谢以下作者的音乐
 [list]
 	[*]Brimston Premium：《Seahorse Scrutiny (Rebirth)》和《Unholy Finality》
-	[*]CDMusic：《Ensemble of Fools (Encore Mix)》
+	[*]CDMusic：《Ensemble of Fools (Encore Mix)》和《Onslaught of Beasts (Encore Mix)》
 	[*]DM DOKURO：《Last Battle (Ballos Mix)》
 	[*]Kuudray：《TWISTED GARDEN [Remix]》
 	[*]PFungi：《Teardrops of Dragonfire》
-	[*]psykomatic：《Descent Of Divinities》
-	[*]Techhy：《Dead Kingdom's Champion》
+	[*]Techhy：《Infernal Thunder Bird》、《Mutant Majesty》、《Stonewarden》和《Dead Kingdom's Champion》
+	[*]Techhy和PFungi：《Carotid Crypt》
 	[*]TheTrester：《Omiscience Of Gods》和《Arsenal》
 	[*]theforge128：《Calamity before the Cynosure》
 [/list]

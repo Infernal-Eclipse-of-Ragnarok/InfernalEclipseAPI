@@ -2,6 +2,7 @@
 using System.Reflection;
 using InfernalEclipseAPI.Core.Configs;
 using InfernalEclipseAPI.Core.Players;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using InfernalEclipseAPI.Core.Utils;
 using MonoMod.RuntimeDetour;
 using SOTS;

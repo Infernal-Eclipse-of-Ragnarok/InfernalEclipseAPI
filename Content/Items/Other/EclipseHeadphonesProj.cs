@@ -1,6 +1,6 @@
 ﻿using CalamityMod;
 using InfernalEclipseAPI.Common.GlobalNPCs.NPCDebuffs;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using InfernalEclipseAPI.Core.World;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -208,6 +208,26 @@ namespace InfernalEclipseAPI.Content.Items.Other
                 HoverTextColor = () => new(205, 150, 255),
                 UnlockCondition = () => InfernalCrossmod.Thorium.Loaded ? (bool)InfernalCrossmod.Thorium.Mod.Call("GetDownedBoss", "QueenJellyfish") : false,
                 BossIconTexture = InfernalCrossmod.Thorium.Loaded ? InfernalCrossmod.Thorium.Mod.Assets.Request<Texture2D>("NPCs/BossQueenJellyfish/QueenJellyfish_Head_Boss") : TextureAssets.MagicPixel,
+                RequiresThorium = true
+            },
+
+            new()
+            {
+                HoverText = Language.GetTextValue($"Mods.InfernalEclipseAPI.BossName.Viscount"),
+                TrackName = "VampiricVitality",
+                HoverTextColor = () => new(205, 150, 255),
+                UnlockCondition = () => InfernalCrossmod.Thorium.Loaded ? (bool)InfernalCrossmod.Thorium.Mod.Call("GetDownedBoss", "Viscount") : false,
+                BossIconTexture = InfernalCrossmod.Thorium.Loaded ? InfernalCrossmod.Thorium.Mod.Assets.Request<Texture2D>("NPCs/BossViscount/Viscount_Head_Boss") : TextureAssets.MagicPixel,
+                RequiresThorium = true
+            },
+
+            new()
+            {
+                HoverText = Language.GetTextValue($"Mods.InfernalEclipseAPI.BossName.GraniteEnergyStorm"),
+                TrackName = "Stonewarden",
+                HoverTextColor = () => new(205, 150, 255),
+                UnlockCondition = () => InfernalCrossmod.Thorium.Loaded ? (bool)InfernalCrossmod.Thorium.Mod.Call("GetDownedBoss", "GraniteEnergyStorm") : false,
+                BossIconTexture = InfernalCrossmod.Thorium.Loaded ? InfernalCrossmod.Thorium.Mod.Assets.Request<Texture2D>("NPCs/BossGraniteEnergyStorm/GraniteEnergyStorm_Head_Boss") : TextureAssets.MagicPixel,
                 RequiresThorium = true
             },
 

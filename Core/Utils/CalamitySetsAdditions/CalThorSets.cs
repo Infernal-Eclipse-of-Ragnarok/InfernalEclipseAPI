@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using CalamityMod.Systems.Collections;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using ThoriumMod.Projectiles;
 
 namespace InfernalEclipseAPI.Core.Utils.CalamitySetsAdditions

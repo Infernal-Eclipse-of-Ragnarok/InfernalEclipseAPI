@@ -1,9 +1,6 @@
 ﻿using InfernalEclipseAPI.Content.Items.Placeables.Relics;
-using Terraria.DataStructures;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.Localization;
-using Terraria.ID;
-using Terraria.ModLoader;
 using CalamityMod;
 using InfernumMode.Core.GlobalInstances.Systems;
 
@@ -11,15 +8,12 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.LootAdjustments
 {
     public class VanillaLootAdjustments : GlobalNPC
     {
-        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
+        public override void ModifyNPCLoot(NPC npc, Terraria.ModLoader.NPCLoot npcLoot)
         {
             if (npc.type == NPCID.BloodNautilus)
             {
                 npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<DreadnautilusRelic>()));
-                npcLoot.Add(ItemDropRule.ByCondition(
-                    new RevengenceMode(),
-                    ModContent.ItemType<DreadnautilusRelic>(),
-                    1, 1, 1, 1));
+                npcLoot.Add(ItemDropRule.ByCondition(new RevengenceMode(), ModContent.ItemType<DreadnautilusRelic>(), 1, 1, 1, 1));
             }
 
             if (ModLoader.TryGetMod("HypnosMod", out Mod hypnos))
@@ -27,10 +21,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.LootAdjustments
                 if (npc.type == hypnos.Find<ModNPC>("HypnosBoss").Type)
                 {
                     npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<HypnosRelic>()));
-                    npcLoot.Add(ItemDropRule.ByCondition(
-                        new RevengenceMode(),
-                        ModContent.ItemType<HypnosRelic>(),
-                        1, 1, 1, 1));
+                    npcLoot.Add(ItemDropRule.ByCondition(new RevengenceMode(), ModContent.ItemType<HypnosRelic>(), 1, 1, 1, 1));
                     npcLoot.AddIf(() => WorldSaveSystem.InfernumModeEnabled, ModContent.ItemType<InfernalHypnosRelic>());
                 }
             }
@@ -47,8 +38,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.LootAdjustments
                 );
 
                 // Gate drops behind Eye of Cthulhu
-                LeadingConditionRule eyeGate =
-                    new LeadingConditionRule(new DownedEyeOfCthulhu());
+                LeadingConditionRule eyeGate = new LeadingConditionRule(new DownedEyeOfCthulhu());
 
                 // 0.33% chance ≈ 1 / 300
                 eyeGate.OnSuccess(ItemDropRule.OneFromOptions(
@@ -126,7 +116,6 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.LootAdjustments
 
         public bool CanShowItemDropInUI() => true;
 
-        public string GetConditionDescription()
-            => "Drops after the Eye of Cthulhu has been defeated";
+        public string GetConditionDescription() => "Drops after the Eye of Cthulhu has been defeated";
     }
 }

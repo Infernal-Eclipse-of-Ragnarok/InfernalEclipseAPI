@@ -1,0 +1,84 @@
+{
+  "Revision": 1,
+  "DefaultColor": "FFA500",
+  "DefaultSpeaker": "SupremeCalamitas",
+  "AlignType": 1,
+  "TextDelay": 2,
+  "BasePunctuationDelay": {
+    "Delay": 10,
+    "ForceSet": false,
+    "Locks": false
+  },
+  "PunctuationDelayCap": 30,
+  "PunctuationDelays": {
+    "!": {
+      "Delay": 20,
+      "ForceSet": true,
+      "Locks": true
+    },
+    "?": {
+      "Delay": 20,
+      "ForceSet": true,
+      "Locks": true
+    }
+  },
+  "Pages": [
+    {
+      "Lines": [
+        "[Scale(1.5):[Colors(2, 0.5, FFA500, FF0000):如果你想感受一下四级烫伤的话]]",
+        "[Scale(1.5):[Colors(2, 0.5, FFA500, FF0000):你可算是找对人了]]"
+      ]
+    },
+    {
+      "Lines": [
+        "[Scale(1.5):[Colors(2, 0.5, FFA500, FF4500):他日若你魂销魄散，你会介意我将你的骨头和血肉融入我的造物中吗？]]"
+      ]
+    },
+    {
+      "Lines": [
+        "[Scale(1.5):[Colors(2, 0.5, FFA500, FF4500):你离胜利还差得远着呢]]"
+      ]
+    },
+    {
+      "Lines": [
+        "[Scale(1.5):[Colors(2, 0.5, FFA500, FF4500):自我上一次能在如此有趣的靶子假人身上测试我的魔法，已经过了很久了]]"
+      ]
+    },
+    {
+      "Lines": [
+        "[Scale(1.5):[Colors(2, 0.5, FFA500, FF0000):只是单有过去形态的空壳罢了]]",
+        "[Scale(1.5):[Colors(2, 0.5, FFA500, FF0000):恐怕连一丝灵魂都没有留下]]"
+      ]
+    },
+    {
+      "Lines": [
+        "[Scale(1.5):[Colors(2, 0.5, FFA500, FF0000):再一次，我们开始吧]]"
+      ]
+    },
+    {
+      "Lines": [
+        "[Scale(1.5):[Colors(2, 0.5, FFA500, FF0000):我挺好奇，自我们第一次交手后，你是否有在梦魇中见到过这些？]]"
+      ]
+    },
+    {
+      "Lines": [
+        "[Scale(1.5):[Colors(2, 0.5, FFA500, FF0000):起码你的技术没有退步]]"
+      ]
+    },
+    {
+      "Lines": [
+        "[Scale(1.5):[Colors(2, 0.5, FFA500, FF0000):这难道不令人激动么？]]"
+      ]
+    },
+    {
+      "Lines": [
+        "[Colors(2, 0.5, FFA500, FF0000):[Shaking(1.5):[Scale(1.5):那么，见识一下我的最后一击！]]]"
+      ]
+    },
+    {
+      "Lines": [
+        "[Scale(1.5):……恭喜你]"
+      ]
+    }
+  ]
+}

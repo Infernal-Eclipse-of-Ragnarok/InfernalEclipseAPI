@@ -1,5 +1,5 @@
 ﻿using System.Security.Policy;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using RagnarokMod.Utils;
 using Terraria.Audio;
 using Terraria.DataStructures;

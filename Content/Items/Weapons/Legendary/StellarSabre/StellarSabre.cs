@@ -34,11 +34,11 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.StellarSabre
         public override void ModifyWeaponDamage(Player player, ref StatModifier damage)
         {
             if (NPC.downedMoonlord)
-                damage += 3.75f;
+                damage += 2.25f;
             else if (NPC.downedAncientCultist)
                 damage += 2.00f;
             else if (NPC.downedGolemBoss)
-                damage += 1.35f;
+                damage += 2.00f;
             else if (NPC.downedPlantBoss)
                 damage += 2.75f;
             else if (NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3)
@@ -110,9 +110,6 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.StellarSabre
         {
             Color lerpedColor = Color.Lerp(Color.White, new Color(30, 144, 255), (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5));
 
-            TooltipLine line4 = new(Mod, "Lore", Language.GetTextValue("Mods.InfernalEclipseAPI.Items.StellarSabre.Lore"));
-            tooltips.Add(line4);
-
             if (!NPC.downedMoonlord)
             {
                 TooltipLine line3 = new(Mod, "Progression2", Language.GetTextValue("Mods.InfernalEclipseAPI.LegendaryTooltip.Base"));
@@ -136,6 +133,9 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.StellarSabre
                 line5.OverrideColor = lerpedColor;
                 tooltips.Add(line5);
             }
+
+            TooltipLine line4 = new(Mod, "Lore", Language.GetTextValue("Mods.InfernalEclipseAPI.Items.StellarSabre.Lore"));
+            tooltips.Add(line4);
         }
 
         private string GetProgressionTooltip()

@@ -5,6 +5,7 @@ using Terraria.Localization;
 using InfernalEclipseAPI.Core.Utils;
 using SOTS.Items.ChestItems;
 using InfernalEclipseAPI.Core.Configs;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 
 namespace InfernalEclipseAPI.Core.Systems.Hooks.ILItemChanges.SOTSItemHooks

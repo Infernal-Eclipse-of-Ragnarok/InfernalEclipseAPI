@@ -1,13 +1,14 @@
 ﻿using Terraria.ModLoader.IO;
 using System.IO;
 using CalamityMod.UI;
-using InfernalEclipseAPI.Core.Systems;
 using InfernumMode.Core.GlobalInstances.Systems;
 using CalamityMod.Events;
 using InfernalEclipseAPI.Core.Systems.BossRush;
 using SubworldLibrary;
 using InfernalEclipseAPI.Content.Items.Other;
 using InfernalEclipseAPI.Core.Configs;
+using Microsoft.Xna.Framework;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Core.World
 {
@@ -101,6 +102,30 @@ namespace InfernalEclipseAPI.Core.World
             }
         }
 
+        private static float dimnessFade;
+        public override void ModifySunLightColor(ref Color tileColor, ref Color backgroundColor)
+        {
+            if (Main.gameMenu)
+                return;
+
+            if (NPC.AnyNPCs(NPCID.HallowBoss) && RagnarokModeEnabled)
+            {
+                if (dimnessFade < 1f)
+                    dimnessFade += 0.01f;
+            }
+            else if (dimnessFade > 0f)
+                dimnessFade -= 0.01f;
+
+            dimnessFade = Clamp(dimnessFade, 0f, 1f);
+
+            // Same darkness/color used by Lux.
+            float strength = 0.96f * dimnessFade;
+            Color darknessColor = new(15, 0, 30);
+
+            backgroundColor = Color.Lerp(backgroundColor, darknessColor, strength);
+            tileColor = Color.Lerp(tileColor, darknessColor, strength);
+        }
+
         public override void OnWorldLoad()
         {
             ResetFlags();
@@ -116,6 +141,8 @@ namespace InfernalEclipseAPI.Core.World
         public override void OnWorldUnload()
         {
             ResetFlags();
+
+            dimnessFade = 0f;
         }
 
         public override void SaveWorldData(TagCompound tag)

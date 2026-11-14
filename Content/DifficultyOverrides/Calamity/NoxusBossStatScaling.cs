@@ -3,7 +3,7 @@ using System.Reflection;
 using CalamityMod;
 using CalamityMod.Buffs.StatDebuffs;
 using InfernalEclipseAPI.Common.Globals.GlobalNPCs;
-using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 using InfernalEclipseAPI.Core.World;
 using InfernumMode.Core.GlobalInstances.Systems;
 using NoxusBoss.Content.NPCs.Bosses.Avatar.Projectiles;

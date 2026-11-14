@@ -9,10 +9,10 @@ using ThoriumMod.Items.Misc;
 using MonoMod.RuntimeDetour;
 using System.Reflection;
 using SOTS;
-using InfernalEclipseAPI.Core.Systems;
 using ThoriumMod.Items.ZRemoved;
 using Terraria.Localization;
 using ThoriumMod.Core.Handlers.HoverItemHandler;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Content.Items.SpawnItems
 {
@@ -214,6 +214,7 @@ namespace InfernalEclipseAPI.Content.Items.SpawnItems
             return orig(self, i, j);
         }
 
+        public static bool DownedExcavator => SOTSWorld.downedExcavator;
         public static bool DownedAdvisor => SOTSWorld.downedAdvisor;
         public static bool DownedPolaris => SOTSWorld.downedAmalgamation;
     }

@@ -1,6 +1,6 @@
 ﻿using CalamityMod.Items.LoreItems;
-using InfernalEclipseAPI.Core.Systems;
 using Consolaria.Content.Items.Placeable;
+using InfernalEclipseAPI.Core.Systems.Compatibility;
 
 namespace InfernalEclipseAPI.Content.Items.Lore.Consolaria
 {

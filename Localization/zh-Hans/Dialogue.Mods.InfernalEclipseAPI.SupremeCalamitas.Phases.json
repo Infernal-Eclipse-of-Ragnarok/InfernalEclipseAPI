@@ -1,0 +1,89 @@
+{
+  "Revision": 1,
+  "DefaultColor": "FFA500",
+  "DefaultSpeaker": "SupremeCalamitas",
+  "AlignType": 1,
+  "TextDelay": 2,
+  "BasePunctuationDelay": {
+    "Delay": 10,
+    "ForceSet": false,
+    "Locks": false
+  },
+  "PunctuationDelayCap": 30,
+  "PunctuationDelays": {
+    "!": {
+      "Delay": 20,
+      "ForceSet": true,
+      "Locks": true
+    },
+    "?": {
+      "Delay": 20,
+      "ForceSet": true,
+      "Locks": true
+    }
+  },
+  "Pages": [
+    {
+      "Lines": [
+        "[Scale(1.5):[Colors(2, 0.5, FFA500, FF4500):你享受地狱之旅么？]]"
+      ]
+    },
+    {
+      "Lines": [
+        "[Scale(1.5):[Colors(2, 0.5, FFA500, FF4500):真奇怪，你应该已经死了才对……]]"
+      ]
+    },
+    {
+      "Lines": [
+        "[Scale(1.5):[Colors(2, 0.5, FFA500, FF0000):距离你上次勉强才击败我的克隆体也没过多久]]",
+        "[Scale(1.5):[Colors(2, 0.5, FFA500, FF0000):那玩意就是个失败品，不是么？]]"
+      ]
+    },
+    {
+      "Lines": [
+        "[Scale(1.5):[Colors(2, 0.5, FFA500, FF0000):你驾驭着强大的力量]]",
+        "[Scale(1.5):[Colors(2, 0.5, FFA500, FF0000):但你使用这股力量只为了自己的私欲]]"
+      ]
+    },
+    {
+      "Lines": [
+        "[Scale(1.5):[Colors(2, 0.5, FFA500, FF0000):你想见见我的家人吗？]]",
+        "[Colors(2, 0.5, FFA500, FF0000):[Shaking:[Scale(1.5):[Pause(4):这副惨相……还合你的胃口吗？]]]]"
+      ]
+    },
+    {
+      "Lines": [
+        "[Scale(1.5):[Colors(2, 0.5, FFA500, FF0000):你将痛不欲生]]"
+      ]
+    },
+    {
+      "Lines": [
+        "[Scale(1.5):[Colors(2, 0.5, FFA500, FF0000):别想着逃跑]]",
+        "[Scale(1.5):[Colors(2, 0.5, FFA500, FF0000):只要你还活着，]][Colors(2, 0.5, FFA500, FF0000):[Shaking:[Scale(1.5):痛苦就不会离你而去]]]"
+      ]
+    },
+    {
+      "Lines": [
+        "[Scale(1.5):[Colors(2, 0.5, FFA500, FF0000):一个后起之人，只识杀戮与偷窃，但却以此得到力量]]",
+        "[Scale(1.5):[Colors(2, 0.5, FFA500, FF0000):我想想，这让我想起了谁……？]]"
+      ]
+    },
+    {
+      "Lines": [
+        "[Scale(1.5):[Colors(2, 0.5, FFA500, FF0000):这场战斗的输赢对你而言毫无意义！]]",
+        "[Colors(2, 0.5, FFA500, FF0000):[Shaking(1.5):[Scale(1.5):那你又有什么理由干涉这一切！]]]"
+      ]
+    },
+    {
+      "Lines": [
+        "[Scale(1.5):[Colors(2, 0.5, FFA500, FF0000):我们两人里只有一个可以活下来，但如果那个人是你]]",
+        "[Colors(2, 0.5, FFA500, FF0000):[Shaking(3):[Scale(1.5):这一切还有什么意义？！]]]"
+      ]
+    },
+    {
+      "Lines": [
+        "[Scale(1.5):……恭喜你]"
+      ]
+    }
+  ]
+}
