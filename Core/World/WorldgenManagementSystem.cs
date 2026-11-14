@@ -10,7 +10,6 @@ using SOTS.Items.Planetarium.Furniture;
 using SOTS.WorldgenHelpers;
 using Terraria.GameContent.Generation;
 using Terraria.WorldBuilding;
-using ThoriumMod.NPCs;
 
 namespace InfernalEclipseAPI.Core.World
 {
@@ -26,6 +25,17 @@ namespace InfernalEclipseAPI.Core.World
 
         public override void PostWorldGen()
         {
+            if (ModLoader.TryGetMod("Verdant", out Mod Verdant) && ModLoader.TryGetMod("Thorium", out Mod Thorium))
+            {
+                for (int i = 0; GenVars.orePatchX.Length > 0; i++)
+                {
+                    if (GenVars.orePatchX[i] == Verdant.Find<ModTile>("EmbeddedStoneAquamarine").Type)
+                    {
+                        WorldGen.PlaceTile(i, i, Thorium.Find<ModTile>("AquamarineStoneBlock").Type);
+                    }
+                }
+            }
+
             if (InfernalConfig.Instance.BossKillCheckOnOres)
             {
                 if (InfernalCrossmod.SOTS.Loaded)
