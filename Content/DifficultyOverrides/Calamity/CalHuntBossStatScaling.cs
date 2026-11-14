@@ -116,9 +116,9 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity
             {
                 if (npc.type == ModContent.NPCType<CrimulanGlopstrosity>())
                 {
-                    foreach (Player player in Main.player)
+                    foreach (Player player in Main.ActivePlayers)
                     {
-                        if (player.active && !player.dead && npc.WithinRange(player.Center, 5000f))
+                        if (!player.dead && npc.WithinRange(player.Center, 5000f))
                         {
                             player.AddBuff(ModContent.BuffType<CrimulanAura>(), 1);
                         }
@@ -128,9 +128,9 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity
 
                 if (npc.type == ModContent.NPCType<StellarGeliath>())
                 {
-                    foreach (Player player in Main.player)
+                    foreach (Player player in Main.ActivePlayers)
                     {
-                        if (player.active && !player.dead && npc.WithinRange(player.Center, 5000f))
+                        if (!player.dead && npc.WithinRange(player.Center, 5000f))
                         {
                             player.AddBuff(ModContent.BuffType<DoGExtremeGravity>(), 1);
                         }
