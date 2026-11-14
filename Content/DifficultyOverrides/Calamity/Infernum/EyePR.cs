@@ -146,8 +146,6 @@ namespace SlimeGodPR
 
             Player target = Main.player[npc.target];
 
-            attackTimer++;
-
             int directionTime = npc.life < npc.lifeMax * Phase4LifeRatio ? 90 : 120;
             int telegraphTime = npc.life < npc.lifeMax * Phase4LifeRatio ? 30 : 60;
 
@@ -177,7 +175,7 @@ namespace SlimeGodPR
                     npc.velocity *= 0.95f;
                     npc.rotation = npc.AngleTo(target.Center + target.velocity * predictionStrength) + MathHelper.ToRadians(270);
 
-                    if (attackTimer >= directionTime)
+                    if (attackTimer >= telegraphTime)
                     {
                         attackState++;
                         attackTimer = 0;
