@@ -254,7 +254,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                     Veridianaquamarine.AddCondition(Condition.InGraveyard);
                     Veridianaquamarine.Register();
                     //turn thorium aquamarine gemspark block into verdant aquamarine gemspark
-                    Recipe veridiangemsparkblock = Recipe.Create(Verdant.Find<ModItem>("<GemsparkAquamarineItem>").Type, 1);
+                    Recipe veridiangemsparkblock = Recipe.Create(Verdant.Find<ModItem>("GemsparkAquamarineItem").Type, 1);
                     veridiangemsparkblock.AddIngredient(thorium.Find<ModItem>("AquamarineGemsparkBlock"));
                     veridiangemsparkblock.AddTile(TileID.Anvils);
                     veridiangemsparkblock.AddCondition(Condition.InGraveyard);
@@ -316,7 +316,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                     aquaphaseconv.Register();
                     //aquamarine phaseblade conversion
                     Recipe aquaphaseblconv = Recipe.Create(Verdant.Find<ModItem>("AquamarinePhaseblade").Type,1);
-                    aquaphaseblconv.AddIngredient(thorium.Find<ModItem>("CyanPhaseblase"));
+                    aquaphaseblconv.AddIngredient(thorium.Find<ModItem>("CyanPhaseblade"));
                     aquaphaseblconv.AddTile(TileID.Anvils);
                     aquaphaseblconv.AddCondition(Condition.InGraveyard);
                     aquaphaseblconv.Register();
@@ -462,12 +462,15 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                 {
                     //yes? do all of this stuff
                     //Check for any of the blossom armor peices
-                    if (recipe.HasResult(Verdant.Find<ModItem>("VerdantChestplate")) || recipe.HasResult(Verdant.Find<ModItem>("VerdantHelm")) || recipe.HasResult(Verdant.Find<ModItem>("VerdantLeggings")))
+                    if (thorium != null)
                     {
-                        //Remove the anvil
-                        recipe.RemoveTile(TileID.Anvils);
-                        //Add the arcane armor fabricator
-                        recipe.AddTile(thorium.Find<ModTile>("ArcaneArmorFabricator"));
+                        if (recipe.HasResult(Verdant.Find<ModItem>("VerdantChestplate")) || recipe.HasResult(Verdant.Find<ModItem>("VerdantHelm")) || recipe.HasResult(Verdant.Find<ModItem>("VerdantLeggings")))
+                        {
+                            //Remove the anvil
+                            recipe.RemoveTile(TileID.Anvils);
+                            //Add the arcane armor fabricator
+                            recipe.AddTile(thorium.Find<ModTile>("ArcaneArmorFabricator"));
+                        }
                     }
 
                     //check for any peice of apoth armor
