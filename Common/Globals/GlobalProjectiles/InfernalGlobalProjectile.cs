@@ -1,4 +1,5 @@
 ﻿using CalamityMod.Buffs.DamageOverTime;
+using CalamityMod.Projectiles;
 using CalamityMod.Projectiles.Healing;
 using InfernalEclipseAPI.Core.Systems.Compatibility;
 using Microsoft.Xna.Framework;
@@ -60,6 +61,24 @@ namespace InfernalEclipseAPI.Common.GlobalProjectiles
             }
 
             return base.PreAI(projectile);
+        }
+
+        public override void PostAI(Projectile projectile)
+        {
+            CalamityGlobalProjectile calamityProjectile = projectile.GetGlobalProjectile<CalamityGlobalProjectile>();
+
+            // Yoyo Glove nerf removal
+            if (projectile.aiStyle == ProjAIStyleID.Yoyo && Main.player[projectile.owner].yoyoGlove)
+            {
+                int originalDamage = calamityProjectile.storedYoyoDamage;
+
+                if (originalDamage <= 0)
+                    return;
+
+                // Restore the original damage that Calamity stored.
+                if (projectile.damage != originalDamage)
+                    projectile.damage = originalDamage;
+            }
         }
 
         public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)

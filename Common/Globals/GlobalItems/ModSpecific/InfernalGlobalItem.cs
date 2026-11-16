@@ -230,6 +230,20 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
+            if (item.type == ItemID.YoyoBag || item.type == ItemID.YoYoGlove)
+            {
+                string addedTooltip = "\n" + CalamityUtils.GetTextValue("Vanilla.AddedTooltip.YoyoGlove");
+
+                foreach (TooltipLine line in tooltips)
+                {
+                    if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                    {
+                        line.Text = line.Text.Replace(addedTooltip, "");
+                        break;
+                    }
+                }
+            }
+
             if (item.type == ModContent.ItemType<TrustyOldRod>() && (Main.LocalPlayer.name != "Shanakor" || Main.LocalPlayer.name != "Shanny"))
             {
                 InfernalUtilities.AddDisabledItemTag(tooltips);
