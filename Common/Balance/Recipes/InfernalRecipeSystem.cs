@@ -457,36 +457,6 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
 
             foreach (var recipe in Main.recipe)
             {
-                #region Verdant
-                if (ModLoader.TryGetMod("Verdant", out Mod Verdant))
-                {
-                    //yes? do all of this stuff
-                    //Check for any of the blossom armor peices
-                    if (thorium != null)
-                    {
-                        if (recipe.HasResult(Verdant.Find<ModItem>("VerdantChestplate")) || recipe.HasResult(Verdant.Find<ModItem>("VerdantHelm")) || recipe.HasResult(Verdant.Find<ModItem>("VerdantLeggings")))
-                        {
-                            //Remove the anvil
-                            recipe.RemoveTile(TileID.Anvils);
-                            //Add the arcane armor fabricator
-                            recipe.AddTile(thorium.Find<ModTile>("ArcaneArmorFabricator"));
-                        }
-                    }
-
-                    //check for any peice of apoth armor
-                    if (recipe.HasResult(Verdant.Find<ModItem>("ApotheoticChestplate")) || recipe.HasResult(Verdant.Find<ModItem>("ApotheoticLeggings")) || recipe.HasResult(Verdant.Find<ModItem>("ApotheoticTreeHelmet")) || recipe.HasResult(Verdant.Find<ModItem>("ApotheoticBeeHelmet")))
-                    {
-                        //Add 4 stardust fragments to apoth armor
-                        recipe.AddIngredient(ItemID.FragmentStardust, 4);
-                    }
-
-                    if (recipe.HasResult(Verdant.Find<ModItem>("AquamarineStaff").Type) || recipe.HasResult(Verdant.Find<ModItem>("AquamarinePlatinumStaff")))
-                    {
-                        recipe.AddIngredient<SeaRemains>();
-                    }
-                }
-                #endregion
-
                 #region tPackBuilder Subsititons
                 if (!ModLoader.HasMod("PackBuilder"))
                 {
@@ -561,8 +531,12 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                     {
                         recipe.AddCondition(Condition.DownedSkeletron);
                     }
-                }
 
+                    if (recipe.HasResult(ItemID.BundleofBalloons) || (recipe.HasResult(ItemID.HorseshoeBundle) && !recipe.HasIngredient(ItemID.BundleofBalloons)))
+                    {
+                        recipe.AddIngredient<AerialiteBar>(3);
+                    }
+                }
                 #endregion
 
                 #region Calamity
@@ -1918,6 +1892,36 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                     if (recipe.HasResult(GetItem(morePylon, "HellPylon")))
                     {
                         recipe.DecraftConditions.Add(Condition.DownedEowOrBoc);
+                    }
+                }
+                #endregion
+
+                #region Verdant
+                if (ModLoader.TryGetMod("Verdant", out Mod Verdant))
+                {
+                    //yes? do all of this stuff
+                    //Check for any of the blossom armor peices
+                    if (thorium != null)
+                    {
+                        if (recipe.HasResult(Verdant.Find<ModItem>("VerdantChestplate")) || recipe.HasResult(Verdant.Find<ModItem>("VerdantHelm")) || recipe.HasResult(Verdant.Find<ModItem>("VerdantLeggings")))
+                        {
+                            //Remove the anvil
+                            recipe.RemoveTile(TileID.Anvils);
+                            //Add the arcane armor fabricator
+                            recipe.AddTile(thorium.Find<ModTile>("ArcaneArmorFabricator"));
+                        }
+                    }
+
+                    //check for any peice of apoth armor
+                    if (recipe.HasResult(Verdant.Find<ModItem>("ApotheoticChestplate")) || recipe.HasResult(Verdant.Find<ModItem>("ApotheoticLeggings")) || recipe.HasResult(Verdant.Find<ModItem>("ApotheoticTreeHelmet")) || recipe.HasResult(Verdant.Find<ModItem>("ApotheoticBeeHelmet")))
+                    {
+                        //Add 4 stardust fragments to apoth armor
+                        recipe.AddIngredient(ItemID.FragmentStardust, 4);
+                    }
+
+                    if (recipe.HasResult(Verdant.Find<ModItem>("AquamarineStaff").Type) || recipe.HasResult(Verdant.Find<ModItem>("AquamarinePlatinumStaff")))
+                    {
+                        recipe.AddIngredient<SeaRemains>();
                     }
                 }
                 #endregion

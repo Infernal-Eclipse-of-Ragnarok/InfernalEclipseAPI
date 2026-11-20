@@ -79,8 +79,8 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
         {
             Item.damage = 14;
             Item.DamageType = LegendarySummonMeleeSpeed.Instance;
-            Item.width = 46;
-            Item.height = 48;
+            Item.width = 66;
+            Item.height = 66;
             Item.useTime = 24;
             Item.useAnimation = 24;
             Item.useStyle = ItemUseStyleID.Swing;

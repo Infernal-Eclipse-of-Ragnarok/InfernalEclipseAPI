@@ -842,8 +842,8 @@ ItemTooltip: {
 
 		AscendantInsignia:
 			'''
-			[s:InfernalEclipseAPI/IEoRIcon] Pressing the Ascendant Insignia keybind will give you the power of ascension, providing infinite flight time for 4 seconds
-			[s:InfernalEclipseAPI/IEoRIcon] Ascension has a 40 second cooldown
+			[s:InfernalEclipseAPI/IEoRIcon] Pressing [KEY] fully restores flight time and prevents it from decreasing for {0} seconds
+			[s:InfernalEclipseAPI/IEoRIcon] This ability has a {1} second cooldown
 			'''
 
 		MachinaBooster: {
@@ -869,7 +869,7 @@ ItemTooltip: {
 				'''
 		}
 
-		GildedVoid: "[s:InfernalEclipseAPI/IEoRIcon] Increases void drain by 16 while active"
+		GildedVoid: "[s:InfernalEclipseAPI/IEoRIcon] Increases void drain by 16 while special flight mode is active"
 		MonsterCharm: While in combat, your armor penetration, defense, and life recovery increase over time
 		GreedierRing:
 			'''

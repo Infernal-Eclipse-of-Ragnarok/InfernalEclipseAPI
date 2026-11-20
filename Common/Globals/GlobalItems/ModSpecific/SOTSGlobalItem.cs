@@ -1,9 +1,11 @@
 ﻿using CalamityMod;
+using CalamityMod.CalPlayer;
 using CalamityMod.Enums;
 using CalamityMod.Items;
 using CalamityMod.Items.Accessories;
 using CalamityMod.Items.Accessories.Wings;
 using CalamityMod.Items.Potions.Alcohol;
+using CalamityMod.Projectiles.Typeless;
 using InfernalEclipseAPI.Content.Buffs;
 using InfernalEclipseAPI.Content.RogueThrower;
 using InfernalEclipseAPI.Core.Configs;
@@ -38,12 +40,15 @@ using SOTS.Items.Slime;
 using SOTS.Items.Temple;
 using SOTS.Items.Tide;
 using SOTS.Items.Void;
+using SOTS.Items.Wings;
 using SOTS.Void;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent.ItemDropRules;
+using Terraria.GameInput;
 using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
 
@@ -899,21 +904,24 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
     [ExtendsFromMod("SOTS")]
     public class SOTSModPlayer : ModPlayer
     {
+        public override void ProcessTriggers(TriggersSet triggersSet)
+        {
+            if (Player.Calamity().ascendantInsignia && Main.myPlayer == Player.whoAmI && Player.Calamity().FindAccessory<GildedBladeWings>().JustPressedKeybind() && Player.Calamity().ascendantInsigniaCooldown <= 0)
+            {
+                var source = Player.GetSource_Accessory(Player.Calamity().FindAccessory<GildedBladeWings>());
+                Projectile.NewProjectile(source, Player.Center - Vector2.UnitY * 45f, Vector2.Zero, ProjectileType<AscendantAura>(), 0, 0f);
+                SoundEngine.PlaySound(new SoundStyle("CalamityMod/Sounds/Item/AscendantActivate"));
+                Player.Calamity().ascendantInsigniaCooldown = AscendantInsignia.AbilityCooldown;
+                Player.Calamity().ascendantInsigniaBuffTime = AscendantInsignia.AbilityDuration;
+            }
+        }
+
         public override void PostUpdateEquips()
         {
             if (!InfernalConfig.Instance.SOTSBalanceChanges)
                 return;
 
-            Item head = Player.armor[0];
-            Item body = Player.armor[1];
-            Item legs = Player.armor[2];
-
-            bool wearingEarthen =
-                head.type == ModContent.ItemType<EarthenHelmet>() &&
-                body.type == ModContent.ItemType<EarthenChestplate>() &&
-                legs.type == ModContent.ItemType<EarthenLeggings>();
-
-            if (wearingEarthen)
+            if (Player.armor[0].type == ItemType<EarthenHelmet>() && Player.armor[1].type == ItemType<EarthenChestplate>() && Player.armor[2].type == ItemType<EarthenLeggings>())
             {
                 Player.GetAttackSpeed(DamageClass.Generic) -= 0.10f;
             }
