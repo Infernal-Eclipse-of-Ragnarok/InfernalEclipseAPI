@@ -1,71 +1,71 @@
 AquamarineItem: {
-	// DisplayName: Veridian Aquamarine
-	// Tooltip: ""
+	DisplayName: Аквамарин цветения
+	Tooltip: ""
 }
 
 EmbeddedAquamarineItem: {
-	// DisplayName: Veridian Aquamarine Lush Soil Block
-	// Tooltip: ""
+	DisplayName: Изобильная почва из аквамарина цветения
+	Tooltip: ""
 }
 
 AquamarineTorchItem: {
-	// DisplayName: Veridian Aquamarine Torch
-	// Tooltip: ""
+	DisplayName: Факел из аквамарина цветения
+	Tooltip: ""
 }
 
 EmbeddedStoneAquamarineItem: {
-	// DisplayName: Veridian Aquamarine Stone Block
-	// Tooltip: ""
+	DisplayName: Аквамариновый камень цветения
+	Tooltip: ""
 }
 
 GemsparkAquamarineItem: {
-	// DisplayName: Veridian Aquamarine Gemspark
-	// Tooltip: ""
+	DisplayName: Искристый аквамарин цветения
+	Tooltip: ""
 }
 
 GemsparkAquamarineWallItem: {
-	// DisplayName: Veridian Aquamarine Gemspark Wall
-	// Tooltip: ""
+	DisplayName: Стена из искристого аквамарина цветения
+	Tooltip: ""
 }
 
 GemsparkAquamarineWallOfflineItem: {
-	// DisplayName: Veridian Aquamarine Gemspark Wall (Offline)
-	// Tooltip: ""
+	DisplayName: Неактивная стена из искристого аквамарина цветения
+	Tooltip: ""
 }
 
 AquamarineHook: {
-	// DisplayName: Veridian Aquamarine Hook
-	// Tooltip: ""
+	DisplayName: Крюк из аквамарина цветения
+	Tooltip: ""
 }
 
 AquamarinePhaseblade: {
-	// DisplayName: Veridian Aquamarine Phaseblade
-	// Tooltip: ""
+	DisplayName: Лазерный меч из аквамарина цветения
+	Tooltip: ""
 }
 
 AquamarinePhasesaber: {
-	// DisplayName: Veridian Aquamarine Phasesaber
-	// Tooltip: ""
+	DisplayName: Лазерная сабля из аквамарина цветения
+	Tooltip: ""
 }
 
 AquamarinePlatinumStaff: {
-	// DisplayName: Veridian Staff (Platinum)
-	/* Tooltip:
+	DisplayName: Платиновый посох цветения
+	Tooltip:
 		'''
-		Summons bolts to come from your minions
-		The bolts get some added damage from your minions
-		- After much experimentation, a more commonplace version of
-		the experimental fusion array was able to be produced
-		''' */
+		Если у вас есть призванные миньоны, заряды будут вылетать из них
+		Заряды, выпущенные из миньонов, наносят больше урона
+		— После множества проведённых исследований была создана более простая версия
+		экспериментальной матрицы термоядерного синтеза
+		'''
 }
 
 AquamarineStaff: {
-	// DisplayName: Veridian Staff (Gold)
-	/* Tooltip:
+	DisplayName: Золотой посох цветения
+	Tooltip:
 		'''
-		Summons bolts to come from your minions
-		The bolts get some added damage from your minions
-		- After much experimentation, a more commonplace version of
-		the experimental fusion array was able to be produced
-		''' */
+		Если у вас есть призванные миньоны, заряды будут вылетать из них
+		Заряды, выпущенные из миньонов, наносят больше урона
+		— После множества проведённых исследований была создана более простая версия
+		экспериментальной матрицы термоядерного синтеза
+		'''
 }
