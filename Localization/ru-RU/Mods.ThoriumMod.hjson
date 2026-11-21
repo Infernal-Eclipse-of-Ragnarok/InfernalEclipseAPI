@@ -5,7 +5,7 @@ Buffs: {
 
 Items: {
 	CapeoftheSurvivor: {
-		// DisplayName: Плащ выжившего
+		// DisplayName: Cape of the Survivor
 		Tooltip:
 			'''
 			«В этом плаще соткана магия, которая поможет вам преодолеть даже самые тяжёлые дни»
@@ -57,7 +57,7 @@ Items: {
 		'''
 
 	Kinetoscythe: {
-		// DisplayName: Кинето-коса
+		// DisplayName: Kineto-scythe
 		Tooltip:
 			'''
 			Стремительно вращает вокруг вас высокотехнологичную косу
@@ -67,7 +67,7 @@ Items: {
 	}
 
 	BlackMIDI: {
-		// DisplayName: Чёрный MIDI-синтезатор
+		// DisplayName: Black MIDI
 		Tooltip:
 			'''
 			Стремительно выпускает каскад шумов в направлении курсора
@@ -76,7 +76,7 @@ Items: {
 	}
 
 	DreamCatcher: {
-		// DisplayName: Ловец снов
+		// DisplayName: Dream Catcher
 		Tooltip:
 			'''
 			«Поймать и лелеять надежды мира...»
@@ -92,7 +92,7 @@ Items: {
 	}
 
 	HereticBreaker: {
-		// DisplayName: Сокрушитель еретиков
+		// DisplayName: Heretic Breaker
 		Tooltip: Крадёт 3 кд. здоровья
 	}
 
@@ -102,7 +102,7 @@ Items: {
 	}
 
 	CrystalHoney: {
-		// DisplayName: Кристаллический мёд
+		// DisplayName: Crystal Honey
 		Tooltip:
 			'''
 			«Таинственные свойства мёда не так-то просто извлечь»
@@ -113,7 +113,7 @@ Items: {
 	}
 
 	DarkGlaze: {
-		// DisplayName: Тёмная глазурь
+		// DisplayName: Dark Glaze
 		Tooltip:
 			'''
 			«Дьявольски сладко»
@@ -125,7 +125,7 @@ Items: {
 	}
 
 	DemonTongue: {
-		// DisplayName: Язык демона
+		// DisplayName: Demon Tongue
 		Tooltip:
 			'''
 			Усиливает некоторые лучезарные атаки тёмной энергией
@@ -135,7 +135,7 @@ Items: {
 	}
 
 	ArchDemonCurse: {
-		// DisplayName: Проклятие архидемона
+		// DisplayName: Archdemon's Curse
 		Tooltip:
 			'''
 			Усиливает некоторые лучезарные атаки тёмной энергией
@@ -159,7 +159,7 @@ Items: {
 		'''
 
 	BronzeHelmet: {
-		// DisplayName: Бронзовый шлем
+		// DisplayName: Bronze Helmet
 		Tooltip:
 			'''
 			Увеличивает метательный шанс критического удара на 6%
@@ -168,12 +168,12 @@ Items: {
 	}
 
 	BronzeBreastplate: {
-		// DisplayName: Бронзовый нагрудник
+		// DisplayName: Bronze Breastplate
 		Tooltip: Увеличивает метательный урон на 10%
 	}
 
 	BronzeGreaves: {
-		// DisplayName: Бронзовые поножи
+		// DisplayName: Bronze Greaves
 		Tooltip:
 			'''
 			Увеличивает метательный урон на 10%
@@ -182,7 +182,7 @@ Items: {
 	}
 
 	PlagueDoctorsMask: {
-		// DisplayName: Маска чумного доктора
+		// DisplayName: Plague Doctor's Mask
 		Tooltip:
 			'''
 			«Какую гадкую смесь вы могли бы приготовить?»
@@ -193,7 +193,7 @@ Items: {
 	}
 
 	PlagueDoctorsGarb: {
-		// DisplayName: Облачение чумного доктора
+		// DisplayName: Plague Doctor's Garb
 		Tooltip:
 			'''
 			«Какую гадкую смесь вы могли бы приготовить?»
@@ -203,7 +203,7 @@ Items: {
 	}
 
 	PlagueDoctorsLeggings: {
-		// DisplayName: Поножи чумного доктора
+		// DisplayName: Plague Doctor's Leggings
 		Tooltip:
 			'''
 			«Какую гадкую смесь вы могли бы приготовить?»
@@ -213,7 +213,7 @@ Items: {
 	}
 
 	FungusHat: {
-		// DisplayName: Грибковая кепка
+		// DisplayName: Fungus Cap
 		Tooltip:
 			'''
 			Увеличивает метательный урон на 10%
@@ -223,12 +223,12 @@ Items: {
 	}
 
 	FungusGuard: {
-		// DisplayName: Грибковый нагрудник
+		// DisplayName: Fungus Guard
 		Tooltip: Увеличивает метательный урон на 10%
 	}
 
 	HallowedGuise: {
-		// DisplayName: Освящённая личина
+		// DisplayName: Hallowed Guise
 		Tooltip:
 			'''
 			Увеличивает метательный урон на 10%
@@ -237,7 +237,7 @@ Items: {
 	}
 
 	LichCarapace: {
-		// DisplayName: Панцирь Лича
+		// DisplayName: Lich's Carapace
 		Tooltip:
 			'''
 			«Объятия смерти...»
@@ -247,7 +247,7 @@ Items: {
 	}
 
 	LichTalon: {
-		// DisplayName: Когти Лича
+		// DisplayName: Lich's Talons
 		Tooltip:
 			'''
 			«Объятия смерти...»
@@ -257,7 +257,7 @@ Items: {
 	}
 
 	ShadeMasterMask: {
-		// DisplayName: Маска мастера теней
+		// DisplayName: Shade Master's Mask
 		Tooltip:
 			'''
 			»Скройтесь во тьме и наносите точные удары»
@@ -268,7 +268,7 @@ Items: {
 	}
 
 	ShadeMasterGarb: {
-		// DisplayName: Облачение мастера теней
+		// DisplayName: Shade Master's Garb
 		Tooltip:
 			'''
 			«Скройтесь во тьме и наносите точные удары»
@@ -278,7 +278,7 @@ Items: {
 	}
 
 	ShadeMasterTreads: {
-		// DisplayName: Ботфорты мастера теней
+		// DisplayName: Shade Master's Treads
 		Tooltip:
 			'''
 			«Скройтесь во тьме и наносите точные удары»
@@ -289,7 +289,7 @@ Items: {
 	}
 
 	WhiteDwarfMask: {
-		// DisplayName: Маска белого карлика
+		// DisplayName: White Dwarf Mask
 		Tooltip:
 			'''
 			Увеличивает метательный урон на 15%
@@ -299,7 +299,7 @@ Items: {
 	}
 
 	WhiteDwarfGuard: {
-		// DisplayName: Защитник белого карлика
+		// DisplayName: White Dwarf Guard
 		Tooltip:
 			'''
 			Увеличивает метательный урон на 10%
@@ -308,7 +308,7 @@ Items: {
 	}
 
 	WhiteDwarfGreaves: {
-		// DisplayName: Поножи белого карлика
+		// DisplayName: White Dwarf Greaves
 		Tooltip:
 			'''
 			Увеличивает метательный урон на 10%
@@ -318,12 +318,12 @@ Items: {
 	}
 
 	IridescentHelmet: {
-		// DisplayName: Радужный шлем
+		// DisplayName: Iridescent Helmet
 		Tooltip: Увеличивает лучезарный урон на 5%
 	}
 
 	IridescentMail: {
-		// DisplayName: Радужная кольчуга
+		// DisplayName: Iridescent Mail
 		Tooltip:
 			'''
 			Увеличивает лучезарный урон на 10%
@@ -333,7 +333,7 @@ Items: {
 	}
 
 	IridescentGreaves: {
-		// DisplayName: Радужные поножи
+		// DisplayName: Iridescent Greaves
 		Tooltip:
 			'''
 			Увеличивает лучезарный урон на 5%
@@ -343,7 +343,7 @@ Items: {
 	}
 
 	BloomingTabard: {
-		// DisplayName: Цветущий табард
+		// DisplayName: Blooming Tabard
 		Tooltip:
 			'''
 			Снижает весь урон, кроме лучезарного, на 10%
@@ -354,7 +354,7 @@ Items: {
 	}
 
 	BioTechGarment: {
-		// DisplayName: Биотехнический костюм
+		// DisplayName: Biotech Garment
 		Tooltip:
 			'''
 			Снижает весь урон, кроме лучезарного, на 25%
@@ -366,7 +366,7 @@ Items: {
 	}
 
 	WarlockHood: {
-		// DisplayName: Капюшон чернокнижника
+		// DisplayName: Warlock Hood
 		Tooltip:
 			'''
 			Усиливает некоторые лучезарные атаки тёмной энергией
@@ -379,7 +379,7 @@ Items: {
 	}
 
 	WarlockGarb: {
-		// DisplayName: Облачение чернокнижника
+		// DisplayName: Warlock Garb
 		Tooltip:
 			'''
 			Снижает весь урон, кроме лучезарного, на 15%
@@ -390,7 +390,7 @@ Items: {
 	}
 
 	WarlockLeggings: {
-		// DisplayName: Поножи чернокнижника
+		// DisplayName: Warlock Leggings
 		Tooltip:
 			'''
 			Снижает весь урон, кроме лучезарного, на 12%
@@ -401,7 +401,7 @@ Items: {
 	}
 
 	WhisperingHood: {
-		// DisplayName: Шепчущий капюшон
+		// DisplayName: Whispering Hood
 		Tooltip:
 			'''
 			Усиливает некоторые лучезарные атаки тёмной энергией
@@ -414,7 +414,7 @@ Items: {
 	}
 
 	WhisperingTabard: {
-		// DisplayName: Шепчущий табард
+		// DisplayName: Whispering Tabard
 		Tooltip:
 			'''
 			Снижает весь урон, кроме лучезарного, на 25%
@@ -425,7 +425,7 @@ Items: {
 	}
 
 	WhisperingLeggings: {
-		// DisplayName: Шепчущие поножи
+		// DisplayName: Whispering Leggings
 		Tooltip:
 			'''
 			Снижает весь урон, кроме лучезарного, на 15%
@@ -436,7 +436,7 @@ Items: {
 	}
 
 	DreamWeaversHelmet: {
-		// DisplayName: Шлем ткача сновидений
+		// DisplayName: Dream Weaver's Helmet
 		Tooltip:
 			'''
 			«Подвергните врагов будущего временной агонии»
@@ -449,7 +449,7 @@ Items: {
 	}
 
 	DreamWeaversHood: {
-		// DisplayName: Капюшон ткача сновидений
+		// DisplayName: Dream Weaver's Hood
 		Tooltip:
 			'''
 			«Воплотите свои самые заветные мечты через союзников»
@@ -464,7 +464,7 @@ Items: {
 	}
 
 	DreamWeaversTabard: {
-		// DisplayName: Табард ткача сновидений
+		// DisplayName: Dream Weaver's Tabard
 		Tooltip:
 			'''
 			Снижает весь урон, кроме лучезарного, на 25%
@@ -477,7 +477,7 @@ Items: {
 	}
 
 	TideTurnersGaze: {
-		// DisplayName: Корона приливного гонца
+		// DisplayName: Tide Turner's Depth-Crown
 		Tooltip:
 			'''
 			«Обрушьте водное неистовство на своих врагов»
@@ -491,7 +491,7 @@ Items: {
 	}
 
 	TideTurnerBreastplate: {
-		// DisplayName: Нагрудник приливного гонца
+		// DisplayName: Tide Turner's Depth-Guard
 		Tooltip:
 			'''
 			Увеличивает урон ближнего боя и метательный урон на 15%
@@ -501,7 +501,7 @@ Items: {
 	}
 
 	TideTurnerGreaves: {
-		// DisplayName: Башмаки приливного гонца
+		// DisplayName: Tide Turner's Depth-Walkers
 		Tooltip:
 			'''
 			Увеличивает урон ближнего боя и метательный урон на 10%

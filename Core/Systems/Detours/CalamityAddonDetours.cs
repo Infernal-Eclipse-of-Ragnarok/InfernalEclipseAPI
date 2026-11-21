@@ -3,7 +3,9 @@ using CatalystMod.Items.SummonItems;
 using CatalystMod.NPCs;
 using InfernalEclipseAPI.Core.Configs;
 using InfernalEclipseAPI.Core.Systems.Compatibility;
+using InfernalEclipseAPI.Core.World;
 using InfernumMode.Content.BossIntroScreens;
+using InfernumMode.Content.BossIntroScreens.InfernumScreens;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoMod.Cil;
@@ -48,6 +50,32 @@ namespace InfernalEclipseAPI.Core.Systems.Detours
         {
             drawHook?.Dispose();
             drawHook = null;
+        }
+    }
+
+    public class DoGIntroScreenPatch : ModSystem
+    {
+        private Hook coverScreenHook;
+
+        public override void Load()
+        {
+            PropertyInfo property = typeof(DoGIntroScreen).GetProperty(nameof(DoGIntroScreen.ShouldCoverScreen), BindingFlags.Public | BindingFlags.Instance);
+
+            MethodInfo getter = property?.GetGetMethod();
+
+            if (getter != null)
+            {
+                coverScreenHook = new Hook(getter, (Func<DoGIntroScreen, bool> orig, DoGIntroScreen self) =>
+                {
+                    return orig(self) && !InfernalWorld.RagnarokModeEnabled;
+                });
+            }
+        }
+
+        public override void Unload()
+        {
+            coverScreenHook?.Dispose();
+            coverScreenHook = null;
         }
     }
 

@@ -1,7 +1,7 @@
 Items: {
 	EmeraldRing: {
 		DisplayName: Кольцо мятной луны
-		Tooltip: 
+		Tooltip:
 			'''
 			Даёт бафф [cbuff:BlueMoon/MintyFreshnessBuff]
 			[c/A8FFD4:Этот бафф увеличивает урон и скорость передвижения на 7%]
@@ -10,7 +10,7 @@ Items: {
 
 	AmethystRing: {
 		DisplayName: Кольцо вишнёвой луны
-		Tooltip: 
+		Tooltip:
 			'''
 			Даёт бафф [cbuff:BlueMoon/FloralBlessingBuff]
 			[c/DE3163:Этот бафф увеличивает регенерацию здоровья на 2 ед./сек]

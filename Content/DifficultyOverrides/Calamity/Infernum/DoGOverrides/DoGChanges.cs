@@ -3,6 +3,7 @@ using CalamityMod.Events;
 using CalamityMod.NPCs;
 using CalamityMod.NPCs.DevourerofGods;
 using CalamityMod.Projectiles.Boss;
+using CalamityMod.Sounds;
 using CalamityMod.UI.DialogueDisplay;
 using CalamityMod.UI.DialogueDisplay.DisplayEffects;
 using CalamityMod.World;
@@ -18,6 +19,8 @@ using InfernumMode.Content.Projectiles.Pets;
 using InfernumMode.Core.Netcode;
 using InfernumMode.Core.Netcode.Packets;
 using Microsoft.Xna.Framework;
+using Mono.Cecil.Cil;
+using MonoMod.Cil;
 using MonoMod.RuntimeDetour;
 using System.Linq;
 using System.Reflection;
@@ -31,7 +34,16 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.DoGOv
     public class DoGChanges : GlobalNPC
     {
         public const int HasCompletedPhase2HealIndex = 36;
+        public const int TextIndex = 40;
+        public const int PendingPhase2TransitionIndex = 52;
+        public const int FinalPassiveAttackStartedIndex = 53;
 
+        /*
+        private static readonly int AcceleratingFireballDamage = 380;
+        private static readonly int LaserWallDamage = 400;
+        */
+
+        #region Desperatioin Variables
         public static bool DesperationHasTriggered { get; set; }
         public static bool DesperationInitialized = false;
         public static bool DesperationCanDie = false;
@@ -43,11 +55,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.DoGOv
         public static int DesperationEntryPortalIndex = -1;
         public static bool DesperationHeadEnteredPortal = false;
         public static int DesperationPostEntryTimer = 0;
-
-        /*
-        private static readonly int AcceleratingFireballDamage = 380;
-        private static readonly int LaserWallDamage = 400;
-        */
+        #endregion
 
         #region Coil Punishment
         private int coilDetectionTimer;
@@ -67,14 +75,17 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.DoGOv
 
         public override bool InstancePerEntity => true;
 
-        public override bool AppliesToEntity(NPC npc, bool lateInstantiation)
-        {
-            return npc.type == ModContent.NPCType<DevourerofGodsHead>();
-        }
-
+        public override bool AppliesToEntity(NPC npc, bool lateInstantiation) => npc.type == ModContent.NPCType<DevourerofGodsHead>();
+    
         public override void OnSpawn(NPC npc, IEntitySource source)
         {
             ResetDesperationState();
+
+            if (InfernalWorld.RagnarokModeEnabled && Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                npc.Infernum().ExtraAI[DoGPassiveAttackPatch.PassiveAttackIndex] = 2f;
+                npc.netUpdate = true;
+            }
         }
 
         public override bool PreAI(NPC npc)
@@ -89,28 +100,125 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.DoGOv
 
             HandleMountRestrictions();
 
+            float lifeRatio = npc.life / (float)npc.lifeMax;
+
             if (InfernalWorld.RagnarokModeEnabled)
             {
                 ref float phaseCycleTimer = ref npc.Infernum().ExtraAI[PhaseCycleTimerIndex];
                 ref float uncoilTimer = ref npc.Infernum().ExtraAI[InitialUncoilTimerIndex];
                 ref float passiveAttackDelay = ref npc.Infernum().ExtraAI[PassiveAttackDelayTimerIndex];
                 ref float sentinelAttackTimer = ref npc.Infernum().ExtraAI[SentinelAttackTimerIndex];
+                ref float textIndex = ref npc.Infernum().ExtraAI[TextIndex];
+                ref float pendingTransition = ref npc.Infernum().ExtraAI[PendingPhase2TransitionIndex];
 
                 Player target = Main.player[npc.target];
 
-                if (!target.dead && target.active)
+                bool forceFireBalls = false;
+                if (lifeRatio < 0.8f && textIndex <= 0 & !InPhase2)
                 {
-                    if (!InPhase2 && CurrentPhase2TransitionState == Phase2TransitionState.NotEnteringPhase2 && uncoilTimer >= 45f && phaseCycleTimer % (PassiveMovementTimeP1 + AggressiveMovementTimeP1) >= AggressiveMovementTimeP1)
+                    if (!BossRushEvent.BossRushActive)
                     {
-                        if (phaseCycleTimer % 75f == 0f && phaseCycleTimer % 150f != 0f && passiveAttackDelay >= 300f)
-                            SpawnPhase1LaserBeamLaserWall(npc, target);
+                        string key = "Mods.CalamityMod.Status.Boss.DoGSubphase1";
+                        Color messageColor = Color.Cyan;
+                        CalamityUtils.BroadcastLocalizedText(key, messageColor);
+                        DialogueDisplaySystem.StartDialogue("Mods.CalamityMod.DevourerOfGods.Phases", npc, 1, 120, false, new BossText());
+                    }
+
+                    forceFireBalls = true;
+                    textIndex++;
+                }
+
+                if (npc.HasValidTarget && !target.dead && target.active)
+                {
+                    ref float selectedPassiveAttack = ref npc.Infernum().ExtraAI[DoGPassiveAttackPatch.PassiveAttackIndex];
+                    ref float beamAttackType = ref npc.Infernum().ExtraAI[51];
+
+                    if (!InPhase2 && CurrentPhase2TransitionState == Phase2TransitionState.NotEnteringPhase2 && uncoilTimer >= 45f)
+                    {
+                        float cycleLength = PassiveMovementTimeP1 + AggressiveMovementTimeP1;
+
+                        float cycleTimer = phaseCycleTimer % cycleLength;
+
+                        if (cycleTimer == AggressiveMovementTimeP1 && Main.netMode != NetmodeID.MultiplayerClient)
+                        {
+                            if (npc.Infernum().ExtraAI[PendingPhase2TransitionIndex] == 1f)
+                            {
+                                selectedPassiveAttack = 1f;
+                            }
+                            else if (forceFireBalls)
+                            {
+                                selectedPassiveAttack = 2;
+                            }
+                            else
+                            {
+                                selectedPassiveAttack = (selectedPassiveAttack + 1f) % 3f;
+
+                                if (selectedPassiveAttack == 2 && lifeRatio >= 0.8f)
+                                {
+                                    selectedPassiveAttack = 0;
+                                }
+                            }
+
+                            npc.netUpdate = true;
+                        }
+
+                        bool isPassiveMovement = cycleTimer >= AggressiveMovementTimeP1;
+                        float passiveTimer = cycleTimer - AggressiveMovementTimeP1;
+
+                        if (isPassiveMovement && passiveAttackDelay >= 300f)
+                        {
+                            if (pendingTransition == 1f)
+                                npc.dontTakeDamage = true;
+
+                            switch ((int)selectedPassiveAttack)
+                            {
+                                case 0:
+                                    // Original Infernum attack + your laser wall.
+                                    if (phaseCycleTimer % 75f == 0f && phaseCycleTimer % 150f != 0f && Main.netMode != NetmodeID.MultiplayerClient)
+                                    {
+                                        SpawnPhase1LaserBeamLaserWall(npc, target);
+                                    }
+                                    break;
+
+                                case 1:
+                                    if (phaseCycleTimer % 75f == 0f && Main.netMode != NetmodeID.MultiplayerClient)
+                                    {
+                                        const float time = 0.5f;
+                                        bool isLastBeam = cycleTimer == AggressiveMovementTimeP1 + 375f;
+
+                                        if (isLastBeam)
+                                        {
+                                            SoundEngine.PlaySound(SoundID.Item12, target.position);
+                                            Projectile.NewProjectile(npc.GetSource_FromAI(), target.Center + Main.rand.NextVector2CircularEdge(600f, 600f), Vector2.Zero, ModContent.ProjectileType<DoGLaserWalls>(), DevourerofGodsHead.LaserWallDamage, 0f, Main.myPlayer, time, 160f, Main.rand.Next(2, 4));
+                                            Projectile.NewProjectile(npc.GetSource_FromAI(), target.Center, Vector2.Zero, ModContent.ProjectileType<DoGLaserWallsBigBeam>(), DevourerofGodsHead.LaserWallMiddleBeamDamage, 0f, Main.myPlayer, time, 0f, 2f);
+                                        }
+                                        else
+                                        {
+                                            int beamType;
+
+                                            if (beamAttackType % 2 == 0)
+                                                beamType = Main.rand.Next(2, 4);
+                                            else
+                                                beamType = Main.rand.Next(0, 2);
+
+                                            beamAttackType++;
+                                            npc.netUpdate = true;
+
+                                            SoundEngine.PlaySound(SoundID.Item12, target.position);
+                                            Projectile.NewProjectile(npc.GetSource_FromAI(), target.Center + Main.rand.NextVector2CircularEdge(600f, 600f), Vector2.Zero, ModContent.ProjectileType<DoGLaserWalls>(), DevourerofGodsHead.LaserWallDamage, 0f, Main.myPlayer, time, 160f, beamType);
+                                        }
+                                    }
+                                    break;
+
+                                case 2:
+                                    break;
+                            }
+                        }
                     }
 
                     if (InPhase2)
                     {
                         int wrappedPhaseCycleTimer = (int)phaseCycleTimer % (PassiveMovementTimeP2 + AggressiveMovementTimeP2);
-
-                        float lifeRatio = npc.life / (float)npc.lifeMax;
 
                         bool finalPhase = lifeRatio < FinalPhaseLifeRatio;
 
@@ -176,6 +284,56 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.DoGOv
             if (!InfernalWorld.RagnarokModeEnabled)
                 return;
 
+            if (Main.netMode != NetmodeID.MultiplayerClient && !InPhase2 && CurrentPhase2TransitionState == Phase2TransitionState.NotEnteringPhase2)
+            {
+                ref float pendingTransition = ref npc.Infernum().ExtraAI[PendingPhase2TransitionIndex];
+                ref float finalAttackStarted = ref npc.Infernum().ExtraAI[FinalPassiveAttackStartedIndex];
+
+                if (pendingTransition == 1f)
+                {
+                    ref float phaseCycleTimer = ref npc.Infernum().ExtraAI[PhaseCycleTimerIndex];
+
+                    float cycleLength = PassiveMovementTimeP1 + AggressiveMovementTimeP1;
+                    float cycleTimer = phaseCycleTimer % cycleLength;
+
+                    if (cycleTimer >= AggressiveMovementTimeP1)
+                        finalAttackStarted = 1f;
+
+                    // Wait until the entire passive movement cycle finishes.
+                    if (finalAttackStarted == 1f && cycleTimer < AggressiveMovementTimeP1)
+                    {
+                        pendingTransition = 0f;
+                        finalAttackStarted = 0f;
+
+                        npc.dontTakeDamage = true;
+
+                        CurrentPhase2TransitionState = Phase2TransitionState.NeedsToSummonPortal;
+
+                        npc.netUpdate = true;
+                    }
+                }
+            }
+
+            if (!InPhase2 && CurrentPhase2TransitionState == Phase2TransitionState.NotEnteringPhase2 && npc.HasValidTarget)
+            {
+                float cycleLength = PassiveMovementTimeP1 + AggressiveMovementTimeP1;
+                float cycleTimer = npc.Infernum().ExtraAI[PhaseCycleTimerIndex] % cycleLength;
+
+                bool blueFireAttack = cycleTimer >= AggressiveMovementTimeP1 && (int)npc.Infernum().ExtraAI[DoGPassiveAttackPatch.PassiveAttackIndex] == 2 && npc.Infernum().ExtraAI[PassiveAttackDelayTimerIndex] >= 300f;
+
+                if (blueFireAttack)
+                {
+                    const int FireballInterval = 60;
+
+                    int attackTimer = (int)(cycleTimer - AggressiveMovementTimeP1);
+
+                    if (attackTimer != 0 && attackTimer % FireballInterval == 0 && Main.netMode != NetmodeID.MultiplayerClient)
+                    {
+                        SpawnPhase1BlueFireball(npc, Main.player[npc.target]);
+                    }
+                }
+            }
+
             if (!DesperationHasTriggered && npc.Infernum().ExtraAI[InPhase2FlagIndex] == 1f && npc.Infernum().ExtraAI[HasCompletedPhase2HealIndex] != 1f)
             {
                 int max = (int)(npc.lifeMax * 0.4f);
@@ -224,6 +382,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.DoGOv
             return true;
         }
 
+        #region AI Methods
         private static bool DetectCoiling(NPC npc, Player target)
         {
             // Don't mistake Infernum's normal chomp/lunge for coiling.
@@ -355,6 +514,30 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.DoGOv
             Projectile.NewProjectile(npc.GetSource_FromAI(), target.Center + Main.rand.NextVector2CircularEdge(600f, 600f), Vector2.Zero, ModContent.ProjectileType<DoGLaserWalls>(), DevourerofGodsHead.LaserWallDamage, 0f, Main.myPlayer, time, spacing, beamType);
         }
 
+        private static void SpawnPhase1BlueFireball(NPC npc, Player target)
+        {
+            if (Main.netMode == NetmodeID.MultiplayerClient)
+                return;
+
+            const int FireballCount = 5;
+            const float ConeAngle = PiOver2; // 45-degree total spread
+            const float FireballSpeed = 18f;
+
+            Vector2 direction = npc.DirectionTo(target.Center);
+            Vector2 spawnPosition = npc.Center + direction * (npc.width * 0.5f);
+
+            for (int i = 0; i < FireballCount; i++)
+            {
+                float interpolant = i / (float)(FireballCount - 1);
+
+                float angle = MathHelper.Lerp(-ConeAngle * 0.5f, ConeAngle * 0.5f, interpolant);
+
+                Vector2 velocity = direction.RotatedBy(angle) * FireballSpeed;
+
+                Projectile.NewProjectile( npc.GetSource_FromAI(), spawnPosition, velocity, ModContent.ProjectileType<DoGFire>(), DevourerofGodsHead.FireballDamage, 0f, Main.myPlayer, 2f);
+            }
+        }
+
         private static void SpawnPhase1LaserBeamLaserWall(NPC npc, Player target)
         {
             const float time = 0.5f;
@@ -431,6 +614,33 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.DoGOv
             }
         }
 
+        public static void BeginDelayedPhase2Transition(NPC npc)
+        {
+            if (Main.netMode == NetmodeID.MultiplayerClient)
+                return;
+
+            ref float pendingTransition = ref npc.Infernum().ExtraAI[PendingPhase2TransitionIndex];
+            ref float finalAttackStarted = ref npc.Infernum().ExtraAI[FinalPassiveAttackStartedIndex];
+
+            if (pendingTransition != 0f)
+                return;
+
+            pendingTransition = 1f;
+            finalAttackStarted = 0f;
+
+            // Select Passive Attack 1.
+            npc.Infernum().ExtraAI[DoGPassiveAttackPatch.PassiveAttackIndex] = 1f;
+
+            // Force the start of Infernum's passive movement cycle.
+            npc.Infernum().ExtraAI[PhaseCycleTimerIndex] = AggressiveMovementTimeP1 - 1f;
+
+            // Ensure passive attacks can begin immediately.
+            npc.Infernum().ExtraAI[PassiveAttackDelayTimerIndex] = 300f;
+
+            npc.netUpdate = true;
+        }
+
+        #region Desperation AI
         public void RunDesperationAI(NPC npc, Player target, ref float performingSpecialAttack, ref float specialAttackTimer, ref float segmentFadeType, ref float damageImmunityCountdown)
         {
             if (!DesperationCanDie)
@@ -686,17 +896,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.DoGOv
                     Clamp(portalSpawnPosition.Y, 200f, Main.maxTilesY * 16f - 200f)
                 );
 
-                int portalIndex = Projectile.NewProjectile(
-                    npc.GetSource_FromAI(),
-                    portalSpawnPosition,
-                    Vector2.Zero,
-                    ModContent.ProjectileType<DoGChargeGate>(),
-                    0,
-                    0f,
-                    Main.myPlayer,
-                    0f,
-                    portalTelegraphTime
-                );
+                int portalIndex = Projectile.NewProjectile(npc.GetSource_FromAI(), portalSpawnPosition, Vector2.Zero, ModContent.ProjectileType<DoGChargeGate>(), 0, 0f, Main.myPlayer, 0f, portalTelegraphTime);
 
                 if (Main.projectile.IndexInRange(portalIndex))
                 {
@@ -799,23 +999,17 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.DoGOv
             CombatText.NewText(npc.Hitbox, CombatText.DamagedHostile, damageDone, true);
             npc.HitEffect(0, damageDone);
 
-            int bType = Main.rand.Next(0, (lifeRatio < 0.05f ? 6 : 2));
+            int bType = Main.rand.Next(lifeRatio < 0.05f ? 3 : 0, lifeRatio < 0.05f ? 6 : 2);
 
             float size = MathHelper.Max(300 * (lifeRatio * 10), 170f);
             //Main.NewText(size);
 
-            Projectile.NewProjectile(
-                npc.GetSource_FromAI(),
-                target.Center + Main.rand.NextVector2CircularEdge(600f, 600f),
-                Vector2.Zero,
-                ModContent.ProjectileType<DoGLaserWalls>(),
-                DevourerofGodsHead.LaserWallDamage,
-                0f,
-                Main.myPlayer,
-                0.35f,
-                size,
-                bType
-            );
+            Projectile.NewProjectile(npc.GetSource_FromAI(), target.Center + Main.rand.NextVector2CircularEdge(600f, 600f), Vector2.Zero, ModContent.ProjectileType<DoGLaserWalls>(), DevourerofGodsHead.LaserWallDamage, 0f, Main.myPlayer, 0.35f, size, bType);
+
+            if (lifeRatio < 0.05f)
+            {
+                Projectile.NewProjectile(npc.GetSource_FromAI(), target.Center, Vector2.Zero, ModContent.ProjectileType<DoGLaserWallsBigBeam>(), DevourerofGodsHead.LaserWallMiddleBeamDamage, 0f, Main.myPlayer, 0.35f, 0f, 2f);
+            }
 
             if (npc.life <= 1000 && DesperationHasEmergedFromFirstPortal)
             {
@@ -1058,6 +1252,8 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.DoGOv
                 }
             }
         }
+        #endregion
+        #endregion
 
         private static Vector2 SafeNormalize(Vector2 vector, Vector2 fallback)
         {
@@ -1099,11 +1295,9 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.DoGOv
 
         private static void InflictDspDebuff()
         {
-            for (int i = 0; i < Main.maxPlayers; i++)
+            foreach (Player player in Main.ActivePlayers)
             {
-                Player player = Main.player[i];
-
-                if (player.active && !player.dead && player.GetModPlayer<InfernalPlayer>().teleportRespawnKilldown <= 0)
+                if (!player.dead && player.GetModPlayer<InfernalPlayer>().teleportRespawnKilldown <= 0)
                 {
                     player.AddBuff(ModContent.BuffType<StarboundHorrification>(), 2);
                     player.DoInfiniteFlightCheck(Color.Magenta);
@@ -1114,12 +1308,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.DoGOv
 
     public class DoGDesperation : GlobalNPC
     {
-        public override bool AppliesToEntity(NPC entity, bool lateInstantiation)
-        {
-            return entity.type == ModContent.NPCType<DevourerofGodsHead>() ||
-                   entity.type == ModContent.NPCType<DevourerofGodsBody>() ||
-                   entity.type == ModContent.NPCType<DevourerofGodsTail>();
-        }
+        public override bool AppliesToEntity(NPC entity, bool lateInstantiation) => entity.type == ModContent.NPCType<DevourerofGodsHead>() || entity.type == ModContent.NPCType<DevourerofGodsBody>() || entity.type == ModContent.NPCType<DevourerofGodsTail>();
 
         public override bool CanHitPlayer(NPC npc, Player target, ref int cooldownSlot)
         {
@@ -1162,6 +1351,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.DoGOv
         }
     }
 
+    #region Hooks
     internal sealed class HandleDoGLifeBasedHitTriggersDesperation : ModSystem
     {
         public static MethodInfo HandleDoGLifeBasedHitTriggersMethod = typeof(DoGPhase1HeadBehaviorOverride).GetMethod("HandleDoGLifeBasedHitTriggers", LumUtils.UniversalBindingFlags);
@@ -1176,11 +1366,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.DoGOv
         {
             if (HandleDoGLifeBasedHitTriggersMethod != null)
             {
-                RagnarokDesperation_Detour_Hook = new Hook(
-                    HandleDoGLifeBasedHitTriggersMethod,
-                    (Hook_HandleDoGLifeBasedHitTriggersMethod)HandleDoGLifeBasedHitTriggers_Detour
-                );
-
+                RagnarokDesperation_Detour_Hook = new Hook(HandleDoGLifeBasedHitTriggersMethod, (Hook_HandleDoGLifeBasedHitTriggersMethod)HandleDoGLifeBasedHitTriggers_Detour);
                 RagnarokDesperation_Detour_Hook.Apply();
             }
             else
@@ -1195,26 +1381,28 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.DoGOv
             RagnarokDesperation_Detour_Hook = null;
         }
 
-        private static bool HandleDoGLifeBasedHitTriggers_Detour(
-            Orig_HandleDoGLifeBasedHitTriggersMethod orig,
-            NPC npc,
-            double realDamage,
-            ref NPC.HitModifiers modifiers
-        )
+        private static bool HandleDoGLifeBasedHitTriggers_Detour(Orig_HandleDoGLifeBasedHitTriggersMethod orig, NPC npc, double realDamage, ref NPC.HitModifiers modifiers)
         {
             int life = npc.realLife >= 0 ? Main.npc[npc.realLife].life : npc.life;
 
+            float p2LifeRatio = InfernalWorld.RagnarokModeEnabled ? 0.6f : Phase2LifeRatio;
+
             // Preserve phase 2 transition behavior.
-            if (life - realDamage <= npc.lifeMax * Phase2LifeRatio &&
-                !InPhase2 &&
-                CurrentPhase2TransitionState == Phase2TransitionState.NotEnteringPhase2)
+            if (life - realDamage <= npc.lifeMax * p2LifeRatio && !InPhase2 && CurrentPhase2TransitionState == Phase2TransitionState.NotEnteringPhase2)
             {
                 modifiers.FinalDamage.Base *= 0;
 
                 if (Main.netMode != NetmodeID.MultiplayerClient)
                 {
-                    npc.dontTakeDamage = true;
-                    CurrentPhase2TransitionState = Phase2TransitionState.NeedsToSummonPortal;
+                    if (InfernalWorld.RagnarokModeEnabled)
+                    {
+                        DoGChanges.BeginDelayedPhase2Transition(npc);
+                    }
+                    else
+                    {
+                        npc.dontTakeDamage = true;
+                        CurrentPhase2TransitionState = Phase2TransitionState.NeedsToSummonPortal;
+                    }
                 }
                 else
                 {
@@ -1252,6 +1440,9 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.DoGOv
                 return false;
             }
 
+            if (InfernalWorld.RagnarokModeEnabled)
+                return true;
+
             return orig(npc, realDamage, ref modifiers);
         }
     }
@@ -1270,11 +1461,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.DoGOv
         {
             if (UpdateDoGPhaseServerMethod != null)
             {
-                RagnarokDesperation_UpdateDoGPhaseServer_Hook = new Hook(
-                    UpdateDoGPhaseServerMethod,
-                    (Hook_UpdateDoGPhaseServerMethod)UpdateDoGPhaseServer_Detour
-                );
-
+                RagnarokDesperation_UpdateDoGPhaseServer_Hook = new Hook(UpdateDoGPhaseServerMethod, (Hook_UpdateDoGPhaseServerMethod)UpdateDoGPhaseServer_Detour);
                 RagnarokDesperation_UpdateDoGPhaseServer_Hook.Apply();
             }
             else
@@ -1289,23 +1476,27 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.DoGOv
             RagnarokDesperation_UpdateDoGPhaseServer_Hook = null;
         }
 
-        private static void UpdateDoGPhaseServer_Detour(
-            Orig_UpdateDoGPhaseServerMethod orig,
-            int npcIndex,
-            double damage
-        )
+        private static void UpdateDoGPhaseServer_Detour(Orig_UpdateDoGPhaseServerMethod orig, int npcIndex,double damage)
         {
             NPC npc = Main.npc[npcIndex];
             int life = npc.realLife >= 0 ? Main.npc[npc.realLife].life : npc.life;
 
+            float p2LifeRatio = InfernalWorld.RagnarokModeEnabled ? 0.6f : Phase2LifeRatio;
+
             // Preserve Infernum phase 2 transition.
-            if (life - damage <= npc.lifeMax * Phase2LifeRatio &&
-                !InPhase2 &&
-                CurrentPhase2TransitionState == Phase2TransitionState.NotEnteringPhase2)
+            if (life - damage <= npc.lifeMax * p2LifeRatio &&!InPhase2 && CurrentPhase2TransitionState == Phase2TransitionState.NotEnteringPhase2)
             {
-                npc.dontTakeDamage = true;
-                CurrentPhase2TransitionState = Phase2TransitionState.NeedsToSummonPortal;
-                npc.netUpdate = true;
+                if (InfernalWorld.RagnarokModeEnabled)
+                {
+                    DoGChanges.BeginDelayedPhase2Transition(npc);
+                }
+                else
+                {
+                    CurrentPhase2TransitionState = Phase2TransitionState.NeedsToSummonPortal;
+                    npc.dontTakeDamage = true;
+                    npc.netUpdate = true;
+                }
+
                 return;
             }
 
@@ -1331,7 +1522,8 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.DoGOv
                 return;
             }
 
-            orig(npcIndex, damage);
+            if (!InfernalWorld.RagnarokModeEnabled)
+                orig(npcIndex, damage);
         }
     }
 
@@ -1378,4 +1570,203 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.DoGOv
             return orig(npc, ref phaseCycleTimer, ref passiveAttackDelay, ref segmentFadeType, ref universalFightTimer);
         }
     }
+
+    internal sealed class DoGPassiveAttackPatch : ModSystem
+    {
+        public const int PassiveAttackIndex = 50;
+
+        private static MethodInfo preAIMethod;
+
+        public override void Load()
+        {
+            preAIMethod = typeof(DoGPhase1HeadBehaviorOverride).GetMethod("PreAI", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+
+            if (preAIMethod == null)
+            {
+                InfernalEclipseAPI.Instance.Logger.Error("[DoG] Failed to locate Phase 1 PreAI.");
+                return;
+            }
+
+            MonoModHooks.Modify(preAIMethod, SuppressOriginalAttack);
+        }
+
+        public override void Unload()
+        {
+            preAIMethod = null;
+        }
+
+        private static void SuppressOriginalAttack(ILContext il)
+        {
+            ILCursor cursor = new(il);
+
+            // Find the original passive attack's modulo operation.
+            if (!cursor.TryGotoNext(MoveType.After, i => i.MatchLdcR4(150f), i => i.MatchRem(), i => i.MatchLdcR4(0f)))
+            {
+                InfernalEclipseAPI.Instance.Logger.Error("[DoG] Failed to locate original passive attack condition.");
+                return;
+            }
+
+            // Move back before the zero comparison operand.
+            cursor.Index--;
+
+            // The stack currently contains phaseCycleTimer % 150f.
+            cursor.EmitDelegate<Func<float, float>>(remainder =>
+            {
+                if (!InfernalWorld.RagnarokModeEnabled)
+                    return remainder;
+
+                int headIndex = CalamityGlobalNPC.DoGHead;
+
+                if (!Main.npc.IndexInRange(headIndex))
+                    return remainder;
+
+                NPC npc = Main.npc[headIndex];
+
+                if (!npc.active || npc.type != ModContent.NPCType<DevourerofGodsHead>())
+                    return remainder;
+
+                int selectedAttack = (int)npc.Infernum().ExtraAI[PassiveAttackIndex];
+
+                // Prevent the remainder from equaling zero during custom attacks 1 and 2.
+                return selectedAttack == 0 ? remainder : float.NaN;
+            });
+
+            InfernalEclipseAPI.Instance.Logger.Info("[DoG] Original passive laser suppression IL patch applied.");
+        }
+    }
+
+    internal sealed class DoGRagnarokVisualPatch : ModSystem
+    {
+        private static bool ShouldRunInfernumVisuals(bool reducedGraphics)
+        {
+            return !reducedGraphics || InfernalWorld.RagnarokModeEnabled;
+        }
+
+        private static bool ShouldSetTextCooldown()
+        {
+            return !InfernalWorld.RagnarokModeEnabled;
+        }
+
+        public override void Load()
+        {
+            MethodInfo method = typeof(DoGPhase1HeadBehaviorOverride).GetMethod("PreAI", BindingFlags.Public | BindingFlags.Instance);
+
+            if (method != null)
+                MonoModHooks.Modify(method, PatchPreAI);
+        }
+
+        private static void PatchPreAI(ILContext il)
+        {
+            // Replace the reduced graphics condition.
+            ILCursor cursor = new(il);
+
+            if (cursor.TryGotoNext(MoveType.After, i => i.MatchCallvirt(typeof(InfernumMode.Core.InfernumConfig),"get_ReducedGraphicsConfig")))
+            {
+                cursor.EmitDelegate<Func<bool, bool>>(ShouldRunInfernumVisuals);
+
+                // Original IL branches when the condition is false. Our delegate returns true only when visuals should run.
+            }
+
+            // Prevent dogTextCooldown from being set during Ragnarok.
+            cursor = new ILCursor(il);
+
+            if (cursor.TryGotoNext(MoveType.Before, i => i.MatchLdcI4(20), i => i.MatchStfld(typeof(CalamityMod.CalPlayer.CalamityPlayer), "dogTextCooldown")))
+            {
+                ILLabel skipAssignment = cursor.DefineLabel();
+                ILLabel continueAssignment = cursor.DefineLabel();
+
+                cursor.EmitDelegate<Func<bool>>(ShouldSetTextCooldown);
+                cursor.Emit(OpCodes.Brtrue, continueAssignment);
+
+                // Discard the CalamityPlayer instance already on the stack.
+                cursor.Emit(OpCodes.Pop);
+                cursor.Emit(OpCodes.Br, skipAssignment);
+
+                cursor.MarkLabel(continueAssignment);
+
+                cursor.Index += 2;
+                cursor.MarkLabel(skipAssignment);
+            }
+        }
+    }
+
+    internal sealed class DoGLaserWallAttackPatch : ModSystem
+    {
+        private static Hook laserWallHook;
+
+        private delegate void Orig_DoSpecialAttack_LaserWalls(Player target, ref float attackTimer, ref float segmentFadeType);
+
+        private delegate void Hook_DoSpecialAttack_LaserWalls( Orig_DoSpecialAttack_LaserWalls orig, Player target, ref float attackTimer, ref float segmentFadeType);
+
+        public override void OnModLoad()
+        {
+            MethodInfo method = typeof(DoGPhase2HeadBehaviorOverride).GetMethod(nameof(DoSpecialAttack_LaserWalls), BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static);
+
+            if (method == null)
+            {
+                InfernalEclipseAPI.Instance.Logger.Error("[DoG] Failed to locate DoSpecialAttack_LaserWalls.");
+                return;
+            }
+
+            laserWallHook = new Hook(method, (Hook_DoSpecialAttack_LaserWalls)DoSpecialAttack_LaserWalls_Detour);
+
+            laserWallHook.Apply();
+        }
+
+        public override void Unload()
+        {
+            laserWallHook?.Dispose();
+            laserWallHook = null;
+        }
+
+        private static void DoSpecialAttack_LaserWalls_Detour(Orig_DoSpecialAttack_LaserWalls orig, Player target, ref float attackTimer, ref float segmentFadeType)
+        {
+            if (!InfernalWorld.RagnarokModeEnabled)
+            {
+                orig(target, ref attackTimer, ref segmentFadeType);
+                return;
+            }
+
+            // Replace Infernum's original laser wall attack.
+            DoRagnarokLaserWallAttack(target, ref attackTimer, ref segmentFadeType);
+        }
+
+        private static void DoRagnarokLaserWallAttack(Player target, ref float attackTimer, ref float segmentFadeType)
+        {
+            ref float beamAttackType = ref Main.npc[CalamityGlobalNPC.DoGHead].Infernum().ExtraAI[51];
+
+            // Preserve Infernum's segment opacity behavior.
+            segmentFadeType = (int)BodySegmentFadeType.InhertHeadOpacity;
+
+            float laserWallSpeed = 0.35f;
+
+            if (attackTimer % 80f == 79f && attackTimer < SpecialAttackDuration - 90f)
+            {
+                SoundEngine.PlaySound(CommonCalamitySounds.LaserCannonSound, target.Center);
+
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    int shootType = ModContent.ProjectileType<DoGLaserWalls>();
+
+                    int beamType;
+                    if (beamAttackType % 2 == 0)
+                        beamType = Main.rand.Next(2, 6);
+                    else
+                        beamType = Main.rand.Next(0, 2);
+
+                    beamAttackType++;
+
+                    float size = 120f;
+
+                    Utilities.NewProjectileBetter(target.Center + Main.rand.NextVector2CircularEdge(600f, 600f), Vector2.Zero, shootType, DevourerofGodsHead.LaserWallDamage, 0f, Main.myPlayer, laserWallSpeed, size, beamType);
+
+                    if (beamAttackType % 2 != 0)
+                    {
+                        Utilities.NewProjectileBetter(target.Center, Vector2.Zero, ModContent.ProjectileType<DoGLaserWallsBigBeam>(), DevourerofGodsHead.LaserWallMiddleBeamDamage, 0f, Main.myPlayer, 0.35f, 0f, 2f);
+                    }
+                }
+            }
+        }
+    }
+    #endregion
 }
