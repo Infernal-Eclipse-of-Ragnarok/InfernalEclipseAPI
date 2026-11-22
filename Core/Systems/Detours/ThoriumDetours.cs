@@ -511,7 +511,7 @@ namespace InfernalEclipseAPI.Core.Systems.Detours
             ILCursor cursor = new(il);
 
             // Original: HexingTalisman.DotDamage
-            // Replace the value pushed onto the stack with 100.
+            // Replace the value pushed onto the stack with 150.
             if (!cursor.TryGotoNext(MoveType.After, i => i.MatchLdsfld<HexingTalisman>(nameof(HexingTalisman.DotDamage))))
             {
                 ModContent.GetInstance<InfernalEclipseAPI>().Logger.Error("Could not locate HexingTalisman.DotDamage in Tooltip getter.");
@@ -519,7 +519,7 @@ namespace InfernalEclipseAPI.Core.Systems.Detours
             }
 
             cursor.Emit(OpCodes.Pop);
-            cursor.Emit(OpCodes.Ldc_I4, 100);
+            cursor.Emit(OpCodes.Ldc_I4, 150);
         }
 
         private static void ModifyUpdateLifeRegen(ILContext il)
@@ -536,7 +536,7 @@ namespace InfernalEclipseAPI.Core.Systems.Detours
             // Original:
             // npc.lifeRegen = (int)(npc.lifeRegen * 3.0);
             // New:
-            // npc.lifeRegen = (int)(npc.lifeRegen * 2.0);
+            // npc.lifeRegen = (int)(npc.lifeRegen * 2.5);
             if (!cursor.TryGotoNext(MoveType.Before, i => i.MatchLdcR8(3.0)))
             {
                 ModContent.GetInstance<InfernalEclipseAPI>().Logger.Error("Could not locate Hexing Talisman's 3x DoT multiplier.");
@@ -544,7 +544,7 @@ namespace InfernalEclipseAPI.Core.Systems.Detours
             }
 
             cursor.Remove();
-            cursor.Emit(OpCodes.Ldc_R8, 2.0);
+            cursor.Emit(OpCodes.Ldc_R8, 2.5);
         }
 
         public override void Unload()
