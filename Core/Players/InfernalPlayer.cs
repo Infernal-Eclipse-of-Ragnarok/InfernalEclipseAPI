@@ -10,6 +10,7 @@ using CalamityMod.NPCs;
 using CalamityMod.NPCs.AquaticScourge;
 using CalamityMod.NPCs.AstrumDeus;
 using CalamityMod.NPCs.DesertScourge;
+using CalamityMod.NPCs.ExoMechs.Thanatos;
 using CalamityMod.NPCs.PlaguebringerGoliath;
 using CalamityMod.NPCs.PrimordialWyrm;
 using CalamityMod.NPCs.Providence;
@@ -1138,6 +1139,17 @@ namespace InfernalEclipseAPI.Core.Players
                 if ((target.type == ModContent.NPCType<DesertScourgeBody>() || target.type == ModContent.NPCType<DesertScourgeHead>() || target.type == ModContent.NPCType<DesertScourgeTail>()))
                 {
                     if (proj.type == InfernalCrossmod.Thorium.Mod.Find<ModProjectile>("ButterflyStaffPro").Type)
+                    {
+                        modifiers.FinalDamage *= 0.5f;
+                    }
+                }
+            }
+
+            if (InfernalCrossmod.RagnarokMod.Loaded)
+            {
+                if ((target.type == ModContent.NPCType<ThanatosBody1>() || target.type == ModContent.NPCType<ThanatosBody2>() || target.type == ModContent.NPCType<ThanatosHead>() || target.type == ModContent.NPCType<ThanatosTail>()))
+                {
+                    if (proj.type == InfernalCrossmod.RagnarokMod.Mod.Find<ModProjectile>("AuricDamruShock").Type)
                     {
                         modifiers.FinalDamage *= 0.5f;
                     }

@@ -6131,7 +6131,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
             {
                 if (GetItem(sotsBH, "VibrantTomahawk", item))
                 {
-                    item.damage = 50;
+                    //item.damage = 50;
                 }
 
                 if (GetItem(sotsBH, "GoopwoodWiggle", item))
