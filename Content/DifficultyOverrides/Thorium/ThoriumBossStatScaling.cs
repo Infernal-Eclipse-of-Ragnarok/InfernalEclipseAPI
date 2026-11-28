@@ -7,7 +7,6 @@ using ThoriumMod.Projectiles.Boss;
 using System.Linq;
 using ThoriumRework.Projectiles;
 using InfernalEclipseAPI.Content.Buffs;
-using ThoriumMod.Projectiles.Enemy;
 using ThoriumMod.NPCs.BossQueenJellyfish;
 using InfernalEclipseAPI.Common.Globals.GlobalNPCs;
 using ThoriumMod.NPCs.BossViscount;
@@ -221,9 +220,9 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
             string name = npc.ModNPC?.Name ?? "";
             float damageMod = 0;
 
-            if (name.Contains("SlagFury") || name.Contains("Aquaius") || name.Contains("Omnicide") || name.Contains("DreamEater"))
+            if (name.Contains("SlagFury") || name.Contains("Aquaius") || name.Contains("Omnicide"))
                 damageMod += 0.75f;
-            else if (name.Contains("BoreanStrider") || name.Contains("QueenJellyfish") || name.Contains("Viscount"))
+            else if (name.Contains("BoreanStrider") || name.Contains("QueenJellyfish") || name.Contains("Viscount") || name.Contains("DreamEater"))
                 damageMod += 0.6f;
             else if (name.Contains("BiteyBaby"))
                 damageMod += 1f;
