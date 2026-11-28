@@ -217,5 +217,6 @@ namespace InfernalEclipseAPI.Content.Items.SpawnItems
         public static bool DownedExcavator => SOTSWorld.downedExcavator;
         public static bool DownedAdvisor => SOTSWorld.downedAdvisor;
         public static bool DownedPolaris => SOTSWorld.downedAmalgamation;
+        public static bool DownedLux => SOTSWorld.downedLux;
     }
 }
