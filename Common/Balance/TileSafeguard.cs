@@ -41,7 +41,7 @@ namespace InfernalEclipseAPI.Common.Balance
                     return false;
                 }
 
-                if (IsBelowStrangeKeystone(i, j) && !NPC.downedBoss2)
+                if ((IsBelowStrangeKeystone(i, j) || IsBelowObsidianCrate(i, j) || (tile == TileID.FishingCrate && TileObjectData.GetTileStyle(Main.tile[i, j]) == 22) && !NPC.downedBoss2))
                 {
                     blockDamaged = false;
                     return false;
@@ -102,7 +102,7 @@ namespace InfernalEclipseAPI.Common.Balance
                 if (IsBelowSpecialTable(i, j))
                     return NPC.downedBoss3 || Main.hardMode;
 
-                if (IsBelowStrangeKeystone(i, j))
+                if (IsBelowStrangeKeystone(i, j) || IsBelowObsidianCrate(i, j) || (type == TileID.FishingCrate && TileObjectData.GetTileStyle(Main.tile[i, j]) == 22))
                 {
                     return NPC.downedBoss2 || Main.hardMode;
                 }
@@ -191,6 +191,36 @@ namespace InfernalEclipseAPI.Common.Balance
 
             int frameYMod = above.TileFrameY % styleBlockHeightPx;
             return frameYMod >= (styleBlockHeightPx - tilePixel);
+        }
+
+        private static bool IsBelowObsidianCrate(int x, int y)
+        {
+            int aboveY = y - 1;
+            if (aboveY < 0 || x < 0 || x >= Main.maxTilesX || y < 0 || y >= Main.maxTilesY)
+                return false;
+
+            Tile above = Framing.GetTileSafely(x, aboveY);
+            if (!above.HasTile)
+                return false;
+
+            if (above.TileType != TileID.FishingCrate)
+                return false;
+
+            const int obsidianCrateStyle = 22;
+
+            if (TileObjectData.GetTileStyle(above) != obsidianCrateStyle)
+                return false;
+
+            TileObjectData data = TileObjectData.GetTileData(above);
+
+            if (data != null)
+            {
+                int row = (above.TileFrameY % data.CoordinateFullHeight) / 18;
+                return row == data.Height - 1;
+            }
+
+            // Fallback for the standard 2x2 crate dimensions.
+            return above.TileFrameY % 36 >= 18;
         }
 
         private static bool MeetsPickRequirement(Player player, int requiredPickPower)

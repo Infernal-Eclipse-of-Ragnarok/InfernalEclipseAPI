@@ -1925,6 +1925,16 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                     }
                 }
                 #endregion
+
+                #region Infernal Arsenal
+                if (ModLoader.TryGetMod("InfernalEclipseWeaponsDLC", out Mod IEoRDLC))
+                {
+                    if (recipe.HasResult(IEoRDLC.Find<ModItem>("TheCompleteSet")))
+                    {
+                        recipe.AddCondition(SpellbookGatedRecipe.ConstructRecipeCondition(out Func<bool> condition), condition);
+                    }
+                }
+                #endregion
             }
         }
 

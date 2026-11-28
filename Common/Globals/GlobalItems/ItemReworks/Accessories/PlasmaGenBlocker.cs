@@ -5,6 +5,7 @@ using CalamityMod.NPCs.ExoMechs.Artemis;
 using CalamityMod.NPCs.ExoMechs.Thanatos;
 using CalamityMod.NPCs.ProfanedGuardians;
 using CalamityMod.NPCs.SupremeCalamitas;
+using InfernumMode.Core.GlobalInstances.Systems;
 using System.Collections.Generic;
 using ThoriumMod.Utilities;
 
@@ -21,6 +22,14 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Accessories
             foreach (int boss in BlockedBosses)
             {
                 if (NPC.AnyNPCs(boss))
+                {
+                    player.GetThoriumPlayer().accPlasmaGenerator = false;
+                }
+            }
+
+            if (WorldSaveSystem.InfernumModeEnabled)
+            {
+                if (NPC.AnyNPCs(NPCID.HallowBoss) || NPC.AnyNPCs(NPCID.MoonLordCore))
                 {
                     player.GetThoriumPlayer().accPlasmaGenerator = false;
                 }

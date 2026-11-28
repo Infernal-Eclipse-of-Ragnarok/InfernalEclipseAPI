@@ -178,6 +178,15 @@ namespace InfernalEclipseAPI.Content.Items.Other
                         list.Insert(insertIndex, tesseractDisplay);
                     }
 
+                    if (InfernalCrossmod.InfernalEclipseWeaponsDLC.Loaded)
+                    {
+                        insertIndex++;
+                        int completeSetItem = InfernalCrossmod.InfernalEclipseWeaponsDLC.Mod.Find<ModItem>("TheCompleteSet").Type;
+                        TooltipLine completeSetDisplay = new TooltipLine(Mod, "IEoR:CompleteSetDisplay", $"[i:{completeSetItem}] {CalamityUtils.GetItemName(completeSetItem)}");
+                        completeSetDisplay.OverrideColor = new Color(236, 255, 31);
+                        list.Insert(insertIndex, completeSetDisplay);
+                    }
+
                     if (ModLoader.TryGetMod("ZenithToilet", out Mod toilet))
                     {
                         insertIndex++;

@@ -5,6 +5,7 @@ using CalamityMod.Items.Mounts;
 using CalamityMod.NPCs.Cryogen;
 using CalamityMod.NPCs.DevourerofGods;
 using CalamityMod.NPCs.HiveMind;
+using CalamityMod.NPCs.NormalNPCs;
 using CalamityMod.NPCs.NormalNPCs.HorribleHog;
 using CalamityMod.NPCs.Perforator;
 using CalamityMod.NPCs.ProfanedGuardians;
@@ -167,8 +168,8 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
                 NPCID.TheDestroyer,
                 NPCID.TheDestroyerBody,
                 NPCID.TheDestroyerTail,
-                NPCID.Probe
-
+                NPCID.Probe,
+                ModContent.NPCType<SuperDummyNPC>()
             };
 
             int[] dealsVoidDamge =
@@ -195,6 +196,17 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
             {
                 entity.buffImmune[ModContent.BuffType<CurseVision>()] = true;
                 entity.buffImmune[ModContent.BuffType<PharaohsCurse>()] = true;
+            }
+            else if (entity.ModNPC != null)
+            {
+                if (InfernalCrossmod.FargosMutant.Loaded)
+                {
+                    if (entity.ModNPC.Mod == InfernalCrossmod.FargosMutant.Mod && entity.ModNPC.Name.Contains("SuperDummy"))
+                    {
+                        entity.buffImmune[ModContent.BuffType<CurseVision>()] = true;
+                        entity.buffImmune[ModContent.BuffType<PharaohsCurse>()] = true;
+                    }
+                }
             }
 
             if (dealsVoidDamge.Contains(entity.type))
